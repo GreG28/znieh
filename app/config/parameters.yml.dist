@@ -18,4 +18,4 @@ parameters:
     app_secret_facebook:
 
     ga_tracking: UA-xxxxx-x
-    node_path: C:\\Program Files (x86)\\nodejs\\node_modules
+    node_paths: C:\\Program Files (x86)\\nodejs\\node_modules
