@@ -1,0 +1,20 @@
+{% extends "LiveBlogBundle::layout.html.twig" %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="span8">
+      <h2 class="section-title">{% if page == 1 %}Articles Récents{% else %} Articles - Page {{ page }}{% endif %}</h2>
+
+      <div class="posts-container">
+        {{ include('LiveBlogBundle:Post:list.html.twig', { 'posts': posts }) }}
+      </div>
+
+      {{ include('LiveBlogBundle::pagination.html.twig', { 'page' : page, 'nombrePage' : nombrePage }) }}
+
+    </div>
+
+
+  </div>
+</div>
+{% endblock %}

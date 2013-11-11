@@ -1,0 +1,47 @@
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+    providers:
+        main:
+            entity: { class: Znieh\UserBundle\Entity\User, property: username }
+
+    role_hierarchy:
+        ROLE_TEAM:        ROLE_USER
+        ROLE_ADMIN:       ROLE_TEAM
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_TEAM, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        chain_provider:
+            chain:
+                providers: [fos_userbundle, my_fos_facebook_provider]
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+        my_fos_facebook_provider:
+            id: my.facebook.user
+
+    firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_provider: form.csrf_provider
+            fos_facebook:
+                app_url: "http://apps.facebook.com/zniehgames/"
+                server_url: "http://localhost/znieh/web/app_dev.php/"
+                login_path: /login
+                check_path: /login_facebook_check
+                default_target_path: /
+                provider: my_fos_facebook_provider
+            logout:       true
+            anonymous:    true
+            remember_me:
+                key:      "%secret%"
+                lifetime: 31536000 # 365 days in seconds
+                path:     /
+                domain:   ~ # Defaults to the current domain from $_SERVER
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_TEAM }

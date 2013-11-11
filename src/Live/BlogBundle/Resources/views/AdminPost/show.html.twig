@@ -1,0 +1,76 @@
+{% extends "LiveBlogBundle::layout.html.twig" %}
+
+{% block body -%}
+<div class="container">
+    <h1>Article</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>#</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ entity.title }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ entity.slug }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ entity.content }}</td>
+            </tr>
+            <tr>
+                <th>Contentformatter</th>
+                <td>{{ entity.contentFormatter }}</td>
+            </tr>
+            <tr>
+                <th>Enabled</th>
+                <td>{{ entity.enabled }}</td>
+            </tr>
+            <tr>
+                <th>Publicationdatestart</th>
+                <td>{{ entity.publicationDateStart|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Commentsenabled</th>
+                <td>{{ entity.commentsEnabled }}</td>
+            </tr>
+            <tr>
+                <th>Commentscount</th>
+                <td>{{ entity.commentsCount }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_post') }}">
+            Retour à la liste des actions
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('admin_post_edit', { 'id': entity.id }) }}">
+            Editer
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('admin_post_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="btn btn-danger">Supprimer (définitivement)</button>
+        </form>
+    </li>
+</ul>
+</div>
+{% endblock %}
