@@ -9,13 +9,15 @@
         <!-- This is a compiled and minified css file. -->
         {% block stylesheets %}
             {% stylesheets filter='cssrewrite' output='css/compiled/style.css'
-                        'css/bootstrap.min.css'
-                        'css/bootstrap-responsive.min.css'
+                        'css/bootstrap.css'
                         'css/style.css'
-             %}
+            %}
                 <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
             {% endstylesheets %}
         {% endblock %}
+
+        <!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
+        {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
 
     </head>
     <body>

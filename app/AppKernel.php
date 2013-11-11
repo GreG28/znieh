@@ -17,6 +17,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
@@ -26,6 +27,7 @@ class AppKernel extends Kernel
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new Genemu\Bundle\FormBundle\GenemuFormBundle(),
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
+
             new Live\BlogBundle\LiveBlogBundle(),
             new Znieh\UserBundle\ZniehUserBundle(),
             new Znieh\PublicBundle\ZniehPublicBundle(),

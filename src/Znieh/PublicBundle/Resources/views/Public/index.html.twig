@@ -1,2 +1,7 @@
-Bienvenue sur Znieh Games !
-<a href="{{ path('live_blog_public_index') }}">Blog</a>
+{% extends "::base.html.twig" %}
+
+{% block body %}
+  Bienvenue sur Znieh Games !
+  <a href="{{ path('live_blog_public_index') }}">Blog</a>
+
+{% endblock %}

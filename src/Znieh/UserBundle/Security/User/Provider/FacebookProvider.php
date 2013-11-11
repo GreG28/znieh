@@ -18,9 +18,12 @@ class FacebookProvider implements UserProviderInterface
     protected $userManager;
     protected $validator;
 
-    public function __construct(BaseFacebook $facebook, $userManager, $validator)
+    public function __construct(BaseFacebook $facebook, $userManager, $validator, $userProvider)
     {
         $this->facebook = $facebook;
+        $this->userManager = $userManager;
+        $this->validator = $validator;
+        $this->userProvider = $userProvider;
 
         // Add this to not have the error "the ssl certificate is invalid."
         //Facebook::$CURL_OPTS[CURLOPT_SSL_VERIFYPEER] = false;
@@ -30,15 +33,11 @@ class FacebookProvider implements UserProviderInterface
         //Facebook::$CURL_OPTS[CURLOPT_IPRESOLVE] = CURL_IPRESOLVE_V4;
         //Facebook::$CURL_OPTS[CURLOPT_PROXYPORT] = 3128;
         //Facebook::$CURL_OPTS[CURLOPT_PROXY] = 'squid.efrei.fr';
-
-
-        $this->userManager = $userManager;
-        $this->validator = $validator;
     }
 
     public function supportsClass($class)
     {
-        return $this->userManager->supportsClass($class);
+        return $this->userProvider->supportsClass($class);
     }
 
     public function findUserByFbId($fbId)
