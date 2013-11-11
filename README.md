@@ -27,12 +27,15 @@ If you get any warnings or recommendations, fix them before moving on.
 -------------------------------------
 
 Create database :
+
     php app/console doctrine:database:create
 
 Create schema of database :
+
     php app/console doctrine:schema:update --force
 
 Load DataFixtures : (validate with Y to continue)
+
     php app/console doctrine:fixtures:load
 
 
@@ -42,6 +45,12 @@ Load DataFixtures : (validate with Y to continue)
     php app/console assetic:dump
 
     php app/console assetic:dump --env=prod --no-debug
+
+You must have less installed
+
+    npm install -g less
+
+You can configure node_paths in parameters.yml
 
 
  Clearing the cache
