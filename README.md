@@ -1,4 +1,4 @@
-Site de Znieh Games
+Znieh Games Website
 ========================
 
 1) Installation
@@ -46,11 +46,11 @@ Load DataFixtures : (validate with Y to continue)
 
     php app/console assetic:dump --env=prod --no-debug
 
-You must have less installed
+You must have both node and less installed :
 
     npm install -g less
 
-You can configure node_paths in parameters.yml
+You can configure node_paths in app/config/parameters.yml
 
 
  Clearing the cache
