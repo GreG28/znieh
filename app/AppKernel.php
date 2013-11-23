@@ -31,6 +31,8 @@ class AppKernel extends Kernel
             new Live\BlogBundle\LiveBlogBundle(),
             new Znieh\UserBundle\ZniehUserBundle(),
             new Znieh\PublicBundle\ZniehPublicBundle(),
+            new Znieh\CoreGameBundle\ZniehCoreGameBundle(),
+            new Znieh\VillageGameBundle\ZniehVillageGameBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

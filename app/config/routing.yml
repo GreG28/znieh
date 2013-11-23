@@ -1,3 +1,13 @@
+znieh_village_game:
+    resource: "@ZniehVillageGameBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+znieh_core_game:
+    resource: "@ZniehCoreGameBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 znieh_public:
     resource: "@ZniehPublicBundle/Controller/"
     type:     annotation
