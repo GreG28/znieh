@@ -198,7 +198,9 @@ stof_doctrine_extensions:
         default_file_info_class: Stof\DoctrineExtensionsBundle\Uploadable\UploadedFileInfo
     orm:
         default:
-            sluggable: true
+            sluggable: true,
+            tree: true,
+            timestampable: true
 
 # GenemuForm Configuration
 genemu_form:
