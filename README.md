@@ -4,7 +4,7 @@ Znieh Games Website
 1) Installation
 ----------------------------------
 
-    git clone git@github.com:spyl94/znieh-symfony.git
+    git clone git@github.com:spyl94/znieh.git
 
     php composer.phar install
 
