@@ -1,6 +1,8 @@
 Znieh Games Website
 ========================
 
+https://gist.github.com/spyl94/4abb12ac838d4a686241
+
 1) Installation
 ----------------------------------
 
