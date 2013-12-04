@@ -1,0 +1,16 @@
+WeaponPartType:
+  lame:
+    name: Lame
+    type: Épée
+  pommeau:
+    name: Pommeau
+    type: Épée
+  manche:
+    name: Manche
+    type: Épée
+  garde:
+    name: Garde
+    type: Épée
+  corde:
+    name: Corde
+    type: Arc

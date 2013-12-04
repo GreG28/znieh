@@ -5,36 +5,11 @@ use Doctrine\Common\DataFixtures\AbstractFixture,
     Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Znieh\VillageGameBundle\Entity\Step;
+use Znieh\VillageGameBundle\Entity\WeaponPart;
 use Znieh\PublicBundle\DataFixtures\ORM\AbstractFixtureLoader;
 
-class LoadStepData extends AbstractFixtureLoader implements OrderedFixtureInterface
+class LoadWeaponPartData extends AbstractFixtureLoader implements OrderedFixtureInterface
 {
-    /**
-     * Steps to save
-     */
-    /*private $stepsData = array(
-              array(
-                'title'      => 'Lames en bronze',
-                'building' => 'Forge',
-                'parent' => '',
-              ),
-              array(
-               'title'       => 'Lames en fer',
-               'building' => 'Forge',
-               'parent' => 'Lames en bronze',
-              ),
-              array(
-               'title'       => 'Lames en fer souple',
-               'building' => 'Forge',
-               'parent' => 'Lames en fer',
-              ),
-              array(
-               'title'       => 'Lames en fer dur',
-               'building' => 'Forge',
-               'parent' => 'Lames en fer',
-              ),
-            );
 
     /**
      * {@inheritDoc}
@@ -69,7 +44,7 @@ class LoadStepData extends AbstractFixtureLoader implements OrderedFixtureInterf
      */
     public function getModelFile()
     {
-        return 'steps';
+        return 'weaponPart';
     }
 
     /**
@@ -77,6 +52,6 @@ class LoadStepData extends AbstractFixtureLoader implements OrderedFixtureInterf
      */
     public function getOrder()
     {
-        return 21;
+        return 25;
     }
 }

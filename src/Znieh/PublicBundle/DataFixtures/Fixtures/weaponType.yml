@@ -1,0 +1,12 @@
+epee:
+  name: Épée
+  building: Forge
+hache:
+  name: Hache
+  building: Forge
+lance:
+  name: Lance
+  building: Forge
+arc:
+  name: Arc
+  building: Archerie

@@ -6,30 +6,19 @@ use Doctrine\Common\DataFixtures\AbstractFixture,
 use Doctrine\Common\Persistence\ObjectManager;
 
 use Znieh\VillageGameBundle\Entity\Building;
+use Znieh\PublicBundle\DataFixtures\ORM\AbstractFixtureLoader;
 
-class LoadBuildingData  extends AbstractFixture implements OrderedFixtureInterface
+class LoadBuildingData  extends AbstractFixtureLoader implements OrderedFixtureInterface
 {
-    /**
-     * Buildings to save
-     */
-    private $buildingsData = array(
-              array(
-                'title'       => 'Forge',
-                'description' => 'Ceci est une forge',
-              ),
-              array(
-                'title'       => 'Archerie',
-                'description' => 'Ceci est une archerie',
-              ),
-            );
-
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
+        $buildingsData = $this->getModelFixtures();
+
         // Create buildings
-        foreach($this->buildingsData as $buildingData) {
+        foreach($buildingsData as $buildingData) {
             $building = new Building();
 
             $building
@@ -41,6 +30,14 @@ class LoadBuildingData  extends AbstractFixture implements OrderedFixtureInterfa
         }
 
         $manager->flush();
+    }
+
+    /**
+     * The main fixtures file for this loader.
+     */
+    public function getModelFile()
+    {
+        return 'buildings';
     }
 
     /**
