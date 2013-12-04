@@ -19,14 +19,11 @@ class LoadWeaponPartTypeData extends AbstractFixtureLoader implements OrderedFix
       $weaponPartTypesData = $this->getModelFixtures();
 
         // Create weaponPartTypes
-        foreach($weaponPartTypesData['WeaponPartType'] as $weaponPartTypeData) {
+        foreach($weaponPartTypesData as $weaponPartTypeData) {
             $weaponPartType = new weaponPartType();
-
-            $type = $manager->getRepository('ZniehVillageGameBundle:WeaponPartType')->findOneByTitle($weaponPartTypeData['type']);
 
             $weaponPartType
                 ->setName($weaponPartTypeData['name'])
-                ->setType($type)
             ;
 
             $manager->persist($weaponPartType);
@@ -47,6 +44,6 @@ class LoadWeaponPartTypeData extends AbstractFixtureLoader implements OrderedFix
      */
     public function getOrder()
     {
-        return 23;
+        return 22;
     }
 }

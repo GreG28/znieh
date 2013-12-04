@@ -1,12 +1,16 @@
 epee:
   name: Épée
+  parts: [ Lame, Pommeau ]
   building: Forge
 hache:
   name: Hache
+  parts: [ Lame, Pommeau ]
   building: Forge
 lance:
   name: Lance
+  parts: [ Pommeau ]
   building: Forge
 arc:
   name: Arc
+  parts: [ Corde ]
   building: Archerie

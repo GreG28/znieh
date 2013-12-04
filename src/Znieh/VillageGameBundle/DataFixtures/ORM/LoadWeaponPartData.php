@@ -16,25 +16,20 @@ class LoadWeaponPartData extends AbstractFixtureLoader implements OrderedFixture
      */
     public function load(ObjectManager $manager)
     {
-      $stepsData = $this->getModelFixtures();
+      $weaponPartsData = $this->getModelFixtures();
 
         // Create steps
-        foreach($stepsData as $stepData) {
-            $step = new Step();
+        foreach($weaponPartsData as $weaponPartData) {
+            $weaponPart = new weaponPart();
 
-            $building = $manager->getRepository('ZniehVillageGameBundle:Building')->findOneByTitle($stepData['building']);
+            $type = $manager->getRepository('ZniehVillageGameBundle:WeaponPartType')->findOneByName($weaponPartData['type']);
 
-            $step
-                ->setTitle($stepData['title'])
-                ->setBuilding($building)
+            $weaponPart
+                ->setName($weaponPartData['name'])
+                ->setType($type)
             ;
 
-            if (!empty($stepData['parent'])) {
-                $parent = $manager->getRepository('ZniehVillageGameBundle:Step')->findOneByTitle($stepData['parent']);
-                $step->setParent($parent);
-            }
-
-            $manager->persist($step);
+            $manager->persist($weaponPart);
             $manager->flush();
         }
     }

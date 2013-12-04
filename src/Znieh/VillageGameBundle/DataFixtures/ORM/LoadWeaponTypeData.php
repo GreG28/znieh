@@ -26,8 +26,15 @@ class LoadWeaponTypeData extends AbstractFixtureLoader implements OrderedFixture
 
             $weaponType
                 ->setName($weaponTypeData['name'])
-                ->setBuilding($building)
+                ->setBuilding($building)  
             ;
+
+            if (!empty($weaponTypeData['parts'])) {
+                foreach ($weaponTypeData['parts'] as $partData) {
+                    $part = $manager->getRepository('ZniehVillageGameBundle:WeaponPartType')->findOneByName($partData);
+                    $weaponType->addPart($part);
+                }
+            }
 
             $manager->persist($weaponType);
             $manager->flush();

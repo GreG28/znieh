@@ -1,5 +1,6 @@
-WeaponPart:
-  lame_longue_en_bronze:
-   type: lame
-  lame_courte_en_bronze:
-   type: lame
+lame_longue_en_bronze:
+ name: lame_longue_en_bronze
+ type: Lame
+lame_courte_en_bronze:
+ name: lame_courte_en_bronze
+ type: Lame

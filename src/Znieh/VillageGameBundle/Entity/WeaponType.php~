@@ -33,11 +33,6 @@ class WeaponType
      */
     private $parts;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Building", cascade={"persist"})
-     */
-    private $building;
-
 
     /**
      * Get id
@@ -110,28 +105,5 @@ class WeaponType
     public function getParts()
     {
         return $this->parts;
-    }
-
-    /**
-     * Set building
-     *
-     * @param \Znieh\VillageGameBundle\Entity\Building $building
-     * @return WeaponPart
-     */
-    public function setBuilding(\Znieh\VillageGameBundle\Entity\Building $building = null)
-    {
-        $this->building = $building;
-    
-        return $this;
-    }
-
-    /**
-     * Get building
-     *
-     * @return \Znieh\VillageGameBundle\Entity\Building 
-     */
-    public function getBuilding()
-    {
-        return $this->building;
     }
 }

@@ -4,31 +4,38 @@ namespace Znieh\VillageGameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
- * WeaponPart
- *
- * @ORM\Table()
- * @ORM\Entity(repositoryClass="Znieh\VillageGameBundle\Entity\WeaponPartRepository")
+ * @ORM\Entity
  */
-class WeaponPart
+class WeaponPart extends GameObject
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
 
     /**
-     * Get id
-     *
-     * @return integer 
+     * @ORM\ManyToOne(targetEntity="WeaponPartType", cascade={"persist"})
      */
-    public function getId()
+    private $type;
+
+    /**
+     * Set type
+     *
+     * @param \Znieh\VillageGameBundle\Entity\Type $type
+     * @return WeaponPart
+     */
+    public function setType(\Znieh\VillageGameBundle\Entity\WeaponPartType $type = null)
     {
-        return $this->id;
+        $this->type = $type;
+    
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \Znieh\VillageGameBundle\Entity\Type 
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }
