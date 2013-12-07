@@ -44,6 +44,11 @@ abstract class GameObject
      */
     protected $points;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Step", cascade={"persist"})
+     */
+    private $step;
+
 
     /**
      * Get id
@@ -122,5 +127,28 @@ abstract class GameObject
     public function getPoints()
     {
         return $this->points;
+    }
+
+    /**
+     * Set step
+     *
+     * @param \Znieh\VillageGameBundle\Entity\Step $step
+     * @return GameObject
+     */
+    public function setStep(\Znieh\VillageGameBundle\Entity\Step $step = null)
+    {
+        $this->step = $step;
+    
+        return $this;
+    }
+
+    /**
+     * Get step
+     *
+     * @return \Znieh\VillageGameBundle\Entity\Step 
+     */
+    public function getStep()
+    {
+        return $this->step;
     }
 }
