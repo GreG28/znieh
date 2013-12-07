@@ -1,1 +1,18 @@
-Hello {{ name }}!
+{% extends "ZniehCoreGameBundle::layout.html.twig" %}
+
+{% block initCreateJS %}
+onload="init();"
+{% endblock %}
+
+{% block createJs %}
+<script>
+    function init() {
+        // On code ici
+    }
+</script>
+{% endblock %}
+
+{% block body %}
+    <canvas id="canvas" width="480" height="480"> Canvas not supported. Please update your browser. </canvas>
+{% endblock %}
+
