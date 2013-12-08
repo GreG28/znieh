@@ -1,12 +1,101 @@
+# Forge
+lame_en_cuivre:
+  title: Lames en cuivre
+  building: Forge
+  parent: ''
 lame_en_bronze:
   title: Lames en bronze
   building: Forge
-  parent: ''
-lame_en_fer:
-  title: Lames en fer
-  building: Forge
   parent: Lames en bronze
-lame_en_fer_souple:
-  title: Lames en fer souple
+garde_en_cuivre:
+  title: Gardes en cuivre
   building: Forge
-  parent: Lames en fer
+  parent: ''
+garde_en_bronze:
+  title: Gardes en bronze
+  building: Forge
+  parent: Gardes en cuivre
+manche_en_cedre:
+  title: Manches en cèdre
+  building: Forge
+  parent: ''
+manche_en_chene:
+  title: Manches en chêne
+  building: Forge
+  parent: Manches en cèdre
+pommeau_en_cuivre:
+  title: Pommeaux en cuivre
+  building: Forge
+  parent: ''
+pommeau_en_bronze:
+  title: Pommeaux en bronze
+  building: Forge
+  parent: Pommeaux en bronze
+#___________________________________
+# Hacherie
+tete_de_hache_cuivre:
+  title: Têtes de hache en cuivre
+  building: Hacherie
+  parent: ''
+tete_de_hache_bronze:
+  title: Têtes de hache en bronze
+  building: Hacherie
+  parent: Têtes de hache en cuivre
+tete_de_marteau_cuivre:
+  title: Têtes de marteau en cuivre
+  building: Hacherie
+  parent: ''
+tete_de_marteau_bronze:
+  title: Têtes de marteau en bronze
+  building: Hacherie
+  parent: Têtes de marteau en cuivre
+hampe_en_cuivre:
+  title: Hampes en cuivre
+  building: Hacherie
+  parent: ''
+hampe_en_bronze:
+  title: Hampes en bronze
+  building: Hacherie
+  parent: Hampes en cuivre
+poignee_en_cuivre:
+  title: Poignées en cuivre
+  building: Hacherie
+  parent: ''
+poignee_en_bronze:
+  title: Poignées en bronze
+  building: Hacherie
+  parent: Poignées en cuivre
+#___________________________________
+#Archerie
+corde_en_reche:
+  title: Cordes en cuir rêche
+  building: Archerie
+  parent: ''
+corde_en_brut:
+  title: Cordes en cuir brut
+  building: Archerie
+  parent: Corde en cuir rêche
+arc_en_cedre:
+  title: Arcs en cèdre
+  building: Archerie
+  parent: ''
+arc_en_chene:
+  title: Arcs en chêne
+  building: Archerie
+  parent: Arcs en cèdre
+poignee_arc_en_cuivre:
+  title: Poignées en cuivre
+  building: Archerie
+  parent: ''
+poignee_arc_en_bronze:
+  title: Poignées en bronze
+  building: Archerie
+  parent: Poignées en cuivre
+fleche_cuivre:
+  title: Flèches en cuivre
+  building: Archerie
+  parent: ''
+fleche_bronze:
+  title: Flèches en bronze
+  building: Archerie
+  parent: Flèches en cuivre

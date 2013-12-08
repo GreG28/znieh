@@ -70,14 +70,15 @@ class PublicController extends Controller
             $unlocked = new UnlockedGameObject();
             $unlocked->setUser($this->getUser());
             $unlocked->setObject($obj);
-            $em->persist($unlocked);
-            $em->flush();
 
+            $em->persist($unlocked);
+            try {
+                $em->flush();
+            } catch (\Doctrine\DBAL\DBALException $e) {
+                return new Response("pas ok, déja débloqué !" , 200 , array( 'Content-Type' => 'application/json' ));
+            }
             return new Response("ok" , 200 , array( 'Content-Type' => 'application/json' ));
         }
-
-        return new  Response();
-
-       
+        return new  Response();       
     }
 }

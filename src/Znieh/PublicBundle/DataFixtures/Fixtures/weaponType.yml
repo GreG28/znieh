@@ -1,16 +1,16 @@
 epee:
   name: Épée
-  parts: [ Lame, Pommeau ]
+  parts: [ Lame, Pommeau, Garde, Manche ]
   building: Forge
 hache:
   name: Hache
-  parts: [ Lame, Pommeau ]
-  building: Forge
-lance:
-  name: Lance
-  parts: [ Pommeau ]
-  building: Forge
+  parts: [ Tête de hache, Hampe, Poignée ]
+  building: Hacherie
+marteau:
+  name: Marteau
+  parts: [ Tête de marteau, Hampe, Poignée ]
+  building: Hacherie
 arc:
   name: Arc
-  parts: [ Corde ]
+  parts: [ Corde, Flèche, Arc, Poignée d'arc ]
   building: Archerie

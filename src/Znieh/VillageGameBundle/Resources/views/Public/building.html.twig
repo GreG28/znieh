@@ -3,13 +3,12 @@
 {% block body %}
 Village
 	{{ building.title }}
-	{{ unlocked }}
 {% endblock %}
 
 {% block javascripts %}
 	{{ parent() }}
 	<script type="text/javascript">
-		$.get( "http://localhost/znieh-symfony/web/app_dev.php/village/unlock/" + 3, function( data ) {
+		$.get( "http://localhost/znieh-symfony/web/app_dev.php/village/unlock/" + 885, function( data ) {
 	  		console.log(data);
 		});
 	</script>
