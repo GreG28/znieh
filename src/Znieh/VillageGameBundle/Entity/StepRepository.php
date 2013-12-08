@@ -13,5 +13,11 @@ use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
  */
 class StepRepository extends NestedTreeRepository
 {
-
+  public function findAllByBuilding($building)
+  {
+    $qb = $this->createQueryBuilder('s');
+    $query =  $qb->where($qb->expr()->eq('s.building', $building))
+                 ->getQuery();
+    return $query->getResult();
+  }
 }

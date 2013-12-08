@@ -7,25 +7,26 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
-
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Znieh\VillageGameBundle\Entity\UnlockedGameObject;
 use Znieh\VillageGameBundle\Entity\GameObject;
 
 /**
  * @Route("/village")
+ * @Security("has_role('ROLE_USER')")
  */
 class PublicController extends Controller
 {
     /**
      * @Route("/")
      * @Template()
-     */  
+     */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
         $buildings = $em->getRepository('ZniehVillageGameBundle:Building')->findAll();
-    	
+
         return array(
             'buildings' => $buildings
             );
@@ -42,15 +43,23 @@ class PublicController extends Controller
         $building = $em->getRepository('ZniehVillageGameBundle:Building')->findOneByTitle($building);
 
         if ($building != null) {
-            $unlocked = $em->getRepository('ZniehVillageGameBundle:UnlockedGameObject')->findUnlockedObjectsByUserByBuilding(
+            $steps = $em->getRepository('ZniehVillageGameBundle:Step')->findAllByBuilding(
+                $building->getId()
+            );
+            $objects = $em->getRepository('ZniehVillageGameBundle:GameObject')->findObjectsByBuilding(
+                $building->getId()
+            );
+            $unlockeds = $em->getRepository('ZniehVillageGameBundle:UnlockedGameObject')->findUnlockedObjectsByUserByBuilding(
                 $this->getUser()->getId(),
                 $building->getId()
             );
         }
-        
+
         return array(
-            'building' => $building,
-            'unlocked' => $unlocked
+            'steps'     => $steps,
+            'building'  => $building,
+            'objects'   => $objects,
+            'unlockeds' => $unlockeds
             );
     }
 
@@ -75,10 +84,10 @@ class PublicController extends Controller
             try {
                 $em->flush();
             } catch (\Doctrine\DBAL\DBALException $e) {
-                return new Response("pas ok, déja débloqué !" , 200 , array( 'Content-Type' => 'application/json' ));
+                return new JsonResponse(null, 401);
             }
-            return new Response("ok" , 200 , array( 'Content-Type' => 'application/json' ));
+            return new JsonResponse("ok");
         }
-        return new  Response();       
+        return new  Response();
     }
 }

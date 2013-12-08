@@ -6,7 +6,7 @@ lame_en_cuivre:
 lame_en_bronze:
   title: Lames en bronze
   building: Forge
-  parent: Lames en bronze
+  parent: Lames en cuivre
 garde_en_cuivre:
   title: Gardes en cuivre
   building: Forge

@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class GameObjectRepository extends EntityRepository
 {
+    public function findObjectsByBuilding($building)
+    {
+      $qb = $this->createQueryBuilder('g');
+      $query =  $qb->leftJoin('g.step', 's')
+                   ->where($qb->expr()->eq('s.building', $building))
+                   ->getQuery();
+      return $query->getResult();
+    }
 }
