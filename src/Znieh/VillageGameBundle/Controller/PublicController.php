@@ -6,6 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Response;
+
+use Znieh\VillageGameBundle\Entity\UnlockedGameObject;
+use Znieh\VillageGameBundle\Entity\GameObject;
+
 /**
  * @Route("/village")
  */
@@ -25,7 +30,6 @@ class PublicController extends Controller
             'buildings' => $buildings
             );
     }
-
 
     /**
      * @Route("/{building}")
@@ -48,5 +52,32 @@ class PublicController extends Controller
             'building' => $building,
             'unlocked' => $unlocked
             );
+    }
+
+    /**
+     * @Route("/unlock/{object}")
+     * @Template()
+     */
+    public function unlockAction($object)
+    {
+        $request = $this->getRequest();
+
+        if($request->isXmlHttpRequest())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $obj = $em->getRepository('ZniehVillageGameBundle:GameObject')->findOneById($object);
+
+            $unlocked = new UnlockedGameObject();
+            $unlocked->setUser($this->getUser());
+            $unlocked->setObject($obj);
+            $em->persist($unlocked);
+            $em->flush();
+
+            return new Response("ok" , 200 , array( 'Content-Type' => 'application/json' ));
+        }
+
+        return new  Response();
+
+       
     }
 }

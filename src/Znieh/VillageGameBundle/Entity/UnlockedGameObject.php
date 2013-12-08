@@ -3,6 +3,7 @@
 namespace Znieh\VillageGameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * UnlockedGameObject
@@ -16,6 +17,7 @@ class UnlockedGameObject
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
