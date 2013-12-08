@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>BetaForm list</h1>
+
+    <table class="record_properties">
+        <thead>
+            <tr>
+                <th>Email</th>
+            </tr>
+        </head>
+        <tbody> 
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.email }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

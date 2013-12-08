@@ -11,7 +11,7 @@ use Znieh\UserBundle\Form\Type\UserAdminType;
 class UserController extends Controller
 {
     /**
-     * @Route("/users", name="users_index")
+     * @Route("/users")
      * @Template()
      */
     public function indexAction()
@@ -24,8 +24,9 @@ class UserController extends Controller
         );
     }
 
+
     /**
-     * @Route("/users/{slug}", name="users_view")
+     * @Route("/users/{slug}")
      * @Template()
      */
     public function viewAction($slug)
