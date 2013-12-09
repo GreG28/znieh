@@ -5,14 +5,19 @@ onload="init();"
 {% endblock %}
 
 {% block createJs %}
+<script src="{{ asset('js/game/Tile.js') }}"></script>
+<script src="{{ asset('js/game/Map.js') }}"></script>
+<script src="{{ asset('js/game/contentManager.js') }}"></script>
 <script>
-    function init() {
-        // On code ici
-    }
+var canvas = document.getElementById("canvas");
+var stage = new createjs.Stage(canvas);
+function init() {
+    contentManager = new ContentManager(stage, 480, 480);
+    contentManager.init();
+}
 </script>
 {% endblock %}
 
 {% block body %}
     <canvas id="canvas" width="480" height="480"> Canvas not supported. Please update your browser. </canvas>
 {% endblock %}
-
