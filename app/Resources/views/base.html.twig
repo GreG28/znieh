@@ -20,7 +20,7 @@
         {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
 
     </head>
-    <body>
+    <body {% block initCreateJS '' %}>
         <div id="wrap">
 
             {% block navbar '' %} <!-- end block navbar -->
@@ -45,6 +45,8 @@
             </script>
 
         {% endblock %}
+
+            {% block createJs '' %}
 
             <!-- Facebook Connect -->
             <script>
