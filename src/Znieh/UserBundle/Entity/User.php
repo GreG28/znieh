@@ -5,6 +5,7 @@ namespace Znieh\UserBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Znieh\UserBundle\Entity\Ressource;
 
 
 /**
@@ -13,6 +14,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 **/
 class User extends BaseUser
 {
+    /**
+    * @ORM\OneToOne(targetEntity="Znieh\UserBundle\Entity\Ressource", cascade={"persist"})
+    */
+    private $ressource;
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -49,6 +54,7 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
+        $this->ressource = new Ressource();
     }
 
     public function isGranted($role)
@@ -165,5 +171,20 @@ class User extends BaseUser
             $this->setEmail($fbdata['email']);
         }
     }
+
+    /**
+    * @param Znieh\UserBundle\Entity\Ressource $ressource
+    */
+     public function setRessource(\Znieh\UserBundle\Entity\Ressource $ressource = null)
+    {
+        $this->ressource = $ressource;
+    }
+    /**
+     * @return Znieh\UserBundle\Entity\Ressource
+     */
+     public function getRessource()
+     {
+        return $this->ressource;
+     }
 
 }
