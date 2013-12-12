@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Ressource
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity()
  */
 class Ressource
 {

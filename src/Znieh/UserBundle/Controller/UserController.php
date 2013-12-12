@@ -30,18 +30,21 @@ class UserController extends Controller
      * @Route("/users/{slug}/ressource")
      * @Template()
      */
-    public function getRessourceAction($slug)
+    public function showRessourceAction($slug)
     {
+        /*$em = $this->getDoctrine()->getManager();
+        $ressource = $em->getRepository('ZniehUserBundle:User')
+                        ->findOneByUsernameCanonical($slug);
+                        
+        $ressource->getRessource()->setGold($valeur);
+        $em->flush();*/
+
         $em = $this->getDoctrine()->getManager();
-        $ressource = $em
-                    ->getRepository('ZniehUserBundle:User')
-                    ->findOneByUsernameCanonical($slug)
-                    ->createQueryBuilder('a')
-             ->leftJoin('a.id_ressource', 'c')
-             ->addSelect('c');
+        $user = $em->getRepository('ZniehUserBundle:User')
+                   ->findOneByUsernameCanonical($slug);
 
         return array(
-            'ressource' => $ressource,
+            'user' => $user,
         );
     }
 

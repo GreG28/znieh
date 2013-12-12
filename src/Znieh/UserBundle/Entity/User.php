@@ -9,7 +9,7 @@ use Znieh\UserBundle\Entity\Ressource;
 
 
 /**
- * @ORM\Entity
+ * @ORM\Entity()
  * @ORM\Table(name="fos_user")
 **/
 class User extends BaseUser
