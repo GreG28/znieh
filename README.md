@@ -1,4 +1,4 @@
-Znieh Games Website
+Znieh Game Server
 ========================
 
 https://gist.github.com/spyl94/4abb12ac838d4a686241
@@ -61,6 +61,17 @@ You can configure node_paths in app/config/parameters.yml
      php app/console cache:clear
 
      php app/console cache:clear --env=prod
+     
+5) Node.js
+-------------------------------------
+
+In "node" repository, execute the following command to install node_modules.
+
+    npm install
+    
+Then, to run the server :
+
+    node app.js
 
  Composer
 -------------------------------------
