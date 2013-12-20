@@ -1,0 +1,18 @@
+forge:
+  title: Forge
+  description: Vous permet de créer des épées
+hacherie:
+  title: Hacherie
+  description: Vous permet de créer des haches
+archerie:
+  title: Archerie
+  description: Vous permet de créer des armes à distances
+armurerie:
+  title: Armurerie
+  description: Vous permet de créer des armures en métal
+tannerie:
+  title: Tannerie
+  description: Vous permet de créer des armures en cuir
+tisserie:
+  title: Tisserie
+  description: Vous permet de créer des armures en tissu	

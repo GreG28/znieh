@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+
+{% macro displayStep(step, objects, unlockeds) %}
+    {{ step.title }} <br>
+    {% for obj in objects %}
+      {% if obj.step.title == step.title %}
+        <a href="#" class="unlock-object" data-id="{{ obj.id }}">{{ obj.name }}</a>
+        {% for item in unlockeds %}
+         {% if item.object.name == obj.name %} : Débloqué {% endif %}
+        {% endfor %}
+        <br>
+      {% endif %}
+    {% endfor %}
+    {% if step.children|length %}
+      {% for child in step.children %}
+        --  {{ _self.displayStep(child, objects, unlockeds) }}
+      {% endfor %}
+    {% endif %}
+{% endmacro %}
+
+{% block body %}
+  <h1>Page {{ building.title }}</h1>
+
+  Liste des objets : <br>
+  {% for step in steps %}
+    {% if step.parent == null %}
+      {{ _self.displayStep(step, objects, unlockeds) }}
+    {% endif %}
+  {% endfor %}
+  <a href="{{ path('znieh_villagegame_public_index') }}">Retourner au village</a>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script>
+    $('.unlock-object').on('click', function(){
+        var id = $(this).data("id");
+        $.get('http://localhost/znieh/web/app_dev.php/village/unlock/' + id)
+        .done(function(data){
+          console.log('done');
+        })
+        .fail(function(e) {
+          console.log('fail');
+        });
+    });
+	</script>
+{% endblock %}

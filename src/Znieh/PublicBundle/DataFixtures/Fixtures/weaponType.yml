@@ -1,0 +1,16 @@
+epee:
+  name: Épée
+  parts: [ Lame, Pommeau, Garde, Manche ]
+  building: Forge
+hache:
+  name: Hache
+  parts: [ Tête de hache, Hampe, Poignée ]
+  building: Hacherie
+marteau:
+  name: Marteau
+  parts: [ Tête de marteau, Hampe, Poignée ]
+  building: Hacherie
+arc:
+  name: Arc
+  parts: [ Corde, Flèche, Arc, Poignée d'arc ]
+  building: Archerie

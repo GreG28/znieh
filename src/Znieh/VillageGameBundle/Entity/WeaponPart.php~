@@ -1,0 +1,18 @@
+<?php
+
+namespace Znieh\VillageGameBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+
+/**
+ * @ORM\Entity
+ */
+class WeaponPart extends GameObject
+{
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Type", cascade={"persist"})
+     */
+    private $type;
+}

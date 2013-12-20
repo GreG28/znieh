@@ -5,31 +5,30 @@ use Doctrine\Common\DataFixtures\AbstractFixture,
     Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Znieh\VillageGameBundle\Entity\Building;
+use Znieh\VillageGameBundle\Entity\WeaponPartType;
 use Znieh\PublicBundle\DataFixtures\ORM\AbstractFixtureLoader;
 
-class LoadBuildingData  extends AbstractFixtureLoader implements OrderedFixtureInterface
+class LoadWeaponPartTypeData extends AbstractFixtureLoader implements OrderedFixtureInterface
 {
+
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
-        $buildingsData = $this->getModelFixtures();
+      $weaponPartTypesData = $this->getModelFixtures();
 
-        // Create buildings
-        foreach($buildingsData as $buildingData) {
-            $building = new Building();
+        // Create weaponPartTypes
+        foreach($weaponPartTypesData as $weaponPartTypeData) {
+            $weaponPartType = new weaponPartType();
 
-            $building
-                ->setTitle($buildingData['title'])
-                ->setDescription($buildingData['description'])
+            $weaponPartType
+                ->setName($weaponPartTypeData['name'])
             ;
 
-            $manager->persist($building);
+            $manager->persist($weaponPartType);
+            $manager->flush();
         }
-
-        $manager->flush();
     }
 
     /**
@@ -37,7 +36,7 @@ class LoadBuildingData  extends AbstractFixtureLoader implements OrderedFixtureI
      */
     public function getModelFile()
     {
-        return 'buildings';
+        return 'weaponPartType';
     }
 
     /**
@@ -45,6 +44,6 @@ class LoadBuildingData  extends AbstractFixtureLoader implements OrderedFixtureI
      */
     public function getOrder()
     {
-        return 20;
+        return 22;
     }
 }

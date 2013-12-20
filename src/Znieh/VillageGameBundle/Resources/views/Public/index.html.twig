@@ -1,0 +1,4 @@
+Village
+{% for building in buildings %}
+  <a href="{{ path('znieh_villagegame_public_building', { "building": building.title }) }}">{{ building.title }}</a>
+{% endfor %}

@@ -6,13 +6,14 @@ use Doctrine\Common\DataFixtures\AbstractFixture,
 use Doctrine\Common\Persistence\ObjectManager;
 
 use Znieh\VillageGameBundle\Entity\Step;
+use Znieh\PublicBundle\DataFixtures\ORM\AbstractFixtureLoader;
 
-class LoadStepData  extends AbstractFixture implements OrderedFixtureInterface
+class LoadStepData extends AbstractFixtureLoader implements OrderedFixtureInterface
 {
     /**
      * Steps to save
      */
-    private $stepsData = array(
+    /*private $stepsData = array(
               array(
                 'title'      => 'Lames en bronze',
                 'building' => 'Forge',
@@ -40,8 +41,10 @@ class LoadStepData  extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+      $stepsData = $this->getModelFixtures();
+
         // Create steps
-        foreach($this->stepsData as $stepData) {
+        foreach($stepsData as $stepData) {
             $step = new Step();
 
             $building = $manager->getRepository('ZniehVillageGameBundle:Building')->findOneByTitle($stepData['building']);
@@ -59,8 +62,14 @@ class LoadStepData  extends AbstractFixture implements OrderedFixtureInterface
             $manager->persist($step);
             $manager->flush();
         }
+    }
 
-
+    /**
+     * The main fixtures file for this loader.
+     */
+    public function getModelFile()
+    {
+        return 'steps';
     }
 
     /**
