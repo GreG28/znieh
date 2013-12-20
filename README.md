@@ -1,7 +1,9 @@
 Znieh Game Server
 ========================
 
-https://gist.github.com/spyl94/4abb12ac838d4a686241
+Development Workflow : https://gist.github.com/spyl94/4abb12ac838d4a686241
+Coding Convention : https://gist.github.com/spyl94/3e85ddc37b018d907936
+
 
 1) Installation
 ----------------------------------
