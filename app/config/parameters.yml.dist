@@ -14,8 +14,8 @@ parameters:
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
 
-    app_id_facebook:
-    app_secret_facebook:
+    app_id_facebook: 111
+    app_secret_facebook: 111
 
     ga_tracking: UA-xxxxx-x
     node_paths: C:\\Program Files (x86)\\nodejs\\node_modules
