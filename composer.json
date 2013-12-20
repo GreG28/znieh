@@ -34,9 +34,12 @@
         "stof/doctrine-extensions-bundle": "~1.1@dev",
         "jms/di-extra-bundle": "1.4.*@dev",
         "jms/security-extra-bundle": "1.5.*@dev",
+        "jms/serializer-bundle": "dev-master",
 
 		"friendsofsymfony/user-bundle": "~2.0@dev",
         "friendsofsymfony/facebook-bundle": "1.2.*",
+        "friendsofsymfony/jsrouting-bundle": "1.5.*@dev",
+        "friendsofsymfony/rest-bundle": "1.1.*",
 
         "ornicar/gravatar-bundle" : "dev-master",
         "genemu/form-bundle": "2.2.*",
