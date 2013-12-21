@@ -15,7 +15,10 @@ Array.matrix = function (m, n, initial) {
 
     var mapData = [4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 4, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 4, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 4, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 4, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
+    var StaticTile = new Tile(null, Enum.TileCollision.Passable, 0, 0);
+
     function Map() {
+        // RECUPERER LA TAILLE DES TILES ET LA STOCKER POUR L'UTILISER QUAND ON EN A BESOIN
         /*this.gameWidth = gameWidth;
         this.gameHeight = gameHeight;
         // Entities in the level.
@@ -64,19 +67,19 @@ Array.matrix = function (m, n, initial) {
 
             // Arbre
             case 1:
-                return new Tile(this.loadTileImg(1), Enum.TileCollision.Passable, x, y);
+                return new Tile(this.loadTileImg(1), Enum.TileCollision.Passable, x, y, true);
                 break;
             // Eau
             case 2:
-                return new Tile(this.loadTileImg(2), Enum.TileCollision.Passable, x, y);
+                return new Tile(this.loadTileImg(2), Enum.TileCollision.Passable, x, y, true);
                 break;
             // Roche
             case 3:
-                return new Tile(this.loadTileImg(3), Enum.TileCollision.Impassable, x, y);
+                return new Tile(this.loadTileImg(3), Enum.TileCollision.Impassable, x, y, true);
                 break;
             // Plaine
             case 4:
-                return new Tile(this.loadTileImg(4), Enum.TileCollision.Passable, x, y);
+                return new Tile(this.loadTileImg(4), Enum.TileCollision.Passable, x, y, true);
                 break;
 
             /*
@@ -281,11 +284,12 @@ Array.matrix = function (m, n, initial) {
         return new Tile(null, Enum.TileCollision.Passable, x, y);
     };
 
+    */
     /// <summary>
     /// Gets the bounding rectangle of a tile in world space.
     /// </summary>
     Map.prototype.GetBounds = function (x, y) {
-        return new XNARectangle(x * StaticTile.Width, y * StaticTile.Height, StaticTile.Width, StaticTile.Height);
+        return new XNARectangle(x * StaticTile.width, y * StaticTile.height, StaticTile.width, StaticTile.height);
     };
 
     /// <summary>
@@ -321,6 +325,7 @@ Array.matrix = function (m, n, initial) {
         return this.tiles[y][x].Collision;
     };
 
+    /*
     // Create a random background based on
     // the 3 different layers available
     Map.prototype.CreateAndAddRandomBackground = function () {
