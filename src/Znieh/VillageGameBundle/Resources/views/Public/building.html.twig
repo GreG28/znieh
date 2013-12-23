@@ -1,35 +1,217 @@
 {% extends '::base.html.twig' %}
 
-{% macro displayStep(step, objects, unlockeds) %}
-    {{ step.title }} <br>
+{% macro displayStep(step, objects, unlockeds, deep) %}
+{% spaceless %}
+<div class="{% if deep == 0 %}root{% else %}item{% endif %}">
+    <span class="title">{{ step.title }} - {{ deep + 1 }} <br>
     {% for obj in objects %}
       {% if obj.step.title == step.title %}
         <a href="#" class="unlock-object" data-id="{{ obj.id }}">{{ obj.name }}</a>
         {% for item in unlockeds %}
          {% if item.object.name == obj.name %} : Débloqué {% endif %}
         {% endfor %}
-        <br>
       {% endif %}
     {% endfor %}
+    </span>
+
     {% if step.children|length %}
+      <div class='lvl{{ deep }} level'>
       {% for child in step.children %}
-        --  {{ _self.displayStep(child, objects, unlockeds) }}
+        {{ _self.displayStep(child, objects, unlockeds, deep + 1) }}
+        <div class='item'>
+          <span class='title'>Item-1-1-2</span>
+        </div>
       {% endfor %}
+      </div>
     {% endif %}
+</div>
+{% endspaceless %}
 {% endmacro %}
 
 {% block body %}
   <h1>Page {{ building.title }}</h1>
 
-  Liste des objets : <br>
+  Liste des objets : <br><br><br><br>
   {% for step in steps %}
     {% if step.parent == null %}
-      {{ _self.displayStep(step, objects, unlockeds) }}
+      {{ _self.displayStep(step, objects, unlockeds, 0) }}
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     {% endif %}
   {% endfor %}
+  <div class="clearfix"><br></div>
   <a href="{{ path('znieh_villagegame_public_index') }}">Retourner au village</a>
+
+  <div class='root'>
+    <span class='title'>Root</span>
+    <div class='lv1 level'>
+      <div class='item'>
+        <span class='title'>Item-1</span>
+        <div class='lv2 level'>
+          <div class='item'>
+            <span class='title'>Item-1-1</span>
+            <div class='lv3 level'>
+              <div class='item'>
+                <span class='title'>Item-1-1-1</span>
+              </div>
+              <div class='item'>
+                <span class='title'>Item-1-1-2</span>
+              </div>
+              <div class='item'>
+                <span class='title'>Item-1-1-3</span>
+              </div>
+            </div>
+          </div>
+          <div class='item'>
+            <span class='title'>Item-1-2</span>
+          </div>
+          <div class='item'>
+            <span class='title'>Item-1-3</span>
+          </div>
+        </div>
+      </div>
+      <div class='item'>
+        <span class='title'>Item-2</span>
+      </div>
+      <div class='item'>
+        <span class='title'>Item-3</span>
+        <div class='lv2 level'>
+          <div class='item'>
+            <span class='title'>Item-3-1</span>
+          </div>
+          <div class='item'>
+            <span class='title'>Item-3-2</span>
+          </div>
+          <div class='item'>
+            <span class='title'>Item-3-3</span>
+            <div class='lv3 level'>
+              <div class='item'>
+                <span class='title'>Item-3-3-1</span>
+              </div>
+              <div class='item'>
+                <span class='title'>Item-3-3-2</span>
+                <div class='lv4 level'>
+                  <div class='item'>
+                    <span class='title'>Item-3-3-2-1</span>
+                  </div>
+                  <div class='item'>
+                    <span class='title'>Item-3-3-2-2</span>
+                  </div>
+                </div>
+              </div>
+              <div class='item'>
+                <span class='title'>Item-3-3-3</span>
+              </div>
+            </div>
+          </div>
+          <div class='item'>
+            <span class='title'>Item-3-4</span>
+          </div>
+        </div>
+      </div>
+      <div class='item'>
+        <span class='title'>Item-4</span>
+      </div>
+      <div class='item'>
+        <span class='title'>Item-5</span>
+      </div>
+    </div>
+  </div>
 {% endblock %}
 
+
+{% block stylesheets %}
+  <style>
+  .root {
+    position: relative;
+  }
+
+  .level {
+    margin-left: 400px;
+    position: relative;
+  }
+  .level:before {
+    content: "";
+    width: 50px;
+    border-top: 2px solid #eee9dc;
+    position: absolute;
+    left: -98px;
+    top: 50%;
+    margin-top: 1px;
+  }
+
+  .item {
+    min-height: 100px;
+    position: relative;
+  }
+  .item:before {
+    content: "";
+    height: 100%;
+    border-left: 2px solid #eee9dc;
+    position: absolute;
+    left: -48px;
+  }
+  .item:after {
+    content: "";
+    width: 46px;
+    border-top: 2px solid #eee9dc;
+    position: absolute;
+    left: -46px;
+    top: 50%;
+    margin-top: 1px;
+  }
+
+  .item:first-child:before {
+    width: 10px;
+    height: 50%;
+    top: 50%;
+    margin-top: 2px;
+    border-top-left-radius: 10px;
+  }
+  .item:first-child:after {
+    height: 10px;
+    border-top-left-radius: 10px;
+  }
+  .item:last-child:before {
+    width: 10px;
+    height: 50%;
+    border-bottom-left-radius: 10px;
+  }
+  .item:last-child:after {
+    height: 10px;
+    border-top: none;
+    border-bottom: 2px solid #eee9dc;
+    border-bottom-left-radius: 10px;
+    margin-top: -11px;
+  }
+
+  .item:only-child:before {
+    border-top: none;
+    border-bottom: none;
+    content: none;
+    margin-top: 0px;
+  }
+  .item:only-child:after {
+    width: 52px;
+    left: -52px;
+    top: 52%;
+  }
+
+  .title {
+    width: 280px;
+    padding: 5px 10px;
+    line-height: 20px;
+    text-align: center;
+    border: 2px solid #eee9dc;
+    border-radius: 5px;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -15px;
+  }
+
+</style>
+{% endblock %}
 {% block javascripts %}
 	{{ parent() }}
 	<script>

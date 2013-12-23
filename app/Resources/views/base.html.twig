@@ -8,9 +8,10 @@
 
         <!-- This is a compiled and minified css file. -->
         {% block stylesheets %}
-            {% stylesheets filter='cssrewrite' output='css/compiled/style.css'
+            {% stylesheets filter='compass, cssrewrite' output='css/compiled/style.css'
                         'css/bootstrap.css'
                         'css/style.css'
+                        'scss/village.scss'
             %}
                 <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
             {% endstylesheets %}
