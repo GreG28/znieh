@@ -33,6 +33,21 @@ class PublicController extends Controller
     }
 
     /**
+     * @Template()
+     */
+    public function listBuildingAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $buildings = $em->getRepository('ZniehVillageGameBundle:Building')->findAll();
+
+        return array(
+            'buildings' => $buildings
+            );
+    }
+
+
+    /**
      * @Route("/{building}")
      * @Template()
      */
@@ -42,24 +57,34 @@ class PublicController extends Controller
 
         $building = $em->getRepository('ZniehVillageGameBundle:Building')->findOneByTitle($building);
 
-        if ($building != null) {
-            $steps = $em->getRepository('ZniehVillageGameBundle:Step')->findAllByBuilding(
-                $building->getId()
-            );
-            $objects = $em->getRepository('ZniehVillageGameBundle:GameObject')->findObjectsByBuilding(
-                $building->getId()
-            );
-            $unlockeds = $em->getRepository('ZniehVillageGameBundle:UnlockedGameObject')->findUnlockedObjectsByUserByBuilding(
-                $this->getUser()->getId(),
-                $building->getId()
-            );
+        if ($building == null) {
+            // TODO redirect
+        }
+
+        $steps = $em->getRepository('ZniehVillageGameBundle:Step')->findAllByBuilding(
+            $building->getId()
+        );
+        $objects = $em->getRepository('ZniehVillageGameBundle:GameObject')->findObjectsByBuilding(
+            $building->getId()
+        );
+        $unlockeds = $em->getRepository('ZniehVillageGameBundle:UnlockedGameObject')->findUnlockedObjectsByUserByBuilding(
+            $this->getUser()->getId(),
+            $building->getId()
+        );
+
+        // On ajoute le boolean unlocked aux objets récupés dans la requete unlocked
+        foreach ($objects as $obj) {
+            foreach ($unlockeds as $unlocked) {
+                if ($obj->getName() == $unlocked->getObject()->getName()) {
+                    $obj->setUnlocked(true);
+                }
+            }
         }
 
         return array(
             'steps'     => $steps,
             'building'  => $building,
-            'objects'   => $objects,
-            'unlockeds' => $unlockeds
+            'objects'   => $objects
             );
     }
 

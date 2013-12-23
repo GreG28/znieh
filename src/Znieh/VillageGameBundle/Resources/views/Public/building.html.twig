@@ -1,15 +1,16 @@
 {% extends '::base.html.twig' %}
 
-{% macro displayStep(step, objects, unlockeds, deep) %}
+{% macro displayStep(step, objects, deep) %}
 {% spaceless %}
-<div class="{% if deep == 0 %}root{% else %}item{% endif %}">
-    <span class="title">{{ step.title }} - {{ deep + 1 }} <br>
+<div class="{% if deep == 0 %}root{% else %}step{% endif %}">
+    <span class="step-content">{{ step.title }} - {{ deep + 1 }} <br>
     {% for obj in objects %}
       {% if obj.step.title == step.title %}
-        <a href="#" class="unlock-object" data-id="{{ obj.id }}">{{ obj.name }}</a>
-        {% for item in unlockeds %}
-         {% if item.object.name == obj.name %} : Débloqué {% endif %}
-        {% endfor %}
+        {% if obj.unlocked %}
+          <a href="#" data-id="{{ obj.id }}"><img src="{{ asset('img/icons/accept.png') }}" alt=""></a>
+        {% else %}
+          <a href="#" class="unlock-object" data-id="{{ obj.id }}"><img src="{{ asset('img/icons/add.png') }}" alt=""></a>
+        {% endif %}
       {% endif %}
     {% endfor %}
     </span>
@@ -17,10 +18,7 @@
     {% if step.children|length %}
       <div class='lvl{{ deep }} level'>
       {% for child in step.children %}
-        {{ _self.displayStep(child, objects, unlockeds, deep + 1) }}
-        <div class='item'>
-          <span class='title'>Item-1-1-2</span>
-        </div>
+        {{ _self.displayStep(child, objects, deep + 1) }}
       {% endfor %}
       </div>
     {% endif %}
@@ -29,102 +27,35 @@
 {% endmacro %}
 
 {% block body %}
-  <h1>Page {{ building.title }}</h1>
 
-  Liste des objets : <br><br><br><br>
+<div class="container">
+  {% render controller('ZniehVillageGameBundle:Public:listBuilding') %}
+  <h2>{{ building.title }}</h2>
+  <p>{{ building.description }}</p>
+
   {% for step in steps %}
+  <div style="position: relative; height: auto; min-height: 60px">
     {% if step.parent == null %}
-      {{ _self.displayStep(step, objects, unlockeds, 0) }}
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      {{ _self.displayStep(step, objects, 0) }}
     {% endif %}
-  {% endfor %}
-  <div class="clearfix"><br></div>
-  <a href="{{ path('znieh_villagegame_public_index') }}">Retourner au village</a>
-
-  <div class='root'>
-    <span class='title'>Root</span>
-    <div class='lv1 level'>
-      <div class='item'>
-        <span class='title'>Item-1</span>
-        <div class='lv2 level'>
-          <div class='item'>
-            <span class='title'>Item-1-1</span>
-            <div class='lv3 level'>
-              <div class='item'>
-                <span class='title'>Item-1-1-1</span>
-              </div>
-              <div class='item'>
-                <span class='title'>Item-1-1-2</span>
-              </div>
-              <div class='item'>
-                <span class='title'>Item-1-1-3</span>
-              </div>
-            </div>
-          </div>
-          <div class='item'>
-            <span class='title'>Item-1-2</span>
-          </div>
-          <div class='item'>
-            <span class='title'>Item-1-3</span>
-          </div>
-        </div>
-      </div>
-      <div class='item'>
-        <span class='title'>Item-2</span>
-      </div>
-      <div class='item'>
-        <span class='title'>Item-3</span>
-        <div class='lv2 level'>
-          <div class='item'>
-            <span class='title'>Item-3-1</span>
-          </div>
-          <div class='item'>
-            <span class='title'>Item-3-2</span>
-          </div>
-          <div class='item'>
-            <span class='title'>Item-3-3</span>
-            <div class='lv3 level'>
-              <div class='item'>
-                <span class='title'>Item-3-3-1</span>
-              </div>
-              <div class='item'>
-                <span class='title'>Item-3-3-2</span>
-                <div class='lv4 level'>
-                  <div class='item'>
-                    <span class='title'>Item-3-3-2-1</span>
-                  </div>
-                  <div class='item'>
-                    <span class='title'>Item-3-3-2-2</span>
-                  </div>
-                </div>
-              </div>
-              <div class='item'>
-                <span class='title'>Item-3-3-3</span>
-              </div>
-            </div>
-          </div>
-          <div class='item'>
-            <span class='title'>Item-3-4</span>
-          </div>
-        </div>
-      </div>
-      <div class='item'>
-        <span class='title'>Item-4</span>
-      </div>
-      <div class='item'>
-        <span class='title'>Item-5</span>
-      </div>
-    </div>
   </div>
+  {% endfor %}
+
+</div>
 {% endblock %}
 
 
 {% block stylesheets %}
+ {{ parent() }}
   <style>
+  *, *:before, *:after {
+    -webkit-box-sizing: initial;
+    -moz-box-sizing: initial;
+    box-sizing: initial;
+  }
   .root {
     position: relative;
   }
-
   .level {
     margin-left: 400px;
     position: relative;
@@ -138,19 +69,18 @@
     top: 50%;
     margin-top: 1px;
   }
-
-  .item {
+  .step {
     min-height: 100px;
     position: relative;
   }
-  .item:before {
+  .step:before {
     content: "";
     height: 100%;
     border-left: 2px solid #eee9dc;
     position: absolute;
     left: -48px;
   }
-  .item:after {
+  .step:after {
     content: "";
     width: 46px;
     border-top: 2px solid #eee9dc;
@@ -159,44 +89,41 @@
     top: 50%;
     margin-top: 1px;
   }
-
-  .item:first-child:before {
+  .step:first-child:before {
     width: 10px;
     height: 50%;
     top: 50%;
     margin-top: 2px;
     border-top-left-radius: 10px;
   }
-  .item:first-child:after {
+  .step:first-child:after {
     height: 10px;
     border-top-left-radius: 10px;
   }
-  .item:last-child:before {
+  .step:last-child:before {
     width: 10px;
     height: 50%;
     border-bottom-left-radius: 10px;
   }
-  .item:last-child:after {
+  .step:last-child:after {
     height: 10px;
     border-top: none;
     border-bottom: 2px solid #eee9dc;
     border-bottom-left-radius: 10px;
     margin-top: -11px;
   }
-
-  .item:only-child:before {
+  .step:only-child:before {
     border-top: none;
     border-bottom: none;
     content: none;
     margin-top: 0px;
   }
-  .item:only-child:after {
+  .step:only-child:after {
     width: 52px;
     left: -52px;
     top: 52%;
   }
-
-  .title {
+  .step-content {
     width: 280px;
     padding: 5px 10px;
     line-height: 20px;
@@ -208,18 +135,21 @@
     left: 0;
     top: 50%;
     margin-top: -15px;
+    background-color: brown;
   }
-
 </style>
 {% endblock %}
 {% block javascripts %}
 	{{ parent() }}
 	<script>
-    $('.unlock-object').on('click', function(){
+    $('.unlock-object').on('click', function(e){
+        e.preventDefault();
         var id = $(this).data("id");
+        var obj = $(this);
         $.get('http://localhost/znieh/web/app_dev.php/village/unlock/' + id)
         .done(function(data){
           console.log('done');
+          obj.children().attr("src", '{{ asset('img/icons/accept.png') }}');
         })
         .fail(function(e) {
           console.log('fail');
