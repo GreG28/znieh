@@ -1,24 +1,24 @@
 <?php
- 
+
 namespace Znieh\PublicBundle\DataFixtures\ORM;
- 
+
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Yaml\Yaml;
- 
+
 abstract class AbstractFixtureLoader extends AbstractFixture implements ContainerAwareInterface
 {
     /**
      * Return the file for the current model.
      */
     abstract function getModelFile();
- 
+
     /**
      * @var Symfony\Component\DependencyInjection\ContainerInterface
      */
     private $container;
- 
+
     /**
      * Make the sc available to our loader.
      *
@@ -28,7 +28,7 @@ abstract class AbstractFixtureLoader extends AbstractFixture implements Containe
     {
         $this->container = $container;
     }
- 
+
     /**
      * Return the fixtures for the current model.
      *
@@ -36,9 +36,13 @@ abstract class AbstractFixtureLoader extends AbstractFixture implements Containe
      */
     public function getModelFixtures()
     {
-        $fixturesPath = realpath(dirname(__FILE__). '/../Fixtures');
+        $reflection = new \ReflectionClass($this);
+        $directory = dirname($reflection->getFileName()) . PATH_SEPARATOR;
+
+        $fixturesPath = realpath($directory. '/../Fixtures');
+        echo 'Using yml file : '. $this->getModelFile(). '.yml' . PHP_EOL;
         $fixtures     = Yaml::parse(file_get_contents($fixturesPath. '/'. $this->getModelFile(). '.yml'));
- 
+
         return $fixtures;
     }
 }

@@ -1,0 +1,16 @@
+Religion and Politics:
+  type: Mineur
+  title: Religion and Politics
+  email: religion
+Language Policy:
+  type: Mineur
+  title: Language Policy
+  email: policy
+Spamming:
+  type: Medium
+  title: Spamming
+  email: spamming
+Multiple Accounts:
+  type: Major
+  title: Multiple Accounts
+  email: multiple-accounts

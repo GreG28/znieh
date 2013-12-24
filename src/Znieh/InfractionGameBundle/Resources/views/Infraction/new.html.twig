@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Infraction creation</h1>
+
+    {{ form(form, { 'style': 'horizontal' }) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_infractions') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

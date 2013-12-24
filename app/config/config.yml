@@ -44,12 +44,12 @@ twig:
         ga_tracking: "%ga_tracking%"
     form:
         resources:
-            - BraincraftedBootstrapBundle:Form:form_div_layout.html.twig
+            - BraincraftedBootstrapBundle:Form:bootstrap.html.twig
 
 parameters:
     # Assetic
-    assetic.filter.compass.images_dir: %kernel.root_dir%/../web
-    assetic.filter.compass.http_path:
+    #assetic.filter.compass.images_dir: %kernel.root_dir%/../web
+    #assetic.filter.compass.http_path:
 
 # Assetic Configuration
 assetic:
@@ -67,8 +67,8 @@ assetic:
             #node: /usr/local/bin/node
             node_paths: [ %node_paths% ]
             apply_to: "\.less$"
-        compass:
-            apply_to: "/\.s[ac]ss$/"
+        #compass:
+        #    apply_to: "/\.s[ac]ss$/"
 
 # Doctrine Configuration
 doctrine:
@@ -135,7 +135,7 @@ fos_user:
     firewall_name: main
     user_class: Znieh\UserBundle\Entity\User
     from_email:
-        address:        no-reply@znieh.com
+        address:        %mailer_noreply%
         sender_name:    Znieh Admin
     profile:
         form:
