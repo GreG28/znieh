@@ -5,8 +5,10 @@ onload="init();"
 {% endblock %}
 
 {% block createJs %}
+<script src="{{ asset('js/game/XNARectangle.js') }}"></script>
 <script src="{{ asset('js/game/Tile.js') }}"></script>
 <script src="{{ asset('js/game/Map.js') }}"></script>
+<script src="{{ asset('js/game/Unit.js') }}"></script>
 <script src="{{ asset('js/game/contentManager.js') }}"></script>
 <script>
 var canvas = document.getElementById("canvas");

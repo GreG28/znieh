@@ -2,11 +2,11 @@ function Enum() { }
 Enum.TileCollision = { Passable: 0, Impassable: 1 };
 
 (function (window) {
-    function Tile(texture, collision, x, y) {
-        this.initialize(texture, collision,x,y);
+    function Tile(texture, collision, x, y, render) {
+        this.initialize(texture, collision,x,y, render);
     }
 
-    Tile.prototype.initialize = function(texture, collision, x, y) {
+    Tile.prototype.initialize = function(texture, collision, x, y, render) {
         if (texture != null) {
             this.empty = false;
         }
@@ -18,7 +18,9 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         this.y = y * this.height;
         this.texture = texture;
 
-        this.render();
+        if(render == true) {
+            this.render();
+        }
 
     };
 
