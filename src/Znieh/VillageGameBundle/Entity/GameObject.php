@@ -50,10 +50,61 @@ abstract class GameObject
     private $step;
 
 
+    private $unlocked;
+
+    private $unlockable;
+
+    /**
+     * Set unlocked
+     *
+     * @param boolean $unlocked
+     * @return GameObject
+     */
+    public function setUnlocked($unlocked)
+    {
+        $this->unlocked = $unlocked;
+
+        return $this;
+    }
+
+    /**
+     * Get unlocked
+     *
+     * @return boolean
+     */
+    public function getUnlocked()
+    {
+        return $this->unlocked;
+    }
+
+    /**
+     * Set unlockable
+     *
+     * @param boolean $unlockable
+     * @return GameObject
+     */
+    public function setUnlockable($unlockable)
+    {
+        $this->unlockable = $unlockable;
+
+        return $this;
+    }
+
+    /**
+     * Get unlockable
+     *
+     * @return boolean
+     */
+    public function getUnlockable()
+    {
+        return $this->unlockable;
+    }
+
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -69,14 +120,14 @@ abstract class GameObject
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -92,14 +143,14 @@ abstract class GameObject
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -115,14 +166,14 @@ abstract class GameObject
     public function setPoints($points)
     {
         $this->points = $points;
-    
+
         return $this;
     }
 
     /**
      * Get points
      *
-     * @return integer 
+     * @return integer
      */
     public function getPoints()
     {
@@ -138,14 +189,14 @@ abstract class GameObject
     public function setStep(\Znieh\VillageGameBundle\Entity\Step $step = null)
     {
         $this->step = $step;
-    
+
         return $this;
     }
 
     /**
      * Get step
      *
-     * @return \Znieh\VillageGameBundle\Entity\Step 
+     * @return \Znieh\VillageGameBundle\Entity\Step
      */
     public function getStep()
     {

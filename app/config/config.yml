@@ -46,6 +46,10 @@ twig:
         resources:
             - BraincraftedBootstrapBundle:Form:form_div_layout.html.twig
 
+parameters:
+    # Assetic
+    assetic.filter.compass.images_dir: %kernel.root_dir%/../web
+    assetic.filter.compass.http_path:
 
 # Assetic Configuration
 assetic:
@@ -63,6 +67,8 @@ assetic:
             #node: /usr/local/bin/node
             node_paths: [ %node_paths% ]
             apply_to: "\.less$"
+        compass:
+            apply_to: "/\.s[ac]ss$/"
 
 # Doctrine Configuration
 doctrine:
