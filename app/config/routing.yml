@@ -1,3 +1,8 @@
+znieh_infraction_game:
+    resource: "@ZniehInfractionGameBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 znieh_village_game:
     resource: "@ZniehVillageGameBundle/Controller/"
     type:     annotation

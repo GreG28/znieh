@@ -43,7 +43,20 @@ class LoadUserData  extends AbstractFixture implements OrderedFixtureInterface, 
 
         $userAdmin->addRole('ROLE_SUPER_ADMIN');
 
+        // Create Test User
+        $userTest = new User();
+        $encoder = $factory->getEncoder($userTest);
+        $userTest
+            ->setUsername('test')
+            ->setEmail('test@zniehgames.com')
+            ->setPassword($encoder->encodePassword('test', $userTest->getSalt()))
+            ->setEnabled(true);
+        ;
+
+        $userTest->addRole('ROLE_USER');
+
         $manager->persist($userAdmin);
+        $manager->persist($userTest);
         $manager->flush();
     }
 

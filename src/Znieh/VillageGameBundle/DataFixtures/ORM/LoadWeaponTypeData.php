@@ -26,7 +26,7 @@ class LoadWeaponTypeData extends AbstractFixtureLoader implements OrderedFixture
 
             $weaponType
                 ->setName($weaponTypeData['name'])
-                ->setBuilding($building)  
+                ->setBuilding($building)
             ;
 
             if (!empty($weaponTypeData['parts'])) {
