@@ -39,6 +39,14 @@ class User extends BaseUser
     protected $lastname;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     *
+     */
+    private $expiresUntil;
+
+    /**
      * @var string
      *
      * @ORM\Column(type="string", length=255, nullable=true, name="facebookId")
@@ -67,6 +75,25 @@ class User extends BaseUser
         parent::unserialize($parentData);
     }
 
+    public function isAccountNonExpired()
+    {
+        if (true === $this->expired) {
+            if (null !== $this->expiresUntil && $this->expiresUntil->getTimestamp() < time()) {
+                $this->expired = false;
+                $this->expiresAt = null;
+                $this->expiresUntil = null;
+                return true;
+            }
+            return false;
+        }
+
+        if (null !== $this->expiresAt && $this->expiresAt->getTimestamp() < time()) {
+            return false;
+        }
+
+        return true;
+    }
+
     /**
      * Get id
      *
@@ -75,6 +102,44 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Modify expiresUntil
+     *
+     * @return User
+     */
+    public function modifyExpiresUntil($modification)
+    {
+        if (!$this->expiresUntil) {
+            $this->expiresUntil = new \DateTime();
+        }
+        $this->expiresUntil->modify($modification);
+
+        return $this;
+    }
+
+    /**
+     * Set expiresUntil
+     *
+     * @param \DateTime $expiresUntil
+     * @return User
+     */
+    public function setExpiresUntil(\DateTime $expiresUntil = null)
+    {
+        $this->expiresUntil = $expiresUntil;
+
+        return $this;
+    }
+
+    /**
+     * Get expiresUntil
+     *
+     * @return \DateTime
+     */
+    public function getExpiresUntil()
+    {
+        return $this->expiresUntil;
     }
 
     /**

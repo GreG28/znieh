@@ -50,6 +50,25 @@ class InfractionController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $user = $entity->getUser();
+            $type = $entity->getType()->getType();
+            switch ($type) {
+                case 'Mineur':
+                    $duree = '+1 day';
+                    break;
+                case 'Medium':
+                    $duree = '+7 day';
+                    break;
+                case 'Majeur':
+                    $duree = '+3 month';
+                    break;
+                default:
+                    $duree = '';
+                    break;
+            }
+            $user->setExpired(true);
+            $user->modifyExpiresUntil($duree);
+
             $em->persist($entity);
             $em->flush();
 

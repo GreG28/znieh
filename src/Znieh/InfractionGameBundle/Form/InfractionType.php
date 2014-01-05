@@ -17,7 +17,10 @@ class InfractionType extends AbstractType
         $builder
             //->add('createdAt')
             ->add('user')
-            ->add('type', new InfractionTypeType())
+            ->add('type', 'entity', array(
+                'class' => 'ZniehInfractionGameBundle:InfractionType',
+                'property' => 'title',
+            ));
         ;
     }
 

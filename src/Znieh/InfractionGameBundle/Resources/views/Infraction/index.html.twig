@@ -1,20 +1,23 @@
-{% extends '::base.html.twig' %}
+{% extends '::admin.html.twig' %}
 
 {% block body -%}
-    <h1>Infraction list</h1>
+<div class="container">
+    <h1>Liste des infractions</h1>
 
-    <table class="records_list">
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Createdat</th>
+                <th>Joueur</th>
+                <th>Libellé</th>
+                <th>Date</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('admin_infractions_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td><a href="{{ path('fos_user_profile_show', { "id": entity.user.id }) }}"> {{ entity.user.username }}</a></td>
+                <td><a href="{{ path('admin_infractions_show', { 'id': entity.id }) }}">{{ entity.type.title }}</a></td>
                 <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
                 <ul>
@@ -34,8 +37,10 @@
         <ul>
         <li>
             <a href="{{ path('admin_infractions_new') }}">
-                Create a new entry
+                Ajouter une nouvelle infraction
             </a>
         </li>
     </ul>
-    {% endblock %}
+</div>
+
+{% endblock %}
