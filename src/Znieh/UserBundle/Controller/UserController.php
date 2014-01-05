@@ -36,7 +36,6 @@ class UserController extends Controller
         $ressource = $em->getRepository('ZniehUserBundle:User')
                         ->findOneByUsernameCanonical($slug);
                         
-        $ressource->getRessource()->setGold($valeur);
         $em->flush();*/
 
         $em = $this->getDoctrine()->getManager();
