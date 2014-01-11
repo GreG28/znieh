@@ -8,31 +8,36 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Znieh\UserBundle\Form\Type\UserAdminType;
-use Znieh\UserBundle\Entity\BetaForm;
-use Znieh\UserBundle\Form\BetaFormType;
+use Znieh\UserBundle\Entity\BetaRegistration;
+use Znieh\UserBundle\Form\Type\BetaRegistrationType;
 
-class BetaController extends Controller
+/**
+ * BetaRegistration controller.
+ *
+ * @Route("/beta/registration")
+ */
+class BetaRegistrationController extends Controller
 {
-    private function createCreateForm(BetaForm $entity)
+    private function createCreateForm(BetaRegistration $entity)
     {
-        $form = $this->createForm(new BetaFormType(), $entity, array(
-            'action' => $this->generateUrl('znieh_user_beta_create'),
+        $form = $this->createForm(new BetaRegistrationType(), $entity, array(
+            'action' => $this->generateUrl('znieh_user_betaregistration_create'),
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'M\'inscrire'));
 
         return $form;
     }
 
     /**
-    * @Route("/beta/registration")
+    * @Route("/")
     * @Method("GET")
     * @Template()
     */
-    public function betaRegistrationAction()
+    public function indexAction()
     {
-        $entity = new BetaForm();
+        $entity = new BetaRegistration();
         $form = $this->createCreateForm($entity);
 
         return array(
@@ -41,14 +46,14 @@ class BetaController extends Controller
         );
     }
 
-     /**
-    * @Route("/beta/create")
+    /**
+    * @Route("/")
     * @Method("POST")
-    * @Template("ZniehUserBundle:Beta:betaRegistration.html.twig")
+    * @Template("ZniehUserBundle:BetaRegistration:index.html.twig")
     */
     public function createAction(Request $request)
     {
-        $entity = new BetaForm();
+        $entity = new BetaRegistration();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -56,8 +61,10 @@ class BetaController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
-            return $this->redirect($this->generateUrl('znieh_user_user_index'));
+            $flash = $this->get('braincrafted_bootstrap.flash');
+            $flash->success('Votre email : '. $entity->getEmail().' est désormais inscrite !');
+            $entity = new BetaRegistration();
+            $form = $this->createCreateForm($entity);
         }
 
         return array(

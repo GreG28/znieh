@@ -4,7 +4,7 @@ namespace Znieh\UserBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class BetaFormControllerTest extends WebTestCase
+class BetaRegistrationControllerTest extends WebTestCase
 {
     /*
     public function testCompleteScenario()

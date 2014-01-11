@@ -1,0 +1,22 @@
+{% extends 'ZniehUserBundle::layout.html.twig' %}
+
+{% block content %}
+  <div class="col-sm-6">
+    <h1>Bienvenue sur Znieh Games !</h1>
+    <q>Le jeu où vous combattez avec des unités qui vous ressemblent !</q>
+  </div>
+  <div class="col-sm-6">
+    <img src="{{ asset('img/logo-zniehgames.png') }}" class="img-responsive" alt="">
+  </div>
+  <div class="col-sm-3">
+    <img src="{{ asset('img/logo_jeu_test1.png')}}" class="img-responsive" alt="">
+  </div>
+  <div class="col-sm-6">
+    <p>Ajoute ton email ci-dessous pour postuler à la bêta privée :</p>
+    {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': true } %}
+    {{ form(form, { 'style': 'inline' }) }}
+  </div>
+  <div class="col-sm-3">
+    <img src="{{ asset('img/logo_jeu_test1.png')}}" class="img-responsive" alt="">
+  </div>
+{% endblock %}

@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>BetaForm list</h1>
+    <h1>BetaRegistration list</h1>
 
     <table class="record_properties">
         <thead>
@@ -9,7 +9,7 @@
                 <th>Email</th>
             </tr>
         </head>
-        <tbody> 
+        <tbody>
         {% for entity in entities %}
             <tr>
                 <td>{{ entity.email }}</td>

@@ -4,14 +4,19 @@ namespace Znieh\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * BetaForm
+ * BetaRegistration
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="Vous êtes déjà inscrit !"
+ * )
  */
-class BetaForm
+class BetaRegistration
 {
     /**
      * @var string
@@ -30,7 +35,7 @@ class BetaForm
      * Set email
      *
      * @param string $email
-     * @return BetaForm
+     * @return BetaRegistration
      */
     public function setEmail($email)
     {
