@@ -7,21 +7,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Znieh\UserBundle\Entity\BetaForm;
-use Znieh\UserBundle\Form\BetaFormType;
+use Znieh\UserBundle\Entity\BetaRegistration;
+use Znieh\UserBundle\Form\Type\BetaRegistrationType;
 
 /**
- * BetaForm controller.
+ * BetaRegistration controller.
  *
- * @Route("/admin/beta")
+ * @Route("/admin/betaregistration")
  */
-class AdminBetaController extends Controller
+class AdminBetaRegistrationController extends Controller
 {
 
     /**
-     * Lists all BetaForm entities.
+     * Lists all BetaRegistration entities.
      *
-     * @Route("/", name="admin_betaform")
+     * @Route("/", name="admin_betaregistration")
      * @Method("GET")
      * @Template()
      */
@@ -29,22 +29,22 @@ class AdminBetaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ZniehUserBundle:BetaForm')->findAll();
+        $entities = $em->getRepository('ZniehUserBundle:BetaRegistration')->findAll();
 
         return array(
             'entities' => $entities,
         );
     }
     /**
-     * Creates a new BetaForm entity.
+     * Creates a new BetaRegistration entity.
      *
-     * @Route("/", name="admin_betaform_create")
+     * @Route("/", name="admin_betaregistration_create")
      * @Method("POST")
-     * @Template("ZniehUserBundle:BetaForm:new.html.twig")
+     * @Template("ZniehUserBundle:BetaRegistration:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity = new BetaForm();
+        $entity = new BetaRegistration();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -53,7 +53,7 @@ class AdminBetaController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_betaform_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('admin_betaregistration_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -63,16 +63,16 @@ class AdminBetaController extends Controller
     }
 
     /**
-    * Creates a form to create a BetaForm entity.
+    * Creates a form to create a BetaRegistration entity.
     *
-    * @param BetaForm $entity The entity
+    * @param BetaRegistration $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(BetaForm $entity)
+    private function createCreateForm(BetaRegistration $entity)
     {
-        $form = $this->createForm(new BetaFormType(), $entity, array(
-            'action' => $this->generateUrl('admin_betaform_create'),
+        $form = $this->createForm(new BetaRegistrationType(), $entity, array(
+            'action' => $this->generateUrl('admin_betaregistration_create'),
             'method' => 'POST',
         ));
 
@@ -82,15 +82,15 @@ class AdminBetaController extends Controller
     }
 
     /**
-     * Displays a form to create a new BetaForm entity.
+     * Displays a form to create a new BetaRegistration entity.
      *
-     * @Route("/new", name="admin_betaform_new")
+     * @Route("/new", name="admin_betaregistration_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new BetaForm();
+        $entity = new BetaRegistration();
         $form   = $this->createCreateForm($entity);
 
         return array(
@@ -100,9 +100,9 @@ class AdminBetaController extends Controller
     }
 
     /**
-     * Finds and displays a BetaForm entity.
+     * Finds and displays a BetaRegistration entity.
      *
-     * @Route("/{id}", name="admin_betaform_show")
+     * @Route("/{id}", name="admin_betaregistration_show")
      * @Method("GET")
      * @Template()
      */
@@ -110,10 +110,10 @@ class AdminBetaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ZniehUserBundle:BetaForm')->find($id);
+        $entity = $em->getRepository('ZniehUserBundle:BetaRegistration')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find BetaForm entity.');
+            throw $this->createNotFoundException('Unable to find BetaRegistration entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -125,9 +125,9 @@ class AdminBetaController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing BetaForm entity.
+     * Displays a form to edit an existing BetaRegistration entity.
      *
-     * @Route("/{id}/edit", name="admin_betaform_edit")
+     * @Route("/{id}/edit", name="admin_betaregistration_edit")
      * @Method("GET")
      * @Template()
      */
@@ -135,10 +135,10 @@ class AdminBetaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ZniehUserBundle:BetaForm')->find($id);
+        $entity = $em->getRepository('ZniehUserBundle:BetaRegistration')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find BetaForm entity.');
+            throw $this->createNotFoundException('Unable to find BetaRegistration entity.');
         }
 
         $editForm = $this->createEditForm($entity);
@@ -152,16 +152,16 @@ class AdminBetaController extends Controller
     }
 
     /**
-    * Creates a form to edit a BetaForm entity.
+    * Creates a form to edit a BetaRegistration entity.
     *
-    * @param BetaForm $entity The entity
+    * @param BetaRegistration $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(BetaForm $entity)
+    private function createEditForm(BetaRegistration $entity)
     {
-        $form = $this->createForm(new BetaFormType(), $entity, array(
-            'action' => $this->generateUrl('admin_betaform_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new BetaRegistrationType(), $entity, array(
+            'action' => $this->generateUrl('admin_betaregistration_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -170,20 +170,20 @@ class AdminBetaController extends Controller
         return $form;
     }
     /**
-     * Edits an existing BetaForm entity.
+     * Edits an existing BetaRegistration entity.
      *
-     * @Route("/{id}", name="admin_betaform_update")
+     * @Route("/{id}", name="admin_betaregistration_update")
      * @Method("PUT")
-     * @Template("ZniehUserBundle:BetaForm:edit.html.twig")
+     * @Template("ZniehUserBundle:BetaRegistration:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('ZniehUserBundle:BetaForm')->find($id);
+        $entity = $em->getRepository('ZniehUserBundle:BetaRegistration')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find BetaForm entity.');
+            throw $this->createNotFoundException('Unable to find BetaRegistration entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -193,7 +193,7 @@ class AdminBetaController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_betaform_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_betaregistration_edit', array('id' => $id)));
         }
 
         return array(
@@ -203,9 +203,9 @@ class AdminBetaController extends Controller
         );
     }
     /**
-     * Deletes a BetaForm entity.
+     * Deletes a BetaRegistration entity.
      *
-     * @Route("/{id}", name="admin_betaform_delete")
+     * @Route("/{id}", name="admin_betaregistration_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -215,21 +215,21 @@ class AdminBetaController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('ZniehUserBundle:BetaForm')->find($id);
+            $entity = $em->getRepository('ZniehUserBundle:BetaRegistration')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find BetaForm entity.');
+                throw $this->createNotFoundException('Unable to find BetaRegistration entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('admin_betaform'));
+        return $this->redirect($this->generateUrl('admin_betaregistration'));
     }
 
     /**
-     * Creates a form to delete a BetaForm entity by id.
+     * Creates a form to delete a BetaRegistration entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -238,7 +238,7 @@ class AdminBetaController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_betaform_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('admin_betaregistration_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
