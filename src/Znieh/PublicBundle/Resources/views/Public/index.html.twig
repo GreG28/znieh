@@ -2,6 +2,12 @@
 
 {% block body %}
   Bienvenue sur Znieh Games !
-  <a href="{{ path('live_blog_public_index') }}">Blog</a>
+  <ul>
+    <li><a href="{{ path('live_blog_public_index') }}">Blog</a></li>
+    <li><a href="{{ path('znieh_villagegame_public_index') }}">Village</a></li>
+    <li><a href="{{ path('znieh_coregame_default_index') }}">Game</a></li>
+    <li><a href="{{ path('znieh_user_betaregistration_index') }}">Inscriptions beta</a></li>
+  </ul>
+
 
 {% endblock %}
