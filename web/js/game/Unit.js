@@ -117,6 +117,8 @@
         this.elapsed = globalTargetFPS / 1000;
 
         //this.ApplyPhysics();
+        this.HandleCollisions();
+
 
         if (this.IsAlive && this.IsOnGround) {
             if (Math.abs(this.velocity.x) - 0.02 > 0) {
@@ -135,50 +137,6 @@
             }
         }
 
-    };
-
-    /// <summary>
-    /// Updates the player's velocity and position based on input, gravity, etc.
-    /// </summary>
-    Unit.prototype.ApplyPhysics = function () {
-        if (this.IsAlive && !this.HasReachedExit) {
-            var previousPosition = new Point(this.x, this.y);
-
-            // Base velocity is a combination of horizontal movement control and
-            // acceleration downward due to gravity.
-            this.velocity.x += this.direction * MoveAcceleration * this.elapsed;
-            this.velocity.y = Math.clamp(this.velocity.y + GravityAcceleration * this.elapsed, -MaxFallSpeed, MaxFallSpeed);
-
-            this.velocity.y = this.DoJump(this.velocity.y);
-
-            // Apply pseudo-drag horizontally.
-            if (this.IsOnGround) {
-                this.velocity.x *= GroundDragFactor;
-            }
-            else {
-                this.velocity.x *= AirDragFactor;
-            }
-
-            // Prevent the player from running faster than his top speed.
-            this.velocity.x = Math.clamp(this.velocity.x, -MaxMoveSpeed, MaxMoveSpeed);
-
-            this.x += this.velocity.x * this.elapsed;
-            this.y += this.velocity.y * this.elapsed;
-            this.x = Math.round(this.x);
-            this.y = Math.round(this.y);
-
-            // If the player is now colliding with the level, separate them.
-            this.HandleCollisions();
-
-            // If the collision stopped us from moving, reset the velocity to zero.
-            if (this.x === previousPosition.x) {
-                this.velocity.x = 0;
-            }
-
-            if (this.y === previousPosition.y) {
-                this.velocity.y = 0;
-            }
-        }
     };
 
     /// <summary>
@@ -241,35 +199,6 @@
 
         // Save the new bounds bottom.
         this.previousBottom = bounds.Bottom();
-    };
-
-
-    /// <summary>
-    /// Called when the player has been killed.
-    /// </summary>
-    /// <param name="killedBy">
-    /// The enemy who killed the Unit. This parameter is null if the player was
-    /// not killed by an enemy (fell into a hole).
-    /// </param>
-    Unit.prototype.OnKilled = function (killedBy) {
-        /*this.IsAlive = false;
-        this.velocity = new Point(0, 0);
-
-        // Playing the proper animation based on
-        // the current direction of our hero
-        if (this.direction === 1) {
-            this.sprite.gotoAndPlay("die_h");
-        }
-        else {
-            this.sprite.gotoAndPlay("die");
-        }
-
-        if (killedBy !== null && killedBy !== undefined) {
-            this.level.levelContentManager.playerKilled.play();
-        }
-        else {
-            this.level.levelContentManager.playerFall.play();
-        }*/
     };
 
     window.Unit = Unit;
