@@ -1,0 +1,14 @@
+{
+  "app": {
+    "port": 1337
+  },
+  "db": {
+    "host": "localhost",
+    "port": 3306,
+    "dialect": "mysql",
+    "database": "znieh",
+    "username": "znieh",
+    "password": "mrbYCuDDShnFpTYP",
+    "maxConnections": 5
+  }
+}

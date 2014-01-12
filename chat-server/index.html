@@ -1,0 +1,98 @@
+<html>
+
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
+<style type="text/css">
+body { padding: 15px; }
+</style>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-langs.min.js"></script>
+
+
+<h3>Step 1 : Authentication</h3>
+Username : <input type="text" id="username" value="alfo" />
+<button id="auth" type="button" class="btn btn-primary">Auth</button>
+<hr />
+
+<h3>Step 2a : Chat 1-1</h3>
+Target : <input type="text" id="target" value="test" /><br />
+Message : <input type="text" id="msg" value="Hello, World." />
+<button id="send" type="button" class="btn btn-primary">Send</button>
+<hr />
+
+<h3>Step 2b : Chat 1-Many</h3>
+Target : <input type="text" id="target-group" value="test#test2#test3" /><br />
+Message : <input type="text" id="msg-group" value="Hello, World." />
+<button id="send-group" type="button" class="btn btn-primary">Send</button>
+<hr />
+
+
+
+<br /><br />
+<pre id="console" style="border: 1px dotted grey; padding: 10px;width: 600px;"><strong>Console Log :</strong><br /><br /></pre>
+
+
+<script>
+	var socket = io.connect('10.42.1.1:1337');
+
+  var dateIndex = 1;
+
+  var appendDate = function(date, id) {
+    var s = document.createElement("script");
+    s.innerHTML = 'document.write(moment("'+date+'", "X").fromNow());';
+    document.getElementById("date-"+id).appendChild(s);
+  };
+
+  // In
+  socket.on('service', function (data) {
+      console.log(data);
+      $('#console').append('Service message: ' + data.msg + '<br />');
+  });
+
+  socket.on('message', function (data) {
+    date = moment(data.date, "X").calendar();
+    $('#console').append('<strong>['+date+'] '+data.from+' -> '+data.to+': '+data.msg+'</strong><br />');
+
+    //appendDate(data.date, dateIndex);
+    //dateIndex++;
+  });
+
+
+
+
+  // Out
+  $('#send').click(function () {
+    socket.emit('message', {target: $('#target').val(), msg: $('#msg').val()}); 
+  });
+
+  $('#send-group').click(function () {
+    socket.emit('message-group', {target: $('#target').val(), msg: $('#msg').val()}); 
+  });
+
+  $('#auth').click(function () {
+    socket.emit('auth', {username: $("#username").val() , token: 'abc'}); 
+  });
+
+
+
+
+  // In
+  /*socket.on('welcome', function (data) {
+        console.log(data);
+        $('#console').append('Server has send welcome message');
+    });*/
+  /*socket.on('news', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+  });
+
+  socket.emit('set nickname', 'alfo', function (data) {
+  	console.log(data);
+  });
+  socket.emit('msg', 'test', function (data) {
+  	console.log(data);
+  });*/
+</script>
+
+
+</html>
