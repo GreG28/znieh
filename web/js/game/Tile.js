@@ -7,7 +7,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
     }
 
     Tile.prototype.initialize = function(texture, collision, x, y, render) {
-        if (texture != null) {
+        if (texture !== null) {
             this.empty = false;
         }
         else {
@@ -18,7 +18,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         this.y = y * this.height;
         this.texture = texture;
 
-        if(render == true) {
+        if(render === true) {
             this.render();
         }
 
@@ -29,7 +29,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         this.texture.x = this.x;
         this.texture.y = this.y;
         stage.addChild(this.texture);
-    }
+    };
 
     Tile.prototype.width = 32;
     Tile.prototype.height = 32;
