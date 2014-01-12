@@ -1,27 +1,44 @@
-var db = require('./db');
 var crypto = require('crypto');
 
-module.exports = authController = function(socket, callback) {
+module.exports = authController = function(socket, world, callback) {
 
 	socket.on("auth", function(data) {
-		//db.User.find({where: {username: data.username}}).success(function(user){
-			//var hash = crypto.createHash('sha512').update(data.password + '{' + user.salt + '}');
-			//hash = crypto.createHash('sha512').update(hash).digest('binary');
-			//hash = crypto.createHash('sha512').update(hash);
 
-			//var digest = hash.digest('base64');
-			//if(digest == user.password) {
-			//	socket.emit("service", { msg: 'OK' });
-			//}
+		socket.get('authenticated', function(err, value) {
+			// If user is trying to auth a second time
+			if(value == true) {
+				var endpoint = socket.handshake.address;
+				console.log('[INFO] Possible hack detected: Player connected from '+ endpoint.address + ' is trying to auth again -> player kicked.')
+				socket.emit("service", { msg: 'Auth: Already authenticated' });
+				socket.disconnect();
+				return -1;
+			}
+		});
+
+		if(data.token == undefined || data.token == '')
+		{
+			var endpoint = socket.handshake.address;
+			console.log('[INFO] Possible hack detected: Player connected from '+ endpoint.address + ' has send an empty token -> player kicked.')
+			socket.emit("service", { msg: 'Auth: Empty token' });
+			socket.disconnect();
+			return -2;
+		}
+		
+
+		world.db.User.find({where: {username: data.username, token: data.token}})
+		.success(function(user){
 
 			user = {
 				username: data.username
 			};
 			
+			socket.set('authenticated', true);
 			socket.emit("service", { msg: 'Auth: OK' });
 
 			callback(user);
 
-		//});
+		});
+
+		console.log('test');
     });
 }
