@@ -121,6 +121,11 @@ manche_en_cedre_d_intelligence:
   name: Manche_en cèdre d'intelligence
   type: Manche
   step: Manches en cèdre
+  manche_en_cedre_d_armure:
+  name: Manche_en cèdre d'armure
+  type: Manche
+  step: Manches en cèdre
+
 #_________________________________________________
 manche_en_chene_de_vie:
   name: Manche_en chêne de vie
@@ -156,6 +161,10 @@ manche_en_chene_d_agilite:
   step: Manches en Chêne
 manche_en_chene_d_intelligence:
   name: Manche_en chêne d'intelligence
+  type: Manche
+  step: Manches en Chêne
+manche_en_chene_d_armure:
+  name: Manche_en chêne d'armure
   type: Manche
   step: Manches en Chêne
 #_________________________________________________
@@ -196,6 +205,10 @@ pommeau_en_cuivre_d_intelligence:
   name: Pommeau en cuivre d'intelligence
   type: Pommeau
   step: Pommeaux en cuivre
+pommeau_en_cuivre_d_armure:
+  name: Pommeau en cuivre d'armure
+  type: Pommeau
+  step: Pommeaux en cuivre
 #_________________________________________________
 pommeau_en_bronze_de_vie:
   name: Pommeau en bronze de vie
@@ -231,6 +244,10 @@ pommeau_en_bronze_d_agilite:
   step: Pommeaux en bronze
 pommeau_en_bronze_d_intelligence:
   name: Pommeau en bronze d'intelligence
+  type: Pommeau
+  step: Pommeaux en bronze
+pommeau_en_bronze_d_armure:
+  name: Pommeau en bronze d'armure
   type: Pommeau
   step: Pommeaux en bronze
 #_________________________________________________
@@ -357,6 +374,10 @@ hampe_cedre_d_intelligence:
   name: Hampe en cèdre d'intelligence
   type: Hampe
   step: Hampes en cèdre
+hampe_cedre_d_armure:
+  name: Hampe en cèdre d'armure
+  type: Hampe
+  step: Hampes en cèdre
 #________________________________________________
 hampe_chene_de_vie:
   name: Hampe en chêne de vie
@@ -392,6 +413,10 @@ hampe_chene_d_agilite:
   step: Hampes en chêne
 hampe_chene_d_intelligence:
   name: Hampe en chêne d'intelligence
+  type: Hampe
+  step: Hampes en chêne
+hampe_chene_d_armure:
+  name: Hampe en chêne d'armure
   type: Hampe
   step: Hampes en chêne
 #_________________________________________________
@@ -459,41 +484,49 @@ corde_reche_d_intelligence:
   name: Corde en cuir rêche d'intelligence
   type: Corde
   step: Cordes en cuir rêche
+corde_reche_d_armure:
+  name: Corde en cuir rêche d'armure
+  type: Corde
+  step: Cordes en cuir rêche
 #_________________________________________________
-corde_reche_de_vie:
+corde_brut_de_vie:
   name: Corde en cuir brut de vie
   type: Corde
   step: Cordes en cuir brut
-corde_reche_de_penetration:
+corde_brut_de_penetration:
   name: Corde en cuir brut de pénétration
   type: Corde
   step: Cordes en cuir brut
-corde_reche_de_precision:
+corde_brut_de_precision:
   name: Corde en cuir brut de précision
   type: Corde
   step: Cordes en cuir brut
-corde_reche_d_esquive:
+corde_brut_d_esquive:
   name: Corde en cuir brut d'esquive
   type: Corde
   step: Cordes en cuir brut
-corde_reche_de_parade:
+corde_brut_de_parade:
   name: Corde en cuir brut de parade
   type: Corde
   step: Cordes en cuir brut
-corde_reche_de_defense:
+corde_brut_de_defense:
   name: Corde en cuir brut de défense
   type: Corde
   step: Cordes en cuir brut
-corde_reche_de_force:
+corde_brut_de_force:
   name: Corde en cuir brut de force
   type: Corde
   step: Cordes en cuir brut
-corde_reche_d_agilite:
+corde_brut_d_agilite:
   name: Corde en cuir brut d'agilité
   type: Corde
   step: Cordes en cuir brut
-corde_reche_d_intelligence:
+corde_brut_d_intelligence:
   name: Corde en cuir brut d'intelligence
+  type: Corde
+  step: Cordes en cuir brut
+corde_brut_d_armure:
+  name: Corde en cuir brut d'armure
   type: Corde
   step: Cordes en cuir brut
 #_________________________________________________
@@ -577,6 +610,10 @@ poignee_arc__cuivre_d_intelligence:
   name: Poignée d'arc en cuivre d'intelligence
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
+poignee_arc__cuivre_d_armure:
+  name: Poignée d'arc en cuivre d'armure
+  type: Poignée d'arc
+  step: Poignées d'arc en cuivre
 #_________________________________________________
 poignee_arc__bronze_de_vie:
   name: Poignée d'arc en bronze de vie
@@ -612,6 +649,10 @@ poignee_arc__bronze_d_agilite:
   step: Poignées d'arc en bronze
 poignee_arc__bronze_d_intelligence:
   name: Poignée d'arc en bronze d'intelligence
+  type: Poignée d'arc
+  step: Poignées d'arc en bronze
+poignee_arc__bronze_d_armure:
+  name: Poignée d'arc en bronze d'armure
   type: Poignée d'arc
   step: Poignées d'arc en bronze
 #_________________________________________________

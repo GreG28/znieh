@@ -1,0 +1,10 @@
+casque:
+  name: Casque
+torse:
+  name: Torse
+jambes:
+  name: Jambes
+bottes:
+  name: Bottes
+gants:
+  name: Gants
