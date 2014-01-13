@@ -1,12 +1,12 @@
 lourd:
   name: Lourd
-  parts: [ Casque lourd, Torse lourd, Jambes lourd, Bottes lourd, Gants lourd]
+  parts: [ Casque lourd, Torse lourd, Jambes lourdes, Bottes lourdes, Gants lourds]
   building: Armurerie
 intermediaire:
   name: Intermédiaire
-  parts: [ Casque intermédiaire, Torse intermédiaire, Jambes intermédiaire, Bottes intermédiaire, Gants intermédiaire]
+  parts: [ Casque intermédiaire, Torse intermédiaire, Jambes intermédiaires, Bottes intermédiaires, Gants intermédiaires]
   building: Tannerie
 leger:
   name: Léger
-  parts: [ Casque léger, Torse léger, Jambes léger, Bottes léger, Gants léger]
+  parts: [ Casque léger, Torse léger, Jambes légères, Bottes légères, Gants légers]
   building: Tisserie
