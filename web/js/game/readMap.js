@@ -8,16 +8,7 @@ var mapDataJson;
 function init() {
     blocked = new Array();
 
-    mapData =  loadingQueue.getResult("map-json");
     canvas = document.getElementById("canvas");
-
-    loadingQueue = new createjs.LoadQueue(false);
-    loadingQueue.addEventListener("complete", setMap);
-    loadingQueue.loadManifest([{id:"tileimg", src:mapData.tilesets[0].image}]); // On oblige le chargement de l'image avant l'exécution de la suite, sinon la map n'est pas chargée avant le stage.update()
-    loadingQueue.loadManifest([{id:"imgPerso", src:"../../img/sprites/firefox.png"}]);
-    loadingQueue.loadManifest([{id:"imgArme", src:"../../img/sprites/bluesword.png"}]);
-    loadingQueue.loadManifest([{id:"map-json", src:"../../json/map.json"}]);
-    loadingQueue.loadManifest([{id:"units-json", src:"../../json/units.json"}]);
 }
 
 function setMap() {

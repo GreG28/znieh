@@ -16,15 +16,10 @@ Array.matrix = function (m, n, initial) {
     var StaticTile = new Tile(null, Enum.TileCollision.Passable, 0, 0);
     function Map() {
         var mapData = [];
-        $.ajax({
-                url: '../../json/map.json',
-                async: false,
-                dataType: 'json',
-                success: function (json) {
-                mapData = json;
-            }
-        });
 
+        // récupère le json de la loading queue puis le parse !
+        mapData = jQuery.parseJSON(loadingQueue.getResult("map-json",true));
+        
         this.gameWidth = mapData.width;
         this.gameHeight = mapData.height;
         this.tileWidth = mapData.tilewidth;

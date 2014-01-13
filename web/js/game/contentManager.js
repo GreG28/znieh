@@ -1,3 +1,5 @@
+var mapDataJson;
+
 function ContentManager(stage, width, height) {
 
     this.init = function () {
@@ -16,6 +18,7 @@ function ContentManager(stage, width, height) {
         tileswidth = 32;
 
         tilesetimg = loadingQueue.getResult("tileset");
+
         var imageData = {
             images : [ tilesetimg ],
             frames : {
