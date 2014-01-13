@@ -13,34 +13,34 @@ Array.matrix = function (m, n, initial) {
 
 (function (window) {
 
-    var mapData = $.getJSON(loadingQueue.getResult("map-json"), {param1: 'value1'}, function(json, textStatus) {
-            /*optional stuff to do after success */
-    }); .get("layers.data");
-    //var mapData = [4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 4, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 4, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 4, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 4, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-
     var StaticTile = new Tile(null, Enum.TileCollision.Passable, 0, 0);
-
     function Map() {
-        // RECUPERER LA TAILLE DES TILES ET LA STOCKER POUR L'UTILISER QUAND ON EN A BESOIN
-        /*this.gameWidth = gameWidth;
-        this.gameHeight = gameHeight;
-        // Entities in the level.
-        this.Hero = null;
-        // Key locations in the level.
-        this.Start = null;
-        // Creating a random background based on the 3 layers available in 3 versions
-        this.CreateAndAddRandomBackground();*/
+        var mapData = [];
+        $.ajax({
+                url: '../../json/map.json',
+                async: false,
+                dataType: 'json',
+                success: function (json) {
+                mapData = json;
+            }
+        });
+
+        this.gameWidth = mapData.width;
+        this.gameHeight = mapData.height;
+        this.tileWidth = mapData.tilewidth;
+        this.tileHeight = mapData.tileheight;
+
         // Building a matrix of characters that will be replaced by the level {x}.txt
-        this.textTiles = Array.matrix(15, 15, "|");
+        this.textTiles = Array.matrix(this.gameWidth, this.gameHeight, "|");
         // Physical structure of the level.
-        this.tiles = Array.matrix(15, 15, "|");
-        this.LoadTiles(mapData);
+        this.tiles = Array.matrix(this.gameWidth, this.gameHeight, "|");
+        this.LoadTiles(mapData.layers[0].data);
     }
 
     Map.prototype.ParseLevelLines = function (mapData) {
-        for (var i = 0; i < 15; i++) {
-            for (var j = 0; j < 15; j++) {
-                this.textTiles[i][j] = mapData[(i * 15) + j];
+        for (var i = 0; i < this.gameWidth; i++) {
+            for (var j = 0; j < this.gameHeight; j++) {
+                this.textTiles[i][j] = mapData[(i * this.gameWidth) + j];
             }
         }
     };
@@ -49,8 +49,8 @@ Array.matrix = function (m, n, initial) {
         this.ParseLevelLines(mapData); // Doit récupérer les chiffres indiquant les sprites à partir du JSON et les foutre dans textTiles
 
         // Loop over every tile position,
-        for (var i = 0; i < 15; i++) {
-            for (var j = 0; j < 15; j++) {
+        for (var i = 0; i < this.gameWidth; i++) {
+            for (var j = 0; j < this.gameHeight; j++) {
                 this.tiles[i][j] = this.LoadTile(this.textTiles[i][j], j, i);
             }
         }
@@ -98,14 +98,14 @@ Array.matrix = function (m, n, initial) {
     /// Width of level measured in tiles.
     /// </summary>
     Map.prototype.Width = function () {
-        return 20;
+        return this.gameWidth;
     };
 
     /// <summary>
     /// Height of the level measured in tiles.
     /// </summary>
     Map.prototype.Height = function () {
-        return 15;
+        return this.gameHeight;
     };
 
     /// <summary>
