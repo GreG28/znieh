@@ -80,7 +80,7 @@ Array.matrix = function (m, n, initial) {
         var cellBitmap = new createjs.Sprite(tilesetSheet);
         cellBitmap.gotoAndStop(idTile - 1);
         return cellBitmap;
-    }
+    };
 
     /// <summary>
     /// Gets the bounding rectangle of a tile in world space.
