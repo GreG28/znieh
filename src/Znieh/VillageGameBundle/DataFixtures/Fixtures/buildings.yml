@@ -1,18 +1,24 @@
 forge:
   title: Forge
-  description: Vous permet de créer des épées
+  description: Vous permet de créer des épées.
 hacherie:
   title: Hacherie
-  description: Vous permet de créer des haches
+  description: Vous permet de créer des haches.
 archerie:
   title: Archerie
-  description: Vous permet de créer des armes à distances
+  description: Vous permet de créer des armes à distances.
 armurerie:
   title: Armurerie
-  description: Vous permet de créer des armures en métal
+  description: Vous permet de créer des armures en métal.
 tannerie:
   title: Tannerie
-  description: Vous permet de créer des armures en cuir
+  description: Vous permet de créer des armures en cuir.
 tisserie:
   title: Tisserie
-  description: Vous permet de créer des armures en tissu	
+  description: Vous permet de créer des armures en tissu.
+centre_entrainement:
+  title: Centre d'entrainement
+  description: Vous permet de débloquer des compétences.
+guilde_mage:
+  title: Guilde des mages
+  description: Vous permet de débloquer des sorts.

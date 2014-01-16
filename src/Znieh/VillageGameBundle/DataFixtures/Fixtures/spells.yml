@@ -1,0 +1,71 @@
+boule_de_feu:
+  name: Boule de feu
+  step: Dégats magiques I
+  cost: 5
+  damages: 50
+  ratio: 0.4
+  attribute: Dégats magiques
+  time: 1
+  cooldown: 3
+  description: Une boule de feu est projeté sur l'adversaire occasionnant des dégâts instantanés.
+tourment_lancinant:
+  name: Tourment lancinant
+  step: Maléfices I
+  cost: 10
+  damages: 20
+  ratio: 0.4
+  attribute: Science maléfique
+  time: 3
+  cooldown: 4
+  description: Chaque fois que l'ennemi ciblé attaquera ou utilisera un sort ou une compétence, celui-ci et les ennemis adjacents subissent des dégâts
+parasite_sournois:
+  name: Parasite sournois
+  step: Maléfices I
+  cost:15
+  damages: 20
+  ratio: 0.15
+  attribute: Science maléfique
+  time: 3
+  cooldown: 5
+  description: Chaque fois que l'ennemi ciblé réussi une attaque, le lanceur du sort lui vole des points de vie.
+reaction:
+  name: Réaction
+  step: Dégats magiques I
+  cost: 5
+  damages: 50
+  ratio: 0.5
+  attribute: Dégats magiques
+  time: 1
+  cooldown: 3
+  description: Si l'ennemi visé est sous l'effet d'un maléfice ou d'une condition, il subit des dégâts.
+magie_douloureuse:
+  name: Magie douloureuse
+  step: Maléfices I
+  cost: 15
+  damages: 30
+  ratio: 0.2
+  attribute: Dégâts magiques
+  time: 2
+  cooldown: 4
+  description: Si l'ennemi visé lance un sort, il subit des dégâts.
+drain_de_vie:
+  name: Drain de vie
+  step: Dégats magiques I
+  cost: 15
+  damages: 30
+  ratio: 0.3
+  attribute: Dégâts magiques
+  time: 2
+  cooldown: 5
+  description: (Canalisation) Vous volez chaque tour de la vie à l'adversaire. Votre personnage n'est plus contrôlable durant la durée du sort.
+armure de feu:
+  name: Armure de feu
+  step: Support I
+  cost: 15
+  damages: 20
+  ratio: 0.3
+  attribute: Magie supportive
+  time: 2
+  cooldown: 3
+  description: L'attaquant de la cible allié sous effet du sort subis des dégâts de feu.
+  
