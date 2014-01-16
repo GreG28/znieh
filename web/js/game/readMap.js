@@ -3,21 +3,17 @@ var stage;
 var mapData;
 var blocked;
 var canvas;
+var mapDataJson;
 
 function init() {
     blocked = new Array();
 
-    mapData = mapDataJson;
     canvas = document.getElementById("canvas");
-
-    loadingQueue = new createjs.LoadQueue(false);
-    loadingQueue.addEventListener("complete", setMap);
-    loadingQueue.loadManifest([{id:"tileimg", src:mapData.tilesets[0].image}]); // On oblige le chargement de l'image avant l'exécution de la suite, sinon la map n'est pas chargée avant le stage.update()
-    loadingQueue.loadManifest([{id:"imgPerso", src:"../../img/sprites/firefox.png"}]);
-    loadingQueue.loadManifest([{id:"imgArme", src:"../../img/sprites/bluesword.png"}]);
 }
 
 function setMap() {
+    //mapDataJson = loadingQueue.getResult("map-json");
+
     stage = new createjs.Stage(canvas);
 
     tileset = new Image();
@@ -193,63 +189,4 @@ function inArray(needle, haystack) {
         if(haystack[i] == needle) return true;
     }
     return false;
-}
-
-var mapDataJson = { "height":15,
- "layers":[
-        {
-         "data":[4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 5, 4, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 5, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 5, 4, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 4, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 5, 4, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 5, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 4, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 5, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 5, 4, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 5, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5],
-         "height":15,
-         "name":"Calque de Tile 1",
-         "opacity":1,
-         "type":"tilelayer",
-         "visible":true,
-         "width":15,
-         "x":0,
-         "y":0
-        }],
- "orientation":"orthogonal",
- "properties":
-    {
-
-    },
- "tileheight":32,
- "tilesets":[
-        {
-         "firstgid":1,
-         "image":"../../img/sprites/spritemap.png",
-         "imageheight":32,
-         "imagewidth":192,
-         "margin":0,
-         "name":"spritemap",
-         "properties":
-            {
-
-            },
-         "spacing":0,
-         "tileheight":32,
-         "tileproperties":
-            {
-             "2":
-                {
-                 "block":"true"
-                },
-             "3":
-                {
-                 "block":"true"
-                },
-             "4":
-                {
-                 "block":"true"
-                },
-             "5":
-                {
-                 "block":"true"
-                }
-            },
-         "tilewidth":32
-        }],
- "tilewidth":32,
- "version":1,
- "width":15
 }

@@ -60,10 +60,10 @@
         frameHeight = localSpriteSheet.getFrame(0).rect.height;
 
         // Calculate bounds within texture size.
-        width = parseInt(frameWidth * 0.4);
-        left = parseInt((frameWidth - width) / 2);
-        height = parseInt(frameWidth * 0.8);
-        top = parseInt(frameHeight - height);
+        width = parseInt(frameWidth * 0.4,10);
+        left = parseInt((frameWidth - width) / 2,10);
+        height = parseInt(frameWidth * 0.8,10);
+        top = parseInt(frameHeight - height,10);
         this.localBounds = new XNARectangle(left, top, width, height);
 
         this.sprite.name = "Hero";
@@ -95,8 +95,8 @@
     /// Gets a rectangle which bounds this player in world space.
     /// </summary>
     Unit.prototype.BoundingRectangle = function () {
-        var left = parseInt(Math.round(this.x - 32) + this.localBounds.x);
-        var top = parseInt(Math.round(this.y - 64) + this.localBounds.y);
+        var left = parseInt(Math.round(this.x - 32) + this.localBounds.x,10);
+        var top = parseInt(Math.round(this.y - 64) + this.localBounds.y,10);
 
         return new XNARectangle(left, top, this.localBounds.width, this.localBounds.height);
     };
