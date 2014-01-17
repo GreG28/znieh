@@ -1,18 +1,20 @@
 {
+
     "firefox":
     {
         "specifications":
         {
-            "0": // Petit et fin
+            "petit":
             {
                 "description":
                 {
                     "taille": "petit",
-                    "corpulence": "fin",
+                    "corpulence": "fin"
                 },
                 "sprites":
                 {
                     "spritesheet": "firefox.png",
+                    "spritesheet_loading_ID": "unitFirefox",
                     "frames":
                     {
                         "width": 32,
@@ -27,16 +29,17 @@
                     }
                 }
             },
-            "1": // Grand et musclé
+            "grand":
             {
                 "description":
                 {
                     "taille": "grand",
-                    "corpulence": "musclé",
+                    "corpulence": "musclé"
                 },
                 "sprites":
                 {
                     "spritesheet": "firefox2.png",
+                    "spritesheet_loading_ID": "unitFirefox2",
                     "frames":
                     {
                         "width": 64,
@@ -84,7 +87,7 @@
                     "end": 59,
                     "name": "bottom",
                     "velocity": 0.2
-                },
+                }
             },
             "attack":
             {
@@ -108,7 +111,7 @@
                     "end": 52,
                     "name": "attackbottom",
                     "velocity": 0.2
-                },
+                }
             }
         }
     },
@@ -116,7 +119,7 @@
     {
         "specifications":
         {
-            "0": // Petit et fin
+            "petit":
             {
                 "description":
                 {
@@ -126,6 +129,7 @@
                 "sprites":
                 {
                     "spritesheet": "mailarmor.png",
+                    "spritesheet_loading_ID": "mailarmor",
                     "frames":
                     {
                         "width": 32,
@@ -140,7 +144,7 @@
                     }
                 }
             },
-            "1": // Grand et musclé
+            "grand":
             {
                 "description":
                 {
@@ -150,6 +154,7 @@
                 "sprites":
                 {
                     "spritesheet": "mailarmor2.png",
+                    "spritesheet_loading_ID": "mailarmor2",
                     "frames":
                     {
                         "width": 64,
@@ -163,7 +168,7 @@
                         "left": 30
                     }
                 }
-            },
+            }
         },
         "animations":
         {
@@ -196,7 +201,7 @@
                     "end": 38,
                     "name": "bottom",
                     "velocity": 0.2
-                },
+                }
             },
             "attack":
             {
@@ -220,8 +225,8 @@
                     "end": 34,
                     "name": "attackbottom",
                     "velocity": 0.2
-                },
+                }
             }
-        },
+        }
     }
 }
