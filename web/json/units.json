@@ -4,7 +4,7 @@
     {
         "specifications":
         {
-            "petit":
+            "petitfin":
             {
                 "description":
                 {
@@ -29,7 +29,7 @@
                     }
                 }
             },
-            "grand":
+            "grandmuscle":
             {
                 "description":
                 {
@@ -95,21 +95,21 @@
                 {
                     "start": 0,
                     "end": 5,
-                    "name": "attackright",
+                    "name": "right",
                     "velocity": 0.2
                 },
                 "top":
                 {
                     "start": 24,
                     "end": 28,
-                    "name": "attacktop",
+                    "name": "top",
                     "velocity": 0.2
                 },
                 "bottom":
                 {
                     "start": 48,
                     "end": 52,
-                    "name": "attackbottom",
+                    "name": "bottom",
                     "velocity": 0.2
                 }
             }
@@ -119,7 +119,7 @@
     {
         "specifications":
         {
-            "petit":
+            "petitfin":
             {
                 "description":
                 {
@@ -144,7 +144,7 @@
                     }
                 }
             },
-            "grand":
+            "grandmuscle":
             {
                 "description":
                 {
@@ -209,21 +209,21 @@
                 {
                     "start": 0,
                     "end": 5,
-                    "name": "attackright",
+                    "name": "right",
                     "velocity": 0.2
                 },
                 "top":
                 {
                     "start": 15,
                     "end": 19,
-                    "name": "attacktop",
+                    "name": "top",
                     "velocity": 0.2
                 },
                 "bottom":
                 {
                     "start": 30,
                     "end": 34,
-                    "name": "attackbottom",
+                    "name": "bottom",
                     "velocity": 0.2
                 }
             }
