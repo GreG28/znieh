@@ -19,33 +19,47 @@
     // imgUnit should be the PNG containing the sprite sequence
     // level must be of type Level
     // position must be of type Point
-    function Unit(imgUnit, map, position) {
-        this.initialize(imgUnit, map, position);
+    function Unit(imgUnit, map, position, unitsInfos, taille) {
+        //alert(JSON.stringify(unitsInfos, null, 4));
+        this.initialize(imgUnit, map, position, unitsInfos, taille);
     }
 
     Unit.prototype = new createjs.Bitmap();
     Unit.prototype.IsAlive = true;
     Unit.prototype.IsOnGround = true;
 
-    Unit.prototype.initialize = function (imgUnit, map, position) {
-        var width;
-        var left;
-        var height;
-        var top;
+    Unit.prototype.initialize = function (imgUnit, map, position, unitsInfos, taille) {
+
+        var width = unitsInfos.specifications[taille].sprites.frames.width;
+        var left = unitsInfos.specifications[taille].sprites.weapon.left;
+        var height = unitsInfos.specifications[taille].sprites.frames.height;
+        var top = unitsInfos.specifications[taille].sprites.weapon.top;
+        var regX = unitsInfos.specifications[taille].sprites.frames.regX;
+        var regY = unitsInfos.specifications[taille].sprites.frames.regY;
+
         var frameWidth;
         var frameHeight;
 
+        var animations = {};
+        var animations_move = unitsInfos.animations.move;
+        var animations_attack = unitsInfos.animations.attack;
+
+        animations["move-idle"] = [animations_move.idle.start, animations_move.idle.end, "move-" + animations_move.idle.name, animations_move.idle.velocity];
+        animations["move-right"] = [animations_move.right.start, animations_move.right.end, "move-" + animations_move.right.name, animations_move.right.velocity];
+        animations["move-top"] = [animations_move.top.start, animations_move.top.end, "move-" + animations_move.top.name, animations_move.top.velocity];
+        animations["move-bottom"] = [animations_move.bottom.start, animations_move.bottom.end, "move-" + animations_move.bottom.name, animations_move.bottom.velocity];
+
+        animations["attack-right"] = [animations_attack.right.start, animations_attack.right.end, "attack-" + animations_attack.right.name, animations_attack.right.velocity];
+        animations["attack-top"] = [animations_attack.top.start, animations_attack.top.end, "attack-" + animations_attack.top.name, animations_attack.top.velocity];
+        animations["attack-bottom"] = [animations_attack.bottom.start, animations_attack.bottom.end, "attack-" + animations_attack.bottom.name, animations_attack.bottom.velocity];
+
+        //alert(JSON.stringify(animations, null, 4));
+
         var localSpriteSheet = new createjs.SpriteSheet({
             images: [imgUnit], //image to use
-            frames: {width: 32, height: 32, regX: 16, regY: 16},
-            animations: {
-                right: [8, 11, "walk", 0.2],
-                top: [32, 39, false, 0.2],
-                bottom: [56, 59, false, 0.2],
-                idle: [0, 0, "idle"]
-            }
+            frames: {width: width, height: height, regX: regX, regY: regY},
+            animations: animations
         });
-
 
         this.sprite = new createjs.Sprite(localSpriteSheet);
 
@@ -86,7 +100,7 @@
         this.sprite.y = position.y;
         this.velocity = new createjs.Point(0, 0);
         this.IsAlive = true;
-        this.sprite.gotoAndPlay("idle");
+        this.sprite.gotoAndPlay("move-right");
         stage.addChild(this.sprite);
         stage.update();
     };
