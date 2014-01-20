@@ -9,7 +9,7 @@ function ContentManager(stage, width, height) {
         return ContentManager.nextUnitID;
     }
 
-    var unitsCaracteristics = {
+    ContentManager.unitsCaracteristics = {
         PETITFIN: "petitfin",
         PETITMOYEN: "petitmoyen",
         PETITMUSCLE: "petitmuscle",
@@ -35,16 +35,16 @@ function ContentManager(stage, width, height) {
     };
 
     function initMap() {
-        tilesheight = 32;
-        tileswidth = 32;
+        ContentManager.tilesheight = 32;
+        ContentManager.tileswidth = 32;
 
         tilesetimg = loadingQueue.getResult("tileset");
 
-        var imageData = {
+        imageData = {
             images : [ tilesetimg ],
             frames : {
-                width : tileswidth,
-                height : tilesheight
+                width :     ContentManager.tileswidth,
+                height :    ContentManager.tilesheight
             }
         };
 
@@ -53,38 +53,42 @@ function ContentManager(stage, width, height) {
 
         unistJson = jQuery.parseJSON(loadingQueue.getResult("units-json",true));
 
-        createUnit(5,3,"firefox", unitsCaracteristics.PETITFIN);
-        createUnit(5,4,"firefox", unitsCaracteristics.PETITFIN);
-        createUnit(5,5,"firefox", unitsCaracteristics.PETITFIN);
-        createUnit(7,6,"mailarmor", unitsCaracteristics.PETITFIN);
-        createUnit(7,7,"mailarmor", unitsCaracteristics.PETITFIN);
-        createUnit(7,8,"mailarmor", unitsCaracteristics.PETITFIN);
+        createUnit(5,3,"firefox", ContentManager.unitsCaracteristics.PETITFIN);
+        createUnit(5,4,"firefox", ContentManager.unitsCaracteristics.PETITFIN);
+        createUnit(5,5,"firefox", ContentManager.unitsCaracteristics.PETITFIN);
+        createUnit(7,6,"mailarmor", ContentManager.unitsCaracteristics.PETITFIN);
+        createUnit(7,7,"mailarmor", ContentManager.unitsCaracteristics.PETITFIN);
+        createUnit(7,8,"mailarmor", ContentManager.unitsCaracteristics.PETITFIN);
 
-        createUnit(9,3,"firefox", unitsCaracteristics.GRANDMUSCLE);
-        createUnit(9,4,"firefox", unitsCaracteristics.GRANDMUSCLE);
-        createUnit(9,5,"firefox", unitsCaracteristics.GRANDMUSCLE);
-        createUnit(3,6,"mailarmor", unitsCaracteristics.GRANDMUSCLE);
-        createUnit(3,7,"mailarmor", unitsCaracteristics.GRANDMUSCLE);
-        createUnit(3,8,"mailarmor", unitsCaracteristics.GRANDMUSCLE);
+        createUnit(9,3,"firefox", ContentManager.unitsCaracteristics.GRANDMUSCLE);
+        createUnit(9,4,"firefox", ContentManager.unitsCaracteristics.GRANDMUSCLE);
+        createUnit(9,5,"firefox", ContentManager.unitsCaracteristics.GRANDMUSCLE);
+        createUnit(3,6,"mailarmor", ContentManager.unitsCaracteristics.GRANDMUSCLE);
+        createUnit(3,7,"mailarmor", ContentManager.unitsCaracteristics.GRANDMUSCLE);
+        createUnit(3,8,"mailarmor", ContentManager.unitsCaracteristics.GRANDMUSCLE);
 
-        createUnit(1,3,"firefox", unitsCaracteristics.PETITFIN);
-        createUnit(1,4,"firefox", unitsCaracteristics.PETITFIN);
-        createUnit(1,5,"firefox", unitsCaracteristics.PETITFIN);
-        createUnit(2,6,"mailarmor", unitsCaracteristics.PETITFIN);
-        createUnit(2,7,"mailarmor", unitsCaracteristics.PETITFIN);
-        createUnit(2,8,"mailarmor", unitsCaracteristics.PETITFIN);
+        createUnit(1,3,"firefox", ContentManager.unitsCaracteristics.PETITFIN);
+        createUnit(1,4,"firefox", ContentManager.unitsCaracteristics.PETITFIN);
+        createUnit(1,5,"firefox", ContentManager.unitsCaracteristics.PETITFIN);
+        createUnit(2,6,"mailarmor", ContentManager.unitsCaracteristics.PETITFIN);
+        createUnit(2,7,"mailarmor", ContentManager.unitsCaracteristics.PETITFIN);
+        createUnit(2,8,"mailarmor", ContentManager.unitsCaracteristics.PETITFIN);
 
-        createUnit(4,3,"firefox", unitsCaracteristics.GRANDMUSCLE);
-        createUnit(4,4,"firefox", unitsCaracteristics.GRANDMUSCLE);
-        createUnit(4,5,"firefox", unitsCaracteristics.GRANDMUSCLE);
-        createUnit(6,6,"mailarmor", unitsCaracteristics.GRANDMUSCLE);
-        createUnit(6,7,"mailarmor", unitsCaracteristics.GRANDMUSCLE);
-        createUnit(6,8,"mailarmor", unitsCaracteristics.GRANDMUSCLE);
+        createUnit(4,3,"firefox", ContentManager.unitsCaracteristics.GRANDMUSCLE);
+        createUnit(4,4,"firefox", ContentManager.unitsCaracteristics.GRANDMUSCLE);
+        createUnit(4,5,"firefox", ContentManager.unitsCaracteristics.GRANDMUSCLE);
+        createUnit(6,6,"mailarmor", ContentManager.unitsCaracteristics.GRANDMUSCLE);
+        createUnit(6,7,"mailarmor", ContentManager.unitsCaracteristics.GRANDMUSCLE);
+        createUnit(6,8,"mailarmor", ContentManager.unitsCaracteristics.GRANDMUSCLE);
 
         createjs.Ticker.addEventListener("tick", tick);
+        createjs.Ticker.useRAF = true;
+        createjs.Ticker.setFPS(60);
+
     }
 
     function tick(event) {
+        $("#fps").html("<strong>FPS:</strong> " + Math.round(createjs.Ticker.getMeasuredFPS()));
         stage.update(event);
     }
 
@@ -94,5 +98,14 @@ function ContentManager(stage, width, height) {
         this.Start = this.map.GetBounds(x, y).GetBottomCenter();
         this.Hero = new Unit(spritePerso, this.map, this.Start, unistJson[type], taille);
     }
+
+    ContentManager.newUnit = function(x, y, type, taille) {
+        unistJson = jQuery.parseJSON(loadingQueue.getResult("units-json",true));
+        var loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
+        spritePerso = loadingQueue.getResult(loading_id);
+        Start = map.GetBounds(x, y).GetBottomCenter();
+        Hero = new Unit(spritePerso, map, Start, unistJson[type], taille);
+    }
+
 
 }

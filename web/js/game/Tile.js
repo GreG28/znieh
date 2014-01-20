@@ -47,6 +47,14 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
             stage.removeChild(stage.getChildByName("contour"));
         });
 
+        this.texture.on("click", function(evt) {
+            var idUnit = nextUnitID;
+            if(units[idUnit] != null) {
+                ContentManager.newUnit(Math.floor(evt.stageX / ContentManager.tileswidth), Math.floor(evt.stageY / ContentManager.tilesheight), units[idUnit].name, units[idUnit].taille);
+                nextUnitID++;
+            }
+        });
+
         stage.addChild(this.texture);
     };
 

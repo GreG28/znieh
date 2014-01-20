@@ -108,8 +108,6 @@
         this.velocity = new createjs.Point(0, 0);
         this.IsAlive = true;
         this.sprite.gotoAndPlay("move-idle");
-        this.sprite.addEventListener("mouseover", handleClick);
-        this.sprite.addEventListener("mouseout", handleClickTest);
 
         var x = this.sprite.x;
         var y = this.sprite.y;
@@ -118,17 +116,22 @@
 
         var unitID = this.unitID;
 
-        function handleClick() {
+        this.sprite.on("mouseover", function(evt) {
             var shape = new createjs.Shape();
             shape.name = "contourperso";
             shape.graphics.beginStroke("#000000");
             shape.graphics.setStrokeStyle(2); // 2 pixel
-            shape.graphics.drawRect((x-width/2),(y-height/2),width,height); // Change size as-needed
-            stage.addChild(shape); // Add the shape to the same container as
-        }
-        function handleClickTest() {
+            shape.graphics.drawRect((x - 16), (y - 16), 32, 32);
+            stage.addChild(shape);
+        });
+
+        this.sprite.on("mouseout", function(evt) {
             stage.removeChild(stage.getChildByName("contourperso"));
-        }
+        });
+
+        this.sprite.on("click", function(evt) {
+            console.log("[CLICK] ID Unit : " + unitID);
+        })
 
         stage.addChild(this.sprite);
     };
