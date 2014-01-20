@@ -2,6 +2,13 @@ var unistJson;
 
 function ContentManager(stage, width, height) {
 
+    ContentManager.nextUnitID = 0;
+
+    ContentManager.getNextUnitID = function () {
+        ContentManager.nextUnitID++;
+        return ContentManager.nextUnitID;
+    }
+
     var unitsCaracteristics = {
         PETITFIN: "petitfin",
         PETITMOYEN: "petitmoyen",

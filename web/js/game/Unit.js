@@ -1,3 +1,5 @@
+
+
 (function (window) {
      // Constants for controling horizontal movement
     var MoveAcceleration = 13000.0;
@@ -63,6 +65,9 @@
 
         this.sprite = new createjs.Sprite(localSpriteSheet);
 
+        this.width = width;
+        this.height = height;
+
         this.map = map;
         this.position = position;
         this.velocity = new createjs.Point(0, 0);
@@ -81,6 +86,7 @@
         this.localBounds = new XNARectangle(left, top, width, height);
 
         this.sprite.name = "Hero";
+        this.unitID = ContentManager.getNextUnitID();
 
         // 1 = right & -1 = left & 0 = idle
         this.sprite.direction = 0;
@@ -96,11 +102,30 @@
     /// </summary>
     /// <param name="position">The position to come to life at.</param>
     Unit.prototype.Reset = function (position) {
+        //alert("id: " + this.id);
         this.sprite.x = position.x;
         this.sprite.y = position.y;
         this.velocity = new createjs.Point(0, 0);
         this.IsAlive = true;
         this.sprite.gotoAndPlay("move-right");
+        this.sprite.addEventListener("mouseover", handleClick);
+        //this.sprite.addEventListener("mouseout", handleClickTest);
+
+        var x = this.sprite.x;
+        var y = this.sprite.y;
+        var width = this.width;
+        var height = this.height;
+
+        var unitID = this.unitID;
+        function handleClick() {
+            var shape = new createjs.Shape();
+            shape.graphics.beginStroke("#000000");
+            shape.graphics.setStrokeStyle(2); // 2 pixel
+            shape.graphics.drawRect(x,y,width,height); // Change size as-needed
+            stage.addChild(shape); // Add the shape to the same container as
+            stage.update();
+        }
+
         stage.addChild(this.sprite);
         stage.update();
     };
