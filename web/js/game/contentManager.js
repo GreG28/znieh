@@ -56,17 +56,36 @@ function ContentManager(stage, width, height) {
         createUnit(5,3,"firefox", unitsCaracteristics.PETITFIN);
         createUnit(5,4,"firefox", unitsCaracteristics.PETITFIN);
         createUnit(5,5,"firefox", unitsCaracteristics.PETITFIN);
-        createUnit(7,5,"mailarmor", unitsCaracteristics.PETITFIN);
         createUnit(7,6,"mailarmor", unitsCaracteristics.PETITFIN);
         createUnit(7,7,"mailarmor", unitsCaracteristics.PETITFIN);
+        createUnit(7,8,"mailarmor", unitsCaracteristics.PETITFIN);
 
         createUnit(9,3,"firefox", unitsCaracteristics.GRANDMUSCLE);
         createUnit(9,4,"firefox", unitsCaracteristics.GRANDMUSCLE);
         createUnit(9,5,"firefox", unitsCaracteristics.GRANDMUSCLE);
-        createUnit(3,5,"mailarmor", unitsCaracteristics.GRANDMUSCLE);
         createUnit(3,6,"mailarmor", unitsCaracteristics.GRANDMUSCLE);
         createUnit(3,7,"mailarmor", unitsCaracteristics.GRANDMUSCLE);
+        createUnit(3,8,"mailarmor", unitsCaracteristics.GRANDMUSCLE);
 
+        createUnit(1,3,"firefox", unitsCaracteristics.PETITFIN);
+        createUnit(1,4,"firefox", unitsCaracteristics.PETITFIN);
+        createUnit(1,5,"firefox", unitsCaracteristics.PETITFIN);
+        createUnit(2,6,"mailarmor", unitsCaracteristics.PETITFIN);
+        createUnit(2,7,"mailarmor", unitsCaracteristics.PETITFIN);
+        createUnit(2,8,"mailarmor", unitsCaracteristics.PETITFIN);
+
+        createUnit(4,3,"firefox", unitsCaracteristics.GRANDMUSCLE);
+        createUnit(4,4,"firefox", unitsCaracteristics.GRANDMUSCLE);
+        createUnit(4,5,"firefox", unitsCaracteristics.GRANDMUSCLE);
+        createUnit(6,6,"mailarmor", unitsCaracteristics.GRANDMUSCLE);
+        createUnit(6,7,"mailarmor", unitsCaracteristics.GRANDMUSCLE);
+        createUnit(6,8,"mailarmor", unitsCaracteristics.GRANDMUSCLE);
+
+        createjs.Ticker.addEventListener("tick", tick);
+    }
+
+    function tick(event) {
+        stage.update(event);
     }
 
     function createUnit(x, y, type, taille) {
@@ -75,4 +94,5 @@ function ContentManager(stage, width, height) {
         this.Start = this.map.GetBounds(x, y).GetBottomCenter();
         this.Hero = new Unit(spritePerso, this.map, this.Start, unistJson[type], taille);
     }
+
 }

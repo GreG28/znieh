@@ -107,9 +107,9 @@
         this.sprite.y = position.y;
         this.velocity = new createjs.Point(0, 0);
         this.IsAlive = true;
-        this.sprite.gotoAndPlay("move-right");
+        this.sprite.gotoAndPlay("move-idle");
         this.sprite.addEventListener("mouseover", handleClick);
-        //this.sprite.addEventListener("mouseout", handleClickTest);
+        this.sprite.addEventListener("mouseout", handleClickTest);
 
         var x = this.sprite.x;
         var y = this.sprite.y;
@@ -117,17 +117,20 @@
         var height = this.height;
 
         var unitID = this.unitID;
+
         function handleClick() {
             var shape = new createjs.Shape();
+            shape.name = "contourperso";
             shape.graphics.beginStroke("#000000");
             shape.graphics.setStrokeStyle(2); // 2 pixel
-            shape.graphics.drawRect(x,y,width,height); // Change size as-needed
+            shape.graphics.drawRect((x-width/2),(y-height/2),width,height); // Change size as-needed
             stage.addChild(shape); // Add the shape to the same container as
-            stage.update();
+        }
+        function handleClickTest() {
+            stage.removeChild(stage.getChildByName("contourperso"));
         }
 
         stage.addChild(this.sprite);
-        stage.update();
     };
 
     /// <summary>

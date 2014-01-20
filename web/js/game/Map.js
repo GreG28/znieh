@@ -19,7 +19,7 @@ Array.matrix = function (m, n, initial) {
 
         // récupère le json de la loading queue puis le parse !
         mapData = jQuery.parseJSON(loadingQueue.getResult("map-json",true));
-        
+
         this.gameWidth = mapData.width;
         this.gameHeight = mapData.height;
         this.tileWidth = mapData.tilewidth;
@@ -50,7 +50,6 @@ Array.matrix = function (m, n, initial) {
             }
         }
 
-        stage.update();
     };
 
 

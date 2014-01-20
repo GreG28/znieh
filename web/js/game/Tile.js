@@ -28,6 +28,25 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         // On définit les coordonnées de la Tile
         this.texture.x = this.x;
         this.texture.y = this.y;
+
+        var x = this.x;
+        var y = this.y;
+        var width = this.width;
+        var height = this.height;
+
+        this.texture.on("mouseover", function(evt) {
+            var shape = new createjs.Shape();
+            shape.name = "contour";
+            shape.graphics.beginStroke("#ffffff");
+            shape.graphics.setStrokeStyle(2); // 2 pixel
+            shape.graphics.drawRect(x,y,width,height); // Change size as-needed
+            stage.addChild(shape); // Add the shape to the same container as
+        });
+
+        this.texture.on("mouseout", function(evt) {
+            stage.removeChild(stage.getChildByName("contour"));
+        });
+
         stage.addChild(this.texture);
     };
 

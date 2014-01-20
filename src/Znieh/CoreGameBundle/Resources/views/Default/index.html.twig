@@ -13,7 +13,7 @@ onload="init();"
 <script>
 var canvas = document.getElementById("canvas");
 var stage = new createjs.Stage(canvas);
-stage.enableMouseOver(20);
+stage.enableMouseOver();
 function init() {
     contentManager = new ContentManager(stage, 480, 480);
     contentManager.init();
@@ -35,4 +35,5 @@ function init() {
         <div class="col-sm-2">
             <h2>Unités ennemies</h2>
         </div>
+    </div>
 {% endblock %}
