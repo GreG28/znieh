@@ -59,19 +59,19 @@ Array.matrix = function (m, n, initial) {
             // Arbre
             case 1:
                 return new Tile(this.loadTileImg(1), Enum.TileCollision.Passable, x, y, true);
-                break;
+            break;
             // Eau
             case 2:
                 return new Tile(this.loadTileImg(2), Enum.TileCollision.Passable, x, y, true);
-                break;
+            break;
             // Roche
             case 3:
                 return new Tile(this.loadTileImg(3), Enum.TileCollision.Impassable, x, y, true);
-                break;
+            break;
             // Plaine
             case 4:
                 return new Tile(this.loadTileImg(4), Enum.TileCollision.Passable, x, y, true);
-                break;
+            break;
         }
     };
 
