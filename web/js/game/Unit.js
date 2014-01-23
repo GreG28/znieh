@@ -131,7 +131,7 @@
 
         this.sprite.on("click", function(evt) {
             console.log("[CLICK] ID Unit : " + unitID);
-        })
+        });
 
         stage.addChild(this.sprite);
     };

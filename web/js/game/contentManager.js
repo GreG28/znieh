@@ -7,7 +7,7 @@ function ContentManager(stage, width, height) {
     ContentManager.getNextUnitID = function () {
         ContentManager.nextUnitID++;
         return ContentManager.nextUnitID;
-    }
+    };
 
     ContentManager.unitsCaracteristics = {
         PETITFIN: "petitfin",
@@ -19,7 +19,7 @@ function ContentManager(stage, width, height) {
         GRANDFIN: "grandfin",
         GRANDMOYEN: "grandmoyen",
         GRANDMUSCLE: "grandmuscle",
-    }
+    };
 
     this.init = function () {
         loadingQueue = new createjs.LoadQueue(false);
@@ -105,7 +105,7 @@ function ContentManager(stage, width, height) {
         spritePerso = loadingQueue.getResult(loading_id);
         Start = map.GetBounds(x, y).GetBottomCenter();
         Hero = new Unit(spritePerso, map, Start, unistJson[type], taille);
-    }
+    };
 
 
 }

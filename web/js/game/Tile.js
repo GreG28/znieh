@@ -49,7 +49,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
 
         this.texture.on("click", function(evt) {
             var idUnit = nextUnitID;
-            if(units[idUnit] != null) {
+            if(units[idUnit] !== null) {
                 ContentManager.newUnit(Math.floor(evt.stageX / ContentManager.tileswidth), Math.floor(evt.stageY / ContentManager.tilesheight), units[idUnit].name, units[idUnit].taille);
                 nextUnitID++;
             }
