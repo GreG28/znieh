@@ -120,7 +120,7 @@ function ContentManager(stage, width, height) {
 
     ContentManager.newUnit = function(x, y, type, taille) {
         "use strict";
-
+        
         unistJson = jQuery.parseJSON(loadingQueue.getResult("units-json",true));
         var loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
         spritePerso = loadingQueue.getResult(loading_id);

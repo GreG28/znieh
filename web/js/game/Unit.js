@@ -27,7 +27,6 @@
         this.initialize(imgUnit, map, position, unitsInfos, taille);
     }
 
-    Unit.prototype = new createjs.Container();
     Unit.prototype.IsAlive = true;
     Unit.prototype.IsOnGround = true;
 
@@ -97,7 +96,7 @@
         // starting directly at the first frame of the walk_right sequence
         this.sprite_base.currentFrame = 8;
 
-        //this.shadow = new createjs.Shadow("#000000", 5, 5, 10);
+        this._container = new createjs.Container();
 
         this.Reset(position);
     };
@@ -121,47 +120,38 @@
         var height = this.height;
 
         var unitID = this.unitID;
-        var container = this;
+        var container = this._container;
 
-        var shape2 = new createjs.Shape();
-        shape2.name = "contourperso";
-        shape2.graphics.beginStroke("#125555");
-        shape2.graphics.setStrokeStyle(2); // 2 pixel
-        shape2.graphics.drawRect((_x - 16), (_y - 16), 32, 32);
+        this.shape = new createjs.Shape();
+        this.shape.name = "contour";
+        this.shape.graphics.beginStroke("##000000");
+        this.shape.graphics.setStrokeStyle(2); // 2 pixel
+        this.shape.graphics.drawRect((_x - 16), (_y - 16), 32, 32); // Change size as-needed
+        this.shape.visible = false;
 
-        this.addChild(this.sprite_base);
+        this._container.addChild(this.shape);
+        this._container.addChild(this.sprite_base);
 
-        this.sprite_base.on("mouseover", function(evt) {
-            var shape = new createjs.Shape();
-            shape.name = "contourperso";
-            shape.graphics.beginStroke("#000000");
-            shape.graphics.setStrokeStyle(2); // 2 pixel
-            shape.graphics.drawRect((_x - 16), (_y - 16), 32, 32);
-            container.addChild(shape);
+        var shape = this.shape;
+        this._container.on("mouseover", function(evt) {
+            shape.visible = true;
         });
 
-        this.sprite_base.on("mouseout", function(evt) {
-            container.removeChild(container.getChildByName("contourperso"));
+        this._container.on("mouseout", function(evt) {
+            shape.visible = false;
         });
 
-        var sprite_base = this.sprite_base;
-        this.sprite_base.on("click", function(evt) {
-            /*console.log("[CLICK_Stage] x" + evt.stageX + " y" + evt.stageY);
-            console.log("[CLICK_Unit] x" + sprite_base.x + " y" + sprite_base.y);
-            console.log("[CLICK_Unit_Container] x" + container.x + " y" + container.y);*/
-            console.log("[CLICK_Unit] x" + container.x + " y" + container.y + "  ID -> " + container.unitID);
+        this._container.on("click", function(evt) {
+            console.log("[CLICK_Unit] x" + container.x + " y" + container.y);
         });
 
-        this.x = position.x;
-        this.y = position.y;
-        this.width = this.sprite_base.width;
-        this.height = this.sprite_base.height;
-        this.visible = true;
+        this._container.x = position.x;
+        this._container.y = position.y;
+        this._container.width = this.sprite_base.width;
+        this._container.height = this.sprite_base.height;
+        this._container.visible = true;
 
-        console.log("Unit.js" + this.x + " " + this.y);
-        console.log("Unit.js" + this.sprite_base.x + " " + this.sprite_base.y);
-
-        stage.addChild(this);
+        stage.addChild(this._container);
     };
 
     /// <summary>
