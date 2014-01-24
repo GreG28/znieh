@@ -31,7 +31,7 @@ function ContentManager(stage, width, height) {
 
         // coloration du canvas pour tests
         var shape2 = new createjs.Shape();
-        shape2.name = "contourperso";
+        shape2.name = "fondMap";
         shape2.graphics.beginFill("#FF0000");
         shape2.graphics.drawRect(0,0,480,480);
         stage.addChild(shape2);
@@ -68,6 +68,7 @@ function ContentManager(stage, width, height) {
         map = new Map(stage);
 
         unistJson = jQuery.parseJSON(loadingQueue.getResult("units-json",true));
+
 
         createUnit(5,3,"firefox", ContentManager.unitsCaracteristics.PETITFIN);
         createUnit(5,4,"firefox", ContentManager.unitsCaracteristics.PETITFIN);

@@ -27,9 +27,7 @@
         this.initialize(imgUnit, map, position, unitsInfos, taille);
     }
 
-    //Unit.prototype = new createjs.Bitmap();
-    //Unit.prototype = new createjs.Container();
-    Unit.prototype._container = new createjs.Container();
+    Unit.prototype = new createjs.Container();
     Unit.prototype.IsAlive = true;
     Unit.prototype.IsOnGround = true;
 
@@ -99,7 +97,7 @@
         // starting directly at the first frame of the walk_right sequence
         this.sprite_base.currentFrame = 8;
 
-        this._container.shadow = new createjs.Shadow("#000000", 5, 5, 10);
+        //this.shadow = new createjs.Shadow("#000000", 5, 5, 10);
 
         this.Reset(position);
     };
@@ -111,38 +109,34 @@
     Unit.prototype.Reset = function (position) {
         "use strict";
 
-        //alert("id: " + this.id);
-        //this.sprite_base.x = position.x;
-        //this.sprite_base.y = position.y;
         this.sprite_base.x = 0;
         this.sprite_base.y = 0;
         this.velocity = new createjs.Point(0, 0);
         this.IsAlive = true;
         this.sprite_base.gotoAndPlay("move-idle");
 
-        var x = 0;
-        var y = 0;
+        var _x = 0;
+        var _y = 0;
         var width = this.width;
         var height = this.height;
 
         var unitID = this.unitID;
-        var container = this._container;
+        var container = this;
 
         var shape2 = new createjs.Shape();
         shape2.name = "contourperso";
         shape2.graphics.beginStroke("#125555");
         shape2.graphics.setStrokeStyle(2); // 2 pixel
-        shape2.graphics.drawRect((x - 16), (y - 16), 32, 32);
+        shape2.graphics.drawRect((_x - 16), (_y - 16), 32, 32);
 
-        this._container.addChild(this.sprite_base);
-        this._container.addChild(shape2);
+        this.addChild(this.sprite_base);
 
         this.sprite_base.on("mouseover", function(evt) {
             var shape = new createjs.Shape();
             shape.name = "contourperso";
             shape.graphics.beginStroke("#000000");
             shape.graphics.setStrokeStyle(2); // 2 pixel
-            shape.graphics.drawRect((x - 16), (y - 16), 32, 32);
+            shape.graphics.drawRect((_x - 16), (_y - 16), 32, 32);
             container.addChild(shape);
         });
 
@@ -152,21 +146,22 @@
 
         var sprite_base = this.sprite_base;
         this.sprite_base.on("click", function(evt) {
-            console.log("[CLICK_Stage] x" + evt.stageX + " y" + evt.stageY);
+            /*console.log("[CLICK_Stage] x" + evt.stageX + " y" + evt.stageY);
             console.log("[CLICK_Unit] x" + sprite_base.x + " y" + sprite_base.y);
-            console.log("[CLICK_Unit_Container] x" + container.x + " y" + container.y);
+            console.log("[CLICK_Unit_Container] x" + container.x + " y" + container.y);*/
+            console.log("[CLICK_Unit] x" + container.x + " y" + container.y + "  ID -> " + container.unitID);
         });
 
-        this._container.x = position.x;
-        this._container.y = position.y;
-        this._container.width = this.sprite_base.width;
-        this._container.height = this.sprite_base.height;
-        this._container.visible = true;
+        this.x = position.x;
+        this.y = position.y;
+        this.width = this.sprite_base.width;
+        this.height = this.sprite_base.height;
+        this.visible = true;
 
-        console.log("Unit.js" + this._container.x + " " + this._container.y);
+        console.log("Unit.js" + this.x + " " + this.y);
         console.log("Unit.js" + this.sprite_base.x + " " + this.sprite_base.y);
 
-        stage.addChild(this._container);
+        stage.addChild(this);
     };
 
     /// <summary>
