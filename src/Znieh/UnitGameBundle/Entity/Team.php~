@@ -5,12 +5,12 @@ namespace Znieh\UnitGameBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Weight
+ * Team
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Znieh\UnitGameBundle\Entity\WeightRepository")
+ * @ORM\Entity(repositoryClass="Znieh\UnitGameBundle\Entity\TeamRepository")
  */
-class Weight
+class Team
 {
     /**
      * @var integer
@@ -21,14 +21,17 @@ class Weight
      */
     private $id;
 
-
-       /**
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Znieh\UserBundle\Entity\User", inversedBy="teams")
+     */
+    private $user;
 
     /**
      * Get id
@@ -45,7 +48,7 @@ class Weight
      *
      * @param string $name
      *
-     * @return Weight
+     * @return Team
      */
     public function setName($name)
     {

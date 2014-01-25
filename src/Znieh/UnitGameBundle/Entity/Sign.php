@@ -5,12 +5,12 @@ namespace Znieh\UnitGameBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * SavedTeam
+ * Sign
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Znieh\UnitGameBundle\Entity\SavedTeamRepository")
+ * @ORM\Entity
  */
-class SavedTeam
+class Sign
 {
     /**
      * @var integer
@@ -44,12 +44,12 @@ class SavedTeam
      *
      * @param string $name
      *
-     * @return SavedTeam
+     * @return Sign
      */
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 

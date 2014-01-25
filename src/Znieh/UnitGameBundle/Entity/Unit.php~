@@ -23,6 +23,13 @@ class Unit
     private $id;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="cost", type="integer")
+     */
+    private $cost;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
@@ -61,12 +68,12 @@ class Unit
     private $weight;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Weapon", inversedBy="units", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Weapon", inversedBy="units")
      */
     private $weapon;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Armor", inversedBy="units", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Armor", inversedBy="units")
      */
     private $armor;
 
@@ -74,12 +81,6 @@ class Unit
      * @ORM\ManyToOne(targetEntity="Znieh\UserBundle\Entity\User", inversedBy="units")
      */
     private $user;
-
-    /**
-     * @var integer
-     *
-     */
-    private $cost;
 
 
     /**
@@ -306,29 +307,5 @@ class Unit
     public function getWeight()
     {
         return $this->weight;
-    }
-
-    /**
-     * Set sign
-     *
-     * @param \Znieh\UnitGameBundle\Entity\Sign $sign
-     *
-     * @return Unit
-     */
-    public function setSign(\Znieh\UnitGameBundle\Entity\Sign $sign = null)
-    {
-        $this->sign = $sign;
-
-        return $this;
-    }
-
-    /**
-     * Get sign
-     *
-     * @return \Znieh\UnitGameBundle\Entity\Sign
-     */
-    public function getSign()
-    {
-        return $this->sign;
     }
 }
