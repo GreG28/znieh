@@ -20,6 +20,10 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         this.x = x * this.width;
         this.y = y * this.height;
         this.texture = texture;
+        
+        // location in the matrix
+        this.i = x;
+        this.j = y;
 
         // this container will hold all the animation of a Tile
         this._container = new createjs.Container();
