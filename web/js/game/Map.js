@@ -19,7 +19,7 @@ Array.matrix = function (m, n, initial) {
 
         // récupère le json de la loading queue puis le parse !
         mapData = jQuery.parseJSON(loadingQueue.getResult("map-json",true));
-        
+
         this.gameWidth = mapData.width;
         this.gameHeight = mapData.height;
         this.tileWidth = mapData.tilewidth;
@@ -47,10 +47,11 @@ Array.matrix = function (m, n, initial) {
         for (var i = 0; i < this.gameWidth; i++) {
             for (var j = 0; j < this.gameHeight; j++) {
                 this.tiles[i][j] = this.LoadTile(this.textTiles[i][j], j, i);
+                //alert("Tile[" + i +"][" + j+ "]");
             }
+            //alert("Tile[" + i +"][" + j+ "]");
         }
 
-        stage.update();
     };
 
 
@@ -60,19 +61,19 @@ Array.matrix = function (m, n, initial) {
             // Arbre
             case 1:
                 return new Tile(this.loadTileImg(1), Enum.TileCollision.Passable, x, y, true);
-                break;
+            //break;
             // Eau
             case 2:
                 return new Tile(this.loadTileImg(2), Enum.TileCollision.Passable, x, y, true);
-                break;
+            //break;
             // Roche
             case 3:
                 return new Tile(this.loadTileImg(3), Enum.TileCollision.Impassable, x, y, true);
-                break;
+            //break;
             // Plaine
             case 4:
                 return new Tile(this.loadTileImg(4), Enum.TileCollision.Passable, x, y, true);
-                break;
+            //break;
         }
     };
 
