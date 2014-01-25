@@ -3,23 +3,31 @@
 {% macro displayStep(step, objects, deep) %}
 {% spaceless %}
 <div class="{% if deep == 0 %}root{% else %}step{% endif %}">
-    <span class="step-content">{{ step.title }} - {{ deep + 1 }} <br>
+    <span class="step-content">
+    <div class="step-title">{{ step.title }}</div>
     {% for obj in objects %}
       {% if obj.step.title == step.title %}
-        {% if obj.unlocked %}
-          <a href="#" data-id="{{ obj.id }}"><img src="{{ asset('img/icons/accept.png') }}" alt=""></a>
-        {% else %}
-          <a href="#" class="unlock-object" data-id="{{ obj.id }}"><img src="{{ asset('img/icons/add.png') }}" alt=""></a>
-        {% endif %}
+        <span class="game-object" data-toggle="tooltip" title="{{ obj.name }}">
+          <img src="{{ asset('img/icons/lame.png') }}" alt="">
+          {% if obj.unlocked %}
+              <a href="#" class="btn btn-default btn-xs" data-id="{{ obj.id }}">
+                <img src="{{ asset('img/icons/accept.png') }}" alt="">{{ obj.cost }}
+              </a>
+          {% else %}
+            <a href="#" class="btn btn-default btn-xs unlock-object" data-id="{{ obj.id }}">
+                <img src="{{ asset('img/icons/add.png') }}" alt="">{{ obj.cost }}
+            </a>
+          {% endif %}
+        </span>
       {% endif %}
     {% endfor %}
     </span>
 
     {% if step.children|length %}
       <div class='lvl{{ deep }} level'>
-      {% for child in step.children %}
-        {{ _self.displayStep(child, objects, deep + 1) }}
-      {% endfor %}
+        {% for child in step.children %}
+          {{ _self.displayStep(child, objects, deep + 1) }}
+        {% endfor %}
       </div>
     {% endif %}
 </div>
@@ -29,19 +37,37 @@
 {% block body %}
 
 <div class="container">
-  {% render controller('ZniehVillageGameBundle:Public:listBuilding') %}
+  {% include 'ZniehVillageGameBundle:Public:listBuilding.html.twig'  with { 'buildings' : buildings, 'active' : building.title } %}
   <h2>{{ building.title }}</h2>
   <p>{{ building.description }}</p>
-
-  {% for step in steps %}
-  <div style="position: relative; height: auto; min-height: 60px">
-    {% if step.parent == null %}
-      {{ _self.displayStep(step, objects, 0) }}
-    {% endif %}
-  </div>
-  {% endfor %}
-
 </div>
+
+
+<div class="row">
+  <div class="col-lg-2" style="background: brown; margin-left: 20px">
+    Création d'armes :
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus feugiat velit ac tortor dictum pharetra. Sed in dolor ac eros facilisis semper. Praesent congue neque id libero rhoncus hendrerit. Ut accumsan sem ut velit condimentum mollis. Sed iaculis enim eu dolor vestibulum, et mattis elit scelerisque. Etiam vel ipsum nulla. Nunc egestas elit sed metus pulvinar blandit. Donec in ligula imperdiet, ultrices tellus non, dignissim ipsum.
+
+    Vivamus luctus iaculis magna, sed eleifend nisl viverra a. Cras dapibus ultricies sapien commodo tincidunt. Cras sagittis pretium mi, in consequat lorem lacinia ut. Phasellus sagittis faucibus est, ut venenatis neque interdum non. Proin nec fermentum erat, blandit auctor enim. Nulla bibendum lobortis elit a adipiscing. Fusce vel dapibus arcu. Praesent luctus augue at varius consectetur. Aenean vitae justo at arcu vulputate dictum in et mi. Curabitur pulvinar bibendum libero quis venenatis. Nam venenatis lacus ac magna malesuada placerat.
+
+    Fusce consequat pulvinar tortor, vitae egestas leo faucibus at. Aenean egestas elit justo, eget viverra turpis dignissim nec. Pellentesque ipsum nibh, ullamcorper pellentesque purus sit amet, rutrum interdum nulla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin dui sapien, gravida ac felis eget, commodo sodales dui. Vivamus non tortor accumsan dolor sollicitudin rutrum et vitae turpis. Proin condimentum nec nunc et volutpat. In sit amet leo diam. Ut ornare ut lectus et ultrices. Suspendisse nec pretium justo, vitae fermentum odio. Duis hendrerit quis risus in dignissim.
+
+  </div>
+  <div class="col-lg-9">
+    <div>
+      {% for step in steps %}
+      <div style="margin-bottom: 70px">
+        {% if step.parent == null %}
+          {{ _self.displayStep(step, objects, 0) }}
+        {% endif %}
+      </div>
+      <div class="clearfix"></div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
 {% endblock %}
 
 
@@ -126,8 +152,6 @@
   .step-content {
     width: 280px;
     padding: 5px 10px;
-    line-height: 20px;
-    text-align: center;
     border: 2px solid #eee9dc;
     border-radius: 5px;
     display: block;
@@ -136,6 +160,14 @@
     top: 50%;
     margin-top: -15px;
     background-color: brown;
+  }
+  .game-object {
+    padding: 5px 5px 5px 5px;
+    width: 50px;
+    height: 20px;
+  }
+  .game-object img{
+    margin-right: 3px;
   }
 </style>
 {% endblock %}
@@ -155,5 +187,9 @@
           console.log('fail');
         });
     });
+    $(document).ready(function(){
+        $('.game-object').tooltip();
+    });
+
 	</script>
 {% endblock %}

@@ -51,8 +51,8 @@ abstract class GameObject
 
 
     private $unlocked;
-
     private $unlockable;
+    public $cost;
 
     /**
      * Set unlocked

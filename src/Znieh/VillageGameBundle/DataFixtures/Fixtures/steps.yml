@@ -30,7 +30,7 @@ pommeau_en_cuivre:
 pommeau_en_bronze:
   title: Pommeaux en bronze
   building: Forge
-  parent: Pommeaux en bronze
+  parent: Pommeaux en cuivre
 #___________________________________
 # Hacherie
 tete_de_hache_cuivre:
@@ -74,7 +74,7 @@ corde_en_reche:
 corde_en_brut:
   title: Cordes en cuir brut
   building: Archerie
-  parent: Corde en cuir rêche
+  parent: Cordes en cuir rêche
 arc_en_cedre:
   title: Arcs en cèdre
   building: Archerie

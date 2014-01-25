@@ -1,7 +1,11 @@
+<br>
 <ul class="nav nav-tabs">
-{% for building in buildings %}
-  <li><a href="{{ path('znieh_villagegame_public_building', { "building": building.title }) }}">{{ building.title }}</a></li>
-{% endfor %}
-  <li><a href="{{ path('znieh_villagegame_public_index') }}">Retourner au village</a></li>
+  <li><a {% if active == 'Village' %} class="active" {% endif %}href="{{ path('znieh_villagegame_public_index') }}">Village</a></li>
+  {% for building in buildings %}
+    <li>
+    <a {% if active == building.title %} class="active" {% endif %} href="{{ path('znieh_villagegame_public_building', { "building": building.title }) }}">
+    {{ building.title }}</a>
+    </li>
+  {% endfor %}
 </ul>
 
