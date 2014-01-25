@@ -22,15 +22,17 @@
     // level must be of type Level
     // position must be of type Point
     function Unit(imgUnit, map, position, unitsInfos, taille) {
+        "use strict";
         //alert(JSON.stringify(unitsInfos, null, 4));
         this.initialize(imgUnit, map, position, unitsInfos, taille);
     }
 
-    Unit.prototype = new createjs.Bitmap();
     Unit.prototype.IsAlive = true;
     Unit.prototype.IsOnGround = true;
 
     Unit.prototype.initialize = function (imgUnit, map, position, unitsInfos, taille) {
+
+        "use strict";
 
         var width = unitsInfos.specifications[taille].sprites.frames.width;
         var left = unitsInfos.specifications[taille].sprites.weapon.left;
@@ -63,7 +65,7 @@
             animations: animations
         });
 
-        this.sprite = new createjs.Sprite(localSpriteSheet);
+        this.sprite_base = new createjs.Sprite(localSpriteSheet);
 
         this.width = width;
         this.height = height;
@@ -85,14 +87,16 @@
         top = parseInt(frameHeight - height,10);
         this.localBounds = new XNARectangle(left, top, width, height);
 
-        this.sprite.name = "Hero";
+        this.sprite_base.name = "Hero";
         this.unitID = ContentManager.getNextUnitID();
 
         // 1 = right & -1 = left & 0 = idle
-        this.sprite.direction = 0;
+        this.sprite_base.direction = 0;
 
         // starting directly at the first frame of the walk_right sequence
-        this.sprite.currentFrame = 8;
+        this.sprite_base.currentFrame = 8;
+
+        this._container = new createjs.Container();
 
         this.Reset(position);
     };
@@ -102,38 +106,52 @@
     /// </summary>
     /// <param name="position">The position to come to life at.</param>
     Unit.prototype.Reset = function (position) {
-        //alert("id: " + this.id);
-        this.sprite.x = position.x;
-        this.sprite.y = position.y;
+        "use strict";
+
+        this.sprite_base.x = 0;
+        this.sprite_base.y = 0;
         this.velocity = new createjs.Point(0, 0);
         this.IsAlive = true;
-        this.sprite.gotoAndPlay("move-idle");
+        this.sprite_base.gotoAndPlay("move-idle");
 
-        var x = this.sprite.x;
-        var y = this.sprite.y;
+        var _x = 0;
+        var _y = 0;
         var width = this.width;
         var height = this.height;
 
         var unitID = this.unitID;
+        var container = this._container;
 
-        this.sprite.on("mouseover", function(evt) {
-            var shape = new createjs.Shape();
-            shape.name = "contourperso";
-            shape.graphics.beginStroke("#000000");
-            shape.graphics.setStrokeStyle(2); // 2 pixel
-            shape.graphics.drawRect((x - 16), (y - 16), 32, 32);
-            stage.addChild(shape);
+        this.shape = new createjs.Shape();
+        this.shape.name = "contour";
+        this.shape.graphics.beginStroke("##000000");
+        this.shape.graphics.setStrokeStyle(2); // 2 pixel
+        this.shape.graphics.drawRect((_x - 16), (_y - 16), 32, 32); // Change size as-needed
+        this.shape.visible = false;
+
+        this._container.addChild(this.shape);
+        this._container.addChild(this.sprite_base);
+
+        var shape = this.shape;
+        this._container.on("mouseover", function(evt) {
+            shape.visible = true;
         });
 
-        this.sprite.on("mouseout", function(evt) {
-            stage.removeChild(stage.getChildByName("contourperso"));
+        this._container.on("mouseout", function(evt) {
+            shape.visible = false;
         });
 
-        this.sprite.on("click", function(evt) {
-            console.log("[CLICK] ID Unit : " + unitID);
+        this._container.on("click", function(evt) {
+            console.log("[CLICK_Unit] x" + container.x + " y" + container.y);
         });
 
-        stage.addChild(this.sprite);
+        this._container.x = position.x;
+        this._container.y = position.y;
+        this._container.width = this.sprite_base.width;
+        this._container.height = this.sprite_base.height;
+        this._container.visible = true;
+
+        stage.addChild(this._container);
     };
 
     /// <summary>
@@ -155,6 +173,8 @@
     /// we need to reverse our motion when the orientation is in the LandscapeRight orientation.
     /// </remarks>
     Unit.prototype.tick = function () {
+        "use strict";
+
         // It not possible to have a predictable tick/update time
         // requestAnimationFrame could help but is currently not widely and properly supported by browsers
         // this.elapsed = (Ticker.getTime() - this.lastUpdate) / 1000;
@@ -169,15 +189,15 @@
             if (Math.abs(this.velocity.x) - 0.02 > 0) {
                 // Checking if we're not already playing the animation
                 if (this.currentAnimation.indexOf("walk") === -1 && this.direction === -1) {
-                    this.sprite.gotoAndPlay("walk");
+                    this.sprite_base.gotoAndPlay("walk");
                 }
                 if (this.currentAnimation.indexOf("walk_h") === -1 && this.direction === 1) {
-                    this.sprite.gotoAndPlay("walk_h");
+                    this.sprite_base.gotoAndPlay("walk_h");
                 }
             }
             else {
                 if (this.currentAnimation.indexOf("idle") === -1 && this.direction === 0) {
-                    this.sprite.gotoAndPlay("idle");
+                    this.sprite_base.gotoAndPlay("idle");
                 }
             }
         }
