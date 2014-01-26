@@ -23,6 +23,14 @@ garde_en_bronze:
   title: Gardes en bronze
   building: Forge
   parent: Gardes en cuivre
+garde_en_laiton:
+  title: Gardes en laiton
+  building: Forge
+  parent: Gardes en cuivre
+garde_en_or:
+  title: Gardes en or
+  building: Forge
+  parent: Gardes en laiton
 manche_en_cedre:
   title: Manches en cèdre
   building: Forge
