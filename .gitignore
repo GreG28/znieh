@@ -10,3 +10,4 @@ composer.phar
 /node/node_modules/
 *.psd
 /node/config.user.json
+/node/db.rar
