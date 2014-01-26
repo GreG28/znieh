@@ -29,7 +29,7 @@ class WeaponType
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="WeaponPartType", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="WeaponPartType", mappedBy="types", cascade={"persist"})
      */
     private $parts;
 
@@ -42,7 +42,7 @@ class WeaponType
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -58,14 +58,14 @@ class WeaponType
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -78,17 +78,18 @@ class WeaponType
     {
         $this->parts = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Add parts
      *
      * @param \Znieh\VillageGameBundle\Entity\WeaponPartType $parts
      * @return WeaponType
      */
-    public function addPart(\Znieh\VillageGameBundle\Entity\WeaponPartType $parts)
+    public function addPart(\Znieh\VillageGameBundle\Entity\WeaponPartType $part)
     {
-        $this->parts[] = $parts;
-    
+        $part->addType($this);
+        $this->parts[] = $part;
+
         return $this;
     }
 
@@ -97,15 +98,15 @@ class WeaponType
      *
      * @param \Znieh\VillageGameBundle\Entity\WeaponPartType $parts
      */
-    public function removePart(\Znieh\VillageGameBundle\Entity\WeaponPartType $parts)
+    public function removePart(\Znieh\VillageGameBundle\Entity\WeaponPartType $part)
     {
-        $this->parts->removeElement($parts);
+        $this->parts->removeElement($part);
     }
 
     /**
      * Get parts
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getParts()
     {
@@ -121,14 +122,14 @@ class WeaponType
     public function setBuilding(\Znieh\VillageGameBundle\Entity\Building $building = null)
     {
         $this->building = $building;
-    
+
         return $this;
     }
 
     /**
      * Get building
      *
-     * @return \Znieh\VillageGameBundle\Entity\Building 
+     * @return \Znieh\VillageGameBundle\Entity\Building
      */
     public function getBuilding()
     {

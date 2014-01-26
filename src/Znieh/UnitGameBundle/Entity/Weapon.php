@@ -42,17 +42,29 @@ class Weapon
      */
     private $type;
 
-    public function __toString()
-    {
-        return ' 11';
-    }
-
     public function isWeaponValid(ExecutionContextInterface $context)
     {
-        foreach ($parts as $part) {
-            if ($part->getType() != $this->type) {
-                $context->addViolationAt('parts', 'Ne correspond pas au type!', array(), null);
+
+        foreach ($this->parts as $key => $part) {
+            if ($key == 0) {
+                $availablesTypes = $part->getType()->getTypes();
             }
+            foreach ($availablesTypes as $availableType) {
+                $found = false;
+                foreach ($part->getType()->getTypes() as $type) {
+                    if ($type->getName() == $availableType->getName()) {
+                        $found = true;
+                    }
+                }
+                if ($found === false) {
+                    $availablesTypes->removeElement($availableType);
+                }
+            }
+        }
+        if ($availablesTypes->get(0) == null) {
+            $context->addViolationAt('parts', 'Impossible de créer cette arme !', array(), null);
+        } else {
+            $this->type = $availablesTypes->get(0);
         }
     }
 

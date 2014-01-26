@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Znieh\VillageGameBundle\Entity\UnlockedGameObject;
 use Znieh\VillageGameBundle\Entity\GameObject;
+use Znieh\UnitGameBundle\Entity\Weapon;
+use Znieh\UnitGameBundle\Form\WeaponType;
 
 /**
  * @Route("/village")
@@ -59,7 +61,7 @@ class PublicController extends Controller
         $buildings = $em->getRepository('ZniehVillageGameBundle:Building')->findAll();
 
         if ($building == null) {
-            // TODO redirect
+            $this->redirect($this->generateUrl('znieh_villagegame_public_index'));
         }
 
         $steps = $em->getRepository('ZniehVillageGameBundle:Step')->findAllByBuilding(
@@ -69,6 +71,17 @@ class PublicController extends Controller
             $building->getId()
         );
         $unlockeds = $em->getRepository('ZniehVillageGameBundle:UnlockedGameObject')->findUnlockedObjectsByUserByBuilding(
+            $this->getUser()->getId(),
+            $building->getId()
+        );
+
+        $form = $this->createForm(new WeaponType(), new Weapon(), array(
+            'action' => $this->generateUrl('village_create_weapon_create'),
+            'method' => 'POST',
+        ));
+        $form->add('submit', 'submit', array('label' => 'Create'));
+
+        $weapons = $em->getRepository('ZniehUnitGameBundle:Weapon')->findByUserByBuilding(
             $this->getUser()->getId(),
             $building->getId()
         );
@@ -87,7 +100,9 @@ class PublicController extends Controller
             'steps'     => $steps,
             'building'  => $building,
             'buildings' => $buildings,
-            'objects'   => $objects
+            'objects'   => $objects,
+            'weapons' => $weapons,
+            'form' => $form->createView()
             );
     }
 

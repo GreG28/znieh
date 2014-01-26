@@ -12,4 +12,23 @@ use Doctrine\ORM\EntityRepository;
  */
 class WeaponRepository extends EntityRepository
 {
+  public function findByUserByBuilding($user, $building)
+   {
+     $qb = $this->createQueryBuilder('w');
+     $query = $qb
+                 ->leftJoin('w.user', 'u')
+                  ->addSelect('u')
+                 ->leftJoin('w.parts', 'p')
+                  ->addSelect('p')
+                 ->leftJoin('p.type', 't')
+                  ->addSelect('t')
+                 ->leftJoin('t.types', 'tt')
+                  ->addSelect('tt')
+                 ->leftJoin('tt.building', 'b')
+                  ->addSelect('b')
+                 ->where($qb->expr()->eq('u.id', $user))
+                 ->andWhere($qb->expr()->eq('b.id', $building))
+                 ->getQuery();
+     return $query->getResult();
+   }
 }
