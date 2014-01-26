@@ -3,228 +3,282 @@ lame_en_cuivre:
   title: Lames en cuivre
   building: Forge
   parent: ''
+  cost: 1
 lame_en_bronze:
   title: Lames en bronze
   building: Forge
   parent: Lames en cuivre
+  cost: 2
 garde_en_cuivre:
   title: Gardes en cuivre
   building: Forge
   parent: ''
+  cost: 1
 garde_en_bronze:
   title: Gardes en bronze
   building: Forge
   parent: Gardes en cuivre
+  cost: 2
 manche_en_cedre:
   title: Manches en cèdre
   building: Forge
   parent: ''
+  cost: 1
 manche_en_chene:
   title: Manches en chêne
   building: Forge
   parent: Manches en cèdre
+  cost: 2
 pommeau_en_cuivre:
   title: Pommeaux en cuivre
   building: Forge
   parent: ''
+  cost: 1
 pommeau_en_bronze:
   title: Pommeaux en bronze
   building: Forge
   parent: Pommeaux en bronze
+  cost: 2
 #___________________________________
 # Hacherie
 tete_de_hache_cuivre:
   title: Têtes de hache en cuivre
   building: Hacherie
   parent: ''
+  cost: 1
 tete_de_hache_bronze:
   title: Têtes de hache en bronze
   building: Hacherie
   parent: Têtes de hache en cuivre
+  cost: 2
 tete_de_marteau_cuivre:
   title: Têtes de marteau en cuivre
   building: Hacherie
   parent: ''
+  cost: 1
 tete_de_marteau_bronze:
   title: Têtes de marteau en bronze
   building: Hacherie
   parent: Têtes de marteau en cuivre
+  cost: 2
 hampe_en_cuivre:
   title: Hampes en cuivre
   building: Hacherie
   parent: ''
+  cost: 1
 hampe_en_bronze:
   title: Hampes en bronze
   building: Hacherie
   parent: Hampes en cuivre
+  cost: 2
 poignee_en_cuivre:
   title: Poignées en cuivre
   building: Hacherie
   parent: ''
+  cost: 1
 poignee_en_bronze:
   title: Poignées en bronze
   building: Hacherie
   parent: Poignées en cuivre
+  cost: 2
 #___________________________________
 #Archerie
 corde_en_reche:
   title: Cordes en cuir rêche
   building: Archerie
   parent: ''
+  cost: 1
 corde_en_brut:
   title: Cordes en cuir brut
   building: Archerie
   parent: Corde en cuir rêche
+  cost: 2
 arc_en_cedre:
   title: Arcs en cèdre
   building: Archerie
   parent: ''
+  cost: 1
 arc_en_chene:
   title: Arcs en chêne
   building: Archerie
   parent: Arcs en cèdre
+  cost: 2
 poignee_arc_en_cuivre:
   title: Poignées en cuivre
   building: Archerie
   parent: ''
+  cost: 1
 poignee_arc_en_bronze:
   title: Poignées en bronze
   building: Archerie
   parent: Poignées en cuivre
+  cost: 2
 fleche_cuivre:
   title: Flèches en cuivre
   building: Archerie
   parent: ''
+  cost: 1
 fleche_bronze:
   title: Flèches en bronze
   building: Archerie
   parent: Flèches en cuivre
+  cost: 2
 #___________________________________
 #Armurerie
 casques_en_cuivre:
   title: Casques en cuivre
   building: Armurerie
   parent: ''
+  cost: 3
 casques_en_bronze:
   title: Casques en bronze
   building: Armurerie
   parent: Casques en cuivre
+  cost: 4
 torses_en_cuivre:
   title: Torses en cuivre
   building: Armurerie
   parent: ''
+  cost: 3
 torses_en_bronze:
   title: Torses en bronze
   building: Armurerie
   parent: Torses en cuivre
+  cost: 4
 jambes_en_cuivre:
   title: Jambes en cuivre
   building: Armurerie
   parent: ''
+  cost: 3
 jambes_en_bronze:
   title: Jambes en bronze
   building: Armurerie
   parent: Jambes en cuivre
+  cost: 4
 bottes_en_cuivre:
   title: Bottes en cuivre
   building: Armurerie
   parent: ''
+  cost: 3
 bottes_en_bronze:
   title: Bottes en bronze
   building: Armurerie
   parent: Bottes en cuivre
+  cost: 4
 gants_en_cuivre:
   title: Gants en cuivre
   building: Armurerie
   parent: ''
+  cost: 3
 gants_en_bronze:
   title: Gants en bronze
   building: Armurerie
   parent: Gants en cuivre
+  cost: 4
 #___________________________________
 #Tannerie
 casques_en_reche:
   title: Casques en cuir rêche
   building: Tannerie
   parent: ''
+  cost: 2
 casques_en_brut:
   title: Casques en cuir brut
   building: Tannerie
   parent: Casques en cuir rêche
+  cost: 3
 torses_en_reche:
   title: Torses en cuir rêche
   building: Tannerie
   parent: ''
+  cost: 2
 torses_en_brut:
   title: Torses en cuir brut
   building: Tannerie
   parent: Torses en cuir rêche
+  cost: 3
 jambes_en_reche:
   title: Jambes en cuir rêche
   building: Tannerie
   parent: ''
+  cost: 2
 jambes_en_brut:
   title: Jambes en cuir brut
   building: Tannerie
   parent: Jambes en cuir rêche
+  cost: 3
 bottes_en_reche:
   title: Bottes en cuir rêche
   building: Tannerie
   parent: ''
+  cost: 2
 bottes_en_brut:
   title: Bottes en cuir brut
   building: Tannerie
   parent: Bottes en cuir rêche
+  cost: 3
 gants_en_reche:
   title: Gants en cuir rêche
   building: Tannerie
   parent: ''
+  cost: 2
 gants_en_brut:
   title: Gants en cuir brut
   building: Tannerie
   parent: Gants en cuir rêche
+  cost: 3
 #___________________________________
 #Tisserie
 casques_en_etmineure:
   title: Casques en étoffe mineure
   building: Tisserie
   parent: ''
+  cost: 1
 casques_en_etstandart:
   title: Casques en étoffe standart
   building: Tisserie
   parent: Casques en étoffe mineure
+  cost: 2
 torses_en_etmineure:
   title: Torses en étoffe mineure
   building: Tisserie
   parent: ''
+  cost: 1
 torses_en_etstandart:
   title: Torses en étoffe standart
   building: Tisserie
   parent: Torses en étoffe mineure
+  cost: 2
 jambes_en_etmineure:
   title: Jambes en étoffe mineure
   building: Tisserie
   parent: ''
+  cost: 1
 jambes_en_etstandart:
   title: Jambes en étoffe standart
   building: Tisserie
   parent: Jambes en étoffe mineure
+  cost: 2
 bottes_en_etmineure:
   title: Bottes en étoffe mineure
   building: Tisserie
   parent: ''
+  cost: 1
 bottes_en_etstandart:
   title: Bottes en étoffe standart
   building: Tisserie
   parent: Bottes en étoffe mineure
+  cost: 2
 gants_en_etmineure:
   title: Gants en étoffe mineure
   building: Tisserie
   parent: ''
+  cost: 1
 gants_en_etstandart:
   title: Gants en étoffe standart
   building: Tisserie
   parent: Gants en étoffe mineure
+  cost: 2
 #___________________________________
 #___________________________________
 #SORTS
@@ -237,13 +291,13 @@ malefice_II:
   building: Guilde des mages
   parent: Maléfices I
 degats_I:
-  title: Dégats magiques I
+  title: Dégâts magiques I
   building: Guilde des mages
   parent: ''
 degats_II:
-  title: Dégats magiques II
+  title: Dégâts magiques II
   building: Guilde des mages
-  parent: Dégats magiques I
+  parent: Dégâts magiques I
 controles_I:
   title: Contrôles I
   building: Guilde des mages
@@ -260,3 +314,23 @@ support_II:
   title: Support II
   building: Guilde des mages
   parent: Support I
+###
+##________________________________________
+#________________________________________
+#SKILLS
+forcefrappe_I:
+  title: ForceFrappe I
+  building: Centre d'entrainement
+  parent: ''
+art_de_guerre_I:
+  title: Art de guerre I
+  building: Centre d'entrainement
+  parent: ''
+agilite_mortelle_I:
+  title: Agilité mortelle I
+  building: Centre d'entrainement
+  parent: ''
+ruse_I:
+  title: Ruse I
+  building: Centre d'entrainement
+  parent: ''

@@ -1,0 +1,240 @@
+fleches_penetrantes:
+  name: Flèches pénétrantes
+  step: Ruse I
+  cost: 6
+  damages: 0
+  ratio: 0
+  attribute: 0
+  time: 2
+  cooldown: 5
+  description: Permet aux fleches de traverses les ennemis en ligne droite.
+tir_cible:
+  name: Tir ciblé
+  step: Ruse I
+  cost: 6
+  damages: 0
+  ratio: 0
+  attribute: 0
+  time: 2
+  cooldown: 5
+  description: Tirez une flèche qui frappe l'ennemi d'infirmité.
+piege_flamme:
+  name: Piège de flammes
+  step: Agilité mortelle I
+  cost: 6
+  damages: 70
+  ratio: 0.2
+  attribute: Agilité
+  time: 5
+  cooldown: 4
+  description: Pose un piège de flamme activé quand l'ennemi est adjacent au piège.
+tir_barrage:
+  name: Tir de barrage
+  step: Agilité mortelle I
+  cost: 5
+  damages: 20
+  ratio: 0.2
+  attribute: Agilité
+  time: 1
+  cooldown: 4
+  description: Un tir occasionnant des dégâts à la cible et 50% aux cibles adjacentes.
+tir_double:
+  name: Tir double
+  step: Agilité mortelle I
+  cost: 5
+  damages: 0
+  ratio: 0
+  attribute: 0
+  time: 1
+  cooldown: 5
+  description: Tire 2 flèches sur l'ennemi (150% des dégâts).
+abattage:
+  name: Abattage
+  step: ForceFrappe I
+  cost: 6
+  damages: 80
+  ratio: 0.3
+  attribute: Force
+  time: 1
+  cooldown: 5
+  description: Inflige des dégâts ainsi qu'une réduction de santé à la cible (20%).
+cri_equilibre:
+  name: Cri d'équilibre
+  step: Art de guerre I
+  cost: 8
+  damages: 0
+  ratio: 0
+  attribute: 0
+  time: 2
+  cooldown: 5
+  description: Empêche la cible et ses alliés dans une zone (3x3) ne peuvent être assomés.
+attaque_puissante:
+  name: Attaque Puissante
+  step: ForceFrappe I
+  cost: 4
+  damages: 50
+  ratio: 0.5
+  attribute: Force
+  time: 1
+  cooldown: 4
+  description: Une attaque puissante qui occasione des dégâts.
+stabilité_defensive:
+  name: Stabilité défensive
+  step: Art de guerre I
+  cost: 5
+  damages: 0
+  ratio: 0
+  attribute: 0
+  time: 2
+  cooldown: 5
+  description: Le porteur reçoit un bonus d'armure et ne peut plus être assomé.
+oeil_assassin:
+  name: Oeil assassin
+  step: Ruse I
+  cost: 5
+  damages: 0
+  ratio: 0
+  attribute: 0
+  time: 3
+  cooldown: 6
+  description: Augmente les chances d'attaque critique de 50%.
+gorge_percee:
+  name: Gorge percée
+  step: ForceFrappe I
+  cost: 5
+  damages: 50
+  ratio: 0.4
+  attribute: Force
+  time: 2
+  cooldown: 6
+  description: Inflige des dégâts immédiatement et le silence durant 2 tours à la cible.
+jet_de_sable:
+  name: Jet de sable
+  step: Ruse I
+  cost: 5
+  damages: 0
+  ratio: 0
+  attribute: 0
+  time: 2
+  cooldown:5
+  description: Inflige aveuglement à la cible durant 2 tours.
+berserker:
+  name: Berserker
+  step: Art de guerre I
+  cost: 5
+  damages: 0
+  ratio: 0
+  attribute: 0
+  time: 3
+  cooldown: 6
+  description: Augmente les dégâts infligés par les attaques et les compétences de 30% et augmente les dégâts reçus de 40%.
+charge:
+  name: Charge
+  step: ForceFrappe I
+  cost: 6
+  damages: 0
+  ratio: 0
+  attribute: 0
+  time: 2
+  cooldown: 5
+  description: Charge une cible à porté de 4 cases et l'immobilise au tour suivant.
+provocation:
+  name: Provocation
+  step: Art de guerre I
+  cost: 6
+  damages: 0
+  ratio: 0
+  attribute: 0
+  time: 1
+  cooldown: 5
+  description: Force la cible à attaquer le lanceur au prochain tour.
+projection_acide:
+  name: Projection d'acide
+  step: Ruse I
+  cost: 5
+  damages: 0
+  ratio: 0
+  attribute: 0
+  time: 2
+  cooldown: 5
+  description: Projette de l'acide pour diminuer l'armure de la cible (50%).
+attaque_zone:
+  name: Attaque en zone
+  step: ForceFrappe I
+  cost: 6
+  damages: 0
+  ratio: 0
+  attribute: 0
+  time: 3
+  cooldown: 6
+  description: (Passif) Permet au lanceur de frapper les cases adjacentes à une cible.
+cisaillement_tendon:
+  name: Cisaillement de tendon:
+  step: Agilité mortelle I
+  cost: 5
+  damages: 60
+  ratio: 0.3
+  attribute: Agilité
+  time: 2
+  cooldown: 5
+  description: Inflige des dégâts et infirmité (2 tours) à la cible.
+protecteur:
+  name: Protecteur
+  step: Art de guerre I
+  cost: 5
+  damages: 0
+  ratio: 1
+  attribute: 0
+  time: 1
+  cooldown: 5
+  description: Permet d'encaisser des dégâts à la place d'une unité amie sur un tour.
+attaque_sournoise:
+  name: Attaque sournoise
+  step: Agilité mortelle I
+  cost: 4
+  damages: 70
+  ratio: 0.4
+  attribute: Agilité
+  time: 1
+  cooldown: 6
+  description: Une attaque occasionnant des dégâts à la cible.
+hemorragie:
+  name: Hémorragie
+  step: Agilité mortelle I
+  cost: 5
+  damages: 50
+  ratio: 0.2
+  attribute: Agilité
+  time: 2
+  cooldown: 5
+  description: Inflige des dégâts et un saignement durant 2 tours à la cible.
+attaque_vampirique:
+  name: Attaque vampirique
+  step: Agilité mortelle I
+  cost: 6
+  damages: 70
+  ratio: 0.3
+  attribute: Agilité
+  time: 1
+  cooldown: 5
+  description: Attaque infligeant des dégâts et restaurant la moitié de ces dégats à l'attaquant.
+concentration:
+  name: Concentration
+  step: Ruse I
+  cost: 4
+  damages: 0
+  ratio: 0
+  attribute: 0
+  time: 2
+  cooldown: 5
+  description: Augmente la probabilité de critique de la prochaine attaque de 100%.
+camouflage_urgent:
+  name: Camouflage urgent
+  step: Ruse I
+  cost: 6
+  damages: 0
+  ratio: 0
+  attribute: 0
+  time: 1
+  cooldown: 5
+  description: Camoufle l'unité jusqu'à son prochain tour.
