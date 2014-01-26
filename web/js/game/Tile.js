@@ -72,7 +72,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
             console.log("[CLICK_Tile] x" + container.x + " y" + container.y);
             var idUnit = nextUnitID;
             if(units[idUnit] != null) {
-                ContentManager.newUnit(Math.floor(evt.stageX / ContentManager.tileswidth), Math.floor(evt.stageY / ContentManager.tilesheight), units[idUnit].name, units[idUnit].taille);
+                ContentManager.newUnit(Math.floor(evt.stageX / ContentManager.tileswidth), Math.floor(evt.stageY / ContentManager.tilesheight), units[idUnit].sprite, units[idUnit].taille);
                 nextUnitID++;
             }
             else
