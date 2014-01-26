@@ -48,20 +48,15 @@ class Weapon
         foreach ($this->parts as $key => $part) {
             if ($key == 0) {
                 $availablesTypes = $part->getType()->getTypes();
-                var_dump($availablesTypes);
             }
-            echo $part->getName() . '<br>';
             foreach ($availablesTypes as $availableType) {
                 $found = false;
-                echo 'av' . $availableType->getName();
                 foreach ($part->getType()->getTypes() as $type) {
                     if ($type->getName() == $availableType->getName()) {
                         $found = true;
-                        var_dump($type->getName());
                     }
                 }
                 if ($found === false) {
-                    echo $availableType->getName() . "pas dispo";
                     $availablesTypes->removeElement($availableType);
                 }
             }

@@ -44,12 +44,27 @@
 
 
 <div class="row">
-  <div id="droppable" class="col-lg-2" style="background: brown; margin-left: 20px">
+  <div class="col-lg-2" style="background: brown; margin-left: 20px">
     Création d'armes :
-    {{ form(form) }}
+    <div id="droppable" style="margin-bottom: 10px">
+      <div style="height: 50px; width: 100%; background: white"></div>
+    </div>
+    <button id="create-weapon" class="btn btn-default">Créer</button>
+    <br>
 
-    Vos armes enregistrées :
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus feugiat velit ac tortor dictum pharetra. Sed in dolor ac eros facilisis semper. Praesent congue neque id libero rhoncus hendrerit. Ut accumsan sem ut velit condimentum mollis. Sed iaculis enim eu dolor vestibulum, et mattis elit scelerisque. Etiam vel ipsum nulla. Nunc egestas elit sed metus pulvinar blandit. Donec in ligula imperdiet, ultrices tellus non, dignissim ipsum.
+    Vos armes sauvegardées :
+    <ul>
+    {% for wep in weapons %}
+      <li> {{ wep.id }}
+          <ul>
+            {% for part in wep.parts %}
+              <li>{{ part.name }}</li>
+            {% endfor %}
+          </ul>
+      </li>
+    {% endfor %}
+    </ul>
+    {{ form(form) }}
 
   </div>
   <div class="col-lg-9">
@@ -188,8 +203,26 @@
     });
     $(document).ready(function(){
         $('.game-object').tooltip();
-        var form = $('#znieh_unitgamebundle_weapon');
-        $( ".draggable" ).draggable();
+        var form = $('#znieh_unitgamebundle_weapon').parent();
+        $(form).hide();
+        $( ".draggable" ).draggable({ cursor: "move", helper: "clone", revert: "invalid" });
+        $('#create-weapon').on('click', function(){
+            $.ajax({
+                type     : "POST",
+                cache    : false,
+                url      : $(form).attr('action'),
+                data     : $(form).serialize(),
+                success  : function(data) {
+                    alert(data);
+                    $(form)[0].reset();
+                },
+                error  : function(data) {
+                    alert(data);
+                    $(form)[0].reset();
+                }
+            });
+
+        });
         $( "#droppable" ).droppable({
               drop: function( event, ui ) {
                   console.log(event);

@@ -61,7 +61,7 @@ class PublicController extends Controller
         $buildings = $em->getRepository('ZniehVillageGameBundle:Building')->findAll();
 
         if ($building == null) {
-            // TODO redirect
+            $this->redirect($this->generateUrl('znieh_villagegame_public_index'));
         }
 
         $steps = $em->getRepository('ZniehVillageGameBundle:Step')->findAllByBuilding(
@@ -81,6 +81,11 @@ class PublicController extends Controller
         ));
         $form->add('submit', 'submit', array('label' => 'Create'));
 
+        $weapons = $em->getRepository('ZniehUnitGameBundle:Weapon')->findByUserByBuilding(
+            $this->getUser()->getId(),
+            $building->getId()
+        );
+
         // On ajoute le boolean unlocked aux objets récupés dans la requete unlocked
         foreach ($objects as $obj) {
             foreach ($unlockeds as $unlocked) {
@@ -96,6 +101,7 @@ class PublicController extends Controller
             'building'  => $building,
             'buildings' => $buildings,
             'objects'   => $objects,
+            'weapons' => $weapons,
             'form' => $form->createView()
             );
     }
