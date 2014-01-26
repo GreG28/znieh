@@ -242,6 +242,35 @@ gants_en_etstandart:
   building: Tisserie
   parent: Gants en étoffe mineure
 #___________________________________
+#Runes
+rune_mineur:
+  title: Runes Mineurs
+  building: Guilde des mages
+  parent: ''
+rune_majeur:
+  title: Runes Majeurs
+  building: Guilde des mages
+  parent: Runes Mineurs
+rune_superieur:
+  title: Runes Supérieurs
+  building: Guilde des mages
+  parent: Runes Majeurs
+
+#___________________________________
+#Insignes
+insigne_classique:
+  title: Insignes Classiques
+  building: Guilde des mages
+  parent: ''
+insigne_exo:
+  title: Insignes Exotiques
+  building: Guilde des mages
+  parent: Insignes Classiques
+insigne_rare:
+  title: Insignes Rares
+  building: Guilde des mages
+  parent: Insignes Exotiques
+
 #___________________________________
 #SORTS
 malefice_I:
