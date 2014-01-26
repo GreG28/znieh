@@ -4,23 +4,23 @@
 {% spaceless %}
 <div class="{% if deep == 0 %}root{% else %}step{% endif %}">
     <span class="step-content">
-    <div class="step-title">{{ step.title }}</div>
-    {% for obj in objects %}
-      {% if obj.step.title == step.title %}
-        <span class="game-object" data-toggle="tooltip" title="{{ obj.name }}">
-          <img src="{{ asset('img/icons/lame.png') }}" class="draggable" data-id="{{ obj.id }}" alt="">
-          {% if obj.unlocked %}
-              <a href="#" class="btn btn-default btn-xs" data-id="{{ obj.id }}">
-                <img src="{{ asset('img/icons/accept.png') }}" alt="">{{ obj.cost }}
+      <div class="step-title">{{ step.title }}</div>
+      {% for obj in objects %}
+        {% if obj.step.title == step.title %}
+          <span class="game-object" data-toggle="tooltip" title="{{ obj.name }}">
+            <img src="{{ asset('img/icons/lame.png') }}" class="draggable" data-id="{{ obj.id }}" alt="">
+            {% if obj.unlocked %}
+                <a href="#" class="btn btn-default btn-xs" data-id="{{ obj.id }}">
+                  <img src="{{ asset('img/icons/accept.png') }}" alt="">{{ obj.cost }}
+                </a>
+            {% else %}
+              <a href="#" class="btn btn-default btn-xs unlock-object" data-id="{{ obj.id }}">
+                  <img src="{{ asset('img/icons/add.png') }}" alt="">{{ obj.cost }}
               </a>
-          {% else %}
-            <a href="#" class="btn btn-default btn-xs unlock-object" data-id="{{ obj.id }}">
-                <img src="{{ asset('img/icons/add.png') }}" alt="">{{ obj.cost }}
-            </a>
-          {% endif %}
-        </span>
-      {% endif %}
-    {% endfor %}
+            {% endif %}
+          </span>
+        {% endif %}
+      {% endfor %}
     </span>
 
     {% if step.children|length %}
@@ -44,7 +44,7 @@
 
 
 <div class="row">
-  <div class="col-lg-2" style="background: brown; margin-left: 20px">
+  <div id="weapons" style="background: brown;">
     Création d'armes :
     <div id="droppable" style="margin-bottom: 10px">
       <div style="height: 50px; width: 100%; background: white"></div>
@@ -67,15 +67,12 @@
     {{ form(form) }}
 
   </div>
-  <div class="col-lg-9">
+  <div class="col-lg-offset-2 col-lg-9">
     <div>
       {% for step in steps %}
-      <div style="margin-bottom: 70px">
         {% if step.parent == null %}
           {{ _self.displayStep(step, objects, 0) }}
         {% endif %}
-      </div>
-      <div class="clearfix"></div>
       {% endfor %}
     </div>
   </div>
@@ -88,6 +85,12 @@
 {% block stylesheets %}
  {{ parent() }}
   <style>
+  #weapons {
+    position: fixed;
+    top: 20%;
+    left: 0;
+    width: 300px;
+  }
   *, *:before, *:after {
     -webkit-box-sizing: initial;
     -moz-box-sizing: initial;
@@ -95,6 +98,7 @@
   }
   .root {
     position: relative;
+    overflow: hidden;
   }
   .level {
     margin-left: 400px;
@@ -110,7 +114,7 @@
     margin-top: 1px;
   }
   .step {
-    min-height: 100px;
+    min-height: 300px;
     position: relative;
   }
   .step:before {
@@ -161,10 +165,12 @@
   .step:only-child:after {
     width: 52px;
     left: -52px;
-    top: 52%;
+    top: 50.60%;
+    border-bottom-left-radius: 0;
   }
   .step-content {
     width: 280px;
+    height: 200px;
     padding: 5px 10px;
     border: 2px solid #eee9dc;
     border-radius: 5px;
@@ -172,7 +178,7 @@
     position: absolute;
     left: 0;
     top: 50%;
-    margin-top: -15px;
+    margin-top: -115px;
     background-color: brown;
   }
   .game-object {
@@ -180,7 +186,7 @@
     width: 50px;
     height: 20px;
   }
-  .game-object img{
+  .game-object img {
     margin-right: 3px;
   }
 </style>
@@ -225,9 +231,6 @@
         });
         $( "#droppable" ).droppable({
               drop: function( event, ui ) {
-                  console.log(event);
-                  console.log(ui);
-                  console.log(ui.draggable.data("id"));
                   console.log($('#znieh_unitgamebundle_weapon_parts_' + ui.draggable.data("id")));
                   $('#znieh_unitgamebundle_weapon_parts_' + ui.draggable.data("id")).prop('checked', true);
               }
