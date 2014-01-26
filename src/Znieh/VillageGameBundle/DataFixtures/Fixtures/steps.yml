@@ -7,6 +7,14 @@ lame_en_bronze:
   title: Lames en bronze
   building: Forge
   parent: Lames en cuivre
+lame_en_fer:
+  title: Lames en fer
+  building: Forge
+  parent: Lames en bronze
+lame_en_or:
+  title: Lames en or
+  building: Forge
+  parent: Lames en bronze
 garde_en_cuivre:
   title: Gardes en cuivre
   building: Forge
@@ -15,6 +23,14 @@ garde_en_bronze:
   title: Gardes en bronze
   building: Forge
   parent: Gardes en cuivre
+garde_en_laiton:
+  title: Gardes en laiton
+  building: Forge
+  parent: Gardes en cuivre
+garde_en_or:
+  title: Gardes en or
+  building: Forge
+  parent: Gardes en laiton
 manche_en_cedre:
   title: Manches en cèdre
   building: Forge
