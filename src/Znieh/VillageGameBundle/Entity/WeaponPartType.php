@@ -29,9 +29,14 @@ class WeaponPartType
     private $name;
 
     /**
+    * @ORM\ManyToMany(targetEntity="WeaponType", inversedBy="parts")
+    */
+    private $types;
+
+    /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -47,14 +52,14 @@ class WeaponPartType
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -62,4 +67,46 @@ class WeaponPartType
     }
 
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->types = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+    /**
+     * Add types
+     *
+     * @param \Znieh\VillageGameBundle\Entity\WeaponType $types
+     *
+     * @return WeaponPartType
+     */
+    public function addType(\Znieh\VillageGameBundle\Entity\WeaponType $type)
+    {
+        $this->types[] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Remove types
+     *
+     * @param \Znieh\VillageGameBundle\Entity\WeaponType $types
+     */
+    public function removeType(\Znieh\VillageGameBundle\Entity\WeaponType $type)
+    {
+        $this->types->removeElement($type);
+    }
+
+    /**
+     * Get types
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTypes()
+    {
+        return $this->types;
+    }
 }

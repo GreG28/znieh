@@ -1,0 +1,334 @@
+<?php
+
+namespace Znieh\UnitGameBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
+/**
+ * Unit
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Znieh\UnitGameBundle\Entity\UnitRepository")
+ */
+class Unit
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdAt", type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updatedAt", type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Sign")
+     */
+    private $sign;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Size")
+     */
+    private $size;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Weight")
+     */
+    private $weight;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Weapon", inversedBy="units", cascade={"persist"})
+     */
+    private $weapon;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Armor", inversedBy="units", cascade={"persist"})
+     */
+    private $armor;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Znieh\UserBundle\Entity\User", inversedBy="units")
+     */
+    private $user;
+
+    /**
+     * @var integer
+     *
+     */
+    private $cost;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set cost
+     *
+     * @param integer $cost
+     *
+     * @return Unit
+     */
+    public function setCost($cost)
+    {
+        $this->cost = $cost;
+
+        return $this;
+    }
+
+    /**
+     * Get cost
+     *
+     * @return integer
+     */
+    public function getCost()
+    {
+        return $this->cost;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Unit
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Unit
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Unit
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set weapon
+     *
+     * @param \Znieh\UnitGameBundle\Entity\Weapon $weapon
+     *
+     * @return Unit
+     */
+    public function setWeapon(\Znieh\UnitGameBundle\Entity\Weapon $weapon = null)
+    {
+        $this->weapon = $weapon;
+
+        return $this;
+    }
+
+    /**
+     * Get weapon
+     *
+     * @return \Znieh\UnitGameBundle\Entity\Weapon
+     */
+    public function getWeapon()
+    {
+        return $this->weapon;
+    }
+
+    /**
+     * Set armor
+     *
+     * @param \Znieh\UnitGameBundle\Entity\Armor $armor
+     *
+     * @return Unit
+     */
+    public function setArmor(\Znieh\UnitGameBundle\Entity\Armor $armor = null)
+    {
+        $this->armor = $armor;
+
+        return $this;
+    }
+
+    /**
+     * Get armor
+     *
+     * @return \Znieh\UnitGameBundle\Entity\Armor
+     */
+    public function getArmor()
+    {
+        return $this->armor;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Znieh\UserBundle\Entity\User $user
+     *
+     * @return Unit
+     */
+    public function setUser(\Znieh\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Znieh\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set size
+     *
+     * @param \Znieh\UnitGameBundle\Entity\Size $size
+     *
+     * @return Unit
+     */
+    public function setSize(\Znieh\UnitGameBundle\Entity\Size $size = null)
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return \Znieh\UnitGameBundle\Entity\Size
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * Set weight
+     *
+     * @param \Znieh\UnitGameBundle\Entity\Weight $weight
+     *
+     * @return Unit
+     */
+    public function setWeight(\Znieh\UnitGameBundle\Entity\Weight $weight = null)
+    {
+        $this->weight = $weight;
+
+        return $this;
+    }
+
+    /**
+     * Get weight
+     *
+     * @return \Znieh\UnitGameBundle\Entity\Weight
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
+
+    /**
+     * Set sign
+     *
+     * @param \Znieh\UnitGameBundle\Entity\Sign $sign
+     *
+     * @return Unit
+     */
+    public function setSign(\Znieh\UnitGameBundle\Entity\Sign $sign = null)
+    {
+        $this->sign = $sign;
+
+        return $this;
+    }
+
+    /**
+     * Get sign
+     *
+     * @return \Znieh\UnitGameBundle\Entity\Sign
+     */
+    public function getSign()
+    {
+        return $this->sign;
+    }
+}

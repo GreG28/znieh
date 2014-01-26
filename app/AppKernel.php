@@ -34,6 +34,7 @@ class AppKernel extends Kernel
             new Znieh\CoreGameBundle\ZniehCoreGameBundle(),
             new Znieh\VillageGameBundle\ZniehVillageGameBundle(),
             new Znieh\InfractionGameBundle\ZniehInfractionGameBundle(),
+            new Znieh\UnitGameBundle\ZniehUnitGameBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

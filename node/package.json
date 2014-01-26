@@ -1,7 +1,7 @@
 {
     "name": "Znieh-GameServer",
-    "version": "0.0.1",
-    "author": "Alfo <contact@alexisfouche.net>",
+    "version": "0.0.2",
+    "author": "Alexis Fouché <contact@alexisfouche.net>",
     "description": "GameServer for Znieh",
     "scripts": {
         "start": "node ./app.js"
@@ -13,5 +13,9 @@
         "sequelize": "*",
         "sequelize-mysql": "*",
         "mysql": "*"
+    },
+    "devDependencies": {
+      "chai": "*",
+      "mocha": "*"
     }
 }

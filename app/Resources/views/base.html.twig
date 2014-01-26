@@ -10,6 +10,7 @@
         {% block stylesheets %}
             {% stylesheets filter='cssrewrite' output='css/compiled/style.css'
                         'css/bootstrap.css'
+                        'css/jquery-ui-1.10.4.custom.css'
                         'css/style.css'
             %}
                 <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
@@ -37,8 +38,9 @@
 
         {% block javascripts %}
             <script src="{{ asset('js/jquery.js') }}"></script>
-            <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('js/bootstrap.js') }}"></script>
             <script src="{{ asset('toastr/toastr.min.js') }}"></script>
+            <script src="{{ asset('js/jquery-ui-1.10.4.custom.js') }}"></script>
 
             <!-- Some scripts -->
             <script>

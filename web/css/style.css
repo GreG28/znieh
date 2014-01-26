@@ -10,6 +10,25 @@ html, body {
 body {
   font-size: 18px;
   line-height: 32px;
+  background: #d5b983;
+}
+
+.nav-tabs {
+  background: #7e7259;
+  border-bottom: none;
+}
+.nav-tabs a {
+  color: #d5b983;
+}
+
+.nav-tabs li a:hover {
+  background: #534a36;
+  border: none;
+}
+
+.nav-tabs .active {
+  background: #534a36;
+  border: none;
 }
 
 #wrap {
@@ -24,10 +43,18 @@ body {
   position: absolute;
   bottom: 0; left: 0;
   width: 100%;
-  background: #1a1a1a; /* Old browsers */
+  background: #4c3f28;
   color: white;
   height: auto;
 }
+
+#footer a {
+  color: white;
+}
+#footer a:hover {
+  color: grey;
+}
+
 
 /**
   Title & Buttons
