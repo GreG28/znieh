@@ -1,0 +1,30 @@
+casque_lourd:
+  name: Casque lourd
+torse_lourd:
+  name: Torse lourd
+jambes_lourd:
+  name: Jambes lourdes
+bottes_lourd:
+  name: Bottes lourdes
+gants_lourd:
+  name: Gants lourds
+casque_inter:
+  name: Casque intermédiaire
+torse_inter:
+  name: Torse intermédiaire
+jambes_inter:
+  name: Jambes intermédiaires
+bottes_inter:
+  name: Bottes intermédiaires
+gants_inter:
+  name: Gants intermédiaires
+casque_leger:
+  name: Casque léger
+torse_leger:
+  name: Torse léger
+jambes_leger:
+  name: Jambes légères
+bottes_leger:
+  name: Bottes légères
+gants_leger:
+  name: Gants légers

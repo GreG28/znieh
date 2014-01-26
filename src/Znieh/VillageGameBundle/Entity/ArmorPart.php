@@ -10,6 +10,32 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ArmorPart extends GameObject
 {
+    /**
+     * @ORM\ManyToOne(targetEntity="ArmorPartType", cascade={"persist"})
+     */
+    private $type;
 
-    
+    /**
+     * Set type
+     *
+     * @param \Znieh\VillageGameBundle\Entity\ArmorPartType $type
+     *
+     * @return ArmorPart
+     */
+    public function setType(\Znieh\VillageGameBundle\Entity\ArmorPartType $type = null)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \Znieh\VillageGameBundle\Entity\ArmorPartType
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
 }

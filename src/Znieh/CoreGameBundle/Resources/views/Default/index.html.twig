@@ -13,13 +13,35 @@ onload="init();"
 <script>
 var canvas = document.getElementById("canvas");
 var stage = new createjs.Stage(canvas);
+stage.enableMouseOver();
 function init() {
     contentManager = new ContentManager(stage, 480, 480);
     contentManager.init();
 }
+
+var nextUnitID = 0;
+var units = [];
+units[0] = { "name": "firefox", "taille": "petitfin" };
+units[1] = { "name": "firefox", "taille": "grandmuscle" };
+units[2] = { "name": "mailarmor", "taille": "petitfin" };
+
 </script>
 {% endblock %}
 
 {% block body %}
-    <canvas id="canvas" width="480" height="480"> Canvas not supported. Please update your browser. </canvas>
+    <div class="row">
+        <div class="col-sm-2">
+            <h2>Mes unités</h2>
+                <div class="well">
+                    Bobby
+                </div>
+            </div>
+        <div class="col-sm-8">
+            <canvas id="canvas" width="480" height="480" style="margin:0px;"> Canvas not supported. Please update your browser. </canvas>
+            <div id="fps" style="font-size:12px; margin:0px; padding:0px;"></div>
+        </div>
+        <div class="col-sm-2">
+            <h2>Unités ennemies</h2>
+        </div>
+    </div>
 {% endblock %}

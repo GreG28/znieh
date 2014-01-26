@@ -54,6 +54,28 @@ class User extends BaseUser
      */
     protected $facebookId;
 
+    /**
+    * @ORM\OneToMany(targetEntity="Znieh\UnitGameBundle\Entity\Team", mappedBy="user", cascade={"persist"})
+    */
+    private $teams;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Znieh\UnitGameBundle\Entity\Unit", mappedBy="user", cascade={"persist"})
+    */
+    private $units;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Znieh\UnitGameBundle\Entity\Armor", mappedBy="user", cascade={"persist"})
+    */
+    private $armors;
+
+    /**
+    * @ORM\OneToMany(targetEntity="Znieh\UnitGameBundle\Entity\Weapon", mappedBy="user", cascade={"persist"})
+    */
+    private $weapons;
+
+
+
     public function __construct()
     {
         parent::__construct();

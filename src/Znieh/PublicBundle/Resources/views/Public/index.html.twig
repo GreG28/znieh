@@ -1,13 +1,14 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-  Bienvenue sur Znieh Games !
-  <ul>
+<div class="container">
+  <br>
+  <ul class="nav nav-tabs">
     <li><a href="{{ path('live_blog_public_index') }}">Blog</a></li>
     <li><a href="{{ path('znieh_villagegame_public_index') }}">Village</a></li>
     <li><a href="{{ path('znieh_coregame_default_index') }}">Game</a></li>
     <li><a href="{{ path('znieh_user_betaregistration_index') }}">Inscriptions beta</a></li>
   </ul>
-
-
+  <h3>Bienvenue sur Znieh Games !</h3>
+</div>
 {% endblock %}

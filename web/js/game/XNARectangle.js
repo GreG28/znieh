@@ -11,23 +11,23 @@
     XNARectangle.prototype.initialize = function (x, y, width, height) {
         this.Rectangle_initialize(x, y, width, height);
         this.Location = new createjs.Point(this.x, this.y);
-        this.Center = new createjs.Point(parseInt(this.x + this.width / 2), parseInt(this.y + this.height / 2));
+        this.Center = new createjs.Point(parseInt(this.x + this.width / 2,10), parseInt(this.y + this.height / 2,10));
     };
 
     XNARectangle.prototype.Left = function () {
-        return parseInt(this.x);
+        return parseInt(this.x,10);
     };
 
     XNARectangle.prototype.Right = function () {
-        return parseInt(this.x + this.width);
+        return parseInt(this.x + this.width,10);
     };
 
     XNARectangle.prototype.Top = function () {
-        return parseInt(this.y);
+        return parseInt(this.y,10);
     };
 
     XNARectangle.prototype.Bottom = function () {
-        return parseInt(this.y + this.height / 2);
+        return parseInt(this.y + this.height / 2,10);
     };
 
     // Checking if the targetted rectangle is contained in this rectangle
@@ -59,7 +59,7 @@
     /// Gets the position of the center of the bottom edge of the rectangle.
     /// </summary>
     XNARectangle.prototype.GetBottomCenter = function () {
-        return new createjs.Point(parseInt(this.x + (this.width / 2)), this.Bottom());
+        return new createjs.Point(parseInt(this.x + (this.width / 2),10), this.Bottom());
     };
 
     /// <summary>

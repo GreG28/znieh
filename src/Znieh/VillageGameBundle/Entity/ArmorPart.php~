@@ -10,5 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ArmorPart extends GameObject
 {
+    /**
+     * @ORM\ManyToOne(targetEntity="ArmorPartType", cascade={"persist"})
+     */
+    private $type;
 
 }

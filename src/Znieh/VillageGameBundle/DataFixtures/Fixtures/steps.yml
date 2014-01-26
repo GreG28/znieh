@@ -30,7 +30,7 @@ pommeau_en_cuivre:
 pommeau_en_bronze:
   title: Pommeaux en bronze
   building: Forge
-  parent: Pommeaux en bronze
+  parent: Pommeaux en cuivre
 #___________________________________
 # Hacherie
 tete_de_hache_cuivre:
@@ -74,7 +74,7 @@ corde_en_reche:
 corde_en_brut:
   title: Cordes en cuir brut
   building: Archerie
-  parent: Corde en cuir rêche
+  parent: Cordes en cuir rêche
 arc_en_cedre:
   title: Arcs en cèdre
   building: Archerie
@@ -99,3 +99,164 @@ fleche_bronze:
   title: Flèches en bronze
   building: Archerie
   parent: Flèches en cuivre
+#___________________________________
+#Armurerie
+casques_en_cuivre:
+  title: Casques en cuivre
+  building: Armurerie
+  parent: ''
+casques_en_bronze:
+  title: Casques en bronze
+  building: Armurerie
+  parent: Casques en cuivre
+torses_en_cuivre:
+  title: Torses en cuivre
+  building: Armurerie
+  parent: ''
+torses_en_bronze:
+  title: Torses en bronze
+  building: Armurerie
+  parent: Torses en cuivre
+jambes_en_cuivre:
+  title: Jambes en cuivre
+  building: Armurerie
+  parent: ''
+jambes_en_bronze:
+  title: Jambes en bronze
+  building: Armurerie
+  parent: Jambes en cuivre
+bottes_en_cuivre:
+  title: Bottes en cuivre
+  building: Armurerie
+  parent: ''
+bottes_en_bronze:
+  title: Bottes en bronze
+  building: Armurerie
+  parent: Bottes en cuivre
+gants_en_cuivre:
+  title: Gants en cuivre
+  building: Armurerie
+  parent: ''
+gants_en_bronze:
+  title: Gants en bronze
+  building: Armurerie
+  parent: Gants en cuivre
+#___________________________________
+#Tannerie
+casques_en_reche:
+  title: Casques en cuir rêche
+  building: Tannerie
+  parent: ''
+casques_en_brut:
+  title: Casques en cuir brut
+  building: Tannerie
+  parent: Casques en cuir rêche
+torses_en_reche:
+  title: Torses en cuir rêche
+  building: Tannerie
+  parent: ''
+torses_en_brut:
+  title: Torses en cuir brut
+  building: Tannerie
+  parent: Torses en cuir rêche
+jambes_en_reche:
+  title: Jambes en cuir rêche
+  building: Tannerie
+  parent: ''
+jambes_en_brut:
+  title: Jambes en cuir brut
+  building: Tannerie
+  parent: Jambes en cuir rêche
+bottes_en_reche:
+  title: Bottes en cuir rêche
+  building: Tannerie
+  parent: ''
+bottes_en_brut:
+  title: Bottes en cuir brut
+  building: Tannerie
+  parent: Bottes en cuir rêche
+gants_en_reche:
+  title: Gants en cuir rêche
+  building: Tannerie
+  parent: ''
+gants_en_brut:
+  title: Gants en cuir brut
+  building: Tannerie
+  parent: Gants en cuir rêche
+#___________________________________
+#Tisserie
+casques_en_etmineure:
+  title: Casques en étoffe mineure
+  building: Tisserie
+  parent: ''
+casques_en_etstandart:
+  title: Casques en étoffe standart
+  building: Tisserie
+  parent: Casques en étoffe mineure
+torses_en_etmineure:
+  title: Torses en étoffe mineure
+  building: Tisserie
+  parent: ''
+torses_en_etstandart:
+  title: Torses en étoffe standart
+  building: Tisserie
+  parent: Torses en étoffe mineure
+jambes_en_etmineure:
+  title: Jambes en étoffe mineure
+  building: Tisserie
+  parent: ''
+jambes_en_etstandart:
+  title: Jambes en étoffe standart
+  building: Tisserie
+  parent: Jambes en étoffe mineure
+bottes_en_etmineure:
+  title: Bottes en étoffe mineure
+  building: Tisserie
+  parent: ''
+bottes_en_etstandart:
+  title: Bottes en étoffe standart
+  building: Tisserie
+  parent: Bottes en étoffe mineure
+gants_en_etmineure:
+  title: Gants en étoffe mineure
+  building: Tisserie
+  parent: ''
+gants_en_etstandart:
+  title: Gants en étoffe standart
+  building: Tisserie
+  parent: Gants en étoffe mineure
+#___________________________________
+#___________________________________
+#SORTS
+malefice_I:
+  title: Maléfices I
+  building: Guilde des mages
+  parent: ''
+malefice_II:
+  title: Maléfices II
+  building: Guilde des mages
+  parent: Maléfices I
+degats_I:
+  title: Dégats magiques I
+  building: Guilde des mages
+  parent: ''
+degats_II:
+  title: Dégats magiques II
+  building: Guilde des mages
+  parent: Dégats magiques I
+controles_I:
+  title: Contrôles I
+  building: Guilde des mages
+  parent: ''
+controles_II:
+  title: Contrôles II
+  building: Guilde des mages
+  parent: Contrôle I
+support_I:
+  title: Support I
+  building: Guilde des mages
+  parent: ''
+support_II:
+  title: Support II
+  building: Guilde des mages
+  parent: Support I

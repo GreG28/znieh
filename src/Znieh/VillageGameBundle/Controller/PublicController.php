@@ -56,6 +56,7 @@ class PublicController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $building = $em->getRepository('ZniehVillageGameBundle:Building')->findOneByTitle($building);
+        $buildings = $em->getRepository('ZniehVillageGameBundle:Building')->findAll();
 
         if ($building == null) {
             // TODO redirect
@@ -79,11 +80,13 @@ class PublicController extends Controller
                     $obj->setUnlocked(true);
                 }
             }
+            $obj->cost = "500 {{bois}}";
         }
 
         return array(
             'steps'     => $steps,
             'building'  => $building,
+            'buildings' => $buildings,
             'objects'   => $objects
             );
     }
