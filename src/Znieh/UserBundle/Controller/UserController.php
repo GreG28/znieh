@@ -7,6 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Znieh\UserBundle\Form\Type\UserAdminType;
+use Znieh\UserBundle\Entity\Ressource;
+use Znieh\UserBundle\Entity\User;
 
 class UserController extends Controller
 {
@@ -21,6 +23,27 @@ class UserController extends Controller
 
         return array(
             'users' => $users,
+        );
+    }
+
+    /**
+     * @Route("/users/{slug}/ressource")
+     * @Template()
+     */
+    public function showRessourceAction($slug)
+    {
+        /*$em = $this->getDoctrine()->getManager();
+        $ressource = $em->getRepository('ZniehUserBundle:User')
+                        ->findOneByUsernameCanonical($slug);
+                        
+        $em->flush();*/
+
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('ZniehUserBundle:User')
+                   ->findOneByUsernameCanonical($slug);
+
+        return array(
+            'user' => $user,
         );
     }
 
@@ -42,5 +65,4 @@ class UserController extends Controller
             'user' => $user,
         );
     }
-
 }
