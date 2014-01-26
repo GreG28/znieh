@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Znieh\VillageGameBundle\Entity\UnlockedGameObject;
 use Znieh\VillageGameBundle\Entity\GameObject;
+use Znieh\UnitGameBundle\Entity\Weapon;
+use Znieh\UnitGameBundle\Form\WeaponType;
 
 /**
  * @Route("/village")
@@ -73,6 +75,12 @@ class PublicController extends Controller
             $building->getId()
         );
 
+        $form = $this->createForm(new WeaponType(), new Weapon(), array(
+            'action' => $this->generateUrl('village_create_weapon_create'),
+            'method' => 'POST',
+        ));
+        $form->add('submit', 'submit', array('label' => 'Create'));
+
         // On ajoute le boolean unlocked aux objets récupés dans la requete unlocked
         foreach ($objects as $obj) {
             foreach ($unlockeds as $unlocked) {
@@ -87,7 +95,8 @@ class PublicController extends Controller
             'steps'     => $steps,
             'building'  => $building,
             'buildings' => $buildings,
-            'objects'   => $objects
+            'objects'   => $objects,
+            'form' => $form->createView()
             );
     }
 

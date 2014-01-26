@@ -8,7 +8,7 @@
     {% for obj in objects %}
       {% if obj.step.title == step.title %}
         <span class="game-object" data-toggle="tooltip" title="{{ obj.name }}">
-          <img src="{{ asset('img/icons/lame.png') }}" alt="">
+          <img src="{{ asset('img/icons/lame.png') }}" class="draggable" data-id="{{ obj.id }}" alt="">
           {% if obj.unlocked %}
               <a href="#" class="btn btn-default btn-xs" data-id="{{ obj.id }}">
                 <img src="{{ asset('img/icons/accept.png') }}" alt="">{{ obj.cost }}
@@ -44,13 +44,12 @@
 
 
 <div class="row">
-  <div class="col-lg-2" style="background: brown; margin-left: 20px">
+  <div id="droppable" class="col-lg-2" style="background: brown; margin-left: 20px">
     Création d'armes :
+    {{ form(form) }}
+
+    Vos armes enregistrées :
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus feugiat velit ac tortor dictum pharetra. Sed in dolor ac eros facilisis semper. Praesent congue neque id libero rhoncus hendrerit. Ut accumsan sem ut velit condimentum mollis. Sed iaculis enim eu dolor vestibulum, et mattis elit scelerisque. Etiam vel ipsum nulla. Nunc egestas elit sed metus pulvinar blandit. Donec in ligula imperdiet, ultrices tellus non, dignissim ipsum.
-
-    Vivamus luctus iaculis magna, sed eleifend nisl viverra a. Cras dapibus ultricies sapien commodo tincidunt. Cras sagittis pretium mi, in consequat lorem lacinia ut. Phasellus sagittis faucibus est, ut venenatis neque interdum non. Proin nec fermentum erat, blandit auctor enim. Nulla bibendum lobortis elit a adipiscing. Fusce vel dapibus arcu. Praesent luctus augue at varius consectetur. Aenean vitae justo at arcu vulputate dictum in et mi. Curabitur pulvinar bibendum libero quis venenatis. Nam venenatis lacus ac magna malesuada placerat.
-
-    Fusce consequat pulvinar tortor, vitae egestas leo faucibus at. Aenean egestas elit justo, eget viverra turpis dignissim nec. Pellentesque ipsum nibh, ullamcorper pellentesque purus sit amet, rutrum interdum nulla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin dui sapien, gravida ac felis eget, commodo sodales dui. Vivamus non tortor accumsan dolor sollicitudin rutrum et vitae turpis. Proin condimentum nec nunc et volutpat. In sit amet leo diam. Ut ornare ut lectus et ultrices. Suspendisse nec pretium justo, vitae fermentum odio. Duis hendrerit quis risus in dignissim.
 
   </div>
   <div class="col-lg-9">
@@ -189,6 +188,17 @@
     });
     $(document).ready(function(){
         $('.game-object').tooltip();
+        var form = $('#znieh_unitgamebundle_weapon');
+        $( ".draggable" ).draggable();
+        $( "#droppable" ).droppable({
+              drop: function( event, ui ) {
+                  console.log(event);
+                  console.log(ui);
+                  console.log(ui.draggable.data("id"));
+                  console.log($('#znieh_unitgamebundle_weapon_parts_' + ui.draggable.data("id")));
+                  $('#znieh_unitgamebundle_weapon_parts_' + ui.draggable.data("id")).prop('checked', true);
+              }
+        });
     });
 
 	</script>
