@@ -25,6 +25,7 @@ class LoadStepData extends AbstractFixtureLoader implements OrderedFixtureInterf
 
             $step
                 ->setTitle($stepData['title'])
+                ->setPoints($stepData['points'])
                 ->setBuilding($building)
             ;
 

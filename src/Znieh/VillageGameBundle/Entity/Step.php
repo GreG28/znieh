@@ -48,6 +48,13 @@ class Step
     private $lvl;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="points", type="integer")
+     */
+    private $points;
+
+    /**
      * @Gedmo\TreeParent
      * @ORM\ManyToOne(targetEntity="Step", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
@@ -72,6 +79,18 @@ class Step
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setPoints($points)
+    {
+        $this->points = $points;
+
+        return $this;
+    }
+
+    public function getPoints()
+    {
+        return $this->points;
     }
 
     public function setTitle($title)
@@ -127,7 +146,7 @@ class Step
     {
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Set lft
      *
@@ -137,14 +156,14 @@ class Step
     public function setLft($lft)
     {
         $this->lft = $lft;
-    
+
         return $this;
     }
 
     /**
      * Get lft
      *
-     * @return integer 
+     * @return integer
      */
     public function getLft()
     {
@@ -160,14 +179,14 @@ class Step
     public function setRgt($rgt)
     {
         $this->rgt = $rgt;
-    
+
         return $this;
     }
 
     /**
      * Get rgt
      *
-     * @return integer 
+     * @return integer
      */
     public function getRgt()
     {
@@ -183,14 +202,14 @@ class Step
     public function setLvl($lvl)
     {
         $this->lvl = $lvl;
-    
+
         return $this;
     }
 
     /**
      * Get lvl
      *
-     * @return integer 
+     * @return integer
      */
     public function getLvl()
     {
@@ -206,7 +225,7 @@ class Step
     public function addChildren(\Znieh\VillageGameBundle\Entity\Step $children)
     {
         $this->children[] = $children;
-    
+
         return $this;
     }
 
@@ -223,7 +242,7 @@ class Step
     /**
      * Get children
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getChildren()
     {

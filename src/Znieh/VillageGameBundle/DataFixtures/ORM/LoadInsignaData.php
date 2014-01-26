@@ -28,6 +28,9 @@ class LoadInsignaData extends AbstractFixtureLoader implements OrderedFixtureInt
                 ->setStep($step)
             ;
 
+            $points = empty($insignaData['points']) ? $step->getPoints() : $insignaData['points'];
+            $insigna->setPoints($points);
+
             $manager->persist($insigna);
             $manager->flush();
         }

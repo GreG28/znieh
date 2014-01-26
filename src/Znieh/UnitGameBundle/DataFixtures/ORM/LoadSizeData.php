@@ -23,6 +23,7 @@ class LoadSizeData  extends AbstractFixtureLoader implements OrderedFixtureInter
 
             $size
                 ->setName($sizeData['name'])
+                ->setPoints($sizeData['points'])
             ;
 
             $manager->persist($size);

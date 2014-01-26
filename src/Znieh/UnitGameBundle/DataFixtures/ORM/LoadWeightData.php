@@ -23,6 +23,7 @@ class LoadWeightData  extends AbstractFixtureLoader implements OrderedFixtureInt
 
             $weight
                 ->setName($weightData['name'])
+                ->setPoints($weightData['points'])
             ;
 
             $manager->persist($weight);

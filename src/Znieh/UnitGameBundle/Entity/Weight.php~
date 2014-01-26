@@ -70,28 +70,5 @@ class Weight
     {
         return $this->name;
     }
-
-    /**
-     * Set points
-     *
-     * @param integer $points
-     *
-     * @return Weight
-     */
-    public function setPoints($points)
-    {
-        $this->points = $points;
-
-        return $this;
-    }
-
-    /**
-     * Get points
-     *
-     * @return integer 
-     */
-    public function getPoints()
-    {
-        return $this->points;
-    }
 }
+

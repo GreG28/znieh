@@ -1,6 +1,9 @@
-lourd:
-  name: Lourd
-intermediaire:
-  name: Intermédiaire
-leger:
-  name: Léger
+petit:
+  name: Petit
+  points: 0
+normal:
+  name: Normal
+  points: 1
+grand:
+  name: Grand
+  points: 2

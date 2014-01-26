@@ -313,87 +313,87 @@ pommeau_en_bronze_d_armure:
 tete_hache_cuivre_bardiche:
   name: Tête de bardiche en cuivre
   type: Tête de hache
-  step: Tête de hache en cuivre
+  step: Têtes de hache en cuivre
 tete_hache_cuivre_Francisque:
   name: Tête de Francisque en cuivre
   type: Tête de hache
-  step: Tête de hache en cuivre
+  step: Têtes de hache en cuivre
 tete_hache_cuivre_hallebarde:
   name: Tête de hallebarde en cuivre
   type: Tête de hache
-  step: Tête de hache en cuivre
+  step: Têtes de hache en cuivre
 tete_hache_cuivre_labrys:
   name: Tête de Labrys en cuivre
   type: Tête de hache
-  step: Tête de hache en cuivre
+  step: Têtes de hache en cuivre
 tete_ hache_cuivre_lochaber:
   name: Tête de Lochaber en cuivre
   type: Tête de hache
-  step: Tête de hache en cuivre
+  step: Têtes de hache en cuivre
 #_________________________________________________
 tete_hache_bronze_bardiche:
   name: Tête de bardiche en bronze
   type: Tête de hache
-  step: Tête de hache en bronze
+  step: Têtes de hache en bronze
 tete_hache_bronze_Francisque:
   name: Tête de Francisque en bronze
   type: Tête de hache
-  step: Tête de hache en bronze
+  step: Têtes de hache en bronze
 tete_hache_bronze_hallebarde:
   name: Tête de hallebarde en bronze
   type: Tête de hache
-  step: Tête de hache en bronze
+  step: Têtes de hache en bronze
 tete_hache_bronze_labrys:
   name: Tête de Labrys en bronze
   type: Tête de hache
-  step: Tête de hache en bronze
+  step: Têtes de hache en bronze
 tete_ hache_bronze_lochaber:
   name: Tête de Lochaber en bronze
   type: Tête de hache
-  step: Tête de hache en bronze
+  step: Têtes de hache en bronze
 #_________________________________________________
 # Tête de marteau
 tete_marteau_cuivre_guerre:
   name: Tête de marteau de guerre en cuivre
   type: Tête de marteau
-  step: Tête de marteau en cuivre
+  step: Têtes de marteau en cuivre
 tete_marteau_cuivre_geant:
   name: Tête de marteau géant en cuivre
   type: Tête de marteau
-  step: Tête de marteau en cuivre
+  step: Têtes de marteau en cuivre
 tete_marteau_cuivre_gourdin:
   name: Tête de gourdin en cuivre
   type: Tête de marteau
-  step: Tête de marteau en cuivre
+  step: Têtes de marteau en cuivre
 tete_marteau_cuivre_armes:
   name: Tête de marteau d'armes en cuivre
   type: Tête de marteau
-  step: Tête de marteau en cuivre
+  step: Têtes de marteau en cuivre
 tete_ marteau_cuivre_morgenstern :
   name: Tête de Morgenstern en cuivre
   type: Tête de marteau
-  step: Tête de marteau en cuivre
+  step: Têtes de marteau en cuivre
 #_________________________________________________
 tete_marteau_bronze_guerre:
   name: Tête de marteau de guerre en bronze
   type: Tête de marteau
-  step: Tête de marteau en bronze
+  step: Têtes de marteau en bronze
 tete_marteau_bronze_geant:
   name: Tête de marteau géant en bronze
   type: Tête de marteau
-  step: Tête de marteau en bronze
+  step: Têtes de marteau en bronze
 tete_marteau_bronze_gourdin:
   name: Tête de gourdin en bronze
   type: Tête de marteau
-  step: Tête de marteau en bronze
+  step: Têtes de marteau en bronze
 tete_marteau_bronze_armes:
   name: Tête de marteau d'armes en bronze
   type: Tête de marteau
-  step: Tête de marteau en bronze
+  step: Têtes de marteau en bronze
 tete_ marteau_bronze_morgenstern :
   name: Tête de Morgenstern en bronze
   type: Tête de marteau
-  step: Tête de marteau en bronze
+  step: Têtes de marteau en bronze
 #_________________________________________________
 # Hampe de hache et marteau
 hampe_cedre_de_vie:
