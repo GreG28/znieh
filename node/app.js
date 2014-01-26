@@ -14,6 +14,7 @@
 var app = require('http').createServer(handler);
 var io = require('socket.io').listen(app);
 var fs = require('fs');
+var db = require('./db');
 var config = require('nconf');
 var Moniker = require('moniker');
 var port = 1337;
@@ -31,7 +32,8 @@ var port = 1337;
 //
 config.argv()
     .env()
-    .file({ file: 'config.json' });
+    .file({ file: 'config.json' })
+    .file({ file: 'config.user.json'});
 
 // Reduce log level
 io.set('log level', 1);
@@ -39,7 +41,7 @@ io.set('log level', 1);
 
 // used to dump config file
 /*config.save(function (err) {
-    fs.readFile('config.json', function (err, data) {
+    fs.readFile('config.user.json', function (err, data) {
         console.dir(JSON.parse(data.toString()))
     });
 });*/
@@ -70,6 +72,11 @@ function handler (req, res) {
 var world = require('./world');
 world.config = config;
 world.io = io;
+world.db = db;
+
+// Database
+world.db.init(world.config);
+world.db.initTables();
 
 // Pools
 world.pool.init(world);
@@ -83,7 +90,7 @@ var Player = require('./player');
  */
 io.sockets.on('connection', function (socket) {
 
-  var authController = require('./authController')(socket, function(user){
+  var authController = require('./authController')(socket, world, function(user){
     var player = new Player(user.username, socket);
     world.players.push(player);
 
