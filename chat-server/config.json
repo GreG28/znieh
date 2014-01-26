@@ -3,7 +3,7 @@
     "port": 1337
   },
   "db": {
-    "host": "localhost",
+    "host": "192.168.1.12",
     "port": 3306,
     "dialect": "mysql",
     "database": "znieh",

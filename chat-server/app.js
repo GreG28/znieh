@@ -65,6 +65,8 @@ function handler (req, res) {
 }
 
 // World
+db.init(config);
+db.initTables();
 
 var users = [];
 var pendingMessages = [];
@@ -112,20 +114,27 @@ io.sockets.on('connection', function (socket) {
       socket.set('authenticated', true);
       socket.emit("service", { msg: 'Auth: OK' });
 
-      for(var i=0; i < pendingMessages.length; i++) {
-        if(data.username === pendingMessages[i].to) {
-            socket.emit("message", {
-              from: pendingMessages[i].from,
-              to: pendingMessages[i].to,
-              msg: pendingMessages[i].msg,
-              date: pendingMessages[i].date
-            });
-            pendingMessages.splice(i, 1);
-            i--;
-        }
-      }
 
-    //});
+      db.PendingMessage
+        .findAll({ where: {to: data.username } })
+        .complete(function(err, messages) {
+          if(!!err) {
+            console.log('Error while reading pending messages: ', err);
+          } else {
+            for (var i = 0; i < messages.length; i++) {
+              socket.emit("message", {
+                from: messages[i].from,
+                to: messages[i].to,
+                msg: messages[i].msg,
+                date: messages[i].date / 1000
+              });
+
+              messages[i].destroy();
+            };
+          }
+        });
+
+      
 
   });
 
@@ -149,14 +158,22 @@ io.sockets.on('connection', function (socket) {
       }
     }
 
+    // Is user is not connected
     if(!isOnline) {
-      message = {
+      var message = db.PendingMessage.build({
         from: user.username,
         to: data.target,
         msg: data.msg,
-        date: Date.now() / 1000
-      };
-      pendingMessages.push(message);
+        date: Date.now()
+      });
+
+      message
+        .save()
+        .complete(function(err) {
+          if(!!err) {
+            console.log('Error while saving message: ', err);
+          }
+        });
     }
 
 
