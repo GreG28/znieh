@@ -38,11 +38,16 @@ var units = [
 
 $(document).ready(function(){
     for (var i = units.length - 1; i >= 0; i--) {
-        if(units[i].taille == "petitfin")
+        if(units[i].taille == "petitfin") {
             taille = "";
-        else
+            coef = 1;
+        }
+        else{
             taille = "2";
-        $("ul#myUnits").append('<li class="list-group-item" id="unit-'+ i +'"><div class="sprite"><img src="../img/sprites/' + units[i].sprite + taille + '.png" alt="Caca" /></div> <div style="margin-top:5px; font-weight: bold; ">' + units[i].name + '</div></li>');
+            coef = 2;
+        }
+
+        $("ul#myUnits").append('<li class="list-group-item" id="unit-'+ i +'"><div style="overflow: hidden; width: ' + 32 * coef + 'px; height: ' + 32 * coef + 'px; float: left;"><img src="../img/sprites/' + units[i].sprite + taille + '.png" alt="Caca" /></div> <div style="margin-top:5px; font-weight: bold; ">' + units[i].name + '</div><div class="clearfix"></div></li>');
         $("#unit-" + i).on("click", function() {
             alert("The paragraph was clicked.");
         });
