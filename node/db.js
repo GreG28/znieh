@@ -48,6 +48,6 @@ module.exports.initTables = function () {
 		lastname: Sequelize.STRING,
 		role: Sequelize.ENUM('ROLE_ADMIN', 'ROLE_USER')
 	}, {
-		tableName: 'User'
+		tableName: 'fos_user'
 	});
 }
