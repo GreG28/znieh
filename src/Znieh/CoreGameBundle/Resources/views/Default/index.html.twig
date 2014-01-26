@@ -10,6 +10,16 @@ onload="init();"
 <script src="{{ asset('js/game/Map.js') }}"></script>
 <script src="{{ asset('js/game/Unit.js') }}"></script>
 <script src="{{ asset('js/game/contentManager.js') }}"></script>
+
+<style>
+.sprite {
+    overflow: hidden;
+    width: 32px;
+    height: 32px;
+    float: left;
+}
+</style>
+
 <script>
 var canvas = document.getElementById("canvas");
 var stage = new createjs.Stage(canvas);
@@ -20,11 +30,24 @@ function init() {
 }
 
 var nextUnitID = 0;
-var units = [];
-units[0] = { "name": "firefox", "taille": "petitfin" };
-units[1] = { "name": "firefox", "taille": "grandmuscle" };
-units[2] = { "name": "mailarmor", "taille": "petitfin" };
+var units = [
+    { "sprite": "firefox", "taille": "petitfin", "name": "Bobby" },
+    { "sprite": "firefox", "taille": "grandmuscle", "name": "Jacky" },
+    { "sprite": "mailarmor", "taille": "petitfin", "name": "Patrick" }
+];
 
+$(document).ready(function(){
+    for (var i = units.length - 1; i >= 0; i--) {
+        if(units[i].taille == "petitfin")
+            taille = "";
+        else
+            taille = "2";
+        $("ul#myUnits").append('<li class="list-group-item" id="unit-'+ i +'"><div class="sprite"><img src="../img/sprites/' + units[i].sprite + taille + '.png" alt="Caca" /></div> <div style="margin-top:5px; font-weight: bold; ">' + units[i].name + '</div></li>');
+        $("#unit-" + i).on("click", function() {
+            alert("The paragraph was clicked.");
+        });
+    }
+});
 </script>
 {% endblock %}
 
@@ -32,9 +55,8 @@ units[2] = { "name": "mailarmor", "taille": "petitfin" };
     <div class="row">
         <div class="col-sm-2">
             <h2>Mes unités</h2>
-                <div class="well">
-                    Bobby
-                </div>
+                <ul class="list-group" id="myUnits">
+                </ul>
             </div>
         <div class="col-sm-8">
             <canvas id="canvas" width="480" height="480" style="margin:0px;"> Canvas not supported. Please update your browser. </canvas>
@@ -104,7 +126,7 @@ units[2] = { "name": "mailarmor", "taille": "petitfin" };
     });
 
     $('#auth').click(function () {
-      socket.emit('auth', {username: $("#username").val() , token: 'abc'});
+      socket.emit('auth', { username: '{{ app.user.username }}' , token: '{{ app.user.token }}' });
       $('#console').append('<strong>Trying to auth...</strong><br>');
     });
 
@@ -120,4 +142,5 @@ units[2] = { "name": "mailarmor", "taille": "petitfin" };
 
 
   </script>
+</script>
 {% endblock %}

@@ -20,7 +20,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         this.x = x * this.width;
         this.y = y * this.height;
         this.texture = texture;
-        
+
         // location in the matrix
         this.i = x;
         this.j = y;
@@ -71,10 +71,12 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         this._container.on("click", function(evt) {
             console.log("[CLICK_Tile] x" + container.x + " y" + container.y);
             var idUnit = nextUnitID;
-            if(units[idUnit] !== null) {
-                ContentManager.newUnit(Math.floor(evt.stageX / ContentManager.tileswidth), Math.floor(evt.stageY / ContentManager.tilesheight), units[idUnit].name, units[idUnit].taille);
+            if(units[idUnit] != null) {
+                ContentManager.newUnit(Math.floor(evt.stageX / ContentManager.tileswidth), Math.floor(evt.stageY / ContentManager.tilesheight), units[idUnit].sprite, units[idUnit].taille);
                 nextUnitID++;
             }
+            else
+                console.log("Il n'y a plus de personnages à placer");
         });
 
         this._container.x = this.x;
@@ -83,7 +85,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         this._container.regY = 0;
 
         this.visible = true;
-    
+
         stage.addChild(this._container);
     };
 
