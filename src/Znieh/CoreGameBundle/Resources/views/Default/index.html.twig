@@ -13,13 +13,111 @@ onload="init();"
 <script>
 var canvas = document.getElementById("canvas");
 var stage = new createjs.Stage(canvas);
+stage.enableMouseOver();
 function init() {
     contentManager = new ContentManager(stage, 480, 480);
     contentManager.init();
 }
+
+var nextUnitID = 0;
+var units = [];
+units[0] = { "name": "firefox", "taille": "petitfin" };
+units[1] = { "name": "firefox", "taille": "grandmuscle" };
+units[2] = { "name": "mailarmor", "taille": "petitfin" };
+
 </script>
 {% endblock %}
 
 {% block body %}
-    <canvas id="canvas" width="480" height="480"> Canvas not supported. Please update your browser. </canvas>
+    <div class="row">
+        <div class="col-sm-2">
+            <h2>Mes unités</h2>
+                <div class="well">
+                    Bobby
+                </div>
+            </div>
+        <div class="col-sm-8">
+            <canvas id="canvas" width="480" height="480" style="margin:0px;"> Canvas not supported. Please update your browser. </canvas>
+            <div id="fps" style="font-size:12px; margin:0px; padding:0px;"></div>
+        </div>
+        <div class="col-sm-2">
+            <h2>Unités ennemies</h2>
+        </div>
+    </div>
+
+
+    <button id="auth" type="button" class="btn btn-primary">Auth</button>
+    <button id="join" type="button" class="btn btn-primary">Join pool</button>
+    <button id="ready" type="button" class="btn btn-primary">Ready <em>(start search)</em></button>
+
+    <p><br />
+      Username : <input type="text" id="username" value="alfo" /><br />
+      Pool ID : <input type="text" id="poolId" value="0" /></input>
+    </p>
+
+    <br /><br />
+    <pre id="console" style="border: 1px dotted grey; padding: 10px;width: 600px;"><strong>Console Log :</strong><br /><br /></pre>
+
+    <div id="pools" style="border: 1px dotted grey; width: 600px; padding: 10px;">
+      <button id="fight" type="button" class="btn btn-primary">Fight !</button>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+      var socket = undefined;
+
+    socket = io.connect('127.0.0.1:1337');
+    $('#console').append('Connected<br>');
+
+
+    // In
+    socket.on('welcome', function (data) {
+      console.log(data);
+      $('#console').append('Server has send welcome message. Your name is : ' + data + '<br />');
+    });
+
+    socket.on('service', function (data) {
+      console.log(data);
+      $('#console').append('Service message : ' + data.msg + '<br />');
+    });
+
+    socket.on('players', function (data) {
+      console.log(data);
+      $('#console').append('Current players : ' + data.players + '<br />');
+    });
+
+    socket.on('pools-list', function (data) {
+      console.log(data);
+      $('#pools').html(JSON.stringify(data));
+    });
+
+
+
+
+    // Out
+    $('#join').click(function () {
+      socket.emit('join', {pool: $('#poolId').val()});
+      $('#console').append('<strong>Trying to join pool...</strong><br>');
+    });
+
+    $('#auth').click(function () {
+      socket.emit('auth', {username: $("#username").val() , token: 'abc'});
+      $('#console').append('<strong>Trying to auth...</strong><br>');
+    });
+
+    $('#ready').click(function () {
+      socket.emit('ready', null);
+      $('#console').append('<strong>Ready to fight. Looking for a game...</strong><br>');
+    });
+
+    $('#fight').click(function () {
+      socket.emit('get-pools', null);
+      $('#pools').html('<strong>Loading ...</strong><br>');
+    });
+
+
+  </script>
 {% endblock %}

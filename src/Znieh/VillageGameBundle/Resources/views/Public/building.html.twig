@@ -3,23 +3,31 @@
 {% macro displayStep(step, objects, deep) %}
 {% spaceless %}
 <div class="{% if deep == 0 %}root{% else %}step{% endif %}">
-    <span class="step-content">{{ step.title }} - {{ deep + 1 }} <br>
-    {% for obj in objects %}
-      {% if obj.step.title == step.title %}
-        {% if obj.unlocked %}
-          <a href="#" data-id="{{ obj.id }}"><img src="{{ asset('img/icons/accept.png') }}" alt=""></a>
-        {% else %}
-          <a href="#" class="unlock-object" data-id="{{ obj.id }}"><img src="{{ asset('img/icons/add.png') }}" alt=""></a>
+    <span class="step-content">
+      <div class="step-title">{{ step.title }}</div>
+      {% for obj in objects %}
+        {% if obj.step.title == step.title %}
+          <span class="game-object" data-toggle="tooltip" title="{{ obj.name }}">
+            <img src="{{ asset('img/icons/lame.png') }}" class="draggable" data-id="{{ obj.id }}" alt="">
+            {% if obj.unlocked %}
+                <a href="#" class="btn btn-default btn-xs" data-id="{{ obj.id }}">
+                  <img src="{{ asset('img/icons/accept.png') }}" alt="">{{ obj.cost }}
+                </a>
+            {% else %}
+              <a href="#" class="btn btn-default btn-xs unlock-object" data-id="{{ obj.id }}">
+                  <img src="{{ asset('img/icons/add.png') }}" alt="">{{ obj.cost }}
+              </a>
+            {% endif %}
+          </span>
         {% endif %}
-      {% endif %}
-    {% endfor %}
+      {% endfor %}
     </span>
 
     {% if step.children|length %}
       <div class='lvl{{ deep }} level'>
-      {% for child in step.children %}
-        {{ _self.displayStep(child, objects, deep + 1) }}
-      {% endfor %}
+        {% for child in step.children %}
+          {{ _self.displayStep(child, objects, deep + 1) }}
+        {% endfor %}
       </div>
     {% endif %}
 </div>
@@ -29,25 +37,60 @@
 {% block body %}
 
 <div class="container">
-  {% render controller('ZniehVillageGameBundle:Public:listBuilding') %}
+  {% include 'ZniehVillageGameBundle:Public:listBuilding.html.twig'  with { 'buildings' : buildings, 'active' : building.title } %}
   <h2>{{ building.title }}</h2>
   <p>{{ building.description }}</p>
-
-  {% for step in steps %}
-  <div style="position: relative; height: auto; min-height: 60px">
-    {% if step.parent == null %}
-      {{ _self.displayStep(step, objects, 0) }}
-    {% endif %}
-  </div>
-  {% endfor %}
-
 </div>
+
+
+<div class="row">
+  <div id="weapons" style="background: brown;">
+    Création d'armes :
+    <div id="droppable" style="margin-bottom: 10px">
+      <div style="height: 50px; width: 100%; background: white"></div>
+    </div>
+    <button id="create-weapon" class="btn btn-default">Créer</button>
+    <br>
+
+    Vos armes sauvegardées :
+    <ul>
+    {% for wep in weapons %}
+      <li> {{ wep.id }}
+          <ul>
+            {% for part in wep.parts %}
+              <li>{{ part.name }}</li>
+            {% endfor %}
+          </ul>
+      </li>
+    {% endfor %}
+    </ul>
+    {{ form(form) }}
+
+  </div>
+  <div class="col-lg-offset-2 col-lg-9">
+    <div>
+      {% for step in steps %}
+        {% if step.parent == null %}
+          {{ _self.displayStep(step, objects, 0) }}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
 {% endblock %}
 
 
 {% block stylesheets %}
  {{ parent() }}
   <style>
+  #weapons {
+    position: fixed;
+    top: 20%;
+    left: 0;
+    width: 300px;
+  }
   *, *:before, *:after {
     -webkit-box-sizing: initial;
     -moz-box-sizing: initial;
@@ -55,6 +98,7 @@
   }
   .root {
     position: relative;
+    overflow: hidden;
   }
   .level {
     margin-left: 400px;
@@ -70,7 +114,7 @@
     margin-top: 1px;
   }
   .step {
-    min-height: 100px;
+    min-height: 300px;
     position: relative;
   }
   .step:before {
@@ -121,21 +165,29 @@
   .step:only-child:after {
     width: 52px;
     left: -52px;
-    top: 52%;
+    top: 50.60%;
+    border-bottom-left-radius: 0;
   }
   .step-content {
     width: 280px;
+    height: 200px;
     padding: 5px 10px;
-    line-height: 20px;
-    text-align: center;
     border: 2px solid #eee9dc;
     border-radius: 5px;
     display: block;
     position: absolute;
     left: 0;
     top: 50%;
-    margin-top: -15px;
+    margin-top: -115px;
     background-color: brown;
+  }
+  .game-object {
+    padding: 5px 5px 5px 5px;
+    width: 50px;
+    height: 20px;
+  }
+  .game-object img {
+    margin-right: 3px;
   }
 </style>
 {% endblock %}
@@ -155,5 +207,35 @@
           console.log('fail');
         });
     });
+    $(document).ready(function(){
+        $('.game-object').tooltip();
+        var form = $('#znieh_unitgamebundle_weapon').parent();
+        $(form).hide();
+        $( ".draggable" ).draggable({ cursor: "move", helper: "clone", revert: "invalid" });
+        $('#create-weapon').on('click', function(){
+            $.ajax({
+                type     : "POST",
+                cache    : false,
+                url      : $(form).attr('action'),
+                data     : $(form).serialize(),
+                success  : function(data) {
+                    alert(data);
+                    $(form)[0].reset();
+                },
+                error  : function(data) {
+                    alert(data);
+                    $(form)[0].reset();
+                }
+            });
+
+        });
+        $( "#droppable" ).droppable({
+              drop: function( event, ui ) {
+                  console.log($('#znieh_unitgamebundle_weapon_parts_' + ui.draggable.data("id")));
+                  $('#znieh_unitgamebundle_weapon_parts_' + ui.draggable.data("id")).prop('checked', true);
+              }
+        });
+    });
+
 	</script>
 {% endblock %}

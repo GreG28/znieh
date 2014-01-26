@@ -1,3 +1,5 @@
+
+
 (function (window) {
      // Constants for controling horizontal movement
     var MoveAcceleration = 13000.0;
@@ -19,35 +21,54 @@
     // imgUnit should be the PNG containing the sprite sequence
     // level must be of type Level
     // position must be of type Point
-    function Unit(imgUnit, map, position) {
-        this.initialize(imgUnit, map, position);
+    function Unit(imgUnit, map, position, unitsInfos, taille) {
+        "use strict";
+        //alert(JSON.stringify(unitsInfos, null, 4));
+        this.initialize(imgUnit, map, position, unitsInfos, taille);
     }
 
-    Unit.prototype = new createjs.Bitmap();
     Unit.prototype.IsAlive = true;
     Unit.prototype.IsOnGround = true;
 
-    Unit.prototype.initialize = function (imgUnit, map, position) {
-        var width;
-        var left;
-        var height;
-        var top;
+    Unit.prototype.initialize = function (imgUnit, map, position, unitsInfos, taille) {
+
+        "use strict";
+
+        var width = unitsInfos.specifications[taille].sprites.frames.width;
+        var left = unitsInfos.specifications[taille].sprites.weapon.left;
+        var height = unitsInfos.specifications[taille].sprites.frames.height;
+        var top = unitsInfos.specifications[taille].sprites.weapon.top;
+        var regX = unitsInfos.specifications[taille].sprites.frames.regX;
+        var regY = unitsInfos.specifications[taille].sprites.frames.regY;
+
         var frameWidth;
         var frameHeight;
 
+        var animations = {};
+        var animations_move = unitsInfos.animations.move;
+        var animations_attack = unitsInfos.animations.attack;
+
+        animations["move-idle"] = [animations_move.idle.start, animations_move.idle.end, "move-" + animations_move.idle.name, animations_move.idle.velocity];
+        animations["move-right"] = [animations_move.right.start, animations_move.right.end, "move-" + animations_move.right.name, animations_move.right.velocity];
+        animations["move-top"] = [animations_move.top.start, animations_move.top.end, "move-" + animations_move.top.name, animations_move.top.velocity];
+        animations["move-bottom"] = [animations_move.bottom.start, animations_move.bottom.end, "move-" + animations_move.bottom.name, animations_move.bottom.velocity];
+
+        animations["attack-right"] = [animations_attack.right.start, animations_attack.right.end, "attack-" + animations_attack.right.name, animations_attack.right.velocity];
+        animations["attack-top"] = [animations_attack.top.start, animations_attack.top.end, "attack-" + animations_attack.top.name, animations_attack.top.velocity];
+        animations["attack-bottom"] = [animations_attack.bottom.start, animations_attack.bottom.end, "attack-" + animations_attack.bottom.name, animations_attack.bottom.velocity];
+
+        //alert(JSON.stringify(animations, null, 4));
+
         var localSpriteSheet = new createjs.SpriteSheet({
             images: [imgUnit], //image to use
-            frames: {width: 32, height: 32, regX: 16, regY: 16},
-            animations: {
-                right: [8, 11, "walk", 0.2],
-                top: [32, 39, false, 0.2],
-                bottom: [56, 59, false, 0.2],
-                idle: [0, 0, "idle"]
-            }
+            frames: {width: width, height: height, regX: regX, regY: regY},
+            animations: animations
         });
 
+        this.sprite_base = new createjs.Sprite(localSpriteSheet);
 
-        this.sprite = new createjs.Sprite(localSpriteSheet);
+        this.width = width;
+        this.height = height;
 
         this.map = map;
         this.position = position;
@@ -60,19 +81,22 @@
         frameHeight = localSpriteSheet.getFrame(0).rect.height;
 
         // Calculate bounds within texture size.
-        width = parseInt(frameWidth * 0.4);
-        left = parseInt((frameWidth - width) / 2);
-        height = parseInt(frameWidth * 0.8);
-        top = parseInt(frameHeight - height);
+        width = parseInt(frameWidth * 0.4,10);
+        left = parseInt((frameWidth - width) / 2,10);
+        height = parseInt(frameWidth * 0.8,10);
+        top = parseInt(frameHeight - height,10);
         this.localBounds = new XNARectangle(left, top, width, height);
 
-        this.sprite.name = "Hero";
+        this.sprite_base.name = "Hero";
+        this.unitID = ContentManager.getNextUnitID();
 
         // 1 = right & -1 = left & 0 = idle
-        this.sprite.direction = 0;
+        this.sprite_base.direction = 0;
 
         // starting directly at the first frame of the walk_right sequence
-        this.sprite.currentFrame = 8;
+        this.sprite_base.currentFrame = 8;
+
+        this._container = new createjs.Container();
 
         this.Reset(position);
     };
@@ -82,21 +106,60 @@
     /// </summary>
     /// <param name="position">The position to come to life at.</param>
     Unit.prototype.Reset = function (position) {
-        this.sprite.x = position.x;
-        this.sprite.y = position.y;
+        "use strict";
+
+        this.sprite_base.x = 0;
+        this.sprite_base.y = 0;
         this.velocity = new createjs.Point(0, 0);
         this.IsAlive = true;
-        this.sprite.gotoAndPlay("idle");
-        stage.addChild(this.sprite);
-        stage.update();
+        this.sprite_base.gotoAndPlay("move-idle");
+
+        var _x = 0;
+        var _y = 0;
+        var width = this.width;
+        var height = this.height;
+
+        var unitID = this.unitID;
+        var container = this._container;
+
+        this.shape = new createjs.Shape();
+        this.shape.name = "contour";
+        this.shape.graphics.beginStroke("##000000");
+        this.shape.graphics.setStrokeStyle(2); // 2 pixel
+        this.shape.graphics.drawRect((_x - 16), (_y - 16), 32, 32); // Change size as-needed
+        this.shape.visible = false;
+
+        this._container.addChild(this.shape);
+        this._container.addChild(this.sprite_base);
+
+        var shape = this.shape;
+        this._container.on("mouseover", function(evt) {
+            shape.visible = true;
+        });
+
+        this._container.on("mouseout", function(evt) {
+            shape.visible = false;
+        });
+
+        this._container.on("click", function(evt) {
+            console.log("[CLICK_Unit] x" + container.x + " y" + container.y);
+        });
+
+        this._container.x = position.x;
+        this._container.y = position.y;
+        this._container.width = this.sprite_base.width;
+        this._container.height = this.sprite_base.height;
+        this._container.visible = true;
+
+        stage.addChild(this._container);
     };
 
     /// <summary>
     /// Gets a rectangle which bounds this player in world space.
     /// </summary>
     Unit.prototype.BoundingRectangle = function () {
-        var left = parseInt(Math.round(this.x - 32) + this.localBounds.x);
-        var top = parseInt(Math.round(this.y - 64) + this.localBounds.y);
+        var left = parseInt(Math.round(this.x - 32) + this.localBounds.x,10);
+        var top = parseInt(Math.round(this.y - 64) + this.localBounds.y,10);
 
         return new XNARectangle(left, top, this.localBounds.width, this.localBounds.height);
     };
@@ -110,6 +173,8 @@
     /// we need to reverse our motion when the orientation is in the LandscapeRight orientation.
     /// </remarks>
     Unit.prototype.tick = function () {
+        "use strict";
+
         // It not possible to have a predictable tick/update time
         // requestAnimationFrame could help but is currently not widely and properly supported by browsers
         // this.elapsed = (Ticker.getTime() - this.lastUpdate) / 1000;
@@ -124,15 +189,15 @@
             if (Math.abs(this.velocity.x) - 0.02 > 0) {
                 // Checking if we're not already playing the animation
                 if (this.currentAnimation.indexOf("walk") === -1 && this.direction === -1) {
-                    this.sprite.gotoAndPlay("walk");
+                    this.sprite_base.gotoAndPlay("walk");
                 }
                 if (this.currentAnimation.indexOf("walk_h") === -1 && this.direction === 1) {
-                    this.sprite.gotoAndPlay("walk_h");
+                    this.sprite_base.gotoAndPlay("walk_h");
                 }
             }
             else {
                 if (this.currentAnimation.indexOf("idle") === -1 && this.direction === 0) {
-                    this.sprite.gotoAndPlay("idle");
+                    this.sprite_base.gotoAndPlay("idle");
                 }
             }
         }

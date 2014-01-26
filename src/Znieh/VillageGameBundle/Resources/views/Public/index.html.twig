@@ -1,4 +1,8 @@
-Village
-{% for building in buildings %}
-  <a href="{{ path('znieh_villagegame_public_building', { "building": building.title }) }}">{{ building.title }}</a>
-{% endfor %}
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<div class="container">
+  {% include 'ZniehVillageGameBundle:Public:listBuilding.html.twig'  with { 'buildings' : buildings, 'active' : 'Village' } %}
+</div>
+{% endblock %}
+

@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Znieh\VillageGameBundle\Entity\UnlockedGameObject;
 use Znieh\VillageGameBundle\Entity\GameObject;
+use Znieh\UnitGameBundle\Entity\Weapon;
+use Znieh\UnitGameBundle\Form\WeaponType;
 
 /**
  * @Route("/village")
@@ -56,9 +58,10 @@ class PublicController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $building = $em->getRepository('ZniehVillageGameBundle:Building')->findOneByTitle($building);
+        $buildings = $em->getRepository('ZniehVillageGameBundle:Building')->findAll();
 
         if ($building == null) {
-            // TODO redirect
+            $this->redirect($this->generateUrl('znieh_villagegame_public_index'));
         }
 
         $steps = $em->getRepository('ZniehVillageGameBundle:Step')->findAllByBuilding(
@@ -72,6 +75,17 @@ class PublicController extends Controller
             $building->getId()
         );
 
+        $form = $this->createForm(new WeaponType(), new Weapon(), array(
+            'action' => $this->generateUrl('village_create_weapon_create'),
+            'method' => 'POST',
+        ));
+        $form->add('submit', 'submit', array('label' => 'Create'));
+
+        $weapons = $em->getRepository('ZniehUnitGameBundle:Weapon')->findByUserByBuilding(
+            $this->getUser()->getId(),
+            $building->getId()
+        );
+
         // On ajoute le boolean unlocked aux objets récupés dans la requete unlocked
         foreach ($objects as $obj) {
             foreach ($unlockeds as $unlocked) {
@@ -79,12 +93,16 @@ class PublicController extends Controller
                     $obj->setUnlocked(true);
                 }
             }
+            $obj->cost = "500 {{bois}}";
         }
 
         return array(
             'steps'     => $steps,
             'building'  => $building,
-            'objects'   => $objects
+            'buildings' => $buildings,
+            'objects'   => $objects,
+            'weapons' => $weapons,
+            'form' => $form->createView()
             );
     }
 

@@ -1,0 +1,232 @@
+{
+
+    "firefox":
+    {
+        "specifications":
+        {
+            "petitfin":
+            {
+                "description":
+                {
+                    "taille": "petit",
+                    "corpulence": "fin"
+                },
+                "sprites":
+                {
+                    "spritesheet": "firefox.png",
+                    "spritesheet_loading_ID": "unitFirefox",
+                    "frames":
+                    {
+                        "width": 32,
+                        "height": 32,
+                        "regX": 16,
+                        "regY": 16
+                    },
+                    "weapon":
+                    {
+                        "top": 18,
+                        "left": 15
+                    }
+                }
+            },
+            "grandmuscle":
+            {
+                "description":
+                {
+                    "taille": "grand",
+                    "corpulence": "musclé"
+                },
+                "sprites":
+                {
+                    "spritesheet": "firefox2.png",
+                    "spritesheet_loading_ID": "unitFirefox2",
+                    "frames":
+                    {
+                        "width": 64,
+                        "height": 64,
+                        "regX": 32,
+                        "regY": 32
+                    },
+                    "weapon":
+                    {
+                        "top": 36,
+                        "left": 30
+                    }
+
+                }
+            }
+        },
+        "animations":
+        {
+            "move":
+            {
+                "idle":
+                {
+                    "start": 0,
+                    "end": 0,
+                    "name": "idle",
+                    "velocity": 0
+                },
+                "right":
+                {
+                    "start": 8,
+                    "end": 12,
+                    "name": "right",
+                    "velocity": 0.2
+                },
+                "top":
+                {
+                    "start": 32,
+                    "end": 39,
+                    "name": "top",
+                    "velocity": 0.2
+                },
+                "bottom":
+                {
+                    "start": 56,
+                    "end": 59,
+                    "name": "bottom",
+                    "velocity": 0.2
+                }
+            },
+            "attack":
+            {
+                "right":
+                {
+                    "start": 0,
+                    "end": 4,
+                    "name": "right",
+                    "velocity": 0.2
+                },
+                "top":
+                {
+                    "start": 24,
+                    "end": 28,
+                    "name": "top",
+                    "velocity": 0.2
+                },
+                "bottom":
+                {
+                    "start": 48,
+                    "end": 52,
+                    "name": "bottom",
+                    "velocity": 0.2
+                }
+            }
+        }
+    },
+    "mailarmor":
+    {
+        "specifications":
+        {
+            "petitfin":
+            {
+                "description":
+                {
+                    "taille": "petit",
+                    "corpulence": "fin"
+                },
+                "sprites":
+                {
+                    "spritesheet": "mailarmor.png",
+                    "spritesheet_loading_ID": "mailarmor",
+                    "frames":
+                    {
+                        "width": 32,
+                        "height": 32,
+                        "regX": 16,
+                        "regY": 16
+                    },
+                    "weapon":
+                    {
+                        "top": 18,
+                        "left": 15
+                    }
+                }
+            },
+            "grandmuscle":
+            {
+                "description":
+                {
+                    "taille": "grand",
+                    "corpulence": "musclé"
+                },
+                "sprites":
+                {
+                    "spritesheet": "mailarmor2.png",
+                    "spritesheet_loading_ID": "mailarmor2",
+                    "frames":
+                    {
+                        "width": 64,
+                        "height": 64,
+                        "regX": 32,
+                        "regY": 32
+                    },
+                    "weapon":
+                    {
+                        "top": 36,
+                        "left": 30
+                    }
+                }
+            }
+        },
+        "animations":
+        {
+            "move":
+            {
+                "idle":
+                {
+                    "start": 0,
+                    "end": 0,
+                    "name": "idle",
+                    "velocity": 0
+                },
+                "right":
+                {
+                    "start": 6,
+                    "end": 9,
+                    "name": "right",
+                    "velocity": 0.2
+                },
+                "top":
+                {
+                    "start": 20,
+                    "end": 23,
+                    "name": "top",
+                    "velocity": 0.2
+                },
+                "bottom":
+                {
+                    "start": 35,
+                    "end": 38,
+                    "name": "bottom",
+                    "velocity": 0.2
+                }
+            },
+            "attack":
+            {
+                "right":
+                {
+                    "start": 0,
+                    "end": 5,
+                    "name": "right",
+                    "velocity": 0.2
+                },
+                "top":
+                {
+                    "start": 15,
+                    "end": 19,
+                    "name": "top",
+                    "velocity": 0.2
+                },
+                "bottom":
+                {
+                    "start": 30,
+                    "end": 34,
+                    "name": "bottom",
+                    "velocity": 0.2
+                }
+            }
+        }
+    }
+}
