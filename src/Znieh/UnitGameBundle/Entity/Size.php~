@@ -5,12 +5,12 @@ namespace Znieh\UnitGameBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Weight
+ * Size
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Znieh\UnitGameBundle\Entity\WeightRepository")
+ * @ORM\Entity
  */
-class Weight
+class Size
 {
     /**
      * @var integer
@@ -20,7 +20,6 @@ class Weight
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
 
     /**
      * @var string
@@ -52,7 +51,7 @@ class Weight
      *
      * @param string $name
      *
-     * @return Weight
+     * @return Size
      */
     public function setName($name)
     {
@@ -70,28 +69,5 @@ class Weight
     {
         return $this->name;
     }
-
-    /**
-     * Set points
-     *
-     * @param integer $points
-     *
-     * @return Weight
-     */
-    public function setPoints($points)
-    {
-        $this->points = $points;
-
-        return $this;
-    }
-
-    /**
-     * Get points
-     *
-     * @return integer 
-     */
-    public function getPoints()
-    {
-        return $this->points;
-    }
 }
+
