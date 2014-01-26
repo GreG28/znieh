@@ -38,9 +38,9 @@ class Ressource
     /**
      * @var integer
      *
-     * @ORM\Column(name="cuivre", type="integer")
+     * @ORM\Column(name="copper", type="integer")
      */
-    private $cuivre;
+    private $copper;
 
     /**
      * @var integer
@@ -52,58 +52,58 @@ class Ressource
     /**
      * @var integer
      *
-     * @ORM\Column(name="etoffeMineure", type="integer")
+     * @ORM\Column(name="minorCloth", type="integer")
      */
-    private $etoffeMineure;
+    private $minorCloth;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="etoffeStandart", type="integer")
+     * @ORM\Column(name="standardCloth", type="integer")
      */
-    private $etoffeStandart;
+    private $standardCloth;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="cuirReche", type="integer")
+     * @ORM\Column(name="roughLeather", type="integer")
      */
-    private $cuirReche;
+    private $roughLeather;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="cuirBrut", type="integer")
+     * @ORM\Column(name="rawLeather", type="integer")
      */
-    private $cuirBrut;
+    private $rawLeather;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="boisCedre", type="integer")
+     * @ORM\Column(name="cedarWood", type="integer")
      */
-    private $boisCedre;
+    private $cedarWood;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="boisChene", type="integer")
+     * @ORM\Column(name="oakWood", type="integer")
      */
-    private $boisChene;
+    private $oakWood;
 
 
     public function __construct()
     {
         $this->gold = 0;
         $this->sto = 0;
-        $this->cuivre = 0;
+        $this->copper = 0;
         $this->bronze = 0;
-        $this->etoffeMineure = 0;
-        $this->etoffeStandart = 0;
-        $this->cuirReche = 0;
-        $this->cuirBrut= 0;
-        $this->boisChene = 0;
-        $this->boisCedre = 0;
+        $this->minorCloth = 0;
+        $this->standardCloth = 0;
+        $this->roughLeather = 0;
+        $this->rawLeather= 0;
+        $this->oakWood = 0;
+        $this->cedarWood = 0;
     }
 
 
@@ -194,41 +194,41 @@ class Ressource
     } 
 
     /**
-     * Set cuivre
+     * Set copper
      *
-     * @param integer $cuivre
+     * @param integer $copper
      * @return Ressource
      */
-    public function setCuivre($cuivre)
+    public function setCopper($copper)
     {
-        $this->cuivre = $cuivre;
+        $this->copper = $copper;
     
         return $this;
     }
 
     /**
-     * Get cuivre
+     * Get copper
      *
      * @return integer 
      */
-    public function getCuivre()
+    public function getCopper()
     {
-        return $this->cuivre;
+        return $this->copper;
     }
 
-    public function hasEnoughCuivre($val)
+    public function hasEnoughCopper($val)
     {
-        if($this->cuivre >= $val)
+        if($this->copper >= $val)
             return true;
         return false;
     } 
 
-    public function addCuivre($mod)
+    public function addCopper($mod)
     {
-        if($this->cuivre + $mod < 0)
-            $this->cuivre = 0;
+        if($this->copper + $mod < 0)
+            $this->copper = 0;
         else
-            $this->cuivre = $this->cuivre + $mod;
+            $this->copper = $this->copper + $mod;
     } 
 
     /**
@@ -266,234 +266,234 @@ class Ressource
         if($this->bronze + $mod < 0)
             $this->bronze = 0;
         else
-            $this->bonze = $this->bronze + $mod;
+            $this->bronze = $this->bronze + $mod;
     } 
 
     /**
-     * Set etoffeMineure
+     * Set minorCloth
      *
-     * @param integer $etoffeMineure
+     * @param integer $minorCloth
      * @return Ressource
      */
-    public function setEtoffeMineure($etoffeMineure)
+    public function setMinorCloth($minorCloth)
     {
-        $this->etoffeMineure = $etoffeMineure;
+        $this->minorCloth = $minorCloth;
     
         return $this;
     }
 
     /**
-     * Get etoffeMineure
+     * Get minorCloth
      *
      * @return integer 
      */
-    public function getEtoffeMineure()
+    public function getMinorCloth()
     {
-        return $this->etoffeMineure;
+        return $this->minorCloth;
     }
 
-    public function hasEnoughEtoffeMineure($val)
+    public function hasEnoughMinorCloth($val)
     {
-        if($this->etoffeMineure >= $val)
+        if($this->minorCloth >= $val)
             return true;
         return false;
     } 
 
-    public function addEtoffeMineure($mod)
+    public function addMinorCloth($mod)
     {
-        if($this->etoffeMineure + $mod < 0)
-            $this->etoffeMineure = 0;
+        if($this->minorCloth + $mod < 0)
+            $this->minorCloth = 0;
         else
-            $this->etoffeMineure = $this->etoffeMineure + $mod;
+            $this->minorCloth = $this->minorCloth + $mod;
     } 
 
     /**
-     * Set etoffeStandart
+     * Set standardCloth
      *
-     * @param integer $etoffeStandart
+     * @param integer $standardCloth
      * @return Ressource
      */
-    public function setEtoffeStandart($etoffeStandart)
+    public function setStandardCloth($standardCloth)
     {
-        $this->etoffeStandart = $etoffeStandart;
+        $this->standardCloth = $standardCloth;
     
         return $this;
     }
 
     /**
-     * Get etoffeStandart
+     * Get standardCloth
      *
      * @return integer 
      */
-    public function getEtoffeStandart()
+    public function getStandardCloth()
     {
-        return $this->etoffeStandart;
+        return $this->standardCloth;
     }
 
-    public function hasEnoughEtoffeStandart($val)
+    public function hasEnoughStandardCloth($val)
     {
-        if($this->etoffeStandart >= $val)
+        if($this->standardCloth >= $val)
             return true;
         return false;
     } 
 
-    public function addEtoffeStandart($mod)
+    public function addStandardCloth($mod)
     {
-        if($this->etoffeStandart + $mod < 0)
-            $this->etoffeStandart = 0;
+        if($this->standardCloth + $mod < 0)
+            $this->standardCloth = 0;
         else
-            $this->etoffeStandart = $this->etoffeStandart + $mod;
+            $this->standardCloth = $this->standardCloth + $mod;
     } 
 
     /**
-     * Set cuirReche
+     * Set roughLeather
      *
-     * @param integer $cuirReche
+     * @param integer $roughLeather
      * @return Ressource
      */
-    public function setCuirReche($cuirReche)
+    public function setRoughLeather($roughLeather)
     {
-        $this->cuirReche = $cuirReche;
+        $this->roughLeather = $roughLeather;
     
         return $this;
     }
 
     /**
-     * Get cuirReche
+     * Get roughLeather
      *
      * @return integer 
      */
-    public function getCuirReche()
+    public function getRoughLeather()
     {
-        return $this->cuirReche;
+        return $this->roughLeather;
     }
 
-    public function hasEnoughCuirReche($val)
+    public function hasEnoughRoughLeather($val)
     {
-        if($this->cuirReche >= $val)
+        if($this->roughLeather >= $val)
             return true;
         return false;
     } 
 
-    public function addCuirReche($mod)
+    public function addRoughLeather($mod)
     {
-        if($this->cuirReche + $mod < 0)
-            $this->cuirReche = 0;
+        if($this->roughLeather + $mod < 0)
+            $this->roughLeather = 0;
         else
-            $this->cuirReche = $this->cuirReche + $mod;
+            $this->roughLeather = $this->roughLeather + $mod;
     } 
 
     /**
-     * Set cuirBrut
+     * Set rawLeather
      *
-     * @param integer $cuirBrut
+     * @param integer $rawLeather
      * @return Ressource
      */
-    public function setCuirBrut($cuirBrut)
+    public function setRawLeather($rawLeather)
     {
-        $this->cuirBrut = $cuirBrut;
+        $this->rawLeather = $rawLeather;
     
         return $this;
     }
 
     /**
-     * Get cuirBrut
+     * Get rawLeather
      *
      * @return integer 
      */
-    public function getCuirBrut()
+    public function getRawLeather()
     {
-        return $this->cuirBrut;
+        return $this->rawLeather;
     }
 
-    public function hasEnoughCuirBrut($val)
+    public function hasEnoughRawLeather($val)
     {
-        if($this->cuirBrut >= $val)
+        if($this->rawLeather >= $val)
             return true;
         return false;
     } 
 
-    public function addCuirBrut($mod)
+    public function addRawLeather($mod)
     {
-        if($this->cuirBrut + $mod < 0)
-            $this->cuirBrut = 0;
+        if($this->rawLeather + $mod < 0)
+            $this->rawLeather = 0;
         else
-            $this->cuirBrut = $this->cuirBrut + $mod;
+            $this->rawLeather = $this->rawLeather + $mod;
     } 
 
     /**
-     * Set boisCedre
+     * Set cedarWood
      *
-     * @param integer $boisCedre
+     * @param integer $cedarWood
      * @return Ressource
      */
-    public function setBoisCedre($boisCedre)
+    public function setCedarWood($cedarWood)
     {
-        $this->boisCedre = $boisCedre;
+        $this->cedarWood = $cedarWood;
     
         return $this;
     }
 
     /**
-     * Get boisCedre
+     * Get cedarWood
      *
      * @return integer 
      */
-    public function getBoisCedre()
+    public function getCedarWood()
     {
-        return $this->boisCedre;
+        return $this->cedarWood;
     }
 
-    public function hasEnoughBoisCedre($val)
+    public function hasEnoughCedarWood($val)
     {
-        if($this->boisCedre >= $val)
+        if($this->cedarWood >= $val)
             return true;
         return false;
     } 
 
-    public function addBoisCedre($mod)
+    public function addCedarWood($mod)
     {
-        if($this->boisCedre + $mod < 0)
-            $this->boisCedre = 0;
+        if($this->cedarWood + $mod < 0)
+            $this->cedarWood = 0;
         else
-            $this->boisCedre = $this->boisCedre + $mod;
+            $this->cedarWood = $this->cedarWood + $mod;
     } 
 
     /**
-     * Set boisChene
+     * Set oakWood
      *
-     * @param integer $boisChene
+     * @param integer $oakWood
      * @return Ressource
      */
-    public function setBoisChene($boisChene)
+    public function setOakWood($oakWood)
     {
-        $this->boisChene = $boisChene;
+        $this->oakWood = $oakWood;
     
         return $this;
     }
 
     /**
-     * Get boisChene
+     * Get oakWood
      *
      * @return integer 
      */
-    public function getBoisChene()
+    public function getOakWood()
     {
-        return $this->boisChene;
+        return $this->oakWood;
     }
 
-    public function hasEnoughBoisChene($val)
+    public function hasEnoughOakWood($val)
     {
-        if($this->boisChene >= $val)
+        if($this->oakWood >= $val)
             return true;
         return false;
     } 
 
-    public function addBoisChene($mod)
+    public function addOakWood($mod)
     {
-        if($this->boisChene + $mod < 0)
-            $this->boisChene = 0;
+        if($this->oakWood + $mod < 0)
+            $this->oakWood = 0;
         else
-            $this->boisChene = $this->boisChene + $mod;
+            $this->oakWood = $this->oakWood + $mod;
     } 
 }
