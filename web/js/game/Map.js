@@ -29,6 +29,7 @@ Array.matrix = function (m, n, initial) {
         this.textTiles = Array.matrix(this.gameWidth, this.gameHeight, "|");
         // Physical structure of the level.
         this.tiles = Array.matrix(this.gameWidth, this.gameHeight, "|");
+        this.properties = mapData.tilesets[0].tileproperties;
         this.LoadTiles(mapData.layers[0].data);
     }
 
@@ -56,23 +57,28 @@ Array.matrix = function (m, n, initial) {
 
 
     Map.prototype.LoadTile = function (tileType, x, y) {
-        switch (tileType) {
+        var property;
+        if(this.properties[tileType - 1] != null && this.properties[tileType - 1].block == "true")
+            property = Enum.TileCollision.Impassable;
+        else
+            property = Enum.TileCollision.Passable;
 
+        switch (tileType) {
             // Arbre
             case 1:
-                return new Tile(this.loadTileImg(1), Enum.TileCollision.Passable, x, y, true);
+                return new Tile(this.loadTileImg(1), property, x, y, true);
             //break;
             // Eau
             case 2:
-                return new Tile(this.loadTileImg(2), Enum.TileCollision.Passable, x, y, true);
+                return new Tile(this.loadTileImg(2), property, x, y, true);
             //break;
             // Roche
             case 3:
-                return new Tile(this.loadTileImg(3), Enum.TileCollision.Impassable, x, y, true);
+                return new Tile(this.loadTileImg(3), property, x, y, true);
             //break;
             // Plaine
             case 4:
-                return new Tile(this.loadTileImg(4), Enum.TileCollision.Passable, x, y, true);
+                return new Tile(this.loadTileImg(4), property, x, y, true);
             //break;
         }
     };
@@ -117,8 +123,10 @@ Array.matrix = function (m, n, initial) {
         }
         // Allow jumping past the level top and falling through the bottom.
         if (y < 0 || y >= this.Height()) {
-            return Enum.TileCollision.Passable;
+            return Enum.TileCollision.Impassable;
         }
+
+
 
         return this.tiles[y][x].Collision;
     };

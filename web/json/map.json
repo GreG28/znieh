@@ -20,7 +20,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"../../img/sprites/spritemap.png",
+         "image":"../img/sprites/spritemap.png",
          "imageheight":32,
          "imagewidth":192,
          "margin":0,

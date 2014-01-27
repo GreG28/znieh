@@ -4,7 +4,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
 (function (window) {
     function Tile(texture, collision, x, y, render) {
         "use strict";
-        this.initialize(texture, collision,x,y, render);
+        this.initialize(texture, collision, x, y, render);
     }
 
     Tile.prototype.initialize = function(texture, collision, x, y, render) {
@@ -31,7 +31,6 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         if(render === true) {
             this.render();
         }
-
     };
 
     Tile.prototype.render = function() {
@@ -68,21 +67,25 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
             shape.visible = false;
         });
 
-        this._container.on("click", function(evt) {
-            console.log("[TILE] x" + container.x + " y" + container.y);
-            var idUnit = $("#myUnits a.active").attr("data-unit");
+        this._container.on("click", function(evt, data) {
+            if(data.collision == Enum.TileCollision.Passable) {
+                console.log("[TILE] x" + container.x + " y" + container.y);
+                var idUnit = $("#myUnits a.active").attr("data-unit");
 
-            if(units[idUnit] != null) {
-                if(units[idUnit].statut == 0) {
-                    ContentManager.newUnit(Math.floor(evt.stageX / ContentManager.tileswidth), Math.floor(evt.stageY / ContentManager.tilesheight), units[idUnit].sprite, units[idUnit].taille, idUnit);
-                    nextUnitID++;
+                if(units[idUnit] != null) {
+                    if(units[idUnit].statut == 0) {
+                        ContentManager.newUnit(Math.floor(evt.stageX / ContentManager.tileswidth), Math.floor(evt.stageY / ContentManager.tilesheight), units[idUnit].sprite, units[idUnit].taille, idUnit);
+                        nextUnitID++;
+                    }
+                    else
+                        console.log("Cette unité ne peut être placée");
                 }
                 else
-                    console.log("Cette unité ne peut être placée");
+                    console.log("Il n'y a plus de personnages à placer");
             }
             else
-                console.log("Il n'y a plus de personnages à placer");
-        });
+                console.log("Vous ne pouvez pas placer votre personnage à cet endroit.");
+        }, null, false, { collision: this.Collision });
 
         this._container.x = this.x;
         this._container.y = this.y;
