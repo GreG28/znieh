@@ -13,7 +13,7 @@ Message : <input type="text" id="msg" value="Hello, World." />
 
 <script>
 var socket = io.connect('127.0.0.1:1338');
-socket.emit('auth', {username: {{ app.user.username }} , token: 'abc'}); 
+socket.emit('auth', {username: '{{ app.user.username }}', token: 'abc'}); 
 
 var conversations = [];
 
