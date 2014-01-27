@@ -30,7 +30,8 @@ var config = require('nconf');
 //
 config.argv()
     .env()
-    .file({ file: 'config.json' });
+    .file({ file: 'config.json' })
+    .file({ file: 'config.user.json'});
 
 // Reduce log level
 io.set('log level', 1);

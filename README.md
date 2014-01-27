@@ -71,10 +71,35 @@ You can configure node_paths in app/config/parameters.yml
 In "node" repository, execute the following command to install node_modules.
 
     npm install
+
+Then, you have to copy the file called `config.json` to `config.user.json` and edit the values according to your environnement.
+
+You'll probably need to edit the target IP in the `index.html`.
     
-Then, to run the server :
+Finally, run the server :
 
     node app.js
+
+For your information, the game server runs on port 1337.
+
+6) Chat server
+-------------------------------------
+
+In "chat-server" repository, execute the following command to install node_modules.
+
+    npm install
+
+Then, you have to copy the file called `config.json` to `config.user.json` and edit the values according to your environnement.
+
+You'll probably need to edit the target IP in the `index.html`.
+
+You need to add one table in your database, using the following script : https://gist.github.com/alfoeternia/752b89ab189e6b56e119
+
+Finally, run the server :
+
+    node app.js
+
+For your information, the chat server runs on port 1338.
 
  Composer
 -------------------------------------

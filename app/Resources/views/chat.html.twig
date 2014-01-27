@@ -1,3 +1,22 @@
+<style type="text/css">
+#chat {
+  width: 600px;
+  height: 200px;
+  padding: 10px;
+  margin: 10px;
+  border: 1px dashed gray;
+  border-radius: 8px;
+}
+.chat-message {
+  height: 110px;
+  overflow: auto;
+  
+}
+.chat-input {
+  width: 100%;
+  margin-top: -10px;
+}
+</style>
 
 Target : <input type="text" id="target" value="test" /><br />
 Message : <input type="text" id="msg" value="Hello, World." />
@@ -13,7 +32,7 @@ Message : <input type="text" id="msg" value="Hello, World." />
 
 <script>
 var socket = io.connect('127.0.0.1:1338');
-socket.emit('auth', {username: {{ app.user.username }} , token: 'abc'}); 
+socket.emit('auth', {username: '{{ app.user.username }}', token: 'abc'}); 
 
 var conversations = [];
 
