@@ -46,14 +46,14 @@ function ContentManager(stage, width, height) {
 
         loadingQueue = new createjs.LoadQueue(false);
         loadingQueue.addEventListener("complete", initMap);
-        loadingQueue.loadManifest([{id:"tileset", src:"../../img/sprites/spritemap.png"}]); // On oblige le chargement de l'image avant l'exécution de la suite, sinon la map n'est pas chargée avant le stage.update()
-        loadingQueue.loadManifest([{id:"unitFirefox", src:"../../img/sprites/firefox.png"}]);
-        loadingQueue.loadManifest([{id:"unitFirefox2", src:"../../img/sprites/firefox2.png"}]);
-        loadingQueue.loadManifest([{id:"sword", src:"../../img/sprites/bluesword.png"}]);
-        loadingQueue.loadManifest([{id:"map-json", src:"../../json/map.json"}]);
-        loadingQueue.loadManifest([{id:"units-json", src:"../../json/units.json"}]);
-        loadingQueue.loadManifest([{id:"mailarmor", src:"../../img/sprites/mailarmor.png"}]);
-        loadingQueue.loadManifest([{id:"mailarmor2", src:"../../img/sprites/mailarmor2.png"}]);
+        loadingQueue.loadManifest([{id:"tileset", src:"../img/sprites/spritemap.png"}]); // On oblige le chargement de l'image avant l'exécution de la suite, sinon la map n'est pas chargée avant le stage.update()
+        loadingQueue.loadManifest([{id:"unitFirefox", src:"../img/sprites/firefox.png"}]);
+        loadingQueue.loadManifest([{id:"unitFirefox2", src:"../img/sprites/firefox2.png"}]);
+        loadingQueue.loadManifest([{id:"sword", src:"../img/sprites/bluesword.png"}]);
+        loadingQueue.loadManifest([{id:"map-json", src:"../json/map.json"}]);
+        loadingQueue.loadManifest([{id:"units-json", src:"../json/units.json"}]);
+        loadingQueue.loadManifest([{id:"mailarmor", src:"../img/sprites/mailarmor.png"}]);
+        loadingQueue.loadManifest([{id:"mailarmor2", src:"../img/sprites/mailarmor2.png"}]);
     };
 
     function initMap() {
@@ -77,41 +77,7 @@ function ContentManager(stage, width, height) {
 
         unistJson = jQuery.parseJSON(loadingQueue.getResult("units-json",true));
 
-        /*createUnit(5,3,"firefox", ContentManager.unitsCaracteristics.PETITFIN);
-        createUnit(5,4,"firefox", ContentManager.unitsCaracteristics.PETITFIN);
-        createUnit(5,5,"firefox", ContentManager.unitsCaracteristics.PETITFIN);
-        createUnit(7,6,"mailarmor", ContentManager.unitsCaracteristics.PETITFIN);
-        createUnit(7,7,"mailarmor", ContentManager.unitsCaracteristics.PETITFIN);
-        createUnit(7,8,"mailarmor", ContentManager.unitsCaracteristics.PETITFIN);
-
-        createUnit(9,3,"firefox", ContentManager.unitsCaracteristics.GRANDMUSCLE);
-        createUnit(9,4,"firefox", ContentManager.unitsCaracteristics.GRANDMUSCLE);
-        createUnit(9,5,"firefox", ContentManager.unitsCaracteristics.GRANDMUSCLE);
-        createUnit(3,6,"mailarmor", ContentManager.unitsCaracteristics.GRANDMUSCLE);
-        createUnit(3,7,"mailarmor", ContentManager.unitsCaracteristics.GRANDMUSCLE);
-        createUnit(3,8,"mailarmor", ContentManager.unitsCaracteristics.GRANDMUSCLE);
-
-        createUnit(1,3,"firefox", ContentManager.unitsCaracteristics.PETITFIN);
-        createUnit(1,4,"firefox", ContentManager.unitsCaracteristics.PETITFIN);
-        createUnit(1,5,"firefox", ContentManager.unitsCaracteristics.PETITFIN);
-        createUnit(2,6,"mailarmor", ContentManager.unitsCaracteristics.PETITFIN);
-        createUnit(2,7,"mailarmor", ContentManager.unitsCaracteristics.PETITFIN);
-        createUnit(2,8,"mailarmor", ContentManager.unitsCaracteristics.PETITFIN);
-
-        createUnit(4,3,"firefox", ContentManager.unitsCaracteristics.GRANDMUSCLE);
-        createUnit(4,4,"firefox", ContentManager.unitsCaracteristics.GRANDMUSCLE);
-        createUnit(4,5,"firefox", ContentManager.unitsCaracteristics.GRANDMUSCLE);
-        createUnit(6,6,"mailarmor", ContentManager.unitsCaracteristics.GRANDMUSCLE);
-        createUnit(6,7,"mailarmor", ContentManager.unitsCaracteristics.GRANDMUSCLE);
-        createUnit(6,8,"mailarmor", ContentManager.unitsCaracteristics.GRANDMUSCLE);
-        */
-
-        //alert("unitsCreated.length -> " + unitsCreated.length);
-
-        //alert("units.length -> " + units.length);
-
-        createUnitToCache();
-
+        addUnitImageInMenu();
 
         createjs.Ticker.addEventListener("tick", tick);
         createjs.Ticker.useRAF = true;
@@ -166,7 +132,7 @@ function ContentManager(stage, width, height) {
         }
     };
 
-    function createUnitToCache()
+    function addUnitImageInMenu()
     {
         "use strict";
 
@@ -176,7 +142,7 @@ function ContentManager(stage, width, height) {
         var taille;
         var idUnit;
 
-        for(var i=0;i<units.length;i++)
+        for(var i = 0; i < units.length; i++)
         {
             x = -10;
             y = -10;
@@ -200,7 +166,6 @@ function ContentManager(stage, width, height) {
             var _data = Hero._container.getCacheDataURL();
             $("#unit-" + i +"-img").attr({src: _data});
 
-            alert("Hero._container.width ->" + Hero.width + "   " + "Hero._container.height ->" + Hero.height);
         }
     }
 

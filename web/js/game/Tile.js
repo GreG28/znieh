@@ -68,7 +68,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         });
 
         this._container.on("click", function(evt, data) {
-            if(data.collision == Enum.TileCollision.Passable) {
+            if(data.collision == Enum.TileCollision.Passable && Math.floor(evt.stageX / ContentManager.tileswidth) < (map.gameWidth / 3)) {
                 console.log("[TILE] x" + container.x + " y" + container.y);
                 var idUnit = $("#myUnits a.active").attr("data-unit");
 

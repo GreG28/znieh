@@ -126,8 +126,6 @@ Array.matrix = function (m, n, initial) {
             return Enum.TileCollision.Impassable;
         }
 
-
-
         return this.tiles[y][x].Collision;
     };
 
