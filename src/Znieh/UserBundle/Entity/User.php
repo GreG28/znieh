@@ -60,6 +60,14 @@ class User extends BaseUser
     protected $facebookId;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true, name="token")
+     *
+     */
+    private $token;
+
+    /**
     * @ORM\OneToMany(targetEntity="Znieh\UnitGameBundle\Entity\Team", mappedBy="user", cascade={"persist"})
     */
     private $teams;
@@ -84,6 +92,7 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
+        $this->token = uniqid('', true);
         $this->ressource = new Ressource();
     }
 
@@ -130,6 +139,16 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
     }
 
     /**

@@ -4,7 +4,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
 (function (window) {
     function Tile(texture, collision, x, y, render) {
         "use strict";
-        this.initialize(texture, collision,x,y, render);
+        this.initialize(texture, collision, x, y, render);
     }
 
     Tile.prototype.initialize = function(texture, collision, x, y, render) {
@@ -20,7 +20,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         this.x = x * this.width;
         this.y = y * this.height;
         this.texture = texture;
-        
+
         // location in the matrix
         this.i = x;
         this.j = y;
@@ -31,7 +31,6 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         if(render === true) {
             this.render();
         }
-
     };
 
     Tile.prototype.render = function() {
@@ -68,14 +67,25 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
             shape.visible = false;
         });
 
-        this._container.on("click", function(evt) {
-            console.log("[CLICK_Tile] x" + container.x + " y" + container.y);
-            var idUnit = nextUnitID;
-            if(units[idUnit] !== null) {
-                ContentManager.newUnit(Math.floor(evt.stageX / ContentManager.tileswidth), Math.floor(evt.stageY / ContentManager.tilesheight), units[idUnit].name, units[idUnit].taille);
-                nextUnitID++;
+        this._container.on("click", function(evt, data) {
+            if(data.collision == Enum.TileCollision.Passable && Math.floor(evt.stageX / ContentManager.tileswidth) < (map.gameWidth / 3)) {
+                console.log("[TILE] x" + container.x + " y" + container.y);
+                var idUnit = $("#myUnits a.active").attr("data-unit");
+
+                if(units[idUnit] != null) {
+                    if(units[idUnit].statut == 0) {
+                        ContentManager.newUnit(Math.floor(evt.stageX / ContentManager.tileswidth), Math.floor(evt.stageY / ContentManager.tilesheight), units[idUnit].sprite, units[idUnit].taille, idUnit);
+                        nextUnitID++;
+                    }
+                    else
+                        console.log("Cette unité ne peut être placée");
+                }
+                else
+                    console.log("Il n'y a plus de personnages à placer");
             }
-        });
+            else
+                console.log("Vous ne pouvez pas placer votre personnage à cet endroit.");
+        }, null, false, { collision: this.Collision });
 
         this._container.x = this.x;
         this._container.y = this.y;
@@ -83,7 +93,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         this._container.regY = 0;
 
         this.visible = true;
-    
+
         stage.addChild(this._container);
     };
 

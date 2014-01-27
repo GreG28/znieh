@@ -11,3 +11,4 @@ composer.phar
 *.psd
 /node/config.user.json
 /node/db.rar
+*DS_Store

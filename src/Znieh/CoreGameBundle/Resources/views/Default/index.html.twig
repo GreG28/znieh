@@ -10,6 +10,16 @@ onload="init();"
 <script src="{{ asset('js/game/Map.js') }}"></script>
 <script src="{{ asset('js/game/Unit.js') }}"></script>
 <script src="{{ asset('js/game/contentManager.js') }}"></script>
+
+<style>
+.sprite {
+    overflow: hidden;
+    width: 32px;
+    height: 32px;
+    float: left;
+}
+</style>
+
 <script>
 var canvas = document.getElementById("canvas");
 var stage = new createjs.Stage(canvas);
@@ -20,11 +30,38 @@ function init() {
 }
 
 var nextUnitID = 0;
-var units = [];
-units[0] = { "name": "firefox", "taille": "petitfin" };
-units[1] = { "name": "firefox", "taille": "grandmuscle" };
-units[2] = { "name": "mailarmor", "taille": "petitfin" };
+var units = [
+    { "sprite": "firefox", "taille": "petitfin", "name": "Bobby", "statut": 0 },
+    { "sprite": "firefox", "taille": "grandmuscle", "name": "Jacky", "statut": -1 },
+    { "sprite": "mailarmor", "taille": "petitfin", "name": "Patrick", "statut": -1 }
+];
 
+$(document).ready(function(){
+    for (var i = units.length - 1; i >= 0; i--) {
+        if(units[i].taille == "petitfin") {
+            taille = "";
+            coef = 1;
+        }
+        else{
+            taille = "2";
+            coef = 2;
+        }
+
+        $("#myUnits").prepend('<a class="list-group-item clearfix" id="unit-'+ i +'" data-unit="'+ i +'"><div style="overflow: hidden; width: ' + 32 * coef + 'px; height: ' + 32 * coef + 'px; float: left;"><img src="" alt="" id="unit-'+i +'-img"/></div> <div style="margin-top:5px; font-weight: bold; ">' + units[i].name + '</div></a>');
+        $("#unit-" + i).on("click", {id: i}, function(event) {
+            if(units[event.data.id].statut == -1) {
+                $("#myUnits a").removeClass("active");
+                for (var i = units.length - 1; i >= 0; i--) {
+                    if(units[i].statut == 0)
+                        units[i].statut = -1;
+                };
+                $("#unit-" + event.data.id).addClass("active");
+                units[event.data.id].statut = 0;
+            }
+        });
+    }
+    $("#myUnits :first-child").addClass("active");
+});
 </script>
 {% endblock %}
 
@@ -32,8 +69,7 @@ units[2] = { "name": "mailarmor", "taille": "petitfin" };
     <div class="row">
         <div class="col-sm-2">
             <h2>Mes unités</h2>
-                <div class="well">
-                    Bobby
+                <div class="list-group" id="myUnits">
                 </div>
             </div>
         <div class="col-sm-8">
@@ -45,13 +81,10 @@ units[2] = { "name": "mailarmor", "taille": "petitfin" };
         </div>
     </div>
 
-
-    <button id="auth" type="button" class="btn btn-primary">Auth</button>
     <button id="join" type="button" class="btn btn-primary">Join pool</button>
     <button id="ready" type="button" class="btn btn-primary">Ready <em>(start search)</em></button>
 
     <p><br />
-      Username : <input type="text" id="username" value="alfo" /><br />
       Pool ID : <input type="text" id="poolId" value="0" /></input>
     </p>
 
@@ -104,7 +137,7 @@ units[2] = { "name": "mailarmor", "taille": "petitfin" };
     });
 
     $('#auth').click(function () {
-      socket.emit('auth', {username: $("#username").val() , token: 'abc'});
+      socket.emit('auth', { username: '{{ app.user.username }}' , token: '{{ app.user.token }}' });
       $('#console').append('<strong>Trying to auth...</strong><br>');
     });
 
@@ -120,4 +153,5 @@ units[2] = { "name": "mailarmor", "taille": "petitfin" };
 
 
   </script>
+</script>
 {% endblock %}
