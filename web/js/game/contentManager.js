@@ -4,6 +4,12 @@ var map;
 var Hero;
 var Start;
 var spritePerso;
+//to stock the units created
+var unitsCreated = [];
+
+// this is the units created from the list inside,
+// the HTML page
+var unitsToMove = [];
 
 function ContentManager(stage, width, height) {
 
@@ -69,7 +75,6 @@ function ContentManager(stage, width, height) {
 
         unistJson = jQuery.parseJSON(loadingQueue.getResult("units-json",true));
 
-
         createUnit(5,3,"firefox", ContentManager.unitsCaracteristics.PETITFIN);
         createUnit(5,4,"firefox", ContentManager.unitsCaracteristics.PETITFIN);
         createUnit(5,5,"firefox", ContentManager.unitsCaracteristics.PETITFIN);
@@ -77,7 +82,7 @@ function ContentManager(stage, width, height) {
         createUnit(7,7,"mailarmor", ContentManager.unitsCaracteristics.PETITFIN);
         createUnit(7,8,"mailarmor", ContentManager.unitsCaracteristics.PETITFIN);
 
-        createUnit(9,3,"firefox", ContentManager.unitsCaracteristics.GRANDMUSCLE);
+        /*createUnit(9,3,"firefox", ContentManager.unitsCaracteristics.GRANDMUSCLE);
         createUnit(9,4,"firefox", ContentManager.unitsCaracteristics.GRANDMUSCLE);
         createUnit(9,5,"firefox", ContentManager.unitsCaracteristics.GRANDMUSCLE);
         createUnit(3,6,"mailarmor", ContentManager.unitsCaracteristics.GRANDMUSCLE);
@@ -97,6 +102,13 @@ function ContentManager(stage, width, height) {
         createUnit(6,6,"mailarmor", ContentManager.unitsCaracteristics.GRANDMUSCLE);
         createUnit(6,7,"mailarmor", ContentManager.unitsCaracteristics.GRANDMUSCLE);
         createUnit(6,8,"mailarmor", ContentManager.unitsCaracteristics.GRANDMUSCLE);
+        */
+
+        //alert("unitsCreated.length -> " + unitsCreated.length);
+
+        //alert("units.length -> " + units.length);
+
+
 
         createjs.Ticker.addEventListener("tick", tick);
         createjs.Ticker.useRAF = true;
@@ -115,7 +127,8 @@ function ContentManager(stage, width, height) {
         var loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
         spritePerso = loadingQueue.getResult(loading_id);
         Start = map.GetBounds(x, y).GetBottomCenter();
-        Hero = new Unit(spritePerso, map, Start, unistJson[type], taille);
+        // we add the new unit to the array to get them !
+        unitsCreated.push(new Unit(spritePerso, map, Start, unistJson[type], taille));
     }
 
     ContentManager.newUnit = function(x, y, type, taille, idUnit) {
@@ -129,10 +142,11 @@ function ContentManager(stage, width, height) {
 
         units[idUnit].unitID = Hero.unitID;
         units[idUnit].statut = 1; // Placé
-        $("#unit-" + idUnit).append('<i class="glyphicon glyphicon-ok"></i>')
+        $("#unit-" + idUnit).append('<i class="glyphicon glyphicon-ok"></i>');
         $("#unit-" + idUnit).removeClass("active");
+        $("#unit-" + idUnit).append('<i class="glyphicon glyphicon-ok"></i>');
 
-        var nextIdUnit = (parseInt(idUnit) + 1) % units.length;
+        var nextIdUnit = (parseInt(idUnit,10) + 1) % units.length;
 
         if(units[nextIdUnit] != null) {
             if(units[nextIdUnit].statut == -1) {
@@ -140,6 +154,14 @@ function ContentManager(stage, width, height) {
                 $("#unit-" + nextIdUnit).addClass("active");
             }
         }
+
+
+        Hero._container.cache(0,0,100,100);
+        var _data = Hero._container.getCacheDataURL();
+        $("#unit-" + nextIdUnit+"-img").attr({src: _data});
+
+        unitsToMove.push(Hero);
+        alert("unitsToMove.length -> " + unitsToMove.length);
 
     };
 

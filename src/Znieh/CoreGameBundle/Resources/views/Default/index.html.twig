@@ -47,7 +47,7 @@ $(document).ready(function(){
             coef = 2;
         }
 
-        $("#myUnits").prepend('<a class="list-group-item clearfix" id="unit-'+ i +'" data-unit="'+ i +'"><div style="overflow: hidden; width: ' + 32 * coef + 'px; height: ' + 32 * coef + 'px; float: left;"><img src="../img/sprites/' + units[i].sprite + taille + '.png" alt="Caca" /></div> <div style="margin-top:5px; font-weight: bold; ">' + units[i].name + '</div></a>');
+        $("#myUnits").prepend('<a class="list-group-item clearfix" id="unit-'+ i +'" data-unit="'+ i +'"><div style="overflow: hidden; width: ' + 32 * coef + 'px; height: ' + 32 * coef + 'px; float: left;"><img src="../img/sprites/' + units[i].sprite + taille + '.png" alt="Caca" id="unit-'+i +'-img"/></div> <div style="margin-top:5px; font-weight: bold; ">' + units[i].name + '</div></a>');
         $("#unit-" + i).on("click", {id: i}, function(event) {
             if(units[event.data.id].statut == -1) {
                 $("#myUnits a").removeClass("active");
