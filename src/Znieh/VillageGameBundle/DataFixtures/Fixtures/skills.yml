@@ -116,7 +116,7 @@ jet_de_sable:
   ratio: 0
   attribute: 0
   time: 2
-  cooldown:5
+  cooldown: 5
   description: Inflige aveuglement à la cible durant 2 tours.
 berserker:
   name: Berserker
@@ -169,7 +169,7 @@ attaque_zone:
   cooldown: 6
   description: (Passif) Permet au lanceur de frapper les cases adjacentes à une cible.
 cisaillement_tendon:
-  name: Cisaillement de tendon:
+  name: Cisaillement de tendon
   step: Agilité mortelle I
   cost: 5
   damages: 60

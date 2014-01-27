@@ -181,7 +181,7 @@ repoussoir:
 soin:
   name: Soin
   step: Support II
-  cost:6
+  cost: 6
   damages: 60
   ratio: 0.4
   attribute: Magie supportive
