@@ -108,7 +108,7 @@ function ContentManager(stage, width, height) {
 
         //alert("units.length -> " + units.length);
 
-
+        createUnitToCache();
 
         createjs.Ticker.addEventListener("tick", tick);
         createjs.Ticker.useRAF = true;
@@ -153,12 +153,44 @@ function ContentManager(stage, width, height) {
                 $("#unit-" + nextIdUnit).addClass("active");
             }
         }
-
-        Hero._container.cache(-17,-17,34,34);
-        var _data = Hero._container.getCacheDataURL();
-        $("#unit-" + idUnit +"-img").attr({src: _data});
-
-        unitsToMove.push(Hero);
     };
+
+    function createUnitToCache()
+    {
+        "use strict";
+
+        var x;
+        var y;
+        var type;
+        var taille;
+        var idUnit;
+
+        for(var i=0;i<units.length;i++)
+        {
+            x = -10;
+            y = -10;
+            type = units[i].sprite;
+            taille = units[i].taille;
+            idUnit = i;
+
+            unistJson = jQuery.parseJSON(loadingQueue.getResult("units-json",true));
+            var loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
+            spritePerso = loadingQueue.getResult(loading_id);
+            Start = map.GetBounds(x, y).GetBottomCenter();
+            Hero = new Unit(spritePerso, map, Start, unistJson[type], taille);
+
+
+            var cache_widht = Hero.width;
+            var cache_height = Hero.height;
+            var cache_x = -(cache_widht/2)-1;
+            var cache_y = -(cache_widht/2)-1;
+
+            Hero._container.cache(cache_x,cache_y,cache_widht,cache_height);
+            var _data = Hero._container.getCacheDataURL();
+            $("#unit-" + i +"-img").attr({src: _data});
+
+            alert("Hero._container.width ->" + Hero.width + "   " + "Hero._container.height ->" + Hero.height);
+        }
+    }
 
 }
