@@ -10,7 +10,7 @@
 .chat-message {
   height: 110px;
   overflow: auto;
-  
+
 }
 .chat-input {
   width: 100%;
@@ -28,11 +28,12 @@ Message : <input type="text" id="msg" value="Hello, World." />
 </div>
 
 <br /><br />
-<pre id="console" style="border: 1px dotted grey; padding: 10px;width: 600px;"><strong>Console Log :</strong><br /><br /></pre>
+<pre id="console" style="border: 1px dotted grey; padding: 10px;width: 600px; margin-bottom:"><strong>Console Log :</strong><br /><br /></pre>
 
+<br><br><br><br><br>
 <script>
 var socket = io.connect('127.0.0.1:1338');
-socket.emit('auth', {username: '{{ app.user.username }}', token: 'abc'}); 
+socket.emit('auth', {username: '{{ app.user.username }}', token: 'abc'});
 
 var conversations = [];
 
@@ -55,7 +56,7 @@ var addConversation = function(from) {
         } else {
             elem.css('background-color', 'rgb(66, 139, 202)');
             elem.css('color', 'rgb(255, 255, 255)');
-        }    
+        }
       }, 200);
     });*/
     $('#chat-messages > div').addClass('active');
@@ -66,7 +67,7 @@ var addConversation = function(from) {
     {
       var date = moment().calendar();
       $('#tab' + index + ' > p').append('['+date+'] -> '+conversations[index]+': '+$('#chat-input-' + index).val()+'<br />');
-      socket.emit('message', {target: conversations[index], msg: $('#chat-input-' + index).val()}); 
+      socket.emit('message', {target: conversations[index], msg: $('#chat-input-' + index).val()});
       $('#chat-input-' + index).val('');
     }
   });
@@ -92,10 +93,10 @@ socket.on('message', function (data) {
   }
 
   if(index == undefined) index = addConversation(data.from);
-  
+
   date = moment(data.date, "X").calendar();
   $('#tab' + index + ' > p').append('['+date+'] '+data.from+' -> '+data.to+': '+data.msg+'<br />');
-  
+
   $('#console').append('<strong>['+date+'] '+data.from+' -> '+data.to+': '+data.msg+'</strong><br />');
 
 });
@@ -116,7 +117,7 @@ socket.on('message', function (data) {
     date = moment().calendar();
     $('#tab' + index + ' > p').append('['+date+'] -> '+$('#target').val()+': '+$('#msg').val()+'<br />');
 
-    socket.emit('message', {target: $('#target').val(), msg: $('#msg').val()}); 
+    socket.emit('message', {target: $('#target').val(), msg: $('#msg').val()});
     $('#msg').val('');
   });
 
@@ -125,7 +126,7 @@ socket.on('message', function (data) {
 
 
   $('#send-group').click(function () {
-    socket.emit('message-group', {target: $('#target').val(), msg: $('#msg').val()}); 
+    socket.emit('message-group', {target: $('#target').val(), msg: $('#msg').val()});
   });
 
 

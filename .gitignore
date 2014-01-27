@@ -14,3 +14,4 @@ composer.phar
 /node/config.user.json
 /node/db.rar
 *DS_Store
+npm-debug.log
