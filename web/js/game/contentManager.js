@@ -144,8 +144,7 @@ function ContentManager(stage, width, height) {
         units[idUnit].statut = 1; // Placé
         $("#unit-" + idUnit).append('<i class="glyphicon glyphicon-ok"></i>');
         $("#unit-" + idUnit).removeClass("active");
-        $("#unit-" + idUnit).append('<i class="glyphicon glyphicon-ok"></i>');
-
+    
         var nextIdUnit = (parseInt(idUnit,10) + 1) % units.length;
 
         if(units[nextIdUnit] != null) {
@@ -155,14 +154,11 @@ function ContentManager(stage, width, height) {
             }
         }
 
-
-        Hero._container.cache(0,0,100,100);
+        Hero._container.cache(-17,-17,34,34);
         var _data = Hero._container.getCacheDataURL();
-        $("#unit-" + nextIdUnit+"-img").attr({src: _data});
+        $("#unit-" + idUnit +"-img").attr({src: _data});
 
         unitsToMove.push(Hero);
-        alert("unitsToMove.length -> " + unitsToMove.length);
-
     };
 
 }
