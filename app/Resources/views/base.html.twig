@@ -30,6 +30,22 @@
 
             <br><br><br>
 
+            {% block javascripts %}
+                <script src="{{ asset('js/jquery.js') }}"></script>
+                <script src="{{ asset('js/bootstrap.js') }}"></script>
+                <script src="{{ asset('toastr/toastr.min.js') }}"></script>
+                <script src="{{ asset('js/jquery-ui-1.10.4.custom.js') }}"></script>
+
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <script src="{{ asset('js/socket.io.js') }}"></script>
+                {% endif %}
+
+                <!-- Some scripts -->
+                <script>
+                </script>
+
+            {% endblock %}
+
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 {% block chat %}
                     {% include '::chat.html.twig' %}
@@ -41,18 +57,6 @@
             {% endblock %} <!-- end block footer -->
 
         </div>
-
-        {% block javascripts %}
-            <script src="{{ asset('js/jquery.js') }}"></script>
-            <script src="{{ asset('js/bootstrap.js') }}"></script>
-            <script src="{{ asset('toastr/toastr.min.js') }}"></script>
-            <script src="{{ asset('js/jquery-ui-1.10.4.custom.js') }}"></script>
-
-            <!-- Some scripts -->
-            <script>
-            </script>
-
-        {% endblock %}
 
             {% block createJs '' %}
 
