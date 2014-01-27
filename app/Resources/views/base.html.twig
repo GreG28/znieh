@@ -30,6 +30,12 @@
 
             <br><br><br>
 
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {% block chat %}
+                    {% include '::chat.html.twig' %}
+                {% endblock %}
+            {% endif %}
+
             {% block footer %}
                 {% include '::footer.html.twig' %}
             {% endblock %} <!-- end block footer -->

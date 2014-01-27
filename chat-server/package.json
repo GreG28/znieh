@@ -1,0 +1,16 @@
+{
+    "name": "Znieh-ChatServer",
+    "version": "0.0.1",
+    "author": "Alexis Fouché <contact@alexisfouche.net>",
+    "description": "Chat server for Znieh",
+    "scripts": {
+        "start": "node ./app.js"
+    },
+    "dependencies": {
+        "socket.io": "latest",
+        "nconf": "latest",
+        "sequelize": "*",
+        "sequelize-mysql": "*",
+        "mysql": "*"
+    }
+}
