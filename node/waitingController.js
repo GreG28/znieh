@@ -1,7 +1,22 @@
 
 module.exports = waitingController = function(world, player) {
 
-	
+	player.socket.on("get-pools", function(data) {
+		var pools = [];
+
+		for (var i = 0; i < world.config.get('pool:count'); i++) {
+			var pool = {
+				'name': 'pool-' + i,
+				'attribute1': 'value1',
+				'attribute2': 'value2',
+				'attribute3': 'value3'
+			};
+
+			pools[i] = pool;
+		};
+
+		player.socket.emit("pools-list", { data: pools });
+	});
 
 
     player.socket.on("join", function(data) {

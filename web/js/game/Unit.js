@@ -99,6 +99,7 @@
         this._container = new createjs.Container();
 
         this.Reset(position);
+
     };
 
     /// <summary>
@@ -142,7 +143,7 @@
         });
 
         this._container.on("click", function(evt) {
-            console.log("[CLICK_Unit] x" + container.x + " y" + container.y);
+            console.log("[UNIT] x" + container.x + " y" + container.y);
         });
 
         this._container.x = position.x;

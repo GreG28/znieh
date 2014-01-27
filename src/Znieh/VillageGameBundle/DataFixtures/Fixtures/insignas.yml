@@ -1,0 +1,12 @@
+energie:
+  name: Insigne de rayonement
+  step: Insignes Classiques
+vie:
+  name: Insigne du survivant
+  step: Insignes Classiques
+absorption:
+  name: Insigne d'absorption
+  step: Insignes Exotiques
+bénédiction:
+  name: Insigne de bénédiction
+  step: Insignes Rares

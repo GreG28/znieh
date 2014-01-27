@@ -1,6 +1,9 @@
-lourd:
-  name: Lourd
-intermediaire:
-  name: Intermédiaire
-leger:
-  name: Léger
+fin:
+  name: Fin
+  points: 0
+moyen:
+  name: Moyen
+  points: 1
+muscle:
+  name: Musclé
+  points: 2

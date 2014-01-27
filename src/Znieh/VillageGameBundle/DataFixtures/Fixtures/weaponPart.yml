@@ -56,6 +56,64 @@ lame_glaive_en_bronze:
   name: Lame de glaive en bronze
   type: Lame
   step: Lames en bronze
+#-------------------------------------------------
+lame_longue_en_fer:
+  name: Lame longue en fer
+  type: Lame
+  step: Lames en fer
+lame_courbe_en_fer:
+  name: Lame courbe en fer
+  type: Lame
+  step: Lames en fer
+lame_katana_en_fer:
+  name: Lame de katana en fer
+  type: Lame
+  step: Lames en fer
+lame_rapiere_en_fer:
+  name: Lame de rapière en fer
+  type: Lame
+  step: Lames en fer
+lame_dague_en_fer:
+  name: Lame de dague en fer
+  type: Lame
+  step: Lames en fer
+lame_espadon_en_fer:
+  name: Lame d'espadon en fer
+  type: Lame
+  step: Lames en fer
+lame_glaive_en_fer:
+  name: Lame de glaive en fer
+  type: Lame
+  step: Lames en fer
+  #-------------------------------------------------
+lame_longue_en_or:
+  name: Lame longue en or
+  type: Lame
+  step: Lames en or
+lame_courbe_en_or:
+  name: Lame courbe en or
+  type: Lame
+  step: Lames en or
+lame_katana_en_or:
+  name: Lame de katana en or
+  type: Lame
+  step: Lames en or
+lame_rapiere_en_or:
+  name: Lame de rapière en or
+  type: Lame
+  step: Lames en or
+lame_dague_en_or:
+  name: Lame de dague en or
+  type: Lame
+  step: Lames en or
+lame_espadon_en_or:
+  name: Lame d'espadon en or
+  type: Lame
+  step: Lames en or
+lame_glaive_en_or:
+  name: Lame de glaive en or
+  type: Lame
+  step: Lames en or
 #_________________________________________________
 # Gardes d'épée
 garde_en_cuivre_en_panier:
@@ -86,85 +144,85 @@ garde_en_bronze_arrondie:
 #_________________________________________________
 # Manches d'épée
 manche_en_cedre_de_vie:
-  name: Manche_en cèdre de vie
+  name: Manche en cèdre de vie
   type: Manche
   step: Manches en cèdre
 manche_en_cedre_de_penetration:
-  name: Manche_en cèdre de pénétration
+  name: Manche en cèdre de pénétration
   type: Manche
   step: Manches en cèdre
 manche_en_cedre_de_precision:
-  name: Manche_en cèdre de précision
+  name: Manche en cèdre de précision
   type: Manche
   step: Manches en cèdre
 manche_en_cedre_d_esquive:
-  name: Manche_en cèdre d'esquive
+  name: Manche en cèdre d'esquive
   type: Manche
   step: Manches en cèdre
 manche_en_cedre_de_parade:
-  name: Manche_en cèdre de parade
+  name: Manche en cèdre de parade
   type: Manche
   step: Manches en cèdre
 manche_en_cedre_defense:
-  name: Manche_en cèdre de défense
+  name: Manche en cèdre de défense
   type: Manche
   step: Manches en cèdre
 manche_en_cedre_de_force:
-  name: Manche_en cèdre de force
+  name: Manche en cèdre de force
   type: Manche
   step: Manches en cèdre
 manche_en_cedre_d_agilite:
-  name: Manche_en cèdre d'agilité
+  name: Manche en cèdre d'agilité
   type: Manche
   step: Manches en cèdre
 manche_en_cedre_d_intelligence:
-  name: Manche_en cèdre d'intelligence
+  name: Manche en cèdre d'intelligence
   type: Manche
   step: Manches en cèdre
   manche_en_cedre_d_armure:
-  name: Manche_en cèdre d'armure
+  name: Manche en cèdre d'armure
   type: Manche
   step: Manches en cèdre
 
 #_________________________________________________
 manche_en_chene_de_vie:
-  name: Manche_en chêne de vie
+  name: Manche en chêne de vie
   type: Manche
   step: Manches en Chêne
 manche_en_chene_de_penetration:
-  name: Manche_en chêne de pénétration
+  name: Manche en chêne de pénétration
   type: Manche
   step: Manches en Chêne
 manche_en_chene_de_precision:
-  name: Manche_en chêne de précision
+  name: Manche en chêne de précision
   type: Manche
   step: Manches en Chêne
 manche_en_chene_d_esquive:
-  name: Manche_en chêne d'esquive
+  name: Manche en chêne d'esquive
   type: Manche
   step: Manches en Chêne
 manche_en_chene_de_parade:
-  name: Manche_en chêne de parade
+  name: Manche en chêne de parade
   type: Manche
   step: Manches en Chêne
 manche_en_chene_defense:
-  name: Manche_en chêne de défense
+  name: Manche en chêne de défense
   type: Manche
   step: Manches en Chêne
 manche_en_chene_de_force:
-  name: Manche_en chêne de force
+  name: Manche en chêne de force
   type: Manche
   step: Manches en Chêne
 manche_en_chene_d_agilite:
-  name: Manche_en chêne d'agilité
+  name: Manche en chêne d'agilité
   type: Manche
   step: Manches en Chêne
 manche_en_chene_d_intelligence:
-  name: Manche_en chêne d'intelligence
+  name: Manche en chêne d'intelligence
   type: Manche
   step: Manches en Chêne
 manche_en_chene_d_armure:
-  name: Manche_en chêne d'armure
+  name: Manche en chêne d'armure
   type: Manche
   step: Manches en Chêne
 #_________________________________________________
@@ -255,87 +313,87 @@ pommeau_en_bronze_d_armure:
 tete_hache_cuivre_bardiche:
   name: Tête de bardiche en cuivre
   type: Tête de hache
-  step: Tête de hache en cuivre
+  step: Têtes de hache en cuivre
 tete_hache_cuivre_Francisque:
   name: Tête de Francisque en cuivre
   type: Tête de hache
-  step: Tête de hache en cuivre
+  step: Têtes de hache en cuivre
 tete_hache_cuivre_hallebarde:
   name: Tête de hallebarde en cuivre
   type: Tête de hache
-  step: Tête de hache en cuivre
+  step: Têtes de hache en cuivre
 tete_hache_cuivre_labrys:
   name: Tête de Labrys en cuivre
   type: Tête de hache
-  step: Tête de hache en cuivre
+  step: Têtes de hache en cuivre
 tete_ hache_cuivre_lochaber:
   name: Tête de Lochaber en cuivre
   type: Tête de hache
-  step: Tête de hache en cuivre
+  step: Têtes de hache en cuivre
 #_________________________________________________
 tete_hache_bronze_bardiche:
   name: Tête de bardiche en bronze
   type: Tête de hache
-  step: Tête de hache en bronze
+  step: Têtes de hache en bronze
 tete_hache_bronze_Francisque:
   name: Tête de Francisque en bronze
   type: Tête de hache
-  step: Tête de hache en bronze
+  step: Têtes de hache en bronze
 tete_hache_bronze_hallebarde:
   name: Tête de hallebarde en bronze
   type: Tête de hache
-  step: Tête de hache en bronze
+  step: Têtes de hache en bronze
 tete_hache_bronze_labrys:
   name: Tête de Labrys en bronze
   type: Tête de hache
-  step: Tête de hache en bronze
+  step: Têtes de hache en bronze
 tete_ hache_bronze_lochaber:
   name: Tête de Lochaber en bronze
   type: Tête de hache
-  step: Tête de hache en bronze
+  step: Têtes de hache en bronze
 #_________________________________________________
 # Tête de marteau
 tete_marteau_cuivre_guerre:
   name: Tête de marteau de guerre en cuivre
   type: Tête de marteau
-  step: Tête de marteau en cuivre
+  step: Têtes de marteau en cuivre
 tete_marteau_cuivre_geant:
   name: Tête de marteau géant en cuivre
   type: Tête de marteau
-  step: Tête de marteau en cuivre
+  step: Têtes de marteau en cuivre
 tete_marteau_cuivre_gourdin:
   name: Tête de gourdin en cuivre
   type: Tête de marteau
-  step: Tête de marteau en cuivre
+  step: Têtes de marteau en cuivre
 tete_marteau_cuivre_armes:
   name: Tête de marteau d'armes en cuivre
   type: Tête de marteau
-  step: Tête de marteau en cuivre
+  step: Têtes de marteau en cuivre
 tete_ marteau_cuivre_morgenstern :
   name: Tête de Morgenstern en cuivre
   type: Tête de marteau
-  step: Tête de marteau en cuivre
+  step: Têtes de marteau en cuivre
 #_________________________________________________
 tete_marteau_bronze_guerre:
   name: Tête de marteau de guerre en bronze
   type: Tête de marteau
-  step: Tête de marteau en bronze
+  step: Têtes de marteau en bronze
 tete_marteau_bronze_geant:
   name: Tête de marteau géant en bronze
   type: Tête de marteau
-  step: Tête de marteau en bronze
+  step: Têtes de marteau en bronze
 tete_marteau_bronze_gourdin:
   name: Tête de gourdin en bronze
   type: Tête de marteau
-  step: Tête de marteau en bronze
+  step: Têtes de marteau en bronze
 tete_marteau_bronze_armes:
   name: Tête de marteau d'armes en bronze
   type: Tête de marteau
-  step: Tête de marteau en bronze
+  step: Têtes de marteau en bronze
 tete_ marteau_bronze_morgenstern :
   name: Tête de Morgenstern en bronze
   type: Tête de marteau
-  step: Tête de marteau en bronze
+  step: Têtes de marteau en bronze
 #_________________________________________________
 # Hampe de hache et marteau
 hampe_cedre_de_vie:
@@ -574,84 +632,84 @@ arc_court_chene:
   step: Arcs en chêne
 #_________________________________________________
 # Poignées arcs
-poignee_arc__cuivre_de_vie:
+poignee_arc_cuivre_de_vie:
   name: Poignée d'arc en cuivre de vie
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
-poignee_arc__cuivre_de_penetration:
+poignee_arc_cuivre_de_penetration:
   name: Poignée d'arc en cuivre de pénétration
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
-poignee_arc__cuivre_de_precision:
+poignee_arc_cuivre_de_precision:
   name: Poignée d'arc en cuivre de précision
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
-poignee_arc__cuivre_d_esquive:
+poignee_arc_cuivre_d_esquive:
   name: Poignée d'arc en cuivre d'esquive
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
-poignee_arc__cuivre_de_parade:
+poignee_arc_cuivre_de_parade:
   name: Poignée d'arc en cuivre de parade
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
-poignee_arc__cuivre_de_defense:
+poignee_arc_cuivre_de_defense:
   name: Poignée d'arc en cuivre de défense
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
-poignee_arc__cuivre_de_force:
+poignee_arc_cuivre_de_force:
   name: Poignée d'arc en cuivre de force
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
-poignee_arc__cuivre_d_agilite:
+poignee_arc_cuivre_d_agilite:
   name: Poignée d'arc en cuivre d'agilité
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
-poignee_arc__cuivre_d_intelligence:
+poignee_arc_cuivre_d_intelligence:
   name: Poignée d'arc en cuivre d'intelligence
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
-poignee_arc__cuivre_d_armure:
+poignee_arc_cuivre_d_armure:
   name: Poignée d'arc en cuivre d'armure
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
 #_________________________________________________
-poignee_arc__bronze_de_vie:
+poignee_arc_bronze_de_vie:
   name: Poignée d'arc en bronze de vie
   type: Poignée d'arc
   step: Poignées d'arc en bronze
-poignee_arc__bronze_de_penetration:
+poignee_arc_bronze_de_penetration:
   name: Poignée d'arc en bronze de pénétration
   type: Poignée d'arc
   step: Poignées d'arc en bronze
-poignee_arc__bronze_de_precision:
+poignee_arc_bronze_de_precision:
   name: Poignée d'arc en bronze de précision
   type: Poignée d'arc
   step: Poignées d'arc en bronze
-poignee_arc__bronze_d_esquive:
+poignee_arc_bronze_d_esquive:
   name: Poignée d'arc en bronze d'esquive
   type: Poignée d'arc
   step: Poignées d'arc en bronze
-poignee_arc__bronze_de_parade:
+poignee_arc_bronze_de_parade:
   name: Poignée d'arc en bronze de parade
   type: Poignée d'arc
   step: Poignées d'arc en bronze
-poignee_arc__bronze_de_defense:
+poignee_arc_bronze_de_defense:
   name: Poignée d'arc en bronze de défense
   type: Poignée d'arc
   step: Poignées d'arc en bronze
-poignee_arc__bronze_de_force:
+poignee_arc_bronze_de_force:
   name: Poignée d'arc en bronze de force
   type: Poignée d'arc
   step: Poignées d'arc en bronze
-poignee_arc__bronze_d_agilite:
+poignee_arc_bronze_d_agilite:
   name: Poignée d'arc en bronze d'agilité
   type: Poignée d'arc
   step: Poignées d'arc en bronze
-poignee_arc__bronze_d_intelligence:
+poignee_arc_bronze_d_intelligence:
   name: Poignée d'arc en bronze d'intelligence
   type: Poignée d'arc
   step: Poignées d'arc en bronze
-poignee_arc__bronze_d_armure:
+poignee_arc_bronze_d_armure:
   name: Poignée d'arc en bronze d'armure
   type: Poignée d'arc
   step: Poignées d'arc en bronze

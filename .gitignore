@@ -11,3 +11,5 @@ composer.phar
 /chat-server/node_modules/
 *.psd
 /node/config.user.json
+/node/db.rar
+*DS_Store

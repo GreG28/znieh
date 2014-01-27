@@ -31,6 +31,9 @@ class LoadArmorPartData extends AbstractFixtureLoader implements OrderedFixtureI
                 ->setStep($step)
             ;
 
+            $points = empty($armorPartData['points']) ? $step->getPoints() : $armorPartData['points'];
+            $armorPart->setPoints($points);
+
             $manager->persist($armorPart);
             $manager->flush();
         }

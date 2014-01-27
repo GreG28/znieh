@@ -22,12 +22,19 @@ class Weight
     private $id;
 
 
-       /**
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="points", type="integer")
+     */
+    private $points;
 
 
     /**
@@ -63,5 +70,28 @@ class Weight
     {
         return $this->name;
     }
-}
 
+    /**
+     * Set points
+     *
+     * @param integer $points
+     *
+     * @return Weight
+     */
+    public function setPoints($points)
+    {
+        $this->points = $points;
+
+        return $this;
+    }
+
+    /**
+     * Get points
+     *
+     * @return integer 
+     */
+    public function getPoints()
+    {
+        return $this->points;
+    }
+}

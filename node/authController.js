@@ -4,17 +4,22 @@ module.exports = authController = function(socket, world, callback) {
 
 	socket.on("auth", function(data) {
 
+		var isAuthenticated = false;
+
 		socket.get('authenticated', function(err, value) {
-			// If user is trying to auth a second time
-			if(value == true) {
-				var endpoint = socket.handshake.address;
-				console.log('[INFO] Possible hack detected: Player connected from '+ endpoint.address + ' is trying to auth again -> player kicked.')
-				socket.emit("service", { msg: 'Auth: Already authenticated' });
-				socket.disconnect();
-				return -1;
-			}
+			isAuthenticated = value;
 		});
 
+		// If user is trying to auth a second time
+		if(isAuthenticated) {
+			var endpoint = socket.handshake.address;
+			console.log('[INFO] Possible hack detected: Player connected from '+ endpoint.address + ' is trying to auth again -> player kicked.')
+			socket.emit("service", { msg: 'Auth: Already authenticated' });
+			socket.disconnect();
+			return -1;
+		}
+
+		// If no token is provided
 		if(data.token == undefined || data.token == '')
 		{
 			var endpoint = socket.handshake.address;
@@ -25,7 +30,8 @@ module.exports = authController = function(socket, world, callback) {
 		}
 		
 
-		world.db.User.find({where: {username: data.username, token: data.token}})
+		//world.db.User.find({where: {username: data.username, token: data.token}})
+		world.db.User.find({where: {username: data.username}})
 		.success(function(user){
 
 			user = {
@@ -38,7 +44,5 @@ module.exports = authController = function(socket, world, callback) {
 			callback(user);
 
 		});
-
-		console.log('test');
     });
 }

@@ -7,7 +7,6 @@ body { padding: 15px; }
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 
-<button id="connection" type="button" class="btn btn-primary">Connexion</button>
 <button id="auth" type="button" class="btn btn-primary">Auth</button>
 <button id="join" type="button" class="btn btn-primary">Join pool</button>
 <button id="ready" type="button" class="btn btn-primary">Ready <em>(start search)</em></button>
@@ -20,38 +19,40 @@ body { padding: 15px; }
 <br /><br />
 <pre id="console" style="border: 1px dotted grey; padding: 10px;width: 600px;"><strong>Console Log :</strong><br /><br /></pre>
 
+<div id="pools" style="border: 1px dotted grey; width: 600px; padding: 10px;">
+  <button id="fight" type="button" class="btn btn-primary">Fight !</button>
+</div>
+
 
 <script>
 	var socket = undefined;
 
-	$('#connection').click(function () {
-    if(socket == undefined) {
-		  socket = io.connect('10.42.1.1:1337');
-		  $('#console').append('Connected<br>');
+  socket = io.connect('127.0.0.1:1337');
+  $('#console').append('Connected<br>');
 
 
-      // In
-      socket.on('welcome', function (data) {
-          console.log(data);
-          $('#console').append('Server has send welcome message. Your name is : ' + data + '<br />');
-      });
+  // In
+  socket.on('welcome', function (data) {
+    console.log(data);
+    $('#console').append('Server has send welcome message. Your name is : ' + data + '<br />');
+  });
 
-      socket.on('service', function (data) {
-          console.log(data);
-          $('#console').append('Service message : ' + data.msg + '<br />');
-      });
+  socket.on('service', function (data) {
+    console.log(data);
+    $('#console').append('Service message : ' + data.msg + '<br />');
+  });
 
-      socket.on('players', function (data) {
-          console.log(data);
-          $('#console').append('Current players : ' + data.players + '<br />');
-      });
+  socket.on('players', function (data) {
+    console.log(data);
+    $('#console').append('Current players : ' + data.players + '<br />');
+  });
 
-    } else {
-      $('#console').append('Already connected<br>');
-    }
+  socket.on('pools-list', function (data) {
+    console.log(data);
+    $('#pools').html(JSON.stringify(data));
+  });
 
 
-	});
 
 
   // Out
@@ -70,24 +71,12 @@ body { padding: 15px; }
     $('#console').append('<strong>Ready to fight. Looking for a game...</strong><br>');
   });
 
-
-
-  // In
-  /*socket.on('welcome', function (data) {
-        console.log(data);
-        $('#console').append('Server has send welcome message');
-    });*/
-  /*socket.on('news', function (data) {
-    console.log(data);
-    socket.emit('my other event', { my: 'data' });
+  $('#fight').click(function () {
+    socket.emit('get-pools', null); 
+    $('#pools').html('<strong>Loading ...</strong><br>');
   });
 
-  socket.emit('set nickname', 'alfo', function (data) {
-  	console.log(data);
-  });
-  socket.emit('msg', 'test', function (data) {
-  	console.log(data);
-  });*/
+
 </script>
 
 

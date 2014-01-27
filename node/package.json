@@ -13,5 +13,9 @@
         "sequelize": "*",
         "sequelize-mysql": "*",
         "mysql": "*"
+    },
+    "devDependencies": {
+      "chai": "*",
+      "mocha": "*"
     }
 }

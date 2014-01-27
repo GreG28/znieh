@@ -11,32 +11,6 @@ use Znieh\PublicBundle\DataFixtures\ORM\AbstractFixtureLoader;
 class LoadStepData extends AbstractFixtureLoader implements OrderedFixtureInterface
 {
     /**
-     * Steps to save
-     */
-    /*private $stepsData = array(
-              array(
-                'title'      => 'Lames en bronze',
-                'building' => 'Forge',
-                'parent' => '',
-              ),
-              array(
-               'title'       => 'Lames en fer',
-               'building' => 'Forge',
-               'parent' => 'Lames en bronze',
-              ),
-              array(
-               'title'       => 'Lames en fer souple',
-               'building' => 'Forge',
-               'parent' => 'Lames en fer',
-              ),
-              array(
-               'title'       => 'Lames en fer dur',
-               'building' => 'Forge',
-               'parent' => 'Lames en fer',
-              ),
-            );
-
-    /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
@@ -51,6 +25,7 @@ class LoadStepData extends AbstractFixtureLoader implements OrderedFixtureInterf
 
             $step
                 ->setTitle($stepData['title'])
+                ->setPoints($stepData['points'])
                 ->setBuilding($building)
             ;
 
