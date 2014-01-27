@@ -130,19 +130,19 @@ function ContentManager(stage, width, height) {
 
         for (var i = ContentManager.units.length - 1; i >= 0; i--) {
             if(ContentManager.units[i].position.x == Start.x && ContentManager.units[i].position.y == Start.y) {
-                console.log("Vous ne pouvez pas placer votre personnage à ce endroit.")
+                console.log("Vous ne pouvez pas placer votre personnage à ce endroit.");
                 return false;
             }
-        };
+        }
 
         Hero = new Unit(spritePerso, map, Start, unistJson[type], taille);
         ContentManager.units.push(Hero);
         units[idUnit].unitID = Hero.unitID;
         units[idUnit].statut = 1; // Placé
-        $("#unit-" + idUnit).append('<i class="glyphicon glyphicon-ok"></i>')
+        $("#unit-" + idUnit).append('<i class="glyphicon glyphicon-ok"></i>');
         $("#unit-" + idUnit).removeClass("active");
 
-        var nextIdUnit = (parseInt(idUnit) + 1) % units.length;
+        var nextIdUnit = (parseInt(idUnit, 10) + 1) % units.length;
 
         if(units[nextIdUnit] != null) {
             if(units[nextIdUnit].statut == -1) {

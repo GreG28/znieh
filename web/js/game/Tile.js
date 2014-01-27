@@ -78,13 +78,13 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
                         nextUnitID++;
                     }
                     else
-                        console.log("Cette unité ne peut être placée")
+                        console.log("Cette unité ne peut être placée");
                 }
                 else
                     console.log("Il n'y a plus de personnages à placer");
             }
             else
-                console.log("Vous ne pouvez pas placer votre personnage à cet endroit.")
+                console.log("Vous ne pouvez pas placer votre personnage à cet endroit.");
         }, null, false, { collision: this.Collision });
 
         this._container.x = this.x;

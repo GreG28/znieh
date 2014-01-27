@@ -57,11 +57,11 @@ Array.matrix = function (m, n, initial) {
 
 
     Map.prototype.LoadTile = function (tileType, x, y) {
-
+        var property;
         if(this.properties[tileType - 1] != null && this.properties[tileType - 1].block == "true")
-            var property = Enum.TileCollision.Impassable;
+            property = Enum.TileCollision.Impassable;
         else
-            var property = Enum.TileCollision.Passable;
+            property = Enum.TileCollision.Passable;
 
         switch (tileType) {
             // Arbre
