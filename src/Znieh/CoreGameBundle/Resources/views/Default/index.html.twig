@@ -31,9 +31,9 @@ function init() {
 
 var nextUnitID = 0;
 var units = [
-    { "sprite": "firefox", "taille": "petitfin", "name": "Bobby" },
-    { "sprite": "firefox", "taille": "grandmuscle", "name": "Jacky" },
-    { "sprite": "mailarmor", "taille": "petitfin", "name": "Patrick" }
+    { "sprite": "firefox", "taille": "petitfin", "name": "Bobby", "statut": 0 },
+    { "sprite": "firefox", "taille": "grandmuscle", "name": "Jacky", "statut": -1 },
+    { "sprite": "mailarmor", "taille": "petitfin", "name": "Patrick", "statut": -1 }
 ];
 
 $(document).ready(function(){
@@ -47,11 +47,20 @@ $(document).ready(function(){
             coef = 2;
         }
 
-        $("ul#myUnits").append('<li class="list-group-item" id="unit-'+ i +'"><div style="overflow: hidden; width: ' + 32 * coef + 'px; height: ' + 32 * coef + 'px; float: left;"><img src="../img/sprites/' + units[i].sprite + taille + '.png" alt="Caca" /></div> <div style="margin-top:5px; font-weight: bold; ">' + units[i].name + '</div><div class="clearfix"></div></li>');
-        $("#unit-" + i).on("click", function() {
-            alert("The paragraph was clicked.");
+        $("#myUnits").prepend('<a class="list-group-item clearfix" id="unit-'+ i +'" data-unit="'+ i +'"><div style="overflow: hidden; width: ' + 32 * coef + 'px; height: ' + 32 * coef + 'px; float: left;"><img src="../img/sprites/' + units[i].sprite + taille + '.png" alt="Caca" /></div> <div style="margin-top:5px; font-weight: bold; ">' + units[i].name + '</div></a>');
+        $("#unit-" + i).on("click", {id: i}, function(event) {
+            if(units[event.data.id].statut == -1) {
+                $("#myUnits a").removeClass("active");
+                for (var i = units.length - 1; i >= 0; i--) {
+                    if(units[i].statut == 0)
+                        units[i].statut = -1;
+                };
+                $("#unit-" + event.data.id).addClass("active");
+                units[event.data.id].statut = 0;
+            }
         });
     }
+    $("#myUnits :first-child").addClass("active");
 });
 </script>
 {% endblock %}
@@ -60,8 +69,8 @@ $(document).ready(function(){
     <div class="row">
         <div class="col-sm-2">
             <h2>Mes unités</h2>
-                <ul class="list-group" id="myUnits">
-                </ul>
+                <div class="list-group" id="myUnits">
+                </div>
             </div>
         <div class="col-sm-8">
             <canvas id="canvas" width="480" height="480" style="margin:0px;"> Canvas not supported. Please update your browser. </canvas>

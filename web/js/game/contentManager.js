@@ -118,15 +118,29 @@ function ContentManager(stage, width, height) {
         Hero = new Unit(spritePerso, map, Start, unistJson[type], taille);
     }
 
-    ContentManager.newUnit = function(x, y, type, taille) {
+    ContentManager.newUnit = function(x, y, type, taille, idUnit) {
         "use strict";
-        
+
         unistJson = jQuery.parseJSON(loadingQueue.getResult("units-json",true));
         var loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
         spritePerso = loadingQueue.getResult(loading_id);
         Start = map.GetBounds(x, y).GetBottomCenter();
         Hero = new Unit(spritePerso, map, Start, unistJson[type], taille);
-    };
 
+        units[idUnit].unitID = Hero.unitID;
+        units[idUnit].statut = 1; // Placé
+        $("#unit-" + idUnit).append('<i class="glyphicon glyphicon-ok"></i>')
+        $("#unit-" + idUnit).removeClass("active");
+
+        var nextIdUnit = (parseInt(idUnit) + 1) % units.length;
+
+        if(units[nextIdUnit] != null) {
+            if(units[nextIdUnit].statut == -1) {
+                units[nextIdUnit].statut = 0;
+                $("#unit-" + nextIdUnit).addClass("active");
+            }
+        }
+
+    };
 
 }

@@ -69,11 +69,16 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         });
 
         this._container.on("click", function(evt) {
-            console.log("[CLICK_Tile] x" + container.x + " y" + container.y);
-            var idUnit = nextUnitID;
+            console.log("[TILE] x" + container.x + " y" + container.y);
+            var idUnit = $("#myUnits a.active").attr("data-unit");
+
             if(units[idUnit] != null) {
-                ContentManager.newUnit(Math.floor(evt.stageX / ContentManager.tileswidth), Math.floor(evt.stageY / ContentManager.tilesheight), units[idUnit].sprite, units[idUnit].taille);
-                nextUnitID++;
+                if(units[idUnit].statut == 0) {
+                    ContentManager.newUnit(Math.floor(evt.stageX / ContentManager.tileswidth), Math.floor(evt.stageY / ContentManager.tilesheight), units[idUnit].sprite, units[idUnit].taille, idUnit);
+                    nextUnitID++;
+                }
+                else
+                    console.log("Cette unité ne peut être placée")
             }
             else
                 console.log("Il n'y a plus de personnages à placer");
