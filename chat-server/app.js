@@ -140,6 +140,9 @@ io.sockets.on('connection', function (socket) {
 
   socket.on("message", function(data) {
     //TODO: On suppose que l'utilisateur existe
+    if(user == undefined) {
+      return;
+    }
 
     // If user is connected
     isOnline = false;
@@ -178,12 +181,13 @@ io.sockets.on('connection', function (socket) {
 
 
 
-    socket.emit("message", {
+    /*socket.emit("message", {
           from: user.username,
           to: data.target,
           msg: data.msg,
-          date: Date.now() / 1000
-        });
+          date: Date.now() / 1000,
+          isConfirmation: true;
+        });*/
   });
 
     
