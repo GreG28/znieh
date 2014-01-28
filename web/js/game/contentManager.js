@@ -122,7 +122,7 @@ function ContentManager(stage, width, height) {
         $("#unit-" + idUnit).append('<i class="glyphicon glyphicon-ok"></i>');
         $("#unit-" + idUnit).removeClass("active");
 
-        var nextIdUnit = (parseInt(idUnit,10) + 1) % units.length;
+        var nextIdUnit = (idUnit + 1) % units.length;
 
         if(units[nextIdUnit] != null) {
             if(units[nextIdUnit].statut == -1) {
