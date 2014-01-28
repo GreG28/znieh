@@ -68,20 +68,39 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         });
 
         this._container.on("click", function(evt, data) {
-            if(data.collision == Enum.TileCollision.Passable && Math.floor(evt.stageX / ContentManager.tileswidth) < (map.gameWidth / 3)) {
-                console.log("[TILE] x" + container.x + " y" + container.y);
-                var idUnit = $("#myUnits a.active").attr("data-unit");
+            if(data.collision == Enum.TileCollision.Passable) {
+                if((Math.floor(evt.stageX / ContentManager.tileswidth) < (map.gameWidth / 3) && left == true)) {
+                    console.log("[TILE] x" + container.x + " y" + container.y);
+                    var idUnit = $("#myUnits a.active").attr("data-unit");
 
-                if(units[idUnit] != null) {
-                    if(units[idUnit].statut == 0) {
-                        ContentManager.newUnit(Math.floor(evt.stageX / ContentManager.tileswidth), Math.floor(evt.stageY / ContentManager.tilesheight), units[idUnit].sprite, units[idUnit].taille, idUnit);
-                        nextUnitID++;
+                    if(units[idUnit] != null) {
+                        if(units[idUnit].statut == 0) {
+                            ContentManager.newUnit(Math.floor(evt.stageX / ContentManager.tileswidth), Math.floor(evt.stageY / ContentManager.tilesheight), units[idUnit].sprite, units[idUnit].taille, idUnit);
+                            nextUnitID++;
+                        }
+                        else
+                            console.log("Cette unité ne peut être placée");
                     }
                     else
-                        console.log("Cette unité ne peut être placée");
+                        console.log("Il n'y a plus de personnages à placer");
+                }
+                else if ((Math.floor(evt.stageX / ContentManager.tileswidth) >= (2 * map.gameWidth / 3) && left == false)) {
+                    console.log("[TILE] x" + container.x + " y" + container.y);
+                    var idUnit = $("#myUnits a.active").attr("data-unit");
+
+                    if(units[idUnit] != null) {
+                        if(units[idUnit].statut == 0) {
+                            ContentManager.newUnit(Math.floor(evt.stageX / ContentManager.tileswidth), Math.floor(evt.stageY / ContentManager.tilesheight), units[idUnit].sprite, units[idUnit].taille, idUnit);
+                            nextUnitID++;
+                        }
+                        else
+                            console.log("Cette unité ne peut être placée");
+                    }
+                    else
+                        console.log("Il n'y a plus de personnages à placer");
                 }
                 else
-                    console.log("Il n'y a plus de personnages à placer");
+                    console.log("Vous ne pouvez pas placer votre personnage à cet endroit.");
             }
             else
                 console.log("Vous ne pouvez pas placer votre personnage à cet endroit.");
