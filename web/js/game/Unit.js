@@ -98,6 +98,8 @@
 
         this._container = new createjs.Container();
 
+        substage.addChild(this._container);
+
         this.Reset(position);
 
     };
@@ -152,7 +154,8 @@
         this._container.height = this.sprite_base.height;
         this._container.visible = true;
 
-        stage.addChild(this._container);
+        //stage.addChild(this._container);
+        substage.addChild(this._container);
     };
 
     /// <summary>

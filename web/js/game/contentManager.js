@@ -6,10 +6,12 @@ var Start;
 var spritePerso;
 //to stock the units created
 var unitsCreated = [];
+var loadingQueue;
 
 // this is the units created from the list inside,
 // the HTML page
 var unitsToMove = [];
+var substage;
 
 function ContentManager(stage, width, height) {
 
@@ -35,14 +37,28 @@ function ContentManager(stage, width, height) {
     ContentManager.units = [];
 
     this.init = function () {
-
+        "use strict";
 
         // coloration du canvas pour tests
+        substage = new createjs.Container();
+       
+       // First Try to deform the map
+
+        /*
+        substage.x = 50;
+        substage.y = 50;
+        substage.skewX = 8;
+        substage.skewY = -8;
+        */
+        
+
+        stage.addChild(substage);
+
         var shape2 = new createjs.Shape();
         shape2.name = "fondMap";
         shape2.graphics.beginFill("#FF0000");
         shape2.graphics.drawRect(0,0,480,480);
-        stage.addChild(shape2);
+        substage.addChild(shape2);
 
         loadingQueue = new createjs.LoadQueue(false);
         loadingQueue.addEventListener("complete", initMap);

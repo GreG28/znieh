@@ -25,6 +25,8 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         this.i = x;
         this.j = y;
 
+        console.log('this.i' + this.i);
+
         // this container will hold all the animation of a Tile
         this._container = new createjs.Container();
 
@@ -67,14 +69,17 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
             shape.visible = false;
         });
 
+        var _i = this.i;
+        var _j = this.j;
+
         this._container.on("click", function(evt, data) {
-            if(data.collision == Enum.TileCollision.Passable && Math.floor(evt.stageX / ContentManager.tileswidth) < (map.gameWidth / 3)) {
-                console.log("[TILE] x" + container.x + " y" + container.y);
+            if(data.collision == Enum.TileCollision.Passable && _i < (map.gameWidth / 3)) {
+                console.log("[TILE] x" + _i + " y" + _j);
                 var idUnit = $("#myUnits a.active").attr("data-unit");
 
                 if(units[idUnit] != null) {
                     if(units[idUnit].statut == 0) {
-                        ContentManager.newUnit(Math.floor(evt.stageX / ContentManager.tileswidth), Math.floor(evt.stageY / ContentManager.tilesheight), units[idUnit].sprite, units[idUnit].taille, idUnit);
+                        ContentManager.newUnit(_i,_j, units[idUnit].sprite, units[idUnit].taille, idUnit);
                         nextUnitID++;
                     }
                     else
@@ -94,7 +99,8 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
 
         this.visible = true;
 
-        stage.addChild(this._container);
+        //stage.addChild(this._container);
+        substage.addChild(this._container);
     };
 
     Tile.prototype.width = 32;
