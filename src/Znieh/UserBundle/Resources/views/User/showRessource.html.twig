@@ -1,6 +1,18 @@
 <h1>Ressource de l'utilisateur {{ user.username }}</h1>
-<p> 
-	gold : {{ user.ressource.gold }} <br />
-	sto : {{ user.ressource.sto }}
 
+<p>
+	<img src="{{ asset('img/ressources/or.png') }}" title="Or" alt=""> {{ user.ressource.gold }} <br />
+    <img src="{{ asset('img/ressources/sto.png') }}" title="STO" alt=""> {{ user.ressource.sto }}	<br /><br />
+
+    <img src="{{ asset('img/ressources/cuivre.png') }}" title="Cuivre" alt=""> {{ user.ressource.copper }} <br />
+    <img src="{{ asset('img/ressources/bronze.png') }}" title="Bronze" alt=""> {{ user.ressource.bronze }}	<br /><br />
+
+    <img src="{{ asset('img/ressources/etoffeMineure.png') }}" title="Etoffe mineure" alt=""> {{ user.ressource.minorCloth }} <br />
+    <img src="{{ asset('img/ressources/etoffeStandart.png') }}" title="Etoffe standart" alt=""> {{ user.ressource.standardCloth }}	<br /><br />
+
+    <img src="{{ asset('img/ressources/cuirReche.png') }}" title="Cuir Rèche" alt=""> {{ user.ressource.roughLeather }} <br />
+    <img src="{{ asset('img/ressources/cuirBrut.png') }}" title="Cuir brut" alt=""> {{ user.ressource.rawLeather }}	<br /><br />
+    
+    <img src="{{ asset('img/ressources/boisChene.png') }}" title="Bois chêne" alt=""> {{ user.ressource.cedarWood }} <br />
+    <img src="{{ asset('img/ressources/boisReche.png') }}" title="Bois rèche" alt=""> {{ user.ressource.oakWood }}	<br />
 </p>
