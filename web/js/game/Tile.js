@@ -25,7 +25,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         this.i = x;
         this.j = y;
 
-        console.log('this.i' + this.i);
+        //console.log('this.i' + this.i);
 
         // this container will hold all the animation of a Tile
         this._container = new createjs.Container();
@@ -99,7 +99,6 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
 
         this.visible = true;
 
-        //stage.addChild(this._container);
         substage.addChild(this._container);
     };
 

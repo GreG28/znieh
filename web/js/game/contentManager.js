@@ -44,21 +44,15 @@ function ContentManager(stage, width, height) {
        
        // First Try to deform the map
 
-        /*
-        substage.x = 50;
+        /*setTransform ( [x=0]  [y=0]  [scaleX=1]  [scaleY=1]  [rotation=0] [skewX=0]  [skewY=0]  [regX=0]  [regY=0] ) */
+        //substage.setTransform(300, 25, 1, 1, 45);
+        substage.x = 200;
         substage.y = 50;
-        substage.skewX = 8;
-        substage.skewY = -8;
-        */
-        
+        substage.scaleX = 1;
+        substage.scaleY = 0.7;
+        substage.skewX = 30;
 
         stage.addChild(substage);
-
-        var shape2 = new createjs.Shape();
-        shape2.name = "fondMap";
-        shape2.graphics.beginFill("#FF0000");
-        shape2.graphics.drawRect(0,0,480,480);
-        substage.addChild(shape2);
 
         loadingQueue = new createjs.LoadQueue(false);
         loadingQueue.addEventListener("complete", initMap);
