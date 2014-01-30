@@ -44,14 +44,6 @@ function ContentManager(stage, width, height) {
        
        // First Try to deform the map
 
-        /*setTransform ( [x=0]  [y=0]  [scaleX=1]  [scaleY=1]  [rotation=0] [skewX=0]  [skewY=0]  [regX=0]  [regY=0] ) */
-        //substage.setTransform(300, 25, 1, 1, 45);
-        substage.x = 200;
-        substage.y = 50;
-        substage.scaleX = 1;
-        substage.scaleY = 0.7;
-        substage.skewX = 30;
-
         stage.addChild(substage);
 
         loadingQueue = new createjs.LoadQueue(false);
