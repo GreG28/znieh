@@ -57,7 +57,7 @@ pommeau_en_cuivre:
 pommeau_en_bronze:
   title: Pommeaux en bronze
   building: Forge
-  parent: Pommeaux en bronze
+  parent: Pommeaux en cuivre
   points: 2
 #___________________________________
 # Hacherie
@@ -131,7 +131,7 @@ poignee_arc_en_cuivre:
 poignee_arc_en_bronze:
   title: Poignées d'arc en bronze
   building: Archerie
-  parent: Poignées en cuivre
+  parent: Poignées d'arc en cuivre
   points: 2
 fleche_cuivre:
   title: Flèches en cuivre
