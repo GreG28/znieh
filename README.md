@@ -28,6 +28,13 @@ Execute the `check.php` script from the command line:
 
 If you get any warnings or recommendations, fix them before moving on.
 
+Make sure you have node and npm installed and setup. If you do, the following 2 commands should work.
+
+    node -v
+    npm -v
+
+If these don't work, install them!
+
 3) Database
 -------------------------------------
 
@@ -44,7 +51,7 @@ Load DataFixtures : (validate with Y to continue)
     php app/console doctrine:fixtures:load
 
 
-4) Dumping assets
+4) Assets files
 -------------------------------------
 
     php app/console assetic:dump
@@ -55,8 +62,28 @@ You must have both node and less installed :
 
     npm install -g less
 
+
 You can configure node_paths in app/config/parameters.yml
 
+Use npm to install bower, compass and grunt-cli :
+
+    npm install -g bower
+    npm install -g compass
+    npm install -g grunt-cli
+
+Download the bower dependencies :
+
+    bower install
+
+This should give you a populated web/assets/vendor directory.
+
+Use grunt to initially compile the SASS files
+
+    grunt
+
+Later, when you're actually developing, you'll use grunt to watch for file changes and automatically re-compile:
+
+    grunt watch
 
  Clearing the cache
 -------------------------------------
@@ -64,7 +91,7 @@ You can configure node_paths in app/config/parameters.yml
      php app/console cache:clear
 
      php app/console cache:clear --env=prod
-     
+
 5) Node.js
 -------------------------------------
 
@@ -75,7 +102,7 @@ In "node" repository, execute the following command to install node_modules.
 Then, you have to copy the file called `config.json` to `config.user.json` and edit the values according to your environnement.
 
 You'll probably need to edit the target IP in the `index.html`.
-    
+
 Finally, run the server :
 
     node app.js

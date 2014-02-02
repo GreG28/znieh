@@ -7637,20 +7637,13 @@ td.visible-print {
   }
 }
 /* line 8, ../sass/layout.scss */
-body {
-  background-image: url(../images/jedi.png), url(../images/bg.png);
-  background-repeat: no-repeat, repeat;
-  background-position: 55px 20px, 0 0;
-}
-
-/* line 14, ../sass/layout.scss */
 #menu {
   height: 40px;
   margin-bottom: 30px;
   padding-left: 162px;
 }
 
-/* line 20, ../sass/layout.scss */
+/* line 14, ../sass/layout.scss */
 #menu a.link {
   color: #fff;
   font-size: 18px;

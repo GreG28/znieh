@@ -20,6 +20,12 @@ framework:
     session:         ~
     fragments:       ~
 
+parameters:
+    assets_directory: 'assets'
+    # Assetic
+    #assetic.filter.compass.images_dir: %kernel.root_dir%/../web
+    #assetic.filter.compass.http_path:
+
 # Braincrafted Configuration
 braincrafted_bootstrap:
     output_dir:
@@ -42,14 +48,11 @@ twig:
     strict_variables: %kernel.debug%
     globals:
         ga_tracking: "%ga_tracking%"
+        assetsPath: %assets_directory%
     form:
         resources:
             - BraincraftedBootstrapBundle:Form:bootstrap.html.twig
 
-parameters:
-    # Assetic
-    #assetic.filter.compass.images_dir: %kernel.root_dir%/../web
-    #assetic.filter.compass.http_path:
 
 # Assetic Configuration
 assetic:
