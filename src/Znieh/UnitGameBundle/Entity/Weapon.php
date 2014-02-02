@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\ExecutionContextInterface;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Weapon
@@ -13,6 +15,7 @@ use Symfony\Component\Validator\ExecutionContextInterface;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Znieh\UnitGameBundle\Entity\WeaponRepository")
  * @Assert\Callback(methods={"isWeaponValid"})
+ * @ExclusionPolicy("all")
  */
 
 class Weapon
@@ -33,12 +36,14 @@ class Weapon
 
     /**
     * @ORM\ManyToMany(targetEntity="Znieh\VillageGameBundle\Entity\WeaponPart", cascade={"persist"})
+    * @Expose
     */
     private $parts;
 
     /**
      * @ORM\ManyToOne(targetEntity="Znieh\VillageGameBundle\Entity\WeaponType", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
+     * @Expose
      */
     private $type;
 

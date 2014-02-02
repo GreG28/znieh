@@ -4,12 +4,15 @@ namespace Znieh\UnitGameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Unit
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Znieh\UnitGameBundle\Entity\UnitRepository")
+ * @ExclusionPolicy("all")
  */
 class Unit
 {
@@ -26,6 +29,7 @@ class Unit
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     * @Expose
      */
     private $name;
 
@@ -47,26 +51,31 @@ class Unit
 
     /**
      * @ORM\ManyToOne(targetEntity="Sign")
+     * @Expose
      */
     private $sign;
 
     /**
      * @ORM\ManyToOne(targetEntity="Size")
+     * @Expose
      */
     private $size;
 
     /**
      * @ORM\ManyToOne(targetEntity="Weight")
+     * @Expose
      */
     private $weight;
 
     /**
      * @ORM\ManyToOne(targetEntity="Weapon", inversedBy="units", cascade={"persist"})
+     * @Expose
      */
     private $weapon;
 
     /**
      * @ORM\ManyToOne(targetEntity="Armor", inversedBy="units", cascade={"persist"})
+     * @Expose
      */
     private $armor;
 

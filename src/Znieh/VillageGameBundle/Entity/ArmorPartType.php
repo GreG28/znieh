@@ -3,12 +3,15 @@
 namespace Znieh\VillageGameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * ArmorPartType
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @ExclusionPolicy("all")
  */
 class ArmorPartType
 {
@@ -25,6 +28,7 @@ class ArmorPartType
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Expose
      */
     private $name;
 
@@ -32,7 +36,7 @@ class ArmorPartType
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -56,7 +60,7 @@ class ArmorPartType
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
