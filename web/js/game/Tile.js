@@ -73,23 +73,34 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         var _j = this.j;
 
         this._container.on("click", function(evt, data) {
-            if(data.collision == Enum.TileCollision.Passable && _i < (map.gameWidth / 3)) {
-                console.log("[TILE] x" + _i + " y" + _j);
-                var idUnit = $("#myUnits a.active").attr("data-unit");
+            if(placement_en_cours)
+            {
+                if(data.collision == Enum.TileCollision.Passable && _i < (map.gameWidth / 3)) {
+                    console.log("[TILE] x" + _i + " y" + _j);
+                    var idUnit = $("#myUnits a.active").attr("data-unit");
 
-                if(units[idUnit] != null) {
-                    if(units[idUnit].statut == 0) {
-                        ContentManager.newUnit(_i,_j, units[idUnit].sprite, units[idUnit].taille, idUnit);
-                        nextUnitID++;
+                    if(units[idUnit] != null) {
+                        if(units[idUnit].statut == 0) {
+                            ContentManager.newUnit(_i,_j, units[idUnit].sprite, units[idUnit].taille, idUnit);
+                            nextUnitID++;
+                            if(nextUnitID == numberOfUnits)
+                            {
+                                console.log('fini');
+                                placement_en_cours = false;
+                            }
+                        }
                     }
                     else
                         console.log("Cette unité ne peut être placée");
                 }
                 else
-                    console.log("Il n'y a plus de personnages à placer");
+                    console.log("Vous ne pouvez pas placer votre personnage à cet endroit.");
             }
+            // le placement est fini !
             else
-                console.log("Vous ne pouvez pas placer votre personnage à cet endroit.");
+            {
+                console.log("Le placement est fini !");
+            }
         }, null, false, { collision: this.Collision });
 
         this._container.x = this.x;
