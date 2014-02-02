@@ -26,6 +26,7 @@ function loadSpells(){
 	for(var spell in data){
 	    spellList.push(new Spell (data[spell].name, data[spell].damages, data[spell].ratio, data[spell].attribute, data[spell].time, data[spell].cooldown, data[spell].description))
 	}
+	console.log("Spells loaded.")
 }
 
 function loadSkills(){
@@ -33,4 +34,5 @@ function loadSkills(){
 	for(var skill in data){
 	    skillList.push(new Spell (data[skill].name, data[skill].damages, data[skill].ratio, data[skill].attribute, data[skill].time, data[skill].cooldown, data[skill].description))
 	}
+	console.log("Skills loaded.")
 }
