@@ -84,6 +84,10 @@ world.pool.init(world);
 // Player class
 var Player = require('./player');
 
+// Handler test
+var skillHandler = require('./skillHandler');
+skillHandler.loadSpells();
+skillHandler.loadSkills();
 
 /*
  * Controller
