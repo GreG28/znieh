@@ -1,0 +1,222 @@
+{
+  "boule_de_feu": {
+    "name": "Boule de feu",
+    "step": "Dégâts magiques I",
+    "cost": 2,
+    "damages": 50,
+    "ratio": 0.4,
+    "attribute": "Dégâts magiques",
+    "time": 1,
+    "cooldown": 3,
+    "description": "Une boule de feu est projeté sur l'adversaire occasionnant des dégâts instantanés."
+  },
+  "tourment_lancinant": {
+    "name": "Tourment lancinant",
+    "step": "Maléfices I",
+    "cost": 4,
+    "damages": 20,
+    "ratio": 0.4,
+    "attribute": "Science maléfique",
+    "time": 3,
+    "cooldown": 4,
+    "description": "Chaque fois que l'ennemi ciblé attaquera ou utilisera un sort ou une compétence, celui-ci et les ennemis adjacents subissent des dégâts"
+  },
+  "parasite_sournois": {
+    "name": "Parasite sournois",
+    "step": "Maléfices I",
+    "cost": 6,
+    "damages": 20,
+    "ratio": 0.15,
+    "attribute": "Science maléfique",
+    "time": 3,
+    "cooldown": 5,
+    "description": "Chaque fois que l'ennemi ciblé réussi une attaque, le lanceur du sort lui vole des points de vie."
+  },
+  "reaction": {
+    "name": "Réaction",
+    "step": "Dégâts magiques I",
+    "cost": 2,
+    "damages": 50,
+    "ratio": 0.5,
+    "attribute": "Dégâts magiques",
+    "time": 1,
+    "cooldown": 3,
+    "description": "Si l'ennemi visé est sous l'effet d'un maléfice ou d'une condition, il subit des dégâts."
+  },
+  "magie_douloureuse": {
+    "name": "Magie douloureuse",
+    "step": "Maléfices I",
+    "cost": 6,
+    "damages": 30,
+    "ratio": 0.2,
+    "attribute": "Dégâts magiques",
+    "time": 2,
+    "cooldown": 4,
+    "description": "Si l'ennemi visé lance un sort, il subit des dégâts."
+  },
+  "drain_de_vie": {
+    "name": "Drain de vie",
+    "step": "Dégâts magiques I",
+    "cost": 6,
+    "damages": 30,
+    "ratio": 0.3,
+    "attribute": "Dégâts magiques",
+    "time": 2,
+    "cooldown": 5,
+    "description": "(Canalisation) Vous volez chaque tour de la vie à l'adversaire. Votre personnage n'est plus contrôlable durant la durée du sort."
+  },
+  "armure_de_feu": {
+    "name": "Armure de feu",
+    "step": "Support I",
+    "cost": 6,
+    "damages": 20,
+    "ratio": 0.3,
+    "attribute": "Magie supportive",
+    "time": 2,
+    "cooldown": 3,
+    "description": "L'attaquant de la cible allié sous effet du sort subis des dégâts de feu."
+  },
+  "peur": {
+    "name": "Peur",
+    "step": "Contrôles I",
+    "cost": 5,
+    "damages": 0,
+    "ratio": 0,
+    "attribute": 0,
+    "time": 1,
+    "cooldown": 3,
+    "description": "La cible du sort est prise de peur et ne peut être contrôlée."
+  },
+  "pluie_de_feu": {
+    "name": "Pluie de feu",
+    "step": "Dégâts magiques I",
+    "cost": 5,
+    "damages": 30,
+    "ratio": 0.4,
+    "attribute": "Dégâts magiques",
+    "time": 2,
+    "cooldown": 4,
+    "description": "Lance une pluie de feu qui inflige des dégâts sur une zone 2x2."
+  },
+  "bouclier": {
+    "name": "Bouclier",
+    "step": "Support I",
+    "cost": 4,
+    "damages": 80,
+    "ratio": 0.5,
+    "attribute": "Magie supportive",
+    "time": 2,
+    "cooldown": 4,
+    "description": "Enveloppe la cible d'un bouclier magiques qui absorbera des dégâts."
+  },
+  "teleportation": {
+    "name": "Téléportation",
+    "step": "Support II",
+    "cost": 7,
+    "damages": 0,
+    "ratio": 0,
+    "attribute": 0,
+    "time": 0,
+    "cooldown": 4,
+    "description": "Téléporte le lanceur dans une zone de 10x10 autour du point ciblé."
+  },
+  "gel_de_zone": {
+    "name": "Gel de zone",
+    "step": "Controles II",
+    "cost": 5,
+    "damages": 0,
+    "ratio": 0,
+    "attribute": 0,
+    "time": 3,
+    "cooldown": 5,
+    "description": "(Canalisation) Gèle une zone de 2x2 qui ralenti les déplacements des unités ennemies par deux"
+  },
+  "detonation_commande": {
+    "name": "Détonation commandée",
+    "step": "Dégâts magiques II",
+    "cost": 5,
+    "damages": 90,
+    "ratio": 0.5,
+    "attribute": "Dégâts magiques",
+    "time": 2,
+    "cooldown": 5,
+    "description": "Crée une bombe mobile que le joueur pourra contrôler pour la faire exloser et causer des dégâts de zone."
+  },
+  "eboulement_magique": {
+    "name": "Eboulement magique",
+    "step": "Contrôles I",
+    "cost": 4,
+    "damages": 0,
+    "ratio": 0,
+    "attribute": 0,
+    "time": 2,
+    "cooldown": 5,
+    "description": "provoque un éboulemennt pour bloquer un passage."
+  },
+  "poigne_magique": {
+    "name": "Poigne magique",
+    "step": "Contrôles II",
+    "cost": 7,
+    "damages": 0,
+    "ratio": "0rac",
+    "attribute": 0,
+    "time": 1,
+    "cooldown": 6,
+    "description": "Attire un ennemi vers le lanceur de sort de 2 cases."
+  },
+  "regeneration": {
+    "name": "Régénération",
+    "step": "Support II",
+    "cost": 5,
+    "damages": 30,
+    "ratio": 0.4,
+    "attribute": "Magie supportive",
+    "time": 3,
+    "cooldown": 7,
+    "description": "Soigne l'unité sur la durée pendant 3 tours."
+  },
+  "enracinement": {
+    "name": "Enracinement",
+    "step": "Contrôles I",
+    "cost": 5,
+    "damages": 0,
+    "ratio": 0,
+    "attribute": 0,
+    "time": 2,
+    "cooldown": 5,
+    "description": "Enracine l'unité ennemie en place l'empêchant de se déplacer (tout dégâts pris par la cible annule le sort)"
+  },
+  "repoussoir": {
+    "name": "Repoussoir",
+    "step": "Contrôles II",
+    "cost": 7,
+    "damages": 0,
+    "ratio": 0,
+    "attribute": 0,
+    "time": 1,
+    "cooldown": 6,
+    "description": "Repousse les unités adjacentes au lanceur du sort d'une case."
+  },
+  "soin": {
+    "name": "Soin",
+    "step": "Support II",
+    "cost": 6,
+    "damages": 60,
+    "ratio": 0.4,
+    "attribute": "Magie supportive",
+    "time": 1,
+    "cooldown": 5,
+    "description": "Soigne la cible de {{x}} points de vie."
+  },
+  "rayon_magique": {
+    "name": "Rayon Magique",
+    "step": "Dégâts magiques II",
+    "cost": 7,
+    "damages": 80,
+    "ratio": 0.5,
+    "attribute": "Dégâts magiques",
+    "time": 1,
+    "cooldown": 6,
+    "descripion": "Fais des dégâts en ligne droite dans la direction pointé par le lanceur de sorts."
+  }
+}
