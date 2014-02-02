@@ -29,23 +29,12 @@
             <br><br><br>
 
             {% block requirejs %}
-                {{ include('::_requirejs.html.twig', {
-                    'module': false
-                }) }}
-            {% endblock %}
-            <!-- end requirejs block -->
+                {{ include('::_requirejs.html.twig', { 'module': false }) }}
+            {% endblock %} <!-- end requirejs block -->
 
             {% block javascripts %}
             <!-- TODO remove and put into requirejs -->
-                <script src="{{ asset('js/jquery.js') }}"></script>
-                <script src="{{ asset('js/bootstrap.js') }}"></script>
-                <script src="{{ asset('js/jquery-ui-1.10.4.custom.js') }}"></script>
                 <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-langs.min.js"></script>
-
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <script src="{{ asset('js/socket.io.js') }}"></script>
-                {% endif %}
-
             {% endblock %}
 
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -94,9 +83,6 @@
                     }
                 }
             </script>
-            {#
-                {{ facebook_initialize({'xfbml': true, 'fbAsyncInit': 'onFbInit();'}) }}
-            #}
 
             <!-- Google Analytics -->
             <script>

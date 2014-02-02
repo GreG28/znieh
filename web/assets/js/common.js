@@ -1,8 +1,7 @@
 /**
- * The main requirejs configuration (except for baseUrl)
+ * The main requirejs configuration
  *
- * This file is included in ::_requirejs.html.twig and in Gruntfile.js. The
- * baseUrl is not here so we can dynamically vary it in ::_requirejs.html.twig
+ * This file is included in ::_requirejs.html.twig and in Gruntfile.js.
  */
 requirejs.config({
     paths: {
@@ -19,7 +18,9 @@ requirejs.config({
          * shim (beyond what you see for the bootstrap shim).
          */
         jquery: '../vendor/jquery/jquery.min',
-        bootstrap: '../vendor/bootstrap/dist/js/bootstrap.min'
+        jqueryui: '../libs/jquery-ui-1.10.4.custom.min',
+        bootstrap: '../vendor/bootstrap/dist/js/bootstrap.min',
+        socketio: '../vendor/socket.io-client/dist/socket.io.min'
     },
     shim: {
         /**
@@ -34,6 +35,7 @@ requirejs.config({
          * except that it fortunately supports AMD), we would need to do
          * a little more work here.
          */
-        bootstrap: ['jquery']
+        bootstrap: ['jquery'],
+        jqueryui: ['jquery']
     }
 });
