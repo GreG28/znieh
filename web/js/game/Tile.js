@@ -112,19 +112,20 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         var _j = this.j;
 
         this._container.on("click", function(evt, data) {
-            if(gameStatut == GameStatut.PLACEMENT)
+            if(placement_en_cours)
             {
-                if(data.collision == Enum.TileCollision.Passable && ((_i < (map.gameWidth / 3) && left == true) || ((_i >= (2 * map.gameWidth / 3)) && left == false))) {
+                if(data.collision == Enum.TileCollision.Passable && _i < (map.gameWidth / 3)) {
                     console.log("[TILE] x" + _i + " y" + _j);
-                    var idUnit = $("#myUnits div.selected").attr("data-unit");
+                    var idUnit = $("#myUnits a.active").attr("data-unit");
 
                     if(units[idUnit] != null) {
                         if(units[idUnit].statut == 0) {
                             ContentManager.newUnit(_i,_j, units[idUnit].sprite, units[idUnit].taille, idUnit);
                             nextUnitID++;
-                            if(ContentManager.units.length == numberOfUnits) {
-                                gameStatut = GameStatut.IDLE;
-                                ContentManager.clearUnitsMenu();
+                            if(nextUnitID == numberOfUnits)
+                            {
+                                console.log('fini');
+                                placement_en_cours = false;
                             }
                         }
                     }
@@ -137,12 +138,9 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
                     console.log("Vous ne pouvez pas placer votre personnage à cet endroit.");
             }
             // le placement est fini !
-            else {
-                //console.log("Le placement est fini !");
-                gameStatut = GameStatut.IDLE;
-                ContentManager.unSelectAllTiles();
-                ContentManager.clearUnitsMenu();
-                /* On essaye de rendre les cases autour colorée aussi pour que  */
+            else
+            {
+                console.log("Le placement est fini !");
             }
         }, null, false, { collision: this.Collision });
 

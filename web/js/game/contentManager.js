@@ -50,17 +50,9 @@ var loadingQueue;
 var unitsToMove = [];
 var substage;
 
-var selectedUnit = null;
-var unitsCache = [];
-var unitsPlacement = [];
-var gameStatut;
 
-/**
- * Used to download all ressources and start the game
- * @param {createjs.Stage} stage
- * @param {int} width
- * @param {int} height
- */
+var placement_en_cours = true;
+
 function ContentManager(stage, width, height) {
     ContentManager.nextUnitID = 0;
 
