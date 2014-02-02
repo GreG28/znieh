@@ -13,6 +13,8 @@ var loadingQueue;
 var unitsToMove = [];
 var substage;
 
+var placement_en_cours = true;
+
 function ContentManager(stage, width, height) {
 
     ContentManager.nextUnitID = 0;
