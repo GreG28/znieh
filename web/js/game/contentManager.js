@@ -25,6 +25,8 @@ var substage;
 var selectedUnit = null;
 
 var gameStatut;
+var placement_en_cours = true;
+
 
 /**
  * Used to download all ressources and start the game
