@@ -3,6 +3,8 @@
 namespace Znieh\VillageGameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * GameObject
@@ -11,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Znieh\VillageGameBundle\Entity\GameObjectRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ExclusionPolicy("all")
  */
 abstract class GameObject
 {
@@ -27,6 +30,7 @@ abstract class GameObject
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Expose
      */
     protected $name;
 

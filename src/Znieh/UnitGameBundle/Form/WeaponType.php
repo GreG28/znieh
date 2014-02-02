@@ -15,11 +15,11 @@ class WeaponType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            /*->add('type', 'entity', array(
+            ->add('type', 'entity', array(
                 'class' => 'ZniehVillageGameBundle:WeaponType',
                 'property' => 'name',
                 'required' => true
-            ))*/
+            ))
             ->add('parts', 'entity', array(
                     'class' => 'ZniehVillageGameBundle:WeaponPart',
                     'property' => 'name',

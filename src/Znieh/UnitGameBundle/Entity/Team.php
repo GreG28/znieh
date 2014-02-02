@@ -3,6 +3,8 @@
 namespace Znieh\UnitGameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Team
@@ -84,7 +86,7 @@ class Team
     /**
      * Get user
      *
-     * @return \Znieh\UserBundle\Entity\User 
+     * @return \Znieh\UserBundle\Entity\User
      */
     public function getUser()
     {
