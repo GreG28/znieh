@@ -21,7 +21,6 @@ framework:
     fragments:       ~
 
 parameters:
-    assets_directory: 'assets'
     # Assetic
     #assetic.filter.compass.images_dir: %kernel.root_dir%/../web
     #assetic.filter.compass.http_path:
@@ -48,7 +47,6 @@ twig:
     strict_variables: %kernel.debug%
     globals:
         ga_tracking: "%ga_tracking%"
-        assetsPath: %assets_directory%
     form:
         resources:
             - BraincraftedBootstrapBundle:Form:bootstrap.html.twig
