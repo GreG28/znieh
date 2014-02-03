@@ -32,7 +32,7 @@
      * Initialize the Unit with its animations
      * @param  {Image} imgUnit
      * @param  {Map} map
-     * @param  {Position} position
+     * @param  {position} position
      * @param  {Array} unitsInfos
      * @param  {int} taille
      * @param  {int} i
@@ -117,7 +117,7 @@
 
     /**
      * Reset an Unit, set proprierties and handle clicks
-     * @param {Position} position
+     * @param {[type]} position
      */
     Unit.prototype.Reset = function (position) {
 
@@ -181,17 +181,11 @@
 
         this._container.on("click", function(evt) {
             console.log("[UNIT] x" + container.x + " y" + container.y);
-            ContentManager.unSelectAllTiles();
-            selectedUnit = that;
+            /* On rend toutes les cases autours selectionnés */
 
-            // L'unité est déjà sélectionnée
-            if(selectedUnit.shape_selected_unit.visible == true) {
-                gameStatut = GameStatut.MOVE;
-            }
-            else {
-                gameStatut = GameStatut.IDLE;
-                console.log(selectedUnit);
-            }
+            ContentManager.DeselectTilesAndUnits();
+            ContentManager.selectTiles(i,j);
+            selected_Unit = that;
 
 
             var limit = 7; // TODO : Sélectionner la limite de déplacement de l'unité
