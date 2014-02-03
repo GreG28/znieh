@@ -168,13 +168,41 @@ function ContentManager(stage, width, height) {
     ContentManager.unSelectAllTiles = function() {
         "use strict";
 
-        for(var i = 0; i < map.gameWidth; i++) {
-            for(var j = 0; j < map.gameWidth; j++) {
-                map.tiles[i][j].shape_selection_possible.visible = false;
-                map.tiles[i][j].shape_selection_impossible.visible = false;
+        for(var cpt = 0 ; cpt < map.gameWidth ; cpt = cpt+1)
+        {
+            for(var cpt2 = 0 ; cpt2 < map.gameWidth ; cpt2 = cpt2+1)
+            {
+                var tile_en_cours = map.tiles[cpt][cpt2];
+                var shape = null;
+                if(tile_en_cours.Collision == Enum.TileCollision.Impassable)
+                {
+                    shape = tile_en_cours.shape_selection_impossible;
+                }
+                else
+                {
+                    shape = tile_en_cours.shape_selection_possible;
+                }
 
-                if(selectedUnit != null)
-                    selectedUnit.shape_selected_unit.visible = false;
+                if(tile_en_cours.i == i-1 && tile_en_cours.j == j)
+                {
+                    shape.visible = true;
+                }
+                else if(tile_en_cours.i == i+1 && tile_en_cours.j == j)
+                {
+                    shape.visible = true;
+                }
+                else if(tile_en_cours.i == i && tile_en_cours.j == j-1)
+                {
+                    shape.visible = true;
+                }
+                else if(tile_en_cours.i == i && tile_en_cours.j == j+1)
+                {
+                    shape.visible = true;
+                }
+                else if(tile_en_cours.i == i && tile_en_cours.j == j)
+                {
+                    shape.visible = true;
+                }
             }
         }
 
@@ -186,6 +214,7 @@ function ContentManager(stage, width, height) {
             for(var cpt2 = 0 ; cpt2 < map.gameWidth ; cpt2 = cpt2+1)
             {
                 map.tiles[cpt][cpt2].shape_selection_possible.visible = false;
+                map.tiles[cpt][cpt2].shape_selection_impossible.visible = false;
             }
         }
         
@@ -193,7 +222,6 @@ function ContentManager(stage, width, height) {
         {
             ContentManager.units[cpt3].shape_selected.visible = false;
         }
-
         selected_Unit = null;
     };
 
