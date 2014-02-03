@@ -25,7 +25,13 @@ var substage;
 var placement_en_cours = true;
 var selected_Unit = null;
 
-var gameStatut;
+/**
+ * Used to download all ressources and start the game
+ * @param {createjs.Stage} stage
+ * @param {int} width
+ * @param {int} height
+ */
+function ContentManager(stage, width, height) {
 
 /**
  * Used to download all ressources and start the game
@@ -78,8 +84,6 @@ function ContentManager(stage, width, height) {
         loadingQueue.loadManifest([{id:"units-json", src:"../json/units.json"}]);
         loadingQueue.loadManifest([{id:"mailarmor", src:"../img/sprites/mailarmor.png"}]);
         loadingQueue.loadManifest([{id:"mailarmor2", src:"../img/sprites/mailarmor2.png"}]);
-
-        gameStatut = GameStatut.IDLE;
     }
 
     /**
@@ -165,7 +169,10 @@ function ContentManager(stage, width, height) {
         }
     };
 
-    ContentManager.unSelectAllTiles = function() {
+    /**
+     * TODO
+     */
+    ContentManager.selectTiles = function(i, j) {
         "use strict";
 
         for(var cpt = 0 ; cpt < map.gameWidth ; cpt = cpt+1)
@@ -206,8 +213,11 @@ function ContentManager(stage, width, height) {
             }
         }
 
-        for(var i = 0 ; i < ContentManager.units.lenght; i++)
-            ContentManager.units[i].shape_selected.visible = false;
+    /**
+     * TODO
+     */
+    ContentManager.DeselectTilesAndUnits = function() {
+        "use strict";
 
         for(var cpt = 0 ; cpt < map.gameWidth ; cpt = cpt+1)
         {
@@ -217,7 +227,7 @@ function ContentManager(stage, width, height) {
                 map.tiles[cpt][cpt2].shape_selection_impossible.visible = false;
             }
         }
-        
+
         for(var cpt3 = 0 ; cpt3 < ContentManager.units.lenght ; cpt3 = cpt3+1)
         {
             ContentManager.units[cpt3].shape_selected.visible = false;
