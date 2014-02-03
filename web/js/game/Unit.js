@@ -164,6 +164,7 @@
 
         var i = this._i;
         var j = this._j;
+        var that = this;
 
         this._container.on("click", function(evt) {
             console.log("[UNIT] x" + container.x + " y" + container.y);
@@ -171,6 +172,8 @@
             
             ContentManager.DeselectTilesAndUnits();
             ContentManager.selectTiles(i,j);
+            selected_Unit = that;
+
         });
 
         this._container.x = position.x;
