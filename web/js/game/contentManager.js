@@ -192,6 +192,7 @@ function ContentManager(stage, width, height) {
 
         for(var i = 0 ; i < ContentManager.units.lenght; i++)
             ContentManager.units[i].shape_selected.visible = false;
+
     };
 
     /**
