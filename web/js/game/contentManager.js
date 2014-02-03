@@ -153,14 +153,16 @@ function ContentManager(stage, width, height) {
         stage.update(event);
     }
 
-    /**
-     * Create a unity and keep it in memory
-     * @param  {int} x
-     * @param  {int} y
-     * @param  {string} type
-     * @param  {string} taille
-     * @param  {int} idUnit
-     */
+    function createUnit(x, y, type, taille) {
+        "use strict";
+
+        var loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
+        spritePerso = loadingQueue.getResult(loading_id);
+        Start = map.GetBounds(x, y).GetBottomCenter();
+        // we add the new unit to the array to get them !
+        unitsCreated.push(new Unit(spritePerso, map, Start, unistJson[type], taille, x, y));
+    }
+
     ContentManager.newUnit = function(x, y, type, taille, idUnit) {
 
         unistJson = jQuery.parseJSON(loadingQueue.getResult("units-json",true));
@@ -208,17 +210,56 @@ function ContentManager(stage, width, height) {
             ContentManager.units[i].shape_selected.visible = false;
     };
 
-    ContentManager.clearUnitsMenu = function() {
-        for (var i = units.length - 1; i >= 0; i--) {
-            $("#unit-" + i).removeClass("valid");
-            $("#unit-" + i).removeClass("selected");
-        };
-    }
+    ContentManager.selectTiles = function(i, j) {
+        "use strict";
 
-    /**
-     * Generate units image for menus
-     */
-    function addUnitImageInMenu ()
+        for(var cpt = 0 ; cpt < map.gameWidth ; cpt = cpt+1)
+        {
+            for(var cpt2 = 0 ; cpt2 < map.gameWidth ; cpt2 = cpt2+1)
+            {
+                var tile_en_cours = map.tiles[cpt][cpt2];
+                if(tile_en_cours.i == i-1 && tile_en_cours.j == j)
+                {
+                    tile_en_cours.shape_selection_possible.visible = true;  
+                }
+                else if(tile_en_cours.i == i+1 && tile_en_cours.j == j)
+                {
+                    tile_en_cours.shape_selection_possible.visible = true;
+                }
+                else if(tile_en_cours.i == i && tile_en_cours.j == j-1)
+                {
+                    tile_en_cours.shape_selection_possible.visible = true;
+                }
+                else if(tile_en_cours.i == i && tile_en_cours.j == j+1)
+                {
+                    tile_en_cours.shape_selection_possible.visible = true;
+                }
+                else if(tile_en_cours.i == i && tile_en_cours.j == j)
+                {
+                    tile_en_cours.shape_selection_possible.visible = true;
+                }
+            }
+        }
+    };
+
+    ContentManager.DeselectTilesAndUnits = function() {
+        "use strict";
+
+        for(var cpt = 0 ; cpt < map.gameWidth ; cpt = cpt+1)
+        {
+            for(var cpt2 = 0 ; cpt2 < map.gameWidth ; cpt2 = cpt2+1)
+            {
+                map.tiles[cpt][cpt2].shape_selection_possible.visible = false;
+            }
+        }
+        
+        for(var cpt3 = 0 ; cpt3 < ContentManager.units.lenght ; cpt3 = cpt3+1)
+        {
+            ContentManager.units[cpt3].shape_selected.visible = false;
+        }
+    };
+
+    function addUnitImageInMenu()
     {
 
         var x;
