@@ -248,7 +248,6 @@
             else if(gameStatut == GameStatut.MOVE) {
                 // On déplace le personnage
             }
-
         });
 
         this._container.x = position.x;
