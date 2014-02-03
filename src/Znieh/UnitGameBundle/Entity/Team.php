@@ -36,6 +36,16 @@ class Team
     private $user;
 
     /**
+     * @ORM\Column(name="selected", type="boolean", nullable=true)
+     */
+    private $selected;
+
+    /**
+     * @ORM\Column(name="save", type="boolean", nullable=true)
+     */
+    private $save;
+
+    /**
      * Get id
      *
      * @return integer
@@ -91,5 +101,53 @@ class Team
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set selected
+     *
+     * @param boolean $selected
+     *
+     * @return Team
+     */
+    public function setSelected($selected)
+    {
+        $this->selected = $selected;
+    
+        return $this;
+    }
+
+    /**
+     * Get selected
+     *
+     * @return boolean 
+     */
+    public function getSelected()
+    {
+        return $this->selected;
+    }
+
+    /**
+     * Set save
+     *
+     * @param boolean $save
+     *
+     * @return Team
+     */
+    public function setSave($save)
+    {
+        $this->save = $save;
+    
+        return $this;
+    }
+
+    /**
+     * Get save
+     *
+     * @return boolean 
+     */
+    public function getSave()
+    {
+        return $this->save;
     }
 }

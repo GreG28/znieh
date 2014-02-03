@@ -3,6 +3,8 @@
 namespace Znieh\UnitGameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Team
@@ -32,6 +34,16 @@ class Team
      * @ORM\ManyToOne(targetEntity="Znieh\UserBundle\Entity\User", inversedBy="teams")
      */
     private $user;
+
+    /**
+     * @ORM\Column(name="selected", type="boolean", nullable=true)
+     */
+    private $selected;
+
+    /**
+     * @ORM\Column(name="save", type="boolean", nullable=true)
+     */
+    private $save;
 
     /**
      * Get id
@@ -66,5 +78,28 @@ class Team
     {
         return $this->name;
     }
-}
 
+    /**
+     * Set user
+     *
+     * @param \Znieh\UserBundle\Entity\User $user
+     *
+     * @return Team
+     */
+    public function setUser(\Znieh\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Znieh\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+}
