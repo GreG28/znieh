@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\FacebookBundle\FOSFacebookBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new Genemu\Bundle\FormBundle\GenemuFormBundle(),
