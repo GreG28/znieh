@@ -21,16 +21,16 @@
     // imgUnit should be the PNG containing the sprite sequence
     // level must be of type Level
     // position must be of type Point
-    function Unit(imgUnit, map, position, unitsInfos, taille) {
+    function Unit(imgUnit, map, position, unitsInfos, taille, i, j) {
         "use strict";
         //alert(JSON.stringify(unitsInfos, null, 4));
-        this.initialize(imgUnit, map, position, unitsInfos, taille);
+        this.initialize(imgUnit, map, position, unitsInfos, taille, i, j);
     }
 
     Unit.prototype.IsAlive = true;
     Unit.prototype.IsOnGround = true;
 
-    Unit.prototype.initialize = function (imgUnit, map, position, unitsInfos, taille) {
+    Unit.prototype.initialize = function (imgUnit, map, position, unitsInfos, taille, i, j) {
 
         "use strict";
 
@@ -41,8 +41,11 @@
         var regX = unitsInfos.specifications[taille].sprites.frames.regX;
         var regY = unitsInfos.specifications[taille].sprites.frames.regY;
 
-        var frameWidth;
-        var frameHeight;
+        this.frameWidth = 0;
+        this.frameHeight = 0;
+
+        this._i = i;
+        this._j = j;
 
         var animations = {};
         var animations_move = unitsInfos.animations.move;
@@ -77,14 +80,14 @@
 
         this.elapsed = 0;
 
-        frameWidth = localSpriteSheet.getFrame(0).rect.width;
-        frameHeight = localSpriteSheet.getFrame(0).rect.height;
+        this.frameWidth = localSpriteSheet.getFrame(0).rect.width;
+        this.frameHeight = localSpriteSheet.getFrame(0).rect.height;
 
         // Calculate bounds within texture size.
-        width = parseInt(frameWidth * 0.4,10);
-        left = parseInt((frameWidth - width) / 2,10);
-        height = parseInt(frameWidth * 0.8,10);
-        top = parseInt(frameHeight - height,10);
+        width = parseInt(this.frameWidth * 0.4,10);
+        left = parseInt((this.frameWidth - width) / 2,10);
+        height = parseInt(this.frameWidth * 0.8,10);
+        top = parseInt(this.frameHeight - height,10);
         this.localBounds = new XNARectangle(left, top, width, height);
 
         this.sprite_base.name = "Hero";
@@ -121,31 +124,53 @@
         var _y = 0;
         var width = this.width;
         var height = this.height;
+        var frameWidth = this.frameWidth;
+        var frameHeight = this.frameHeight;
 
         var unitID = this.unitID;
         var container = this._container;
 
-        this.shape = new createjs.Shape();
-        this.shape.name = "contour";
-        this.shape.graphics.beginStroke("##000000");
-        this.shape.graphics.setStrokeStyle(2); // 2 pixel
-        this.shape.graphics.drawRect((_x - 16), (_y - 16), 32, 32); // Change size as-needed
-        this.shape.visible = false;
+        this.shape_hover = new createjs.Shape();
+        this.shape_hover.name = "contour_hover";
+        this.shape_hover.graphics.beginStroke("#000000");
+        this.shape_hover.graphics.setStrokeStyle(2); // 2 pixel
+        this.shape_hover.graphics.drawRect((_x - 16), (_y - 16), 32, 32); // Change size as-needed
+        this.shape_hover.visible = false;
 
-        this._container.addChild(this.shape);
+        this._container.addChild(this.shape_hover);
+
+        this.shape_selected = new createjs.Shape();
+        this.shape_selected.name = "contour_selected";
+        this.shape_selected.graphics.beginStroke("#00af00");
+        this.shape_selected.graphics.setStrokeStyle(2); // 2 pixel
+        this.shape_selected.graphics.drawRect((_x - 16), (_y - 16), 32, 32); // Change size as-needed
+        this.shape_selected.visible = false;
+
+        this._container.addChild(this.shape_hover);
+        this._container.addChild(this.shape_selected);
+
         this._container.addChild(this.sprite_base);
 
-        var shape = this.shape;
+        var shape_hover = this.shape_hover;
+        var shape_selected = this.shape_selected;
+
         this._container.on("mouseover", function(evt) {
-            shape.visible = true;
+            shape_hover.visible = true;
         });
 
         this._container.on("mouseout", function(evt) {
-            shape.visible = false;
+            shape_hover.visible = false;
         });
+
+        var i = this._i;
+        var j = this._j;
 
         this._container.on("click", function(evt) {
             console.log("[UNIT] x" + container.x + " y" + container.y);
+            /* On rend toutes les cases autours selectionnés */
+            
+            ContentManager.DeselectTilesAndUnits();
+            ContentManager.selectTiles(i,j);
         });
 
         this._container.x = position.x;
