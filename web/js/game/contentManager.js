@@ -52,6 +52,7 @@ var substage;
 
 
 var placement_en_cours = true;
+var selected_Unit = null;
 
 function ContentManager(stage, width, height) {
     ContentManager.nextUnitID = 0;
@@ -238,6 +239,8 @@ function ContentManager(stage, width, height) {
         {
             ContentManager.units[cpt3].shape_selected.visible = false;
         }
+
+        selected_Unit = null;
     };
 
     function addUnitImageInMenu()
