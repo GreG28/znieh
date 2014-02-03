@@ -7,6 +7,14 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         this.initialize(texture, collision, x, y, render);
     }
 
+    /**
+     * Initialize the Tile with its proprierties
+     * @param  {createjs.Sprite} texture
+     * @param  {int} collision
+     * @param  {int} x
+     * @param  {int} y
+     * @param  {boolean} render
+     */
     Tile.prototype.initialize = function(texture, collision, x, y, render) {
         "use strict";
 
@@ -35,6 +43,9 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         }
     };
 
+    /**
+     * Render the Tile and handle actions
+     */
     Tile.prototype.render = function() {
         // On définit les coordonnées de la Tile
         "use strict";

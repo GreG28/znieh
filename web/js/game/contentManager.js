@@ -4,6 +4,7 @@ var map;
 var Hero;
 var Start;
 var spritePerso;
+
 //to stock the units created
 var unitsCreated = [];
 var loadingQueue;
@@ -16,6 +17,12 @@ var substage;
 var placement_en_cours = true;
 var selected_Unit = null;
 
+/**
+ * Used to download all ressources and start the game
+ * @param {createjs.Stage} stage
+ * @param {int} width
+ * @param {int} height
+ */
 function ContentManager(stage, width, height) {
 
     ContentManager.nextUnitID = 0;
@@ -39,12 +46,15 @@ function ContentManager(stage, width, height) {
 
     ContentManager.units = [];
 
+    /**
+     * Initialize all downloads
+     */
     this.init = function () {
         "use strict";
 
         // coloration du canvas pour tests
         substage = new createjs.Container();
-       
+
        // First Try to deform the map
 
         stage.addChild(substage);
@@ -59,9 +69,12 @@ function ContentManager(stage, width, height) {
         loadingQueue.loadManifest([{id:"units-json", src:"../json/units.json"}]);
         loadingQueue.loadManifest([{id:"mailarmor", src:"../img/sprites/mailarmor.png"}]);
         loadingQueue.loadManifest([{id:"mailarmor2", src:"../img/sprites/mailarmor2.png"}]);
-    };
+    }
 
-    function initMap() {
+    /**
+     * Initialize map with all parameters
+     */
+    function initMap () {
 
         "use strict";
         ContentManager.tilesheight = 32;
@@ -90,21 +103,23 @@ function ContentManager(stage, width, height) {
 
     }
 
-    function tick(event) {
+    /**
+     * Refresh and show FPS
+     * @param  {createjs.Event} event
+     */
+    function tick (event) {
         $("#fps").html("<strong>FPS:</strong> " + Math.round(createjs.Ticker.getMeasuredFPS()));
         stage.update(event);
     }
 
-    function createUnit(x, y, type, taille) {
-        "use strict";
-
-        var loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
-        spritePerso = loadingQueue.getResult(loading_id);
-        Start = map.GetBounds(x, y).GetBottomCenter();
-        // we add the new unit to the array to get them !
-        unitsCreated.push(new Unit(spritePerso, map, Start, unistJson[type], taille, x, y));
-    }
-
+    /**
+     * Create a unity and keep it in memory
+     * @param  {int} x
+     * @param  {int} y
+     * @param  {string} type
+     * @param  {string} taille
+     * @param  {int} idUnit
+     */
     ContentManager.newUnit = function(x, y, type, taille, idUnit) {
         "use strict";
 
@@ -137,6 +152,9 @@ function ContentManager(stage, width, height) {
         }
     };
 
+    /**
+     * TODO
+     */
     ContentManager.selectTiles = function(i, j) {
         "use strict";
 
@@ -179,6 +197,9 @@ function ContentManager(stage, width, height) {
         }
     };
 
+    /**
+     * TODO
+     */
     ContentManager.DeselectTilesAndUnits = function() {
         "use strict";
 
@@ -190,7 +211,7 @@ function ContentManager(stage, width, height) {
                 map.tiles[cpt][cpt2].shape_selection_impossible.visible = false;
             }
         }
-        
+
         for(var cpt3 = 0 ; cpt3 < ContentManager.units.lenght ; cpt3 = cpt3+1)
         {
             ContentManager.units[cpt3].shape_selected.visible = false;
@@ -198,7 +219,10 @@ function ContentManager(stage, width, height) {
         selected_Unit = null;
     };
 
-    function addUnitImageInMenu()
+    /**
+     * Generate units image for menus
+     */
+    function addUnitImageInMenu ()
     {
         "use strict";
 
