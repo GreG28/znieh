@@ -11,6 +11,7 @@ onload="init();"
 <script src="{{ asset('js/game/Map.js') }}"></script>
 <script src="{{ asset('js/game/Unit.js') }}"></script>
 <script src="{{ asset('js/game/contentManager.js') }}"></script>
+<script src="{{ asset('js/easystar-0.1.6.min.js') }}"></script>
 
 <style>
 .sprite {
@@ -32,7 +33,7 @@ function init() {
 }
 
 var nextUnitID = 0;
-var numberOfUnits = 3; 
+var numberOfUnits = 3;
 var units = [
   { "sprite": "firefox", "taille": "petitfin", "name": "Bobby", "statut": 0 },
   { "sprite": "firefox", "taille": "grandmuscle", "name": "Jacky", "statut": -1 },
