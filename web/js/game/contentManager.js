@@ -200,25 +200,35 @@ function ContentManager(stage, width, height) {
             for(var cpt2 = 0 ; cpt2 < map.gameWidth ; cpt2 = cpt2+1)
             {
                 var tile_en_cours = map.tiles[cpt][cpt2];
+                var shape = null;
+                if(tile_en_cours.Collision == Enum.TileCollision.Impassable)
+                {
+                    shape = tile_en_cours.shape_selection_impossible;
+                }
+                else
+                {
+                    shape = tile_en_cours.shape_selection_possible;
+                }
+
                 if(tile_en_cours.i == i-1 && tile_en_cours.j == j)
                 {
-                    tile_en_cours.shape_selection_possible.visible = true;  
+                    shape.visible = true;
                 }
                 else if(tile_en_cours.i == i+1 && tile_en_cours.j == j)
                 {
-                    tile_en_cours.shape_selection_possible.visible = true;
+                    shape.visible = true;
                 }
                 else if(tile_en_cours.i == i && tile_en_cours.j == j-1)
                 {
-                    tile_en_cours.shape_selection_possible.visible = true;
+                    shape.visible = true;
                 }
                 else if(tile_en_cours.i == i && tile_en_cours.j == j+1)
                 {
-                    tile_en_cours.shape_selection_possible.visible = true;
+                    shape.visible = true;
                 }
                 else if(tile_en_cours.i == i && tile_en_cours.j == j)
                 {
-                    tile_en_cours.shape_selection_possible.visible = true;
+                    shape.visible = true;
                 }
             }
         }
@@ -232,6 +242,7 @@ function ContentManager(stage, width, height) {
             for(var cpt2 = 0 ; cpt2 < map.gameWidth ; cpt2 = cpt2+1)
             {
                 map.tiles[cpt][cpt2].shape_selection_possible.visible = false;
+                map.tiles[cpt][cpt2].shape_selection_impossible.visible = false;
             }
         }
         
@@ -239,7 +250,6 @@ function ContentManager(stage, width, height) {
         {
             ContentManager.units[cpt3].shape_selected.visible = false;
         }
-
         selected_Unit = null;
     };
 
