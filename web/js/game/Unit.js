@@ -144,6 +144,8 @@
         this.shape_hover.graphics.drawRect((_x - 16), (_y - 16), 32, 32 - 2); // Change size as-needed
         this.shape_hover.visible = false;
 
+        this._container.addChild(this.shape_hover);
+
         this.shape_selected = new createjs.Shape();
         this.shape_selected.name = "contour_selected";
         this.shape_selected.graphics.beginStroke("#00af00");
@@ -161,7 +163,6 @@
         this._container.addChild(this.shape_hover);
         this._container.addChild(this.shape_selected);
         this._container.addChild(this.shape_selected_unit);
-
         this._container.addChild(this.sprite_base);
 
         var shape_hover = this.shape_hover;
@@ -249,6 +250,12 @@
                 // On déplace le personnage
             }
 
+        this._container.on("click", function(evt) {
+            console.log("[UNIT] x" + container.x + " y" + container.y);
+            /* On rend toutes les cases autours selectionnés */
+
+            ContentManager.DeselectTilesAndUnits();
+            ContentManager.selectTiles(i,j);
         });
 
         this._container.x = position.x;
