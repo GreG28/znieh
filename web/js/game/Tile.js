@@ -68,14 +68,14 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         this.shape_selection_possible.name = "contour_selection_possible";
         this.shape_selection_possible.graphics.beginStroke("#00af00");
         this.shape_selection_possible.graphics.setStrokeStyle(2); // 2 pixel
-        this.shape_selection_possible.graphics.drawRect(_x,_y,width - 2,height - 2); // Change size as-needed
+        this.shape_selection_possible.graphics.drawRect(_x,_y,width,height); // Change size as-needed
         this.shape_selection_possible.visible = false;
 
         this.shape_selection_impossible = new createjs.Shape();
         this.shape_selection_impossible.name = "contour_selection_impossible";
         this.shape_selection_impossible.graphics.beginStroke("#cc231e");
         this.shape_selection_impossible.graphics.setStrokeStyle(2); // 2 pixel
-        this.shape_selection_impossible.graphics.drawRect(_x,_y,width - 2,height - 2); // Change size as-needed
+        this.shape_selection_impossible.graphics.drawRect(_x,_y,width,height); // Change size as-needed
         this.shape_selection_impossible.visible = false;
 
         this._container.addChild(this.texture);
@@ -90,18 +90,6 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         var self = this;
         this._container.on("mouseover", function(evt) {
             shape_hover.visible = true;
-
-            // TODO : Ghost de l'unité qui suit la souris pendant le placement des unités
-            // if(gameStatut == GameStatut.PLACEMENT) {
-            //     selectedUnit = unitsCache[$("#myUnits div.selected").attr("data-unit")];
-            //     if(selectedUnit != null) {
-            //         selectedUnit._container.x = map.GetBounds(self.i, self.j).GetBottomCenter().x;
-            //         selectedUnit._container.y = map.GetBounds(self.i, self.j).GetBottomCenter().y;
-            //         console.log(selectedUnit._container.x);
-            //         console.log("On change");
-            //         selectedUnit.sprite_base.gotoAndPlay("move-left"); //animate
-            //     }
-            // }
         });
 
         this._container.on("mouseout", function(evt) {
@@ -124,8 +112,8 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
                             nextUnitID++;
                             if(nextUnitID == numberOfUnits)
                             {
-                                console.log('fini');
                                 placement_en_cours = false;
+                                //alert("placement_en_cours -> " + placement_en_cours);
                             }
                         }
                     }
@@ -140,7 +128,9 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
             // le placement est fini !
             else
             {
-                console.log("Le placement est fini !");
+                //console.log("Le placement est fini !");
+                ContentManager.DeselectTilesAndUnits();
+                /* On essaye de rendre les cases autour colorée aussi pour que  */
             }
         }, null, false, { collision: this.Collision });
 
