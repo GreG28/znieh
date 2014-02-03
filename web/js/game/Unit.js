@@ -183,6 +183,7 @@
 
         this._container.on("click", function(evt) {
             console.log("[UNIT] x" + container.x + " y" + container.y);
+<<<<<<< HEAD
             ContentManager.unSelectAllTiles();
             selectedUnit = that;
 
@@ -249,7 +250,6 @@
             else if(gameStatut == GameStatut.MOVE) {
                 // On déplace le personnage
             }
-
         });
 
         this._container.x = position.x;

@@ -28,7 +28,6 @@ var gameStatut;
 var placement_en_cours = true;
 var selected_Unit = null;
 
-
 /**
  * Used to download all ressources and start the game
  * @param {createjs.Stage} stage
@@ -135,16 +134,6 @@ function ContentManager(stage, width, height) {
      * @param  {string} taille
      * @param  {int} idUnit
      */
-    function createUnit(x, y, type, taille) {
-        "use strict";
-
-        var loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
-        spritePerso = loadingQueue.getResult(loading_id);
-        Start = map.GetBounds(x, y).GetBottomCenter();
-        // we add the new unit to the array to get them !
-        unitsCreated.push(new Unit(spritePerso, map, Start, unistJson[type], taille, x, y));
-    }
-
     ContentManager.newUnit = function(x, y, type, taille, idUnit) {
         "use strict";
 
@@ -178,8 +167,6 @@ function ContentManager(stage, width, height) {
     };
 
     ContentManager.unSelectAllTiles = function() {
-        "use strict";
-
         for(var i = 0; i < map.gameWidth; i++) {
             for(var j = 0; j < map.gameWidth; j++) {
                 map.tiles[i][j].shape_selection_possible.visible = false;
@@ -192,7 +179,6 @@ function ContentManager(stage, width, height) {
 
         for(var i = 0 ; i < ContentManager.units.lenght; i++)
             ContentManager.units[i].shape_selected.visible = false;
-
     };
 
     /**
