@@ -28,6 +28,16 @@
     Unit.prototype.IsAlive = true;
     Unit.prototype.IsOnGround = true;
 
+    /**
+     * Initialize the Unit with its animations
+     * @param  {Image} imgUnit
+     * @param  {Map} map
+     * @param  {position} position
+     * @param  {Array} unitsInfos
+     * @param  {int} taille
+     * @param  {int} i
+     * @param  {int} j
+     */
     Unit.prototype.initialize = function (imgUnit, map, position, unitsInfos, taille, i, j) {
 
         "use strict";
@@ -107,7 +117,7 @@
 
     /**
      * Reset an Unit, set proprierties and handle clicks
-     * @param {Position} position
+     * @param {[type]} position
      */
     Unit.prototype.Reset = function (position) {
         "use strict";
@@ -167,7 +177,7 @@
         this._container.on("click", function(evt) {
             console.log("[UNIT] x" + container.x + " y" + container.y);
             /* On rend toutes les cases autours selectionnés */
-            
+
             ContentManager.DeselectTilesAndUnits();
             ContentManager.selectTiles(i,j);
             selected_Unit = that;
@@ -183,65 +193,6 @@
         //stage.addChild(this._container);
         substage.addChild(this._container);
     };
-
-    Unit.prototype.getAllTilesStatut = function () {
-        var limit = 7; // TODO : Sélectionner la limite de déplacement de l'unité
-        var easystar = new EasyStar.js();
-        var acceptableTiles = [ 1, 2];
-        easystar.setGrid(map.textTiles);
-        easystar.setAcceptableTiles(acceptableTiles);
-
-        for (var t = ContentManager.units.length - 1; t >= 0; t--) {
-            unitsPlacement.push([ContentManager.units[t]._i, ContentManager.units[t]._j]);
-            easystar.avoidAdditionalPoint(ContentManager.units[t]._i, ContentManager.units[t]._j);
-        }
-
-        if(gameStatut == GameStatut.IDLE) {
-            $("#unit-" + (this.unitID - units.length - 1)).addClass("selected");
-
-            for (var x = 0; x < map.textTiles.length; x++) {
-                for (var y = 0; y < map.textTiles[0].length; y++) {
-                    //console.log("[x" + i + ", y" + j + "] - [x" + x + ", y" + y + "]");
-
-                    var self = this;
-                    easystar.findPath(this._i, this._j, x, y, function(path) {
-                        var shape = null;
-                        if (path === null) {
-                            shape = map.tiles[y][x].shape_selection_impossible;
-                            shape.visible = true;
-                        } else {
-                            if(path.length <= limit) {
-                                var placement = [x, y];
-                                var filtered = $(unitsPlacement).filter(function(){
-                                    return placement[0] == this[0] && placement[1] == this[1];
-                                });
-
-                                if(filtered.length > 0){
-                                    shape = map.tiles[y][x].shape_selection_impossible;
-                                    shape.visible = true;
-                                }
-                                else {
-                                    shape = map.tiles[y][x].shape_selection_possible;
-                                    shape.visible = true;
-                                }
-
-                                shape = self.shape_selected_unit;
-                                shape.visible = true;
-                            }
-                            else{
-                                shape = map.tiles[y][x].shape_selection_impossible;
-                                shape.visible = true;
-                            }
-                        }
-                    });
-                    easystar.calculate();
-                }
-            }
-        }
-        else if(gameStatut == GameStatut.MOVE) {
-            // On déplace le personnage
-        }
-    }
 
     /**
      * Gets a rectangle around the Unit
