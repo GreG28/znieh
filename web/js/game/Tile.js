@@ -49,24 +49,42 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
 
         var container = this._container;
 
-        this.shape = new createjs.Shape();
-        this.shape.name = "contour";
-        this.shape.graphics.beginStroke("#ffffff");
-        this.shape.graphics.setStrokeStyle(2); // 2 pixel
-        this.shape.graphics.drawRect(_x,_y,width,height); // Change size as-needed
-        this.shape.visible = false;
+        this.shape_hover = new createjs.Shape();
+        this.shape_hover.name = "contour";
+        this.shape_hover.graphics.beginStroke("#ffffff");
+        this.shape_hover.graphics.setStrokeStyle(2); // 2 pixel
+        this.shape_hover.graphics.drawRect(_x,_y,width,height); // Change size as-needed
+        this.shape_hover.visible = false;
+
+        this.shape_selection_possible = new createjs.Shape();
+        this.shape_selection_possible.name = "contour_selection_possible";
+        this.shape_selection_possible.graphics.beginStroke("#00af00");
+        this.shape_selection_possible.graphics.setStrokeStyle(2); // 2 pixel
+        this.shape_selection_possible.graphics.drawRect(_x,_y,width,height); // Change size as-needed
+        this.shape_selection_possible.visible = false;
+
+        this.shape_selection_impossible = new createjs.Shape();
+        this.shape_selection_impossible.name = "contour_selection_impossible";
+        this.shape_selection_impossible.graphics.beginStroke("#cc231e");
+        this.shape_selection_impossible.graphics.setStrokeStyle(2); // 2 pixel
+        this.shape_selection_impossible.graphics.drawRect(_x,_y,width,height); // Change size as-needed
+        this.shape_selection_impossible.visible = false;
 
         this._container.addChild(this.texture);
-        this._container.addChild(this.shape);
+        this._container.addChild(this.shape_hover);
+        this._container.addChild(this.shape_selection_possible);
+        this._container.addChild(this.shape_selection_impossible);
 
-        var shape = this.shape;
+        var shape_hover = this.shape_hover;
+        var shape_selection_possible = this.shape_selection_possible;
+        var shape_selection_impossible = this.shape_selection_impossible;
 
         this._container.on("mouseover", function(evt) {
-            shape.visible = true;
+            shape_hover.visible = true;
         });
 
         this._container.on("mouseout", function(evt) {
-            shape.visible = false;
+            shape_hover.visible = false;
         });
 
         var _i = this.i;
@@ -85,8 +103,8 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
                             nextUnitID++;
                             if(nextUnitID == numberOfUnits)
                             {
-                                console.log('fini');
                                 placement_en_cours = false;
+                                //alert("placement_en_cours -> " + placement_en_cours);
                             }
                         }
                     }
@@ -99,7 +117,9 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
             // le placement est fini !
             else
             {
-                console.log("Le placement est fini !");
+                //console.log("Le placement est fini !");
+                ContentManager.DeselectTilesAndUnits();
+                /* On essaye de rendre les cases autour colorée aussi pour que  */
             }
         }, null, false, { collision: this.Collision });
 
