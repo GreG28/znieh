@@ -28,16 +28,6 @@
     Unit.prototype.IsAlive = true;
     Unit.prototype.IsOnGround = true;
 
-    /**
-     * Initialize the Unit with its animations
-     * @param  {Image} imgUnit
-     * @param  {Map} map
-     * @param  {Position} position
-     * @param  {Array} unitsInfos
-     * @param  {int} taille
-     * @param  {int} i
-     * @param  {int} j
-     */
     Unit.prototype.initialize = function (imgUnit, map, position, unitsInfos, taille, i, j) {
 
         "use strict";
@@ -142,45 +132,28 @@
         this.shape_hover.name = "contour_hover";
         this.shape_hover.graphics.beginStroke("#000000");
         this.shape_hover.graphics.setStrokeStyle(2); // 2 pixel
-        this.shape_hover.graphics.drawRect((_x - 16), (_y - 16), 32, 32 - 2); // Change size as-needed
+        this.shape_hover.graphics.drawRect((_x - 16), (_y - 16), 32, 32); // Change size as-needed
         this.shape_hover.visible = false;
+
+        this._container.addChild(this.shape_hover);
 
         this.shape_selected = new createjs.Shape();
         this.shape_selected.name = "contour_selected";
         this.shape_selected.graphics.beginStroke("#00af00");
         this.shape_selected.graphics.setStrokeStyle(2); // 2 pixel
-        this.shape_selected.graphics.drawRect((_x - 16), (_y - 16), 32 - 2, 32 - 2); // Change size as-needed
+        this.shape_selected.graphics.drawRect((_x - 16), (_y - 16), 32, 32); // Change size as-needed
         this.shape_selected.visible = false;
-
-        this.shape_selected_unit = new createjs.Shape();
-        this.shape_selected_unit.name = "contour_selected_unit";
-        this.shape_selected_unit.graphics.beginStroke("#fd8900");
-        this.shape_selected_unit.graphics.setStrokeStyle(2); // 2 pixel
-        this.shape_selected_unit.graphics.drawRect((_x - 16), (_y - 16), 32 - 2, 32 - 2); // Change size as-needed
-        this.shape_selected_unit.visible = false;
 
         this._container.addChild(this.shape_hover);
         this._container.addChild(this.shape_selected);
-        this._container.addChild(this.shape_selected_unit);
+
         this._container.addChild(this.sprite_base);
 
         var shape_hover = this.shape_hover;
         var shape_selected = this.shape_selected;
-        var shape_selected_unit = this.shape_selected_unit;
 
         this._container.on("mouseover", function(evt) {
             shape_hover.visible = true;
-
-            // TODO : Ghost de l'unité qui suit la souris pendant le placement des unités
-            // if(gameStatut == GameStatut.PLACEMENT) {
-            //     selectedUnit = unitsCache[$("#myUnits div.selected").attr("data-unit")];
-            //     if(selectedUnit != null) {
-            //         selectedUnit._container.x = map.GetBounds(that._i, that._j).GetBottomCenter().x;
-            //         selectedUnit._container.y = map.GetBounds(that._i, that._j).GetBottomCenter().y;
-            //         console.log("On change");
-            //         selectedUnit.sprite_base.gotoAndPlay("move-left"); //animate
-            //     }
-            // }
         });
 
         this._container.on("mouseout", function(evt) {
@@ -189,27 +162,13 @@
 
         var i = this._i;
         var j = this._j;
-        var that = this;
 
         this._container.on("click", function(evt) {
             console.log("[UNIT] x" + container.x + " y" + container.y);
-            ContentManager.unSelectAllTiles();
-            selectedUnit = that;
-
-            // L'unité est déjà sélectionnée
-            if(gameStatut != GameStatut.PLACEMENT) {
-                ContentManager.clearUnitsMenu();
-
-                if(selectedUnit.shape_selected_unit.visible == true) {
-                    gameStatut = GameStatut.MOVE;
-                }
-                else {
-                    gameStatut = GameStatut.IDLE;
-                }
-            }
-
-            that.getAllTilesStatut();
-
+            /* On rend toutes les cases autours selectionnés */
+            
+            ContentManager.DeselectTilesAndUnits();
+            ContentManager.selectTiles(i,j);
         });
 
         this._container.x = position.x;
