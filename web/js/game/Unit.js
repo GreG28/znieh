@@ -161,7 +161,6 @@
         this._container.addChild(this.shape_hover);
         this._container.addChild(this.shape_selected);
         this._container.addChild(this.shape_selected_unit);
-
         this._container.addChild(this.sprite_base);
 
         var shape_hover = this.shape_hover;
