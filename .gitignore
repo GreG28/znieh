@@ -7,11 +7,11 @@
 /app/config/parameters.yml
 znieh.sublime-workspace
 composer.phar
-/node/node_modules/
+/gameserver/node_modules/
 /chat-server/node_modules/
 /chat-server/config.user.json
 *.psd
-/node/config.user.json
-/node/db.rar
+/gameserver/config.user.json
+/gamerserver/db.rar
 *DS_Store
 npm-debug.log

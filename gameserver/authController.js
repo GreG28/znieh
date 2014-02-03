@@ -40,7 +40,7 @@ module.exports = authController = function(socket, world, callback) {
 			
 			socket.set('authenticated', true);
 			socket.emit("service", { msg: 'Auth: OK' });
-
+			console.log("User " + data.username + " is now logged in.")
 			callback(user);
 
 		});
