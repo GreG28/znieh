@@ -15,6 +15,7 @@ var app = require('http').createServer(handler);
 var io = require('socket.io').listen(app);
 var fs = require('fs');
 var db = require('./db');
+var skillHandler = require('./skillHandler');
 var config = require('nconf');
 var Moniker = require('moniker');
 var port = 1337;
@@ -85,9 +86,9 @@ world.pool.init(world);
 var Player = require('./player');
 
 // Handler test
-var skillHandler = require('./skillHandler');
-skillHandler.loadSpells();
-skillHandler.loadSkills();
+world.handlers.skills = skillHandler;
+world.handlers.skills.loadSpells();
+world.handlers.skills.loadSkills();
 
 /*
  * Controller
@@ -108,6 +109,7 @@ io.sockets.on('connection', function (socket) {
       world.removePlayer(player);
       world.pool.removePlayer(player);
       world.broadcastUserList();
+      console.log("User " + player.name + " is now disconnected.");
     });
 
     var waitingController = require('./waitingController')(world, player);

@@ -2,6 +2,7 @@
 module.exports = waitingController = function(world, player) {
 
 	player.socket.on("get-pools", function(data) {
+    	console.log("Player " + player.name + " is trying to get list of pools.");
 		var pools = [];
 
 		for (var i = 0; i < world.config.get('pool:count'); i++) {
@@ -20,7 +21,7 @@ module.exports = waitingController = function(world, player) {
 
 
     player.socket.on("join", function(data) {
-
+    	console.log("Player " + player.name + " is trying to join a pool.");
     	var poolId = parseInt(data.pool);
 
     	// If the pool really exists

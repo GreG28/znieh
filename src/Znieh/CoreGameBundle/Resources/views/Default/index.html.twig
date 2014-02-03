@@ -122,29 +122,30 @@ $("#rightSide").html(rightPart);
 
   <script>
 
-    var socket = undefined;
+    var gameSocket = undefined;
 
-    socket = io.connect('127.0.0.1:1337');
+    gameSocket = io.connect('127.0.0.1:1337');
     $('#console').append('Connected<br>');
 
+    gameSocket.emit('auth', { username: '{{ app.user.username }}' , token: '{{ app.user.token }}' });
 
     // In
-    socket.on('welcome', function (data) {
+    gameSocket.on('welcome', function (data) {
       console.log(data);
       $('#console').append('Server has send welcome message. Your name is : ' + data + '<br />');
     });
 
-    socket.on('service', function (data) {
+    gameSocket.on('service', function (data) {
       console.log(data);
       $('#console').append('Service message : ' + data.msg + '<br />');
     });
 
-    socket.on('players', function (data) {
+    gameSocket.on('players', function (data) {
       console.log(data);
       $('#console').append('Current players : ' + data.players + '<br />');
     });
 
-    socket.on('pools-list', function (data) {
+    gameSocket.on('pools-list', function (data) {
       console.log(data);
       $('#pools').html(JSON.stringify(data));
     });
@@ -152,22 +153,24 @@ $("#rightSide").html(rightPart);
 
     // Out
     $('#join').click(function () {
-      socket.emit('join', {pool: $('#poolId').val()});
+      gameSocket.emit('join', {pool: 1}, function (data) {
+        $('#console').append('<strong>Callback</strong><br>');
+      });
       $('#console').append('<strong>Trying to join pool...</strong><br>');
     });
 
     $('#auth').click(function () {
-      socket.emit('auth', { username: '{{ app.user.username }}' , token: '{{ app.user.token }}' });
+      gameSocket.emit('auth', { username: '{{ app.user.username }}' , token: '{{ app.user.token }}' });
       $('#console').append('<strong>Trying to auth...</strong><br>');
     });
 
     $('#ready').click(function () {
-      socket.emit('ready', null);
+      gameSocket.emit('ready', null);
       $('#console').append('<strong>Ready to fight. Looking for a game...</strong><br>');
     });
 
     $('#fight').click(function () {
-      socket.emit('get-pools', null);
+      gameSocket.emit('get-pools', null);
       $('#pools').html('<strong>Loading ...</strong><br>');
     });
 

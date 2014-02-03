@@ -5,7 +5,7 @@ module.exports = World;
 
 World.io = undefined;
 World.config = undefined;
-
+World.handlers = [];
 
 World.players = [];
 World.pool = require('./pool');
