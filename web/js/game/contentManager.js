@@ -134,6 +134,16 @@ function ContentManager(stage, width, height) {
      * @param  {string} taille
      * @param  {int} idUnit
      */
+    function createUnit(x, y, type, taille) {
+        "use strict";
+
+        var loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
+        spritePerso = loadingQueue.getResult(loading_id);
+        Start = map.GetBounds(x, y).GetBottomCenter();
+        // we add the new unit to the array to get them !
+        unitsCreated.push(new Unit(spritePerso, map, Start, unistJson[type], taille, x, y));
+    }
+
     ContentManager.newUnit = function(x, y, type, taille, idUnit) {
         "use strict";
 
