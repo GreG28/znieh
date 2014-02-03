@@ -251,12 +251,6 @@
                 // On déplace le personnage
             }
 
-        this._container.on("click", function(evt) {
-            console.log("[UNIT] x" + container.x + " y" + container.y);
-            /* On rend toutes les cases autours selectionnés */
-
-            ContentManager.DeselectTilesAndUnits();
-            ContentManager.selectTiles(i,j);
         });
 
         this._container.x = position.x;
