@@ -1,0 +1,61 @@
+[1mdiff --git a/web/js/game/contentManager.js b/web/js/game/contentManager.js[m
+[1mindex 4f912d1..ccd2224 100644[m
+[1m--- a/web/js/game/contentManager.js[m
+[1m+++ b/web/js/game/contentManager.js[m
+[36m@@ -145,25 +145,35 @@[m [mfunction ContentManager(stage, width, height) {[m
+             for(var cpt2 = 0 ; cpt2 < map.gameWidth ; cpt2 = cpt2+1)[m
+             {[m
+                 var tile_en_cours = map.tiles[cpt][cpt2];[m
+[32m+[m[32m                var shape = null;[m
+[32m+[m[32m                if(tile_en_cours.Collision == Enum.TileCollision.Impassable)[m
+[32m+[m[32m                {[m
+[32m+[m[32m                    shape = tile_en_cours.shape_selection_impossible;[m
+[32m+[m[32m                }[m
+[32m+[m[32m                else[m
+[32m+[m[32m                {[m
+[32m+[m[32m                    shape = tile_en_cours.shape_selection_possible;[m
+[32m+[m[32m                }[m
+[32m+[m
+                 if(tile_en_cours.i == i-1 && tile_en_cours.j == j)[m
+                 {[m
+[31m-                    tile_en_cours.shape_selection_possible.visible = true;  [m
+[32m+[m[32m                    shape.visible = true;[m
+                 }[m
+                 else if(tile_en_cours.i == i+1 && tile_en_cours.j == j)[m
+                 {[m
+[31m-                    tile_en_cours.shape_selection_possible.visible = true;[m
+[32m+[m[32m                    shape.visible = true;[m
+                 }[m
+                 else if(tile_en_cours.i == i && tile_en_cours.j == j-1)[m
+                 {[m
+[31m-                    tile_en_cours.shape_selection_possible.visible = true;[m
+[32m+[m[32m                    shape.visible = true;[m
+                 }[m
+                 else if(tile_en_cours.i == i && tile_en_cours.j == j+1)[m
+                 {[m
+[31m-                    tile_en_cours.shape_selection_possible.visible = true;[m
+[32m+[m[32m                    shape.visible = true;[m
+                 }[m
+                 else if(tile_en_cours.i == i && tile_en_cours.j == j)[m
+                 {[m
+[31m-                    tile_en_cours.shape_selection_possible.visible = true;[m
+[32m+[m[32m                    shape.visible = true;[m
+                 }[m
+             }[m
+         }[m
+[36m@@ -177,6 +187,7 @@[m [mfunction ContentManager(stage, width, height) {[m
+             for(var cpt2 = 0 ; cpt2 < map.gameWidth ; cpt2 = cpt2+1)[m
+             {[m
+                 map.tiles[cpt][cpt2].shape_selection_possible.visible = false;[m
+[32m+[m[32m                map.tiles[cpt][cpt2].shape_selection_impossible.visible = false;[m
+             }[m
+         }[m
+         [m
+[36m@@ -184,7 +195,6 @@[m [mfunction ContentManager(stage, width, height) {[m
+         {[m
+             ContentManager.units[cpt3].shape_selected.visible = false;[m
+         }[m
+[31m-[m
+         selected_Unit = null;[m
+     };[m
+ [m
