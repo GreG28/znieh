@@ -31,6 +31,11 @@ class Team
     private $name;
 
     /**
+    * @ORM\OneToMany(targetEntity="Unit", mappedBy="team", cascade={"persist"})
+    */
+    private $units;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Znieh\UserBundle\Entity\User", inversedBy="teams")
      */
     private $user;
@@ -101,5 +106,53 @@ class Team
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set selected
+     *
+     * @param boolean $selected
+     *
+     * @return Team
+     */
+    public function setSelected($selected)
+    {
+        $this->selected = $selected;
+
+        return $this;
+    }
+
+    /**
+     * Get selected
+     *
+     * @return boolean
+     */
+    public function getSelected()
+    {
+        return $this->selected;
+    }
+
+    /**
+     * Set save
+     *
+     * @param boolean $save
+     *
+     * @return Team
+     */
+    public function setSave($save)
+    {
+        $this->save = $save;
+
+        return $this;
+    }
+
+    /**
+     * Get save
+     *
+     * @return boolean
+     */
+    public function getSave()
+    {
+        return $this->save;
     }
 }

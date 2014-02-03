@@ -11,6 +11,7 @@ use JMS\Serializer\Annotation\Expose;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Znieh\UnitGameBundle\Entity\TeamRepository")
+ * @ExclusionPolicy("all")
  */
 class Team
 {
@@ -27,8 +28,15 @@ class Team
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Expose
      */
     private $name;
+
+    /**
+    * @ORM\ManyToMany(targetEntity="Unit", mappedBy="teams")
+    * @Expose
+    */
+    private $units;
 
     /**
      * @ORM\ManyToOne(targetEntity="Znieh\UserBundle\Entity\User", inversedBy="teams")
@@ -44,6 +52,14 @@ class Team
      * @ORM\Column(name="save", type="boolean", nullable=true)
      */
     private $save;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->units = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -113,14 +129,14 @@ class Team
     public function setSelected($selected)
     {
         $this->selected = $selected;
-    
+
         return $this;
     }
 
     /**
      * Get selected
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getSelected()
     {
@@ -137,17 +153,61 @@ class Team
     public function setSave($save)
     {
         $this->save = $save;
-    
+
         return $this;
     }
 
     /**
      * Get save
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getSave()
     {
         return $this->save;
+    }
+
+    /**
+     * Add unit
+     *
+     * @param \Znieh\UnitGameBundle\Entity\Unit $unit
+     *
+     * @return Team
+     */
+    public function addUnit(\Znieh\UnitGameBundle\Entity\Unit $unit)
+    {
+        if ($this->units->contains($unit)) {
+            return $this;
+        }
+
+        $unit->addTeam($this);
+        $this->units[] = $unit;
+
+        return $this;
+    }
+
+    /**
+     * Remove unit
+     *
+     * @param \Znieh\UnitGameBundle\Entity\Unit $unit
+     */
+    public function removeUnit(\Znieh\UnitGameBundle\Entity\Unit $unit)
+    {
+        if (!$this->units->contains($unit)) {
+            return $this;
+        }
+
+        $this->units->removeElement($unit);
+        $unit->removeTeam($this);
+    }
+
+    /**
+     * Get units
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUnits()
+    {
+        return $this->units;
     }
 }

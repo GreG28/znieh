@@ -4,12 +4,15 @@ namespace Znieh\UnitGameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Unit
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Znieh\UnitGameBundle\Entity\UnitRepository")
+ * @ExclusionPolicy("all")
  */
 class Unit
 {
@@ -23,16 +26,10 @@ class Unit
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="cost", type="integer")
-     */
-    private $cost;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     * @Expose
      */
     private $name;
 
@@ -54,33 +51,49 @@ class Unit
 
     /**
      * @ORM\ManyToOne(targetEntity="Sign")
+     * @Expose
      */
     private $sign;
 
     /**
      * @ORM\ManyToOne(targetEntity="Size")
+     * @Expose
      */
     private $size;
 
     /**
      * @ORM\ManyToOne(targetEntity="Weight")
+     * @Expose
      */
     private $weight;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Weapon", inversedBy="units")
+     * @ORM\ManyToOne(targetEntity="Weapon", inversedBy="units", cascade={"persist"})
+     * @Expose
      */
     private $weapon;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Armor", inversedBy="units")
+     * @ORM\ManyToOne(targetEntity="Armor", inversedBy="units", cascade={"persist"})
+     * @Expose
      */
     private $armor;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Team", inversedBy="units", cascade={"persist"})
+     */
+    private $teams;
 
     /**
      * @ORM\ManyToOne(targetEntity="Znieh\UserBundle\Entity\User", inversedBy="units")
      */
     private $user;
+
+    /**
+     * @var integer
+     *
+     */
+    private $cost;
 
 
     /**
@@ -307,5 +320,53 @@ class Unit
     public function getWeight()
     {
         return $this->weight;
+    }
+
+    /**
+     * Set sign
+     *
+     * @param \Znieh\UnitGameBundle\Entity\Sign $sign
+     *
+     * @return Unit
+     */
+    public function setSign(\Znieh\UnitGameBundle\Entity\Sign $sign = null)
+    {
+        $this->sign = $sign;
+
+        return $this;
+    }
+
+    /**
+     * Get sign
+     *
+     * @return \Znieh\UnitGameBundle\Entity\Sign
+     */
+    public function getSign()
+    {
+        return $this->sign;
+    }
+
+    /**
+     * Set team
+     *
+     * @param \Znieh\UnitGameBundle\Entity\Team $team
+     *
+     * @return Unit
+     */
+    public function setTeam(\Znieh\UnitGameBundle\Entity\Team $team = null)
+    {
+        $this->team = $team;
+
+        return $this;
+    }
+
+    /**
+     * Get team
+     *
+     * @return \Znieh\UnitGameBundle\Entity\Team
+     */
+    public function getTeam()
+    {
+        return $this->team;
     }
 }

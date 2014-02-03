@@ -21,12 +21,12 @@ class WeaponType extends AbstractType
                 'required' => true
             ))
             ->add('parts', 'entity', array(
-                    'class' => 'ZniehVillageGameBundle:WeaponPart',
-                    'property' => 'name',
-                    'multiple' => true,
-                    'expanded' => true,
-                    'required' => true
-                ))
+                'class' => 'ZniehVillageGameBundle:WeaponPart',
+                'property' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                'required' => true
+            ))
         ;
     }
 
