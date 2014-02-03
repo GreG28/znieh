@@ -22,7 +22,8 @@ var loadingQueue;
 var unitsToMove = [];
 var substage;
 
-var selectedUnit = null;
+var placement_en_cours = true;
+var selected_Unit = null;
 
 var gameStatut;
 
@@ -178,6 +179,20 @@ function ContentManager(stage, width, height) {
         for(var i = 0 ; i < ContentManager.units.lenght; i++)
             ContentManager.units[i].shape_selected.visible = false;
 
+        for(var cpt = 0 ; cpt < map.gameWidth ; cpt = cpt+1)
+        {
+            for(var cpt2 = 0 ; cpt2 < map.gameWidth ; cpt2 = cpt2+1)
+            {
+                map.tiles[cpt][cpt2].shape_selection_possible.visible = false;
+            }
+        }
+        
+        for(var cpt3 = 0 ; cpt3 < ContentManager.units.lenght ; cpt3 = cpt3+1)
+        {
+            ContentManager.units[cpt3].shape_selected.visible = false;
+        }
+
+        selected_Unit = null;
     };
 
     /**
