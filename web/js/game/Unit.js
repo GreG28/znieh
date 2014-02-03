@@ -1,5 +1,3 @@
-
-
 (function (window) {
      // Constants for controling horizontal movement
     var MoveAcceleration = 13000.0;
@@ -30,6 +28,16 @@
     Unit.prototype.IsAlive = true;
     Unit.prototype.IsOnGround = true;
 
+    /**
+     * Initialize the Unit with its animations
+     * @param  {Image} imgUnit
+     * @param  {Map} map
+     * @param  {position} position
+     * @param  {Array} unitsInfos
+     * @param  {int} taille
+     * @param  {int} i
+     * @param  {int} j
+     */
     Unit.prototype.initialize = function (imgUnit, map, position, unitsInfos, taille, i, j) {
 
         "use strict";
@@ -107,10 +115,10 @@
 
     };
 
-    /// <summary>
-    /// Resets the player to life.
-    /// </summary>
-    /// <param name="position">The position to come to life at.</param>
+    /**
+     * Reset an Unit, set proprierties and handle clicks
+     * @param {[type]} position
+     */
     Unit.prototype.Reset = function (position) {
         "use strict";
 
@@ -169,7 +177,7 @@
         this._container.on("click", function(evt) {
             console.log("[UNIT] x" + container.x + " y" + container.y);
             /* On rend toutes les cases autours selectionnés */
-            
+
             ContentManager.DeselectTilesAndUnits();
             ContentManager.selectTiles(i,j);
             selected_Unit = that;
@@ -186,9 +194,9 @@
         substage.addChild(this._container);
     };
 
-    /// <summary>
-    /// Gets a rectangle which bounds this player in world space.
-    /// </summary>
+    /**
+     * Gets a rectangle around the Unit
+     */
     Unit.prototype.BoundingRectangle = function () {
         var left = parseInt(Math.round(this.x - 32) + this.localBounds.x,10);
         var top = parseInt(Math.round(this.y - 64) + this.localBounds.y,10);
@@ -196,14 +204,10 @@
         return new XNARectangle(left, top, this.localBounds.width, this.localBounds.height);
     };
 
-    /// <summary>
-    /// Handles input, performs physics, and animates the player sprite.
-    /// </summary>
-    /// <remarks>
-    /// We pass in all of the input states so that our game is only polling the hardware
-    /// once per frame. We also pass the game's orientation because when using the accelerometer,
-    /// we need to reverse our motion when the orientation is in the LandscapeRight orientation.
-    /// </remarks>
+    /**
+     * TODO
+     * Handles input, performs physics and animates the Unit sprite
+     */
     Unit.prototype.tick = function () {
         "use strict";
 
@@ -236,12 +240,10 @@
 
     };
 
-    /// <summary>
-    /// Detects and resolves all collisions between the player and his neighboring
-    /// tiles. When a collision is detected, the player is pushed away along one
-    /// axis to prevent overlapping. There is some special logic for the Y axis to
-    /// handle platforms which behave differently depending on direction of movement.
-    /// </summary>
+    /**
+     * TODO
+     * Detects and resolves all collisions between the player and his neighboring tiles. When a collision is detected, the player is pushed away along one axis to prevent overlapping. There is some special logic for the Y axis to handle platforms which behave differently depending on direction of movement.
+     */
     Unit.prototype.HandleCollisions = function () {
         var bounds = this.BoundingRectangle();
         var leftTile = Math.floor(bounds.Left() / StaticTile.Width);
