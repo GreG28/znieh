@@ -15,6 +15,11 @@ class ArmorPart extends GameObject
      */
     private $type;
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     /**
      * Set type
      *

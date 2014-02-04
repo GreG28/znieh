@@ -28,6 +28,10 @@ class LoadInsignaData extends AbstractFixtureLoader implements OrderedFixtureInt
                 ->setStep($step)
             ;
 
+            if (!empty($insignaData['effects'])) {
+                $insigna->setEffects($insignaData['effects']);
+            }
+
             $points = empty($insignaData['points']) ? $step->getPoints() : $insignaData['points'];
             $insigna->setPoints($points);
 
