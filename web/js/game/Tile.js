@@ -68,22 +68,14 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         this.shape_selection_possible.name = "contour_selection_possible";
         this.shape_selection_possible.graphics.beginStroke("#00af00");
         this.shape_selection_possible.graphics.setStrokeStyle(2); // 2 pixel
-<<<<<<< HEAD
         this.shape_selection_possible.graphics.drawRect(_x,_y,width - 2,height - 2); // Change size as-needed
-=======
-        this.shape_selection_possible.graphics.drawRect(_x,_y,width,height); // Change size as-needed
->>>>>>> First part of the selection of units #22
         this.shape_selection_possible.visible = false;
 
         this.shape_selection_impossible = new createjs.Shape();
         this.shape_selection_impossible.name = "contour_selection_impossible";
         this.shape_selection_impossible.graphics.beginStroke("#cc231e");
         this.shape_selection_impossible.graphics.setStrokeStyle(2); // 2 pixel
-<<<<<<< HEAD
         this.shape_selection_impossible.graphics.drawRect(_x,_y,width - 2,height - 2); // Change size as-needed
-=======
-        this.shape_selection_impossible.graphics.drawRect(_x,_y,width,height); // Change size as-needed
->>>>>>> First part of the selection of units #22
         this.shape_selection_impossible.visible = false;
 
         this._container.addChild(this.texture);
