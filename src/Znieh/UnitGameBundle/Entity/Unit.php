@@ -68,16 +68,21 @@ class Unit
     private $weight;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Weapon", inversedBy="units", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Weapon", cascade={"persist"})
      * @Expose
      */
     private $weapon;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Armor", inversedBy="units", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Armor", cascade={"persist"})
      * @Expose
      */
     private $armor;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Team", inversedBy="units")
+     */
+    private $teams;
 
     /**
      * @ORM\ManyToOne(targetEntity="Znieh\UserBundle\Entity\User", inversedBy="units")
@@ -89,6 +94,14 @@ class Unit
      *
      */
     private $cost;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->teams = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 
     /**
@@ -339,5 +352,46 @@ class Unit
     public function getSign()
     {
         return $this->sign;
+    }
+
+    /**
+     * Add teams
+     *
+     * @param \Znieh\UnitGameBundle\Entity\Team $team
+     *
+     * @return Unit
+     */
+    public function addTeam(\Znieh\UnitGameBundle\Entity\Team $team)
+    {
+        if ($this->teams->contains($team)) {
+            return $this;
+        }
+
+        $this->teams[] = $team;
+        return $this;
+    }
+
+    /**
+     * Remove teams
+     *
+     * @param \Znieh\UnitGameBundle\Entity\Team $team
+     */
+    public function removeTeam(\Znieh\UnitGameBundle\Entity\Team $team)
+    {
+        if (!$this->teams->contains($team)) {
+            return $this;
+        }
+
+        $this->teams->removeElement($team);
+    }
+
+    /**
+     * Get teams
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTeams()
+    {
+        return $this->teams;
     }
 }

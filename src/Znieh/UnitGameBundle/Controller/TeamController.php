@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Znieh\UnitGameBundle\Entity\Team;
 use Znieh\UnitGameBundle\Form\TeamType;
 
@@ -14,6 +15,7 @@ use Znieh\UnitGameBundle\Form\TeamType;
  * Team controller.
  *
  * @Route("/village/create/team")
+ * @Security("has_role('ROLE_USER')")
  */
 class TeamController extends Controller
 {
@@ -49,6 +51,8 @@ class TeamController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $entity->setUser($this->getUser());
+            $entity->setSelected(true);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
