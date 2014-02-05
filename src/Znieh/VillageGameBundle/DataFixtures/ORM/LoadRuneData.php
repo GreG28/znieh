@@ -37,6 +37,9 @@ class LoadRuneData extends AbstractFixtureLoader implements OrderedFixtureInterf
             $points = empty($runeData['points']) ? $step->getPoints() : $runeData['points'];
             $rune->setPoints($points);
 
+            $costs = empty($runeData['costs']) ? $step->getCosts() : $runeData['costs'];
+            $rune->setCosts($costs);
+
             $manager->persist($rune);
             $manager->flush();
         }

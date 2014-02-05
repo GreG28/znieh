@@ -38,6 +38,9 @@ class LoadWeaponPartData extends AbstractFixtureLoader implements OrderedFixture
             $points = empty($weaponPartData['points']) ? $step->getPoints() : $weaponPartData['points'];
             $weaponPart->setPoints($points);
 
+            $costs = empty($weaponPartData['costs']) ? $step->getCosts() : $weaponPartData['costs'];
+            $weaponPart->setCosts($costs);
+
             $manager->persist($weaponPart);
             $manager->flush();
         }

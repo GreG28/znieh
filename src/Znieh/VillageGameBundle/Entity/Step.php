@@ -72,6 +72,19 @@ class Step
     private $building;
 
     /**
+     * @var array
+     *
+     * @ORM\Column(name="costs", type="array", nullable=true)
+     */
+    protected $costs;
+
+    public function __construct()
+    {
+        $this->effects = array();
+        $this->children = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -138,13 +151,6 @@ class Step
     public function getBuilding()
     {
         return $this->building;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->children = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -247,5 +253,40 @@ class Step
     public function getChildren()
     {
         return $this->children;
+    }
+
+    public function addCost($key, $cost)
+    {
+        if (!in_array($cost, $this->costs, true)) {
+            $this->costs[$key] = $cost;
+        }
+
+        return $this;
+    }
+
+    public function removeCost($cost)
+    {
+        if (false !== $key = array_search($cost, $this->costs, true)) {
+            unset($this->costs[$key]);
+            $this->costs = array_values($this->costs);
+        }
+
+        return $this;
+    }
+
+    public function getCosts()
+    {
+        return $this->costs;
+    }
+
+    public function setCosts(array $costs)
+    {
+        $this->costs = array();
+
+        foreach ($costs as $key => $cost) {
+            $this->addCost($key, $cost);
+        }
+
+        return $this;
     }
 }

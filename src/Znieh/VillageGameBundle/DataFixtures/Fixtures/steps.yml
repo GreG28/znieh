@@ -4,61 +4,73 @@ lame_en_cuivre:
   building: Forge
   parent: ''
   points: 1
+  costs: { po: 50, cuivre: 100 }
 lame_en_bronze:
   title: Lames en bronze
   building: Forge
   parent: Lames en cuivre
   points: 2
+  costs: { po: 50, cuivre: 200 }
 lame_en_fer:
   title: Lames en fer
   building: Forge
   parent: Lames en bronze
   points: 3
+  costs: { po: 50, fer: 100 }
 lame_en_or:
   title: Lames en or
   building: Forge
   parent: Lames en bronze
   points: 4
+  costs: { po: 50, or: 100 }
 garde_en_cuivre:
   title: Gardes en cuivre
   building: Forge
   parent: ''
   points: 1
+  costs: { po: 50, cuivre: 100 }
 garde_en_bronze:
   title: Gardes en bronze
   building: Forge
   parent: Gardes en cuivre
   points: 2
+  costs: { po: 100, cuivre: 200 }
 garde_en_laiton:
   title: Gardes en laiton
   building: Forge
   parent: Gardes en cuivre
   points: 3
+  costs: { po: 50, laiton: 100 }
 garde_en_or:
   title: Gardes en or
   building: Forge
   parent: Gardes en laiton
   points: 4
+  costs: { po: 50, or: 100 }
 manche_en_cedre:
   title: Manches en cèdre
   building: Forge
   parent: ''
   points: 1
+  costs: { po: 50, cedre: 100 }
 manche_en_chene:
   title: Manches en chêne
   building: Forge
   parent: Manches en cèdre
   points: 2
+  costs: { po: 100, chene: 100 }
 pommeau_en_cuivre:
   title: Pommeaux en cuivre
   building: Forge
   parent: ''
   points: 1
+  costs: { po: 50, cuivre: 100 }
 pommeau_en_bronze:
   title: Pommeaux en bronze
   building: Forge
   parent: Pommeaux en cuivre
   points: 2
+  costs: { po: 100, cuivre: 200 }
 #___________________________________
 # Hacherie
 tete_de_hache_cuivre:
@@ -66,41 +78,49 @@ tete_de_hache_cuivre:
   building: Hacherie
   parent: ''
   points: 1
+  costs: { po: 50, cuivre: 100 }
 tete_de_hache_bronze:
   title: Têtes de hache en bronze
   building: Hacherie
   parent: Têtes de hache en cuivre
   points: 2
+  costs: { po: 100, cuivre: 200 }
 tete_de_marteau_cuivre:
   title: Têtes de marteau en cuivre
   building: Hacherie
   parent: ''
   points: 1
+  costs: { po: 50, cuivre: 100 }
 tete_de_marteau_bronze:
   title: Têtes de marteau en bronze
   building: Hacherie
   parent: Têtes de marteau en cuivre
   points: 2
+  costs: { po: 100, cuivre: 200 }
 hampe_en_cedre:
   title: Hampes en cèdre
   building: Hacherie
   parent: ''
   points: 1
+  costs: { po: 50, cedre: 100 }
 hampe_en_chene:
   title: Hampes en chêne
   building: Hacherie
   parent: Hampes en cèdre
   points: 2
+  costs: { po: 100, chene: 100 }
 poignee_en_cuivre:
   title: Poignées en cuivre
   building: Hacherie
   parent: ''
   points: 1
+  costs: { po: 50, cuivre: 100 }
 poignee_en_bronze:
   title: Poignées en bronze
   building: Hacherie
   parent: Poignées en cuivre
   points: 2
+  costs: { po: 100, cuivre: 200 }
 #___________________________________
 #Archerie
 corde_en_reche:
@@ -108,41 +128,49 @@ corde_en_reche:
   building: Archerie
   parent: ''
   points: 1
+  costs: { po: 50, reche: 100 }
 corde_en_brut:
   title: Cordes en cuir brut
   building: Archerie
   parent: Corde en cuir rêche
   points: 2
+  costs: { po: 100, brut: 200 }
 arc_en_cedre:
   title: Arcs en cèdre
   building: Archerie
   parent: ''
   points: 1
+  costs: { po: 50, cedre: 100 }
 arc_en_chene:
   title: Arcs en chêne
   building: Archerie
   parent: Arcs en cèdre
   points: 2
+  costs: { po: 100, chene: 100 }
 poignee_arc_en_cuivre:
   title: Poignées d'arc en cuivre
   building: Archerie
   parent: ''
   points: 1
+  costs: { po: 50, cuivre: 100 }
 poignee_arc_en_bronze:
   title: Poignées d'arc en bronze
   building: Archerie
   parent: Poignées d'arc en cuivre
   points: 2
+  costs: { po: 100, cuivre: 200 }
 fleche_cuivre:
   title: Flèches en cuivre
   building: Archerie
   parent: ''
   points: 1
+  costs: { po: 50, cuivre: 100 }
 fleche_bronze:
   title: Flèches en bronze
   building: Archerie
   parent: Flèches en cuivre
   points: 2
+  costs: { po: 100, cuivre: 200 }
 #___________________________________
 #Armurerie
 casques_en_cuivre:
@@ -150,51 +178,61 @@ casques_en_cuivre:
   building: Armurerie
   parent: ''
   points: 3
+  costs: { po: 50, cuivre: 100 }
 casques_en_bronze:
   title: Casques en bronze
   building: Armurerie
   parent: Casques en cuivre
   points: 4
+  costs: { po: 100, cuivre: 200 }
 torses_en_cuivre:
   title: Torses en cuivre
   building: Armurerie
   parent: ''
   points: 3
+  costs: { po: 50, cuivre: 100 }
 torses_en_bronze:
   title: Torses en bronze
   building: Armurerie
   parent: Torses en cuivre
   points: 4
+  costs: { po: 100, cuivre: 200 }
 jambes_en_cuivre:
   title: Jambes en cuivre
   building: Armurerie
   parent: ''
   points: 3
+  costs: { po: 50, cuivre: 100 }
 jambes_en_bronze:
   title: Jambes en bronze
   building: Armurerie
   parent: Jambes en cuivre
   points: 4
+  costs: { po: 100, cuivre: 200 }
 bottes_en_cuivre:
   title: Bottes en cuivre
   building: Armurerie
   parent: ''
   points: 3
+  costs: { po: 50, cuivre: 100 }
 bottes_en_bronze:
   title: Bottes en bronze
   building: Armurerie
   parent: Bottes en cuivre
   points: 4
+  costs: { po: 100, cuivre: 200 }
 gants_en_cuivre:
   title: Gants en cuivre
   building: Armurerie
   parent: ''
   points: 3
+  costs: { po: 50, cuivre: 100 }
 gants_en_bronze:
   title: Gants en bronze
   building: Armurerie
   parent: Gants en cuivre
   points: 4
+  costs: { po: 100, cuivre: 200 }
 #___________________________________
 #Tannerie
 casques_en_reche:
@@ -202,51 +240,61 @@ casques_en_reche:
   building: Tannerie
   parent: ''
   points: 2
+  costs: { po: 50, reche: 100 }
 casques_en_brut:
   title: Casques en cuir brut
   building: Tannerie
   parent: Casques en cuir rêche
   points: 3
+  costs: { po: 50, brut: 100 }
 torses_en_reche:
   title: Torses en cuir rêche
   building: Tannerie
   parent: ''
   points: 2
+  costs: { po: 50, reche: 100 }
 torses_en_brut:
   title: Torses en cuir brut
   building: Tannerie
   parent: Torses en cuir rêche
   points: 3
+  costs: { po: 50, brut: 100 }
 jambes_en_reche:
   title: Jambes en cuir rêche
   building: Tannerie
   parent: ''
   points: 2
+  costs: { po: 50, reche: 100 }
 jambes_en_brut:
   title: Jambes en cuir brut
   building: Tannerie
   parent: Jambes en cuir rêche
   points: 3
+  costs: { po: 50, reche: 100 }
 bottes_en_reche:
   title: Bottes en cuir rêche
   building: Tannerie
   parent: ''
   points: 2
+  costs: { po: 50, reche: 100 }
 bottes_en_brut:
   title: Bottes en cuir brut
   building: Tannerie
   parent: Bottes en cuir rêche
   points: 3
+  costs: { po: 50, reche: 100 }
 gants_en_reche:
   title: Gants en cuir rêche
   building: Tannerie
   parent: ''
   points: 2
+  costs: { po: 50, reche: 100 }
 gants_en_brut:
   title: Gants en cuir brut
   building: Tannerie
   parent: Gants en cuir rêche
   points: 3
+  costs: { po: 50, reche: 100 }
 #___________________________________
 #Tisserie
 casques_en_etmineure:
@@ -254,51 +302,61 @@ casques_en_etmineure:
   building: Tisserie
   parent: ''
   points: 1
+  costs: { po: 50, reche: 100 }
 casques_en_etstandart:
   title: Casques en étoffe standart
   building: Tisserie
   parent: Casques en étoffe mineure
   points: 2
+  costs: { po: 50, reche: 100 }
 torses_en_etmineure:
   title: Torses en étoffe mineure
   building: Tisserie
   parent: ''
   points: 1
+  costs: { po: 50, reche: 100 }
 torses_en_etstandart:
   title: Torses en étoffe standart
   building: Tisserie
   parent: Torses en étoffe mineure
   points: 2
+  costs: { po: 50, reche: 100 }
 jambes_en_etmineure:
   title: Jambes en étoffe mineure
   building: Tisserie
   parent: ''
   points: 1
+  costs: { po: 50, reche: 100 }
 jambes_en_etstandart:
   title: Jambes en étoffe standart
   building: Tisserie
   parent: Jambes en étoffe mineure
   points: 2
+  costs: { po: 50, reche: 100 }
 bottes_en_etmineure:
   title: Bottes en étoffe mineure
   building: Tisserie
   parent: ''
   points: 1
+  costs: { po: 50, reche: 100 }
 bottes_en_etstandart:
   title: Bottes en étoffe standart
   building: Tisserie
   parent: Bottes en étoffe mineure
   points: 2
+  costs: { po: 50, reche: 100 }
 gants_en_etmineure:
   title: Gants en étoffe mineure
   building: Tisserie
   parent: ''
   points: 1
+  costs: { po: 50, reche: 100 }
 gants_en_etstandart:
   title: Gants en étoffe standart
   building: Tisserie
   parent: Gants en étoffe mineure
   points: 2
+  costs: { po: 50, reche: 100 }
 #___________________________________
 #Runes
 rune_mineur:
@@ -306,16 +364,19 @@ rune_mineur:
   building: Guilde des mages
   parent: ''
   points: 1
+  costs: { po: 150 }
 rune_majeur:
   title: Runes Majeurs
   building: Guilde des mages
   parent: Runes Mineurs
   points: 2
+  costs: { po: 300 }
 rune_superieur:
   title: Runes Supérieurs
   building: Guilde des mages
   parent: Runes Majeurs
   points: 3
+  costs: { po: 500 }
 
 #___________________________________
 #Insignes
@@ -324,16 +385,19 @@ insigne_classique:
   building: Guilde des mages
   parent: ''
   points: 1
+  costs: { po: 500 }
 insigne_exo:
   title: Insignes Exotiques
   building: Guilde des mages
   parent: Insignes Classiques
   points: 2
+  costs: { po: 500 }
 insigne_rare:
   title: Insignes Rares
   building: Guilde des mages
   parent: Insignes Exotiques
   points: 3
+  costs: { po: 500 }
 
 #___________________________________
 #SORTS
@@ -342,41 +406,49 @@ malefice_I:
   building: Guilde des mages
   parent: ''
   points: 2
+  costs: { po: 500 }
 malefice_II:
   title: Maléfices II
   building: Guilde des mages
   parent: Maléfices I
   points: 2
+  costs: { po: 500 }
 degats_I:
   title: Dégâts magiques I
   building: Guilde des mages
   parent: ''
   points: 2
+  costs: { po: 500 }
 degats_II:
   title: Dégâts magiques II
   building: Guilde des mages
   parent: Dégâts magiques I
   points: 2
+  costs: { po: 500 }
 controles_I:
   title: Contrôles I
   building: Guilde des mages
   parent: ''
   points: 2
+  costs: { po: 500 }
 controles_II:
   title: Contrôles II
   building: Guilde des mages
   parent: Contrôle I
   points: 2
+  costs: { po: 500 }
 support_I:
   title: Support I
   building: Guilde des mages
   parent: ''
   points: 2
+  costs: { po: 500 }
 support_II:
   title: Support II
   building: Guilde des mages
   parent: Support I
   points: 2
+  costs: { po: 500 }
 ###
 ##________________________________________
 #________________________________________
@@ -386,18 +458,22 @@ forcefrappe_I:
   building: Centre d'entrainement
   parent: ''
   points: 2
+  costs: { po: 500 }
 art_de_guerre_I:
   title: Art de guerre I
   building: Centre d'entrainement
   parent: ''
   points: 2
+  costs: { po: 500 }
 agilite_mortelle_I:
   title: Agilité mortelle I
   building: Centre d'entrainement
   parent: ''
   points: 2
+  costs: { po: 500 }
 ruse_I:
   title: Ruse I
   building: Centre d'entrainement
   parent: ''
   points: 2
+  costs: { po: 500 }
