@@ -58,6 +58,7 @@ abstract class GameObject
      * @var array
      *
      * @ORM\Column(name="effects", type="array", nullable=true)
+     * @Expose
      */
     protected $effects;
 
