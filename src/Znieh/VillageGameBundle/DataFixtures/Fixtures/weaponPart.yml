@@ -3,740 +3,916 @@ lame_longue_en_cuivre:
   name: Lame longue en cuivre
   type: Lame
   step: Lames en cuivre
+  effects: { vie: 20 }
 lame_courbe_en_cuivre:
   name: Lame courbe en cuivre
   type: Lame
   step: Lames en cuivre
+  effects: { vie: 20 }
 lame_katana_en_cuivre:
   name: Lame de katana en cuivre
   type: Lame
   step: Lames en cuivre
+  effects: { vie: 20 }
 lame_rapiere_en_cuivre:
   name: Lame de rapière en cuivre
   type: Lame
   step: Lames en cuivre
+  effects: { vie: 20 }
 lame_dague_en_cuivre:
   name: Lame de dague en cuivre
   type: Lame
   step: Lames en cuivre
+  effects: { vie: 20 }
 lame_espadon_en_cuivre:
   name: Lame d'espadon en cuivre
   type: Lame
   step: Lames en cuivre
+  effects: { vie: 20 }
 lame_glaive_en_cuivre:
   name: Lame de glaive en cuivre
   type: Lame
   step: Lames en cuivre
+  effects: { vie: 20 }
 #_________________________________________________
 lame_longue_en_bronze:
   name: Lame longue en bronze
   type: Lame
   step: Lames en bronze
+  effects: { vie: 20 }
 lame_courbe_en_bronze:
   name: Lame courbe en bronze
   type: Lame
   step: Lames en bronze
+  effects: { vie: 20 }
 lame_katana_en_bronze:
   name: Lame de katana en bronze
   type: Lame
   step: Lames en bronze
+  effects: { vie: 20 }
 lame_rapiere_en_bronze:
   name: Lame de rapière en bronze
   type: Lame
   step: Lames en bronze
+  effects: { vie: 20 }
 lame_dague_en_bronze:
   name: Lame de dague en bronze
   type: Lame
   step: Lames en bronze
+  effects: { vie: 20 }
 lame_espadon_en_bronze:
   name: Lame d'espadon en bronze
   type: Lame
   step: Lames en bronze
+  effects: { vie: 20 }
 lame_glaive_en_bronze:
   name: Lame de glaive en bronze
   type: Lame
   step: Lames en bronze
+  effects: { vie: 20 }
 #-------------------------------------------------
 lame_longue_en_fer:
   name: Lame longue en fer
   type: Lame
   step: Lames en fer
+  effects: { vie: 20 }
 lame_courbe_en_fer:
   name: Lame courbe en fer
   type: Lame
   step: Lames en fer
+  effects: { vie: 20 }
 lame_katana_en_fer:
   name: Lame de katana en fer
   type: Lame
   step: Lames en fer
+  effects: { vie: 20 }
 lame_rapiere_en_fer:
   name: Lame de rapière en fer
   type: Lame
   step: Lames en fer
+  effects: { vie: 20 }
 lame_dague_en_fer:
   name: Lame de dague en fer
   type: Lame
   step: Lames en fer
+  effects: { vie: 20 }
 lame_espadon_en_fer:
   name: Lame d'espadon en fer
   type: Lame
   step: Lames en fer
+  effects: { vie: 20 }
 lame_glaive_en_fer:
   name: Lame de glaive en fer
   type: Lame
   step: Lames en fer
+  effects: { vie: 20 }
   #-------------------------------------------------
 lame_longue_en_or:
   name: Lame longue en or
   type: Lame
   step: Lames en or
+  effects: { vie: 20 }
 lame_courbe_en_or:
   name: Lame courbe en or
   type: Lame
   step: Lames en or
+  effects: { vie: 20 }
 lame_katana_en_or:
   name: Lame de katana en or
   type: Lame
   step: Lames en or
+  effects: { vie: 20 }
 lame_rapiere_en_or:
   name: Lame de rapière en or
   type: Lame
   step: Lames en or
+  effects: { vie: 20 }
 lame_dague_en_or:
   name: Lame de dague en or
   type: Lame
   step: Lames en or
+  effects: { vie: 20 }
 lame_espadon_en_or:
   name: Lame d'espadon en or
   type: Lame
   step: Lames en or
+  effects: { vie: 20 }
 lame_glaive_en_or:
   name: Lame de glaive en or
   type: Lame
   step: Lames en or
+  effects: { vie: 20 }
 #_________________________________________________
 # Gardes d'épée
 garde_en_cuivre_en_panier:
   name: Garde en panier en cuivre
   type: Garde
   step: Gardes en cuivre
+  effects: { vie: 20 }
 garde_en_cuivre_ciselee:
   name: Garde ciselée en cuivre
   type: Garde
   step: Gardes en cuivre
+  effects: { vie: 20 }
 garde_en_cuivre_arrondie:
   name: Garde arrondie en cuivre
   type: Garde
   step: Gardes en cuivre
+  effects: { vie: 20 }
 #_________________________________________________
 garde_en_bronze_en_panier:
   name: Garde en panier en bronze
   type: Garde
   step: Gardes en bronze
+  effects: { vie: 20 }
 garde_en_bronze_ciselee:
   name: Garde ciselée en bronze
   type: Garde
   step: Gardes en bronze
+  effects: { vie: 20 }
 garde_en_bronze_arrondie:
   name: Garde arrondie en bronze
   type: Garde
   step: Gardes en bronze
+  effects: { vie: 20 }
 #_________________________________________________
 # Manches d'épée
 manche_en_cedre_de_vie:
   name: Manche en cèdre de vie
   type: Manche
   step: Manches en cèdre
+  effects: { vie: 20 }
 manche_en_cedre_de_penetration:
   name: Manche en cèdre de pénétration
   type: Manche
   step: Manches en cèdre
+  effects: { vie: 20 }
 manche_en_cedre_de_precision:
   name: Manche en cèdre de précision
   type: Manche
   step: Manches en cèdre
+  effects: { vie: 20 }
 manche_en_cedre_d_esquive:
   name: Manche en cèdre d'esquive
   type: Manche
   step: Manches en cèdre
+  effects: { vie: 20 }
 manche_en_cedre_de_parade:
   name: Manche en cèdre de parade
   type: Manche
   step: Manches en cèdre
+  effects: { vie: 20 }
 manche_en_cedre_defense:
   name: Manche en cèdre de défense
   type: Manche
   step: Manches en cèdre
+  effects: { vie: 20 }
 manche_en_cedre_de_force:
   name: Manche en cèdre de force
   type: Manche
   step: Manches en cèdre
+  effects: { vie: 20 }
 manche_en_cedre_d_agilite:
   name: Manche en cèdre d'agilité
   type: Manche
   step: Manches en cèdre
+  effects: { vie: 20 }
 manche_en_cedre_d_intelligence:
   name: Manche en cèdre d'intelligence
   type: Manche
   step: Manches en cèdre
+  effects: { vie: 20 }
   manche_en_cedre_d_armure:
   name: Manche en cèdre d'armure
   type: Manche
   step: Manches en cèdre
+  effects: { vie: 20 }
 
 #_________________________________________________
 manche_en_chene_de_vie:
   name: Manche en chêne de vie
   type: Manche
   step: Manches en Chêne
+  effects: { vie: 20 }
 manche_en_chene_de_penetration:
   name: Manche en chêne de pénétration
   type: Manche
   step: Manches en Chêne
+  effects: { vie: 20 }
 manche_en_chene_de_precision:
   name: Manche en chêne de précision
   type: Manche
   step: Manches en Chêne
+  effects: { vie: 20 }
 manche_en_chene_d_esquive:
   name: Manche en chêne d'esquive
   type: Manche
   step: Manches en Chêne
+  effects: { vie: 20 }
 manche_en_chene_de_parade:
   name: Manche en chêne de parade
   type: Manche
   step: Manches en Chêne
+  effects: { vie: 20 }
 manche_en_chene_defense:
   name: Manche en chêne de défense
   type: Manche
   step: Manches en Chêne
+  effects: { vie: 20 }
 manche_en_chene_de_force:
   name: Manche en chêne de force
   type: Manche
   step: Manches en Chêne
+  effects: { vie: 20 }
 manche_en_chene_d_agilite:
   name: Manche en chêne d'agilité
   type: Manche
   step: Manches en Chêne
+  effects: { vie: 20 }
 manche_en_chene_d_intelligence:
   name: Manche en chêne d'intelligence
   type: Manche
   step: Manches en Chêne
+  effects: { vie: 20 }
 manche_en_chene_d_armure:
   name: Manche en chêne d'armure
   type: Manche
   step: Manches en Chêne
+  effects: { vie: 20 }
 #_________________________________________________
 # Pommeaux d'épée
 pommeau_en_cuivre_de_vie:
   name: Pommeau en cuivre de vie
   type: Pommeau
   step: Pommeaux en cuivre
+  effects: { vie: 20 }
 pommeau_en_cuivre_de_penetration:
   name: Pommeau en cuivre de pénétration
   type: Pommeau
   step: Pommeaux en cuivre
+  effects: { vie: 20 }
 pommeau_en_cuivre_de_precision:
   name: Pommeau en cuivre de précision
   type: Pommeau
   step: Pommeaux en cuivre
+  effects: { vie: 20 }
 pommeau_en_cuivre_d_esquive:
   name: Pommeau en cuivre d'esquive
   type: Pommeau
   step: Pommeaux en cuivre
+  effects: { vie: 20 }
 pommeau_en_cuivre_de_parade:
   name: Pommeau en cuivre de parade
   type: Pommeau
   step: Pommeaux en cuivre
+  effects: { vie: 20 }
 pommeau_en_cuivre_de_defense:
   name: Pommeau en cuivre de défense
   type: Pommeau
   step: Pommeaux en cuivre
+  effects: { vie: 20 }
 pommeau_en_cuivre_de_force:
   name: Pommeau en cuivre de force
   type: Pommeau
   step: Pommeaux en cuivre
+  effects: { vie: 20 }
 pommeau_en_cuivre_d_agilite:
   name: Pommeau en cuivre d'agilité
   type: Pommeau
   step: Pommeaux en cuivre
+  effects: { vie: 20 }
 pommeau_en_cuivre_d_intelligence:
   name: Pommeau en cuivre d'intelligence
   type: Pommeau
   step: Pommeaux en cuivre
+  effects: { vie: 20 }
 pommeau_en_cuivre_d_armure:
   name: Pommeau en cuivre d'armure
   type: Pommeau
   step: Pommeaux en cuivre
+  effects: { vie: 20 }
 #_________________________________________________
 pommeau_en_bronze_de_vie:
   name: Pommeau en bronze de vie
   type: Pommeau
   step: Pommeaux en bronze
+  effects: { vie: 20 }
 pommeau_en_bronze_de_penetration:
   name: Pommeau en bronze de pénétration
   type: Pommeau
   step: Pommeaux en bronze
+  effects: { vie: 20 }
 pommeau_en_bronze_de_precision:
   name: Pommeau en bronze de précision
   type: Pommeau
   step: Pommeaux en bronze
+  effects: { vie: 20 }
 pommeau_en_bronze_d_esquive:
   name: Pommeau en bronze d'esquive
   type: Pommeau
   step: Pommeaux en bronze
+  effects: { vie: 20 }
 pommeau_en_bronze_de_parade:
   name: Pommeau en bronze de parade
   type: Pommeau
   step: Pommeaux en bronze
+  effects: { vie: 20 }
 pommeau_en_bronze_de_defense:
   name: Pommeau en bronze de défense
   type: Pommeau
   step: Pommeaux en bronze
+  effects: { vie: 20 }
 pommeau_en_bronze_de_force:
   name: Pommeau en bronze de force
   type: Pommeau
   step: Pommeaux en bronze
+  effects: { vie: 20 }
 pommeau_en_bronze_d_agilite:
   name: Pommeau en bronze d'agilité
   type: Pommeau
   step: Pommeaux en bronze
+  effects: { vie: 20 }
 pommeau_en_bronze_d_intelligence:
   name: Pommeau en bronze d'intelligence
   type: Pommeau
   step: Pommeaux en bronze
+  effects: { vie: 20 }
 pommeau_en_bronze_d_armure:
   name: Pommeau en bronze d'armure
   type: Pommeau
   step: Pommeaux en bronze
+  effects: { vie: 20 }
 #_________________________________________________
 # Tête de hache
 tete_hache_cuivre_bardiche:
   name: Tête de bardiche en cuivre
   type: Tête de hache
   step: Têtes de hache en cuivre
+  effects: { vie: 20 }
 tete_hache_cuivre_Francisque:
   name: Tête de Francisque en cuivre
   type: Tête de hache
   step: Têtes de hache en cuivre
+  effects: { vie: 20 }
 tete_hache_cuivre_hallebarde:
   name: Tête de hallebarde en cuivre
   type: Tête de hache
   step: Têtes de hache en cuivre
+  effects: { vie: 20 }
 tete_hache_cuivre_labrys:
   name: Tête de Labrys en cuivre
   type: Tête de hache
   step: Têtes de hache en cuivre
+  effects: { vie: 20 }
 tete_ hache_cuivre_lochaber:
   name: Tête de Lochaber en cuivre
   type: Tête de hache
   step: Têtes de hache en cuivre
+  effects: { vie: 20 }
 #_________________________________________________
 tete_hache_bronze_bardiche:
   name: Tête de bardiche en bronze
   type: Tête de hache
   step: Têtes de hache en bronze
+  effects: { vie: 20 }
 tete_hache_bronze_Francisque:
   name: Tête de Francisque en bronze
   type: Tête de hache
   step: Têtes de hache en bronze
+  effects: { vie: 20 }
 tete_hache_bronze_hallebarde:
   name: Tête de hallebarde en bronze
   type: Tête de hache
   step: Têtes de hache en bronze
+  effects: { vie: 20 }
 tete_hache_bronze_labrys:
   name: Tête de Labrys en bronze
   type: Tête de hache
   step: Têtes de hache en bronze
+  effects: { vie: 20 }
 tete_ hache_bronze_lochaber:
   name: Tête de Lochaber en bronze
   type: Tête de hache
   step: Têtes de hache en bronze
+  effects: { vie: 20 }
 #_________________________________________________
 # Tête de marteau
 tete_marteau_cuivre_guerre:
   name: Tête de marteau de guerre en cuivre
   type: Tête de marteau
   step: Têtes de marteau en cuivre
+  effects: { vie: 20 }
 tete_marteau_cuivre_geant:
   name: Tête de marteau géant en cuivre
   type: Tête de marteau
   step: Têtes de marteau en cuivre
+  effects: { vie: 20 }
 tete_marteau_cuivre_gourdin:
   name: Tête de gourdin en cuivre
   type: Tête de marteau
   step: Têtes de marteau en cuivre
+  effects: { vie: 20 }
 tete_marteau_cuivre_armes:
   name: Tête de marteau d'armes en cuivre
   type: Tête de marteau
   step: Têtes de marteau en cuivre
+  effects: { vie: 20 }
 tete_ marteau_cuivre_morgenstern :
   name: Tête de Morgenstern en cuivre
   type: Tête de marteau
   step: Têtes de marteau en cuivre
+  effects: { vie: 20 }
 #_________________________________________________
 tete_marteau_bronze_guerre:
   name: Tête de marteau de guerre en bronze
   type: Tête de marteau
   step: Têtes de marteau en bronze
+  effects: { vie: 20 }
 tete_marteau_bronze_geant:
   name: Tête de marteau géant en bronze
   type: Tête de marteau
   step: Têtes de marteau en bronze
+  effects: { vie: 20 }
 tete_marteau_bronze_gourdin:
   name: Tête de gourdin en bronze
   type: Tête de marteau
   step: Têtes de marteau en bronze
+  effects: { vie: 20 }
 tete_marteau_bronze_armes:
   name: Tête de marteau d'armes en bronze
   type: Tête de marteau
   step: Têtes de marteau en bronze
+  effects: { vie: 20 }
 tete_ marteau_bronze_morgenstern :
   name: Tête de Morgenstern en bronze
   type: Tête de marteau
   step: Têtes de marteau en bronze
+  effects: { vie: 20 }
 #_________________________________________________
 # Hampe de hache et marteau
 hampe_cedre_de_vie:
   name: Hampe en cèdre de vie
   type: Hampe
   step: Hampes en cèdre
+  effects: { vie: 20 }
 hampe_cedre_de_penetration:
   name: Hampe en cèdre de pénétration
   type: Hampe
   step: Hampes en cèdre
+  effects: { vie: 20 }
 hampe_cedre_de_precision:
   name: Hampe en cèdre de précision
   type: Hampe
   step: Hampes en cèdre
+  effects: { vie: 20 }
 hampe_cedre_d_esquive:
   name: Hampe en cèdre d'esquive
   type: Hampe
   step: Hampes en cèdre
+  effects: { vie: 20 }
 hampe_cedre_de_parade:
   name: Hampe en cèdre de parade
   type: Hampe
   step: Hampes en cèdre
+  effects: { vie: 20 }
 hampe_cedre_de_defense:
   name: Hampe en cèdre de défense
   type: Hampe
   step: Hampes en cèdre
+  effects: { vie: 20 }
 hampe_cedre_de_force:
   name: Hampe en cèdre de force
   type: Hampe
   step: Hampes en cèdre
+  effects: { vie: 20 }
 hampe_cedre_d_agilite:
   name: Hampe en cèdre d'agilité
   type: Hampe
   step: Hampes en cèdre
+  effects: { vie: 20 }
 hampe_cedre_d_intelligence:
   name: Hampe en cèdre d'intelligence
   type: Hampe
   step: Hampes en cèdre
+  effects: { vie: 20 }
 hampe_cedre_d_armure:
   name: Hampe en cèdre d'armure
   type: Hampe
   step: Hampes en cèdre
+  effects: { vie: 20 }
 #________________________________________________
 hampe_chene_de_vie:
   name: Hampe en chêne de vie
   type: Hampe
   step: Hampes en chêne
+  effects: { vie: 20 }
 hampe_chene_de_penetration:
   name: Hampe en chêne de pénétration
   type: Hampe
   step: Hampes en chêne
+  effects: { vie: 20 }
 hampe_chene_de_precision:
   name: Hampe en chêne de précision
   type: Hampe
   step: Hampes en chêne
+  effects: { vie: 20 }
 hampe_chene_d_esquive:
   name: Hampe en chêne d'esquive
   type: Hampe
   step: Hampes en chêne
+  effects: { vie: 20 }
 hampe_chene_de_parade:
   name: Hampe en chêne de parade
   type: Hampe
   step: Hampes en chêne
+  effects: { vie: 20 }
 hampe_chene_de_defense:
   name: Hampe en chêne de défense
   type: Hampe
   step: Hampes en chêne
+  effects: { vie: 20 }
 hampe_chene_de_force:
   name: Hampe en chêne de force
   type: Hampe
   step: Hampes en chêne
+  effects: { vie: 20 }
 hampe_chene_d_agilite:
   name: Hampe en chêne d'agilité
   type: Hampe
   step: Hampes en chêne
+  effects: { vie: 20 }
 hampe_chene_d_intelligence:
   name: Hampe en chêne d'intelligence
   type: Hampe
   step: Hampes en chêne
+  effects: { vie: 20 }
 hampe_chene_d_armure:
   name: Hampe en chêne d'armure
   type: Hampe
   step: Hampes en chêne
+  effects: { vie: 20 }
 #_________________________________________________
 # Poignée de hache et marteau
 poignee_en_cuivre_en_panier:
   name: Poignée en panier en cuivre
   type: Poignée de hache
   step: Poignées en cuivre
+  effects: { vie: 20 }
 poignee_en_cuivre_ciselee:
   name: Poignée ciselée en cuivre
   type: Poignée de hache
   step: Poignées en cuivre
+  effects: { vie: 20 }
 poignee_en_cuivre_arrondie:
   name: Poignée arrondie en cuivre
   type: Poignée de hache
   step: Poignées en cuivre
+  effects: { vie: 20 }
 #_________________________________________________
 poignee_en_bronze_en_panier:
   name: Poignée en panier en bronze
   type: Poignée de hache
   step: Poignées en bronze
+  effects: { vie: 20 }
 poignee_en_bronze_ciselee:
   name: Poignée ciselée en bronze
   type: Poignée de hache
   step: Poignées en bronze
+  effects: { vie: 20 }
 poignee_en_bronze_arrondie:
   name: Poignée arrondie en bronze
   type: Poignée de hache
   step: Poignées en bronze
+  effects: { vie: 20 }
 #_________________________________________________
 # Cordes d'arcs
 corde_reche_de_vie:
   name: Corde en cuir rêche de vie
   type: Corde
   step: Cordes en cuir rêche
+  effects: { vie: 20 }
 corde_reche_de_penetration:
   name: Corde en cuir rêche de pénétration
   type: Corde
   step: Cordes en cuir rêche
+  effects: { vie: 20 }
 corde_reche_de_precision:
   name: Corde en cuir rêche de précision
   type: Corde
   step: Cordes en cuir rêche
+  effects: { vie: 20 }
 corde_reche_d_esquive:
   name: Corde en cuir rêche d'esquive
   type: Corde
   step: Cordes en cuir rêche
+  effects: { vie: 20 }
 corde_reche_de_parade:
   name: Corde en cuir rêche de parade
   type: Corde
   step: Cordes en cuir rêche
+  effects: { vie: 20 }
 corde_reche_de_defense:
   name: Corde en cuir rêche de défense
   type: Corde
   step: Cordes en cuir rêche
+  effects: { vie: 20 }
 corde_reche_de_force:
   name: Corde en cuir rêche de force
   type: Corde
   step: Cordes en cuir rêche
+  effects: { vie: 20 }
 corde_reche_d_agilite:
   name: Corde en cuir rêche d'agilité
   type: Corde
   step: Cordes en cuir rêche
+  effects: { vie: 20 }
 corde_reche_d_intelligence:
   name: Corde en cuir rêche d'intelligence
   type: Corde
   step: Cordes en cuir rêche
+  effects: { vie: 20 }
 corde_reche_d_armure:
   name: Corde en cuir rêche d'armure
   type: Corde
   step: Cordes en cuir rêche
+  effects: { vie: 20 }
 #_________________________________________________
 corde_brut_de_vie:
   name: Corde en cuir brut de vie
   type: Corde
   step: Cordes en cuir brut
+  effects: { vie: 20 }
 corde_brut_de_penetration:
   name: Corde en cuir brut de pénétration
   type: Corde
   step: Cordes en cuir brut
+  effects: { vie: 20 }
 corde_brut_de_precision:
   name: Corde en cuir brut de précision
   type: Corde
   step: Cordes en cuir brut
+  effects: { vie: 20 }
 corde_brut_d_esquive:
   name: Corde en cuir brut d'esquive
   type: Corde
   step: Cordes en cuir brut
+  effects: { vie: 20 }
 corde_brut_de_parade:
   name: Corde en cuir brut de parade
   type: Corde
   step: Cordes en cuir brut
+  effects: { vie: 20 }
 corde_brut_de_defense:
   name: Corde en cuir brut de défense
   type: Corde
   step: Cordes en cuir brut
+  effects: { vie: 20 }
 corde_brut_de_force:
   name: Corde en cuir brut de force
   type: Corde
   step: Cordes en cuir brut
+  effects: { vie: 20 }
 corde_brut_d_agilite:
   name: Corde en cuir brut d'agilité
   type: Corde
   step: Cordes en cuir brut
+  effects: { vie: 20 }
 corde_brut_d_intelligence:
   name: Corde en cuir brut d'intelligence
   type: Corde
   step: Cordes en cuir brut
+  effects: { vie: 20 }
 corde_brut_d_armure:
   name: Corde en cuir brut d'armure
   type: Corde
   step: Cordes en cuir brut
+  effects: { vie: 20 }
 #_________________________________________________
 # Types d'arcs
 arc_long_cedre:
   name: Arc long en cèdre
   type: Arcs
   step: Arcs en cèdre
+  effects: { vie: 20 }
 arc_plat_cedre:
   name: Arc plat en cèdre
   type: Arcs
   step: Arcs en cèdre
+  effects: { vie: 20 }
 arc_recourbe_cedre:
   name: Arc recourbé en cèdre
   type: Arcs
   step: Arcs en cèdre
+  effects: { vie: 20 }
 arc_composite_cedre:
   name: Arc composite en cèdre
   type: Arcs
   step: Arcs en cèdre
+  effects: { vie: 20 }
 arc_court_cedre:
   name: Arc court en cèdre
   type: Arcs
   step: Arcs en cèdre
+  effects: { vie: 20 }
 #_________________________________________________
 arc_long_chene:
   name: Arc long en chêne
   type: Arcs
   step: Arcs en chêne
+  effects: { vie: 20 }
 arc_plat_chene:
   name: Arc plat en chêne
   type: Arcs
   step: Arcs en chêne
+  effects: { vie: 20 }
 arc_recourbe_chene:
   name: Arc recourbé en chêne
   type: Arcs
   step: Arcs en chêne
+  effects: { vie: 20 }
 arc_composite_chene:
   name: Arc composite en chêne
   type: Arcs
   step: Arcs en chêne
+  effects: { vie: 20 }
 arc_court_chene:
   name: Arc court en chêne
   type: Arcs
   step: Arcs en chêne
+  effects: { vie: 20 }
 #_________________________________________________
 # Poignées arcs
 poignee_arc_cuivre_de_vie:
   name: Poignée d'arc en cuivre de vie
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
+  effects: { vie: 20 }
 poignee_arc_cuivre_de_penetration:
   name: Poignée d'arc en cuivre de pénétration
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
+  effects: { vie: 20 }
 poignee_arc_cuivre_de_precision:
   name: Poignée d'arc en cuivre de précision
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
+  effects: { vie: 20 }
 poignee_arc_cuivre_d_esquive:
   name: Poignée d'arc en cuivre d'esquive
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
+  effects: { vie: 20 }
 poignee_arc_cuivre_de_parade:
   name: Poignée d'arc en cuivre de parade
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
+  effects: { vie: 20 }
 poignee_arc_cuivre_de_defense:
   name: Poignée d'arc en cuivre de défense
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
+  effects: { vie: 20 }
 poignee_arc_cuivre_de_force:
   name: Poignée d'arc en cuivre de force
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
+  effects: { vie: 20 }
 poignee_arc_cuivre_d_agilite:
   name: Poignée d'arc en cuivre d'agilité
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
+  effects: { vie: 20 }
 poignee_arc_cuivre_d_intelligence:
   name: Poignée d'arc en cuivre d'intelligence
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
+  effects: { vie: 20 }
 poignee_arc_cuivre_d_armure:
   name: Poignée d'arc en cuivre d'armure
   type: Poignée d'arc
   step: Poignées d'arc en cuivre
+  effects: { vie: 20 }
 #_________________________________________________
 poignee_arc_bronze_de_vie:
   name: Poignée d'arc en bronze de vie
   type: Poignée d'arc
   step: Poignées d'arc en bronze
+  effects: { vie: 20 }
 poignee_arc_bronze_de_penetration:
   name: Poignée d'arc en bronze de pénétration
   type: Poignée d'arc
   step: Poignées d'arc en bronze
+  effects: { vie: 20 }
 poignee_arc_bronze_de_precision:
   name: Poignée d'arc en bronze de précision
   type: Poignée d'arc
   step: Poignées d'arc en bronze
+  effects: { vie: 20 }
 poignee_arc_bronze_d_esquive:
   name: Poignée d'arc en bronze d'esquive
   type: Poignée d'arc
   step: Poignées d'arc en bronze
+  effects: { vie: 20 }
 poignee_arc_bronze_de_parade:
   name: Poignée d'arc en bronze de parade
   type: Poignée d'arc
   step: Poignées d'arc en bronze
+  effects: { vie: 20 }
 poignee_arc_bronze_de_defense:
   name: Poignée d'arc en bronze de défense
   type: Poignée d'arc
   step: Poignées d'arc en bronze
+  effects: { vie: 20 }
 poignee_arc_bronze_de_force:
   name: Poignée d'arc en bronze de force
   type: Poignée d'arc
   step: Poignées d'arc en bronze
+  effects: { vie: 20 }
 poignee_arc_bronze_d_agilite:
   name: Poignée d'arc en bronze d'agilité
   type: Poignée d'arc
   step: Poignées d'arc en bronze
+  effects: { vie: 20 }
 poignee_arc_bronze_d_intelligence:
   name: Poignée d'arc en bronze d'intelligence
   type: Poignée d'arc
   step: Poignées d'arc en bronze
+  effects: { vie: 20 }
 poignee_arc_bronze_d_armure:
   name: Poignée d'arc en bronze d'armure
   type: Poignée d'arc
   step: Poignées d'arc en bronze
+  effects: { vie: 20 }
 #_________________________________________________
 # Flêches d'arc
 fleche_en_cuivre_de_force:
   name: Flèche en cuivre de force
   type: Flèche
   step: Flèches en cuivre
+  effects: { vie: 20 }
 fleche_en_cuivre_d_agilite:
   name: Flèche en cuivre d'agilité
   type: Flèche
   step: Flèches en cuivre
+  effects: { vie: 20 }
 fleche_en_cuivre_d_intelligence:
   name: Flèche arrondie d'intelligence
   type: Flèche
   step: Flèches en cuivre
+  effects: { vie: 20 }
 #_________________________________________________
 fleche_en_bronze_de_force:
   name: Flèche en bronze de force
   type: Flèche
   step: Flèches en bronze
+  effects: { vie: 20 }
 fleche_en_bronze_d_agilite:
   name: Flèche en bronze d'agilité
   type: Flèche
   step: Flèches en bronze
+  effects: { vie: 20 }
 fleche_en_bronze_d_intelligence:
   name: Flèche en bronze d'intelligence
   type: Flèche
   step: Flèches en bronze
+  effects: { vie: 20 }

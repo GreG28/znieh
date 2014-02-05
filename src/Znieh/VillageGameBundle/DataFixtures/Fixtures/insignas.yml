@@ -1,12 +1,16 @@
 energie:
   name: Insigne de rayonement
   step: Insignes Classiques
+  effects: { energie: 10 }
 vie:
   name: Insigne du survivant
   step: Insignes Classiques
+  effects: { vie: 10 }
 absorption:
   name: Insigne d'absorption
   step: Insignes Exotiques
+  effects: { absorption: 10 }
 bénédiction:
   name: Insigne de bénédiction
   step: Insignes Rares
+  effects: { benediction: 10 }
