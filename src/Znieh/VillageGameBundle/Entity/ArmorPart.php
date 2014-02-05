@@ -3,10 +3,13 @@
 namespace Znieh\VillageGameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 
 /**
  * @ORM\Entity
+ * @ExclusionPolicy("all")
  */
 class ArmorPart extends GameObject
 {

@@ -3,12 +3,15 @@
 namespace Znieh\UnitGameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Weight
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Znieh\UnitGameBundle\Entity\WeightRepository")
+ * @ExclusionPolicy("all")
  */
 class Weight
 {
@@ -26,6 +29,7 @@ class Weight
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Expose
      */
     private $name;
 
@@ -88,7 +92,7 @@ class Weight
     /**
      * Get points
      *
-     * @return integer 
+     * @return integer
      */
     public function getPoints()
     {

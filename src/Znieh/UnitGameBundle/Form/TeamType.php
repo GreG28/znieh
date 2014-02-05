@@ -16,9 +16,28 @@ class TeamType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('units', 'entity', array(
+                'class' => 'ZniehUnitGameBundle:Unit',
+                'by_reference' => false,
+                'property' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                'required' => true
+            ))
+            /*->add('unitsAdded', 'bootstrap_collection', array(
+                'type' => new UnitType(),
+                'mapped' => false,
+                'by_reference' => false,
+                'allow_add'          => true,
+                'allow_delete'       => true,
+                'add_button_text'    => 'Ajouter une unité',
+                'delete_button_text' => 'Supprimer l\'unité',
+                'sub_widget_col'     => 10,
+                'button_col'         => 2
+            ))*/
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

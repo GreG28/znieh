@@ -3,6 +3,8 @@
 namespace Znieh\UnitGameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Team
@@ -29,9 +31,24 @@ class Team
     private $name;
 
     /**
+    * @ORM\OneToMany(targetEntity="Unit", mappedBy="team", cascade={"persist"})
+    */
+    private $units;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Znieh\UserBundle\Entity\User", inversedBy="teams")
      */
     private $user;
+
+    /**
+     * @ORM\Column(name="selected", type="boolean", nullable=true)
+     */
+    private $selected;
+
+    /**
+     * @ORM\Column(name="save", type="boolean", nullable=true)
+     */
+    private $save;
 
     /**
      * Get id
@@ -66,5 +83,76 @@ class Team
     {
         return $this->name;
     }
-}
 
+    /**
+     * Set user
+     *
+     * @param \Znieh\UserBundle\Entity\User $user
+     *
+     * @return Team
+     */
+    public function setUser(\Znieh\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Znieh\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set selected
+     *
+     * @param boolean $selected
+     *
+     * @return Team
+     */
+    public function setSelected($selected)
+    {
+        $this->selected = $selected;
+
+        return $this;
+    }
+
+    /**
+     * Get selected
+     *
+     * @return boolean
+     */
+    public function getSelected()
+    {
+        return $this->selected;
+    }
+
+    /**
+     * Set save
+     *
+     * @param boolean $save
+     *
+     * @return Team
+     */
+    public function setSave($save)
+    {
+        $this->save = $save;
+
+        return $this;
+    }
+
+    /**
+     * Get save
+     *
+     * @return boolean
+     */
+    public function getSave()
+    {
+        return $this->save;
+    }
+}

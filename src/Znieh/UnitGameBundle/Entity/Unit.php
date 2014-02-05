@@ -4,12 +4,15 @@ namespace Znieh\UnitGameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Unit
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Znieh\UnitGameBundle\Entity\UnitRepository")
+ * @ExclusionPolicy("all")
  */
 class Unit
 {
@@ -26,6 +29,7 @@ class Unit
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     * @Expose
      */
     private $name;
 
@@ -47,28 +51,38 @@ class Unit
 
     /**
      * @ORM\ManyToOne(targetEntity="Sign")
+     * @Expose
      */
     private $sign;
 
     /**
      * @ORM\ManyToOne(targetEntity="Size")
+     * @Expose
      */
     private $size;
 
     /**
      * @ORM\ManyToOne(targetEntity="Weight")
+     * @Expose
      */
     private $weight;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Weapon", inversedBy="units", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Weapon", cascade={"persist"})
+     * @Expose
      */
     private $weapon;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Armor", inversedBy="units", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Armor", cascade={"persist"})
+     * @Expose
      */
     private $armor;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Team", inversedBy="units")
+     */
+    private $teams;
 
     /**
      * @ORM\ManyToOne(targetEntity="Znieh\UserBundle\Entity\User", inversedBy="units")
@@ -80,6 +94,14 @@ class Unit
      *
      */
     private $cost;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->teams = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 
     /**
@@ -330,5 +352,46 @@ class Unit
     public function getSign()
     {
         return $this->sign;
+    }
+
+    /**
+     * Add teams
+     *
+     * @param \Znieh\UnitGameBundle\Entity\Team $team
+     *
+     * @return Unit
+     */
+    public function addTeam(\Znieh\UnitGameBundle\Entity\Team $team)
+    {
+        if ($this->teams->contains($team)) {
+            return $this;
+        }
+
+        $this->teams[] = $team;
+        return $this;
+    }
+
+    /**
+     * Remove teams
+     *
+     * @param \Znieh\UnitGameBundle\Entity\Team $team
+     */
+    public function removeTeam(\Znieh\UnitGameBundle\Entity\Team $team)
+    {
+        if (!$this->teams->contains($team)) {
+            return $this;
+        }
+
+        $this->teams->removeElement($team);
+    }
+
+    /**
+     * Get teams
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTeams()
+    {
+        return $this->teams;
     }
 }

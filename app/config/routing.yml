@@ -3,6 +3,10 @@ znieh_unit_game:
     type:     annotation
     prefix:   /
 
+znieh_unit_game_rest:
+    resource: Znieh\UnitGameBundle\Controller\RestController
+    type: rest
+
 znieh_infraction_game:
     resource: "@ZniehInfractionGameBundle/Controller/"
     type:     annotation

@@ -3,12 +3,15 @@
 namespace Znieh\UnitGameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Armor
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @ExclusionPolicy("all")
  */
 class Armor
 {
@@ -28,12 +31,26 @@ class Armor
 
     /**
     * @ORM\ManyToMany(targetEntity="Znieh\VillageGameBundle\Entity\ArmorPart", cascade={"persist"})
+    * @Expose
     */
     private $parts;
 
     /**
+    * @ORM\ManyToMany(targetEntity="Znieh\VillageGameBundle\Entity\Rune", cascade={"persist"})
+    * @Expose
+    */
+    private $runes;
+
+    /**
+    * @ORM\ManyToMany(targetEntity="Znieh\VillageGameBundle\Entity\Insigna", cascade={"persist"})
+    * @Expose
+    */
+    private $insignas;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Znieh\VillageGameBundle\Entity\ArmorType")
      * @ORM\JoinColumn(nullable=false)
+     * @Expose
      */
     private $type;
 
@@ -72,7 +89,7 @@ class Armor
     /**
      * Get user
      *
-     * @return \Znieh\UserBundle\Entity\User 
+     * @return \Znieh\UserBundle\Entity\User
      */
     public function getUser()
     {
@@ -106,7 +123,7 @@ class Armor
     /**
      * Get parts
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getParts()
     {
@@ -130,10 +147,78 @@ class Armor
     /**
      * Get type
      *
-     * @return \Znieh\VillageGameBundle\Entity\ArmorType 
+     * @return \Znieh\VillageGameBundle\Entity\ArmorType
      */
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Add runes
+     *
+     * @param \Znieh\VillageGameBundle\Entity\Rune $runes
+     *
+     * @return Armor
+     */
+    public function addRune(\Znieh\VillageGameBundle\Entity\Rune $runes)
+    {
+        $this->runes[] = $runes;
+
+        return $this;
+    }
+
+    /**
+     * Remove runes
+     *
+     * @param \Znieh\VillageGameBundle\Entity\Rune $runes
+     */
+    public function removeRune(\Znieh\VillageGameBundle\Entity\Rune $runes)
+    {
+        $this->runes->removeElement($runes);
+    }
+
+    /**
+     * Get runes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRunes()
+    {
+        return $this->runes;
+    }
+
+    /**
+     * Add insignas
+     *
+     * @param \Znieh\VillageGameBundle\Entity\Insigna $insignas
+     *
+     * @return Armor
+     */
+    public function addInsigna(\Znieh\VillageGameBundle\Entity\Insigna $insignas)
+    {
+        $this->insignas[] = $insignas;
+
+        return $this;
+    }
+
+    /**
+     * Remove insignas
+     *
+     * @param \Znieh\VillageGameBundle\Entity\Insigna $insignas
+     */
+    public function removeInsigna(\Znieh\VillageGameBundle\Entity\Insigna $insignas)
+    {
+        $this->insignas->removeElement($insignas);
+    }
+
+    /**
+     * Get insignas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInsignas()
+    {
+        return $this->insignas;
     }
 }
