@@ -31,6 +31,10 @@ class LoadWeaponPartData extends AbstractFixtureLoader implements OrderedFixture
                 ->setStep($step)
             ;
 
+            if (!empty($weaponPartData['effects'])) {
+                $weaponPart->setEffects($weaponPartData['effects']);
+            }
+
             $points = empty($weaponPartData['points']) ? $step->getPoints() : $weaponPartData['points'];
             $weaponPart->setPoints($points);
 

@@ -2,48 +2,59 @@ energie_mineur:
   name: Rune de rayonement mineur
   type: Mineur
   step: Runes Mineurs
-  effects: { vie: +5 }
+  effects: { energie: 10 }
 energie_majeur:
   name: Rune de rayonement majeur
   type: Majeur
   step: Runes Majeurs
+  effects: { energie: 20 }
 energie_supérieur:
   name: Rune de rayonement supérieur
   type: Supérieur
   step: Runes Supérieurs
+  effects: { energie: 30 }
 vie_mineur:
   name: Rune du survivant mineur
   type: Mineur
   step: Runes Mineurs
+  effects: { vie: 10 }
 vie_majeur:
   name: Rune du survivant majeur
   type: Majeur
   step: Runes Majeurs
+  effects: { vie: 20 }
 vie_supérieur:
   name: Rune du survivant supérieur
   type: Supérieur
   step: Runes Supérieurs
+  effects: { vie: 30 }
 absorption_mineur:
   name: Rune d'absorption mineur
   type: Mineur
   step: Runes Mineurs
+  effects: { absorption: 5 }
 absorption_majeur:
   name: Rune d'absorption majeur
   type: Majeur
   step: Runes Majeurs
+  effects: { absorption: 10 }
 absorption_supérieur:
   name: Rune d'absorption supérieur
   type: Supérieur
   step: Runes Supérieurs
+  effects: { absorption: 15 }
 bénédiction_mineur:
   name: Rune de bénédiction mineur
   type: Mineur
   step: Runes Mineurs
+  effects: { benediction: 10 }
 bénédiction_majeur:
   name: Rune de bénédiction majeur
   type: Majeur
   step: Runes Majeurs
+  effects: { benediction: 20 }
 bénédiction_supérieur:
   name: Rune de bénédiction supérieur
   type: Supérieur
   step: Runes Supérieurs
+  effects: { benediction: 30 }

@@ -44,15 +44,33 @@ abstract class GameObject
      */
     protected $points;
 
+
     /**
      * @ORM\ManyToOne(targetEntity="Step", cascade={"persist"})
      */
     private $step;
 
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="effects", type="array", nullable=true)
+     */
+    protected $effects;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="costs", type="array", nullable=true)
+     */
+    protected $costs;
 
     private $unlocked;
     private $unlockable;
-    public $cost;
+
+    public function __construct()
+    {
+        $this->effects = array();
+    }
 
     /**
      * Set unlocked
@@ -201,5 +219,75 @@ abstract class GameObject
     public function getStep()
     {
         return $this->step;
+    }
+
+    public function addEffect($key, $effect)
+    {
+        if (!in_array($effect, $this->effects, true)) {
+            $this->effects[$key] = $effect;
+        }
+
+        return $this;
+    }
+
+    public function removeEffect($effect)
+    {
+        if (false !== $key = array_search($effect, $this->effects, true)) {
+            unset($this->effects[$key]);
+            $this->effects = array_values($this->effects);
+        }
+
+        return $this;
+    }
+
+    public function getEffects()
+    {
+        return $this->effects;
+    }
+
+    public function setEffects(array $effects)
+    {
+        $this->effects = array();
+
+        foreach ($effects as $key => $effect) {
+            $this->addEffect($key, $effect);
+        }
+
+        return $this;
+    }
+
+    public function addCost($key, $cost)
+    {
+        if (!in_array($cost, $this->costs, true)) {
+            $this->costs[$key] = $cost;
+        }
+
+        return $this;
+    }
+
+    public function removeCost($cost)
+    {
+        if (false !== $key = array_search($cost, $this->costs, true)) {
+            unset($this->costs[$key]);
+            $this->costs = array_values($this->costs);
+        }
+
+        return $this;
+    }
+
+    public function getCosts()
+    {
+        return $this->costs;
+    }
+
+    public function setCosts(array $costs)
+    {
+        $this->costs = array();
+
+        foreach ($costs as $key => $cost) {
+            $this->addCost($key, $cost);
+        }
+
+        return $this;
     }
 }

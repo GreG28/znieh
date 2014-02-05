@@ -30,6 +30,10 @@ class LoadRuneData extends AbstractFixtureLoader implements OrderedFixtureInterf
                 ->setStep($step)
             ;
 
+            if (!empty($runeData['effects'])) {
+                $rune->setEffects($runeData['effects']);
+            }
+
             $points = empty($runeData['points']) ? $step->getPoints() : $runeData['points'];
             $rune->setPoints($points);
 
