@@ -32,7 +32,7 @@
      * Initialize the Unit with its animations
      * @param  {Image} imgUnit
      * @param  {Map} map
-     * @param  {position} position
+     * @param  {Position} position
      * @param  {Array} unitsInfos
      * @param  {int} taille
      * @param  {int} i
@@ -117,7 +117,7 @@
 
     /**
      * Reset an Unit, set proprierties and handle clicks
-     * @param {[type]} position
+     * @param {Position} position
      */
     Unit.prototype.Reset = function (position) {
 
@@ -181,6 +181,52 @@
             ContentManager.selectTiles(i,j);
             selected_Unit = that;
 
+            var limit = 5;
+
+            var easystar = new EasyStar.js();
+            var acceptableTiles = [ 1, 2];
+            easystar.setGrid(map.textTiles);
+            easystar.setAcceptableTiles(acceptableTiles);
+
+            var unitsPlacement = [];
+            for (var t = ContentManager.units.length - 1; t >= 0; t--) {
+                unitsPlacement.push([ContentManager.units[t]._i, ContentManager.units[t]._j]);
+                easystar.avoidAdditionalPoint(ContentManager.units[t]._i, ContentManager.units[t]._j);
+            }
+
+            for (var x = 0; x < map.textTiles.length; x++) {
+                for (var y = 0; y < map.textTiles[0].length; y++) {
+                    //console.log("[x" + i + ", y" + j + "] - [x" + x + ", y" + y + "]");
+                    easystar.findPath(i, j, x, y, function(path) {
+                        var shape = null;
+                        if (path === null) {
+                            shape = map.tiles[y][x].shape_selection_impossible;
+                            shape.visible = true;
+                        } else {
+                            if(path.length <= limit) {
+                                var placement = [x, y];
+                                var filtered = $(unitsPlacement).filter(function(){
+                                    return placement[0] == this[0] && placement[1] == this[1];
+                                });
+
+                                if(filtered.length > 0){
+                                    shape = map.tiles[y][x].shape_selection_impossible;
+                                    shape.visible = true;
+                                }
+                                else {
+                                    shape = map.tiles[y][x].shape_selection_possible;
+                                    shape.visible = true;
+                                }
+                            }
+                            else{
+                                shape = map.tiles[y][x].shape_selection_impossible;
+                                shape.visible = true;
+                            }
+                        }
+                    });
+                    easystar.calculate();
+                }
+            }
         });
 
         this._container.x = position.x;
