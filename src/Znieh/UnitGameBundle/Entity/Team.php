@@ -129,10 +129,6 @@ class Team
     public function setSelected($selected)
     {
         $this->selected = $selected;
-<<<<<<< HEAD
-=======
-
->>>>>>> 0d4e71e8c986c6efd5b7279f4ac5a0fb1e88b72a
         return $this;
     }
 
@@ -156,10 +152,6 @@ class Team
     public function setSave($save)
     {
         $this->save = $save;
-<<<<<<< HEAD
-=======
-
->>>>>>> 0d4e71e8c986c6efd5b7279f4ac5a0fb1e88b72a
         return $this;
     }
 
