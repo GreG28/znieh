@@ -1,6 +1,21 @@
 1:
-  name: Corbeau
+  name: Force
+  effects: { force: 10 }
 2:
-  name: Coq
+  name: Agilité
+  effects: { agilite: 10 }
 3:
-  name: Taureau
+  name: Intelligence
+  effects: { intelligence: 10 }
+4:
+  name: ForceAgilité
+  effects: { force: 5, agilite: 5 }
+5:
+  name: AgilitéIntelligence
+  effects: { agilite: 5, intelligence: 5 }
+6:
+  name: IngelligenceForce
+  effects: { intelligence: 5, force: 5 }
+7:
+  name: Equilibre
+  effects: { force: 3, agilite: 3, intelligence: 3 }
