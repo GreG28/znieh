@@ -1,3 +1,11 @@
+GameStatut = {
+    IDLE:           0,
+    START:          1,
+    PLACEMENT:      2,
+    MOVE:           3,
+    ATTACK:         4,
+}
+
 var unistJson;
 var tilesetSheet;
 var map;
@@ -14,8 +22,9 @@ var loadingQueue;
 var unitsToMove = [];
 var substage;
 
-var placement_en_cours = true;
-var selected_Unit = null;
+var selectedUnit = null;
+
+var gameStatut;
 
 /**
  * Used to download all ressources and start the game
@@ -24,7 +33,6 @@ var selected_Unit = null;
  * @param {int} height
  */
 function ContentManager(stage, width, height) {
-
     ContentManager.nextUnitID = 0;
 
     ContentManager.getNextUnitID = function () {
@@ -69,6 +77,8 @@ function ContentManager(stage, width, height) {
         loadingQueue.loadManifest([{id:"units-json", src:"../json/units.json"}]);
         loadingQueue.loadManifest([{id:"mailarmor", src:"../img/sprites/mailarmor.png"}]);
         loadingQueue.loadManifest([{id:"mailarmor2", src:"../img/sprites/mailarmor2.png"}]);
+
+        gameStatut = GameStatut.IDLE;
     }
 
     /**
@@ -96,6 +106,8 @@ function ContentManager(stage, width, height) {
         unistJson = jQuery.parseJSON(loadingQueue.getResult("units-json",true));
 
         addUnitImageInMenu();
+
+        gameStatut = GameStatut.PLACEMENT;
 
         createjs.Ticker.addEventListener("tick", tick);
         createjs.Ticker.useRAF = true;
@@ -152,71 +164,22 @@ function ContentManager(stage, width, height) {
         }
     };
 
-    /**
-     * TODO
-     */
-    ContentManager.selectTiles = function(i, j) {
+    ContentManager.unSelectAllTiles = function() {
         "use strict";
 
-        for(var cpt = 0 ; cpt < map.gameWidth ; cpt = cpt+1)
-        {
-            for(var cpt2 = 0 ; cpt2 < map.gameWidth ; cpt2 = cpt2+1)
-            {
-                var tile_en_cours = map.tiles[cpt][cpt2];
-                var shape = null;
-                if(tile_en_cours.Collision == Enum.TileCollision.Impassable)
-                {
-                    shape = tile_en_cours.shape_selection_impossible;
-                }
-                else
-                {
-                    shape = tile_en_cours.shape_selection_possible;
-                }
+        for(var i = 0; i < map.gameWidth; i++) {
+            for(var j = 0; j < map.gameWidth; j++) {
+                map.tiles[i][j].shape_selection_possible.visible = false;
+                map.tiles[i][j].shape_selection_impossible.visible = false;
 
-                if(tile_en_cours.i == i-1 && tile_en_cours.j == j)
-                {
-                    shape.visible = true;
-                }
-                else if(tile_en_cours.i == i+1 && tile_en_cours.j == j)
-                {
-                    shape.visible = true;
-                }
-                else if(tile_en_cours.i == i && tile_en_cours.j == j-1)
-                {
-                    shape.visible = true;
-                }
-                else if(tile_en_cours.i == i && tile_en_cours.j == j+1)
-                {
-                    shape.visible = true;
-                }
-                else if(tile_en_cours.i == i && tile_en_cours.j == j)
-                {
-                    shape.visible = true;
-                }
-            }
-        }
-    };
-
-    /**
-     * TODO
-     */
-    ContentManager.DeselectTilesAndUnits = function() {
-        "use strict";
-
-        for(var cpt = 0 ; cpt < map.gameWidth ; cpt = cpt+1)
-        {
-            for(var cpt2 = 0 ; cpt2 < map.gameWidth ; cpt2 = cpt2+1)
-            {
-                map.tiles[cpt][cpt2].shape_selection_possible.visible = false;
-                map.tiles[cpt][cpt2].shape_selection_impossible.visible = false;
+                if(selectedUnit != null)
+                    selectedUnit.shape_selected_unit.visible = false;
             }
         }
 
-        for(var cpt3 = 0 ; cpt3 < ContentManager.units.lenght ; cpt3 = cpt3+1)
-        {
-            ContentManager.units[cpt3].shape_selected.visible = false;
-        }
-        selected_Unit = null;
+        for(var i = 0 ; i < ContentManager.units.lenght; i++)
+            ContentManager.units[i].shape_selected.visible = false;
+
     };
 
     /**
