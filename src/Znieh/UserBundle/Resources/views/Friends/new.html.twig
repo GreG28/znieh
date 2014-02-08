@@ -1,0 +1,31 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Chercher des Amis</h1>
+
+    {{ form(form) }}
+
+    {% if user is not null and user.usernameCanonical is not null %}
+	<table>
+        <thead>
+            <tr>
+                <th>Joueur trouvé :</th>
+            </tr>
+        </thead>
+        <tbody>
+        	
+            <tr>
+                <td>{{ user.usernameCanonical }}</td>
+                <td>
+                    <a href="{{ path('friends_link', { 'id': user.id }) }}">Ajouter en amis</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    {% endif %}
+    {% if app.request.method == 'POST'and user is null %}
+    <p>Pas de résultats trouvés</p>
+    {% endif %}
+
+
+{% endblock %}

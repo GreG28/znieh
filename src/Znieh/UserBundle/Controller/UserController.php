@@ -32,12 +32,6 @@ class UserController extends Controller
      */
     public function showRessourceAction($slug)
     {
-        /*$em = $this->getDoctrine()->getManager();
-        $ressource = $em->getRepository('ZniehUserBundle:User')
-                        ->findOneByUsernameCanonical($slug);
-                        
-        $em->flush();*/
-
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('ZniehUserBundle:User')
                    ->findOneByUsernameCanonical($slug);
