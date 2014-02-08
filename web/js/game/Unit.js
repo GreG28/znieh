@@ -142,25 +142,32 @@
         this.shape_hover.name = "contour_hover";
         this.shape_hover.graphics.beginStroke("#000000");
         this.shape_hover.graphics.setStrokeStyle(2); // 2 pixel
-        this.shape_hover.graphics.drawRect((_x - 16), (_y - 16), 32, 32); // Change size as-needed
+        this.shape_hover.graphics.drawRect((_x - 16), (_y - 16), 32, 32 - 2); // Change size as-needed
         this.shape_hover.visible = false;
-
-        this._container.addChild(this.shape_hover);
 
         this.shape_selected = new createjs.Shape();
         this.shape_selected.name = "contour_selected";
         this.shape_selected.graphics.beginStroke("#00af00");
         this.shape_selected.graphics.setStrokeStyle(2); // 2 pixel
-        this.shape_selected.graphics.drawRect((_x - 16), (_y - 16), 32, 32); // Change size as-needed
+        this.shape_selected.graphics.drawRect((_x - 16), (_y - 16), 32 - 2, 32 - 2); // Change size as-needed
         this.shape_selected.visible = false;
+
+        this.shape_selected_unit = new createjs.Shape();
+        this.shape_selected_unit.name = "contour_selected_unit";
+        this.shape_selected_unit.graphics.beginStroke("#fd8900");
+        this.shape_selected_unit.graphics.setStrokeStyle(2); // 2 pixel
+        this.shape_selected_unit.graphics.drawRect((_x - 16), (_y - 16), 32 - 2, 32 - 2); // Change size as-needed
+        this.shape_selected_unit.visible = false;
 
         this._container.addChild(this.shape_hover);
         this._container.addChild(this.shape_selected);
+        this._container.addChild(this.shape_selected_unit);
 
         this._container.addChild(this.sprite_base);
 
         var shape_hover = this.shape_hover;
         var shape_selected = this.shape_selected;
+        var shape_selected_unit = this.shape_selected_unit;
 
         this._container.on("mouseover", function(evt) {
             shape_hover.visible = true;
@@ -176,14 +183,20 @@
 
         this._container.on("click", function(evt) {
             console.log("[UNIT] x" + container.x + " y" + container.y);
-            /* On rend toutes les cases autours selectionnés */
+            ContentManager.unSelectAllTiles();
+            selectedUnit = that;
 
-            ContentManager.DeselectTilesAndUnits();
-            ContentManager.selectTiles(i,j);
-            selected_Unit = that;
+            // L'unité est déjà sélectionnée
+            if(selectedUnit.shape_selected_unit.visible == true) {
+                gameStatut = GameStatut.MOVE;
+            }
+            else {
+                gameStatut = GameStatut.IDLE;
+                console.log(selectedUnit);
+            }
 
-            var limit = 5;
 
+            var limit = 7; // TODO : Sélectionner la limite de déplacement de l'unité
             var easystar = new EasyStar.js();
             var acceptableTiles = [ 1, 2];
             easystar.setGrid(map.textTiles);
@@ -195,39 +208,48 @@
                 easystar.avoidAdditionalPoint(ContentManager.units[t]._i, ContentManager.units[t]._j);
             }
 
-            for (var x = 0; x < map.textTiles.length; x++) {
-                for (var y = 0; y < map.textTiles[0].length; y++) {
-                    //console.log("[x" + i + ", y" + j + "] - [x" + x + ", y" + y + "]");
-                    easystar.findPath(i, j, x, y, function(path) {
-                        var shape = null;
-                        if (path === null) {
-                            shape = map.tiles[y][x].shape_selection_impossible;
-                            shape.visible = true;
-                        } else {
-                            if(path.length <= limit) {
-                                var placement = [x, y];
-                                var filtered = $(unitsPlacement).filter(function(){
-                                    return placement[0] == this[0] && placement[1] == this[1];
-                                });
+            if(gameStatut == GameStatut.IDLE) {
+                for (var x = 0; x < map.textTiles.length; x++) {
+                    for (var y = 0; y < map.textTiles[0].length; y++) {
+                        //console.log("[x" + i + ", y" + j + "] - [x" + x + ", y" + y + "]");
+                        easystar.findPath(i, j, x, y, function(path) {
+                            var shape = null;
+                            if (path === null) {
+                                shape = map.tiles[y][x].shape_selection_impossible;
+                                shape.visible = true;
+                            } else {
+                                if(path.length <= limit) {
+                                    var placement = [x, y];
+                                    var filtered = $(unitsPlacement).filter(function(){
+                                        return placement[0] == this[0] && placement[1] == this[1];
+                                    });
 
-                                if(filtered.length > 0){
+                                    if(filtered.length > 0){
+                                        shape = map.tiles[y][x].shape_selection_impossible;
+                                        shape.visible = true;
+                                    }
+                                    else {
+                                        shape = map.tiles[y][x].shape_selection_possible;
+                                        shape.visible = true;
+                                    }
+
+                                    shape = selectedUnit.shape_selected_unit;
+                                    shape.visible = true;
+                                }
+                                else{
                                     shape = map.tiles[y][x].shape_selection_impossible;
                                     shape.visible = true;
                                 }
-                                else {
-                                    shape = map.tiles[y][x].shape_selection_possible;
-                                    shape.visible = true;
-                                }
                             }
-                            else{
-                                shape = map.tiles[y][x].shape_selection_impossible;
-                                shape.visible = true;
-                            }
-                        }
-                    });
-                    easystar.calculate();
+                        });
+                        easystar.calculate();
+                    }
                 }
             }
+            else if(gameStatut == GameStatut.MOVE) {
+                // On déplace le personnage
+            }
+
         });
 
         this._container.x = position.x;
