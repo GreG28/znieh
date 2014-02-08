@@ -103,7 +103,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         var _j = this.j;
 
         this._container.on("click", function(evt, data) {
-            if(placement_en_cours)
+            if(gameStatut == GameStatut.PLACEMENT)
             {
                 if(data.collision == Enum.TileCollision.Passable && _i < (map.gameWidth / 3)) {
                     console.log("[TILE] x" + _i + " y" + _j);
@@ -114,10 +114,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
                             ContentManager.newUnit(_i,_j, units[idUnit].sprite, units[idUnit].taille, idUnit);
                             nextUnitID++;
                             if(nextUnitID == numberOfUnits)
-                            {
-                                placement_en_cours = false;
-                                //alert("placement_en_cours -> " + placement_en_cours);
-                            }
+                                gameStatut = GameStatut.IDLE;
                         }
                     }
                     else {
@@ -132,7 +129,8 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
             else
             {
                 //console.log("Le placement est fini !");
-                ContentManager.DeselectTilesAndUnits();
+                gameStatut = GameStatut.IDLE;
+                ContentManager.unSelectAllTiles();
                 /* On essaye de rendre les cases autour colorée aussi pour que  */
             }
         }, null, false, { collision: this.Collision });
