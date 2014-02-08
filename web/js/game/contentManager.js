@@ -167,6 +167,8 @@ function ContentManager(stage, width, height) {
     };
 
     ContentManager.unSelectAllTiles = function() {
+        "use strict";
+
         for(var i = 0; i < map.gameWidth; i++) {
             for(var j = 0; j < map.gameWidth; j++) {
                 map.tiles[i][j].shape_selection_possible.visible = false;

@@ -145,8 +145,6 @@
         this.shape_hover.graphics.drawRect((_x - 16), (_y - 16), 32, 32 - 2); // Change size as-needed
         this.shape_hover.visible = false;
 
-        this._container.addChild(this.shape_hover);
-
         this.shape_selected = new createjs.Shape();
         this.shape_selected.name = "contour_selected";
         this.shape_selected.graphics.beginStroke("#00af00");
