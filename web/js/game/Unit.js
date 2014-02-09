@@ -169,6 +169,17 @@
 
         this._container.on("mouseover", function(evt) {
             shape_hover.visible = true;
+
+            // TODO : Ghost de l'unité qui suit la souris pendant le placement des unités
+            // if(gameStatut == GameStatut.PLACEMENT) {
+            //     selectedUnit = unitsCache[$("#myUnits div.selected").attr("data-unit")];
+            //     if(selectedUnit != null) {
+            //         selectedUnit._container.x = map.GetBounds(that._i, that._j).GetBottomCenter().x;
+            //         selectedUnit._container.y = map.GetBounds(that._i, that._j).GetBottomCenter().y;
+            //         console.log("On change");
+            //         selectedUnit.sprite_base.gotoAndPlay("move-left"); //animate
+            //     }
+            // }
         });
 
         this._container.on("mouseout", function(evt) {
@@ -217,7 +228,6 @@
         easystar.setGrid(map.textTiles);
         easystar.setAcceptableTiles(acceptableTiles);
 
-        var unitsPlacement = [];
         for (var t = ContentManager.units.length - 1; t >= 0; t--) {
             unitsPlacement.push([ContentManager.units[t]._i, ContentManager.units[t]._j]);
             easystar.avoidAdditionalPoint(ContentManager.units[t]._i, ContentManager.units[t]._j);
