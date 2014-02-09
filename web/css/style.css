@@ -295,7 +295,32 @@ h3.section-title {
 }
 
 .unit .skills img {
-    float: right;
-    margin-right: 5px;
-    margin-bottom: 5px;
-  }
+  float: right;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+#leftSide .infos,
+#rightSide .infos {
+  background: white;
+  margin-bottom: 5px;
+  border: 1px solid black;
+}
+
+.infos h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.infos .stats {
+  font-size: 12px;
+}
+
+.infos hr {
+  margin: 0px;
+}
+
+.infos hr.delimitor {
+  margin: 0px;
+  margin-top: 10px;
+}
