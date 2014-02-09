@@ -104,14 +104,16 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
             {
                 if(data.collision == Enum.TileCollision.Passable && _i < (map.gameWidth / 3)) {
                     console.log("[TILE] x" + _i + " y" + _j);
-                    var idUnit = $("#myUnits a.active").attr("data-unit");
+                    var idUnit = $("#myUnits div.selected").attr("data-unit");
 
                     if(units[idUnit] != null) {
                         if(units[idUnit].statut == 0) {
                             ContentManager.newUnit(_i,_j, units[idUnit].sprite, units[idUnit].taille, idUnit);
                             nextUnitID++;
-                            if(nextUnitID == numberOfUnits)
+                            if(nextUnitID == numberOfUnits) {
                                 gameStatut = GameStatut.IDLE;
+                                ContentManager.clearUnitsMenu();
+                            }
                         }
                     }
                     else {
@@ -123,8 +125,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
                     console.log("Vous ne pouvez pas placer votre personnage à cet endroit.");
             }
             // le placement est fini !
-            else
-            {
+            else {
                 //console.log("Le placement est fini !");
                 gameStatut = GameStatut.IDLE;
                 ContentManager.unSelectAllTiles();
