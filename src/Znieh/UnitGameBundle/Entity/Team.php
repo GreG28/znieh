@@ -33,7 +33,7 @@ class Team
     private $name;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Unit", mappedBy="teams")
+    * @ORM\ManyToMany(targetEntity="Unit", mappedBy="teams", cascade={"persist"})
     * @Expose
     */
     private $units;
