@@ -54,8 +54,11 @@ var selectedUnit = null;
 var unitsCache = [];
 var unitsPlacement = [];
 var gameStatut;
+<<<<<<< HEAD
 var placement_en_cours = true;
 var selected_Unit = null;
+=======
+>>>>>>> 043a072efb25c8fc57f7b2d6a6c854c482a8b737
 
 /**
  * Used to download all ressources and start the game
