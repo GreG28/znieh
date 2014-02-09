@@ -180,6 +180,12 @@ function ContentManager(stage, width, height) {
 
     };
 
+    ContentManager.clearUnitsMenu = function() {
+        for (var i = units.length - 1; i >= 0; i--) {
+            $("#unit-" + i).removeClass("valid");
+        };
+    }
+
     /**
      * Generate units image for menus
      */
