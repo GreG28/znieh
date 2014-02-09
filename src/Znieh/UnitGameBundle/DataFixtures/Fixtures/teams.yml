@@ -1,0 +1,32 @@
+1:
+  name: Défaut
+  selected: true
+  save: true
+  units:
+     1:
+        name: Archer
+        sign: Force
+        size: Normal
+        weight: Musclé
+        weapon:
+          type: Arc
+          parts: [ Corde en cuir rêche de vie, Arc long en cèdre, Poignée d'arc en cuivre de pénétration, Flèche en cuivre d'agilité ]
+        armor:
+          type: Intermédiaire
+          pieces:
+            1:
+              part: Casque en cuir brut d'armure
+              rune: Rune du survivant majeur
+              insigna: Insigne de bénédiction
+            2:
+              part: Torse en cuir rêche de parade
+              rune: Rune de rayonement majeur
+              insigna: Insigne de bénédiction
+            3:
+              part: Jambes en cuir rêche de précision
+              rune: Rune de rayonement majeur
+              insigna: Insigne de bénédiction
+            4:
+              part: Bottes en cuir rêche de défense
+              rune: Rune de bénédiction mineur
+              insigna: Insigne de bénédiction
