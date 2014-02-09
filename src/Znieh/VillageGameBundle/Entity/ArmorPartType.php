@@ -32,6 +32,19 @@ class ArmorPartType
      */
     private $name;
 
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="effects", type="array", nullable=true)
+     * @Expose
+     */
+    protected $effects;
+
+    public function __construct()
+    {
+        $this->effects = array();
+    }
+
 
     /**
      * Get id
@@ -65,5 +78,40 @@ class ArmorPartType
     public function getName()
     {
         return $this->name;
+    }
+
+    public function addEffect($key, $effect)
+    {
+        if (!in_array($effect, $this->effects, true)) {
+            $this->effects[$key] = $effect;
+        }
+
+        return $this;
+    }
+
+    public function removeEffect($effect)
+    {
+        if (false !== $key = array_search($effect, $this->effects, true)) {
+            unset($this->effects[$key]);
+            $this->effects = array_values($this->effects);
+        }
+
+        return $this;
+    }
+
+    public function getEffects()
+    {
+        return $this->effects;
+    }
+
+    public function setEffects(array $effects)
+    {
+        $this->effects = array();
+
+        foreach ($effects as $key => $effect) {
+            $this->addEffect($key, $effect);
+        }
+
+        return $this;
     }
 }

@@ -1,30 +1,45 @@
 casque_lourd:
   name: Casque lourd
+  effects: { armure: 20, force: 5 }
 torse_lourd:
   name: Torse lourd
+  effects: { armure: 20, force: 5 }
 jambes_lourd:
   name: Jambes lourdes
+  effects: { armure: 20, force: 5 }
 bottes_lourd:
   name: Bottes lourdes
+  effects: { armure: 20, force: 5 }
 gants_lourd:
   name: Gants lourds
+  effects: { armure: 20, force: 5 }
 casque_inter:
   name: Casque intermédiaire
+  effects: { armure: 15, agilite: 5 }
 torse_inter:
   name: Torse intermédiaire
+  effects: { armure: 15, agilite: 5 }
 jambes_inter:
   name: Jambes intermédiaires
+  effects: { armure: 15, agilite: 5 }
 bottes_inter:
   name: Bottes intermédiaires
+  effects: { armure: 15, agilite: 5 }
 gants_inter:
   name: Gants intermédiaires
+  effects: { armure: 15, agilite: 5 }
 casque_leger:
   name: Casque léger
+  effects: { armure: 10, intelligence: 5 }
 torse_leger:
   name: Torse léger
+  effects: { armure: 10, intelligence: 5 }
 jambes_leger:
   name: Jambes légères
+  effects: { armure: 10, intelligence: 5 }
 bottes_leger:
   name: Bottes légères
+  effects: { armure: 10, intelligence: 5 }
 gants_leger:
   name: Gants légers
+  effects: { armure: 10, intelligence: 5 }
