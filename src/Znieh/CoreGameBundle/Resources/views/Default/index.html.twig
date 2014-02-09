@@ -33,44 +33,35 @@ function init() {
 }
 
 var nextUnitID = 0;
-var numberOfUnits = 3;
 var units = [
-  { "sprite": "firefox", "taille": "petitfin", "name": "Bobby", "statut": 0 },
-  { "sprite": "firefox", "taille": "grandmuscle", "name": "Jacky", "statut": -1 },
-  { "sprite": "mailarmor", "taille": "petitfin", "name": "Patrick", "statut": -1 }
+  { "sprite": "firefox", "taille": "petitfin", "name": "Bobby", "statut": 0, "life": 100 },
+  { "sprite": "mailarmor", "taille": "petitfin", "name": "Jacky", "statut": -1, "life": 100 },
+  { "sprite": "mailarmor", "taille": "petitfin", "name": "Bruce", "statut": -1, "life": 100 },
+  { "sprite": "firefox", "taille": "petitfin", "name": "Patrick", "statut": -1, "life": 100 },
 ];
+var numberOfUnits = units.length;
 
 var left = true;
 
 $(document).ready(function(){
   for (var i = units.length - 1; i >= 0; i--) {
-    if(units[i].taille == "petitfin") {
-      taille = "";
-      coef = 1;
-    }
-    else{
-      taille = "2";
-      coef = 2;
-    }
-
-    $("#myUnits").prepend('<a class="list-group-item clearfix" id="unit-'+ i +'" data-unit="'+ i +'"><div style="overflow: hidden; width: ' + 32 * coef + 'px; height: ' + 32 * coef + 'px; float: left;"><img src="" alt="" id="unit-'+i +'-img"/></div> <div style="margin-top:5px; font-weight: bold; ">' + units[i].name + '</div></a>');
+    $("#myUnits").prepend('<div class="row unit" id="unit-' + i + '" data-unit="' + i + '"><div class="col-sm-12"><div class="row"><div class="col-sm-1"><div class="portrait"><img id="unit-' + i + '-img" /></div></div><div class="col-sm-4"><span class="name">' + units[i].name + '</span></div><div class="col-sm-6"><div class="progress life"><div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ' + units[i].life + '%"></div></div></div></div></div><div class="row"><div class="col-sm-5 col-sm-offset-1 stats"><img src="../img/icons/attack.png" alt="Attaque"> 67<img src="../img/icons/defense.png" alt="Défense"> 35<img src="../img/icons/precision.png" alt="Précision"> 54</div><div class="col-sm-6 skills"><img src="../img/icons/spell0.png" alt="Attaque"><img src="../img/icons/spell1.png" alt="Attaque"><img src="../img/icons/spell2.png" alt="Attaque"><img src="../img/icons/spell3.png" alt="Attaque"></div></div></div><div class="clearfix"></div>');
     $("#unit-" + i).on("click", {id: i}, function(event) {
       if(units[event.data.id].statut == -1) {
-        $("#myUnits a").removeClass("active");
+        $("#myUnits .unit").removeClass("selected");
         for (var i = units.length - 1; i >= 0; i--) {
           if(units[i].statut == 0)
             units[i].statut = -1;
         };
-        $("#unit-" + event.data.id).addClass("active");
+        $("#unit-" + event.data.id).addClass("selected");
         units[event.data.id].statut = 0;
       }
     });
   }
-  $("#myUnits :first-child").addClass("active");
+  $("#myUnits div.unit:first-child").addClass("selected");
 });
 
-mySide = '<h2>Mes unités</h2><div class="list-group" id="myUnits"></div>';
-
+mySide = '<h2>Mes unités</h2><div id="myUnits"></div>';
 ennemySide = '<h2>Unités ennemies</h2><div class="list-group" id="ennemyUnits"></div>';
 
 if(left) {
@@ -87,18 +78,25 @@ $("#rightSide").html(rightPart);
 
 </script>
 
+<style>
+  .skills img {
+    float: right;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+</style>
 {% endblock %}
 
 {% block body %}
 
   <div class="row">
-    <div class="col-sm-2" id="leftSide">
+    <div class="col-sm-3" id="leftSide">
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-6">
       <canvas id="canvas" width="480" height="480" style="margin:0px;"> Canvas not supported. Please update your browser. </canvas>
       <div id="fps" style="font-size:12px; margin:0px; padding:0px;"></div>
     </div>
-    <div class="col-sm-2" id="rightSide">
+    <div class="col-sm-3" id="rightSide">
     </div>
   </div>
 

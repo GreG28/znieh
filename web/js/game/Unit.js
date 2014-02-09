@@ -192,7 +192,6 @@
             }
             else {
                 gameStatut = GameStatut.IDLE;
-                console.log(selectedUnit);
             }
 
 

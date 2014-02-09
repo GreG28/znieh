@@ -151,15 +151,15 @@ function ContentManager(stage, width, height) {
         ContentManager.units.push(Hero);
         units[idUnit].unitID = Hero.unitID;
         units[idUnit].statut = 1; // Placé
-        $("#unit-" + idUnit).append('<i class="glyphicon glyphicon-ok"></i>');
-        $("#unit-" + idUnit).removeClass("active");
 
-        var nextIdUnit = (idUnit + 1) % units.length;
+        $("#unit-" + idUnit).removeClass("selected");
+        $("#unit-" + idUnit).addClass("valid");
 
+        var nextIdUnit = (parseInt(idUnit) + 1) % units.length;
         if(units[nextIdUnit] != null) {
             if(units[nextIdUnit].statut == -1) {
                 units[nextIdUnit].statut = 0;
-                $("#unit-" + nextIdUnit).addClass("active");
+                $("#unit-" + nextIdUnit).addClass("selected");
             }
         }
     };
@@ -181,6 +181,12 @@ function ContentManager(stage, width, height) {
             ContentManager.units[i].shape_selected.visible = false;
 
     };
+
+    ContentManager.clearUnitsMenu = function() {
+        for (var i = units.length - 1; i >= 0; i--) {
+            $("#unit-" + i).removeClass("valid");
+        };
+    }
 
     /**
      * Generate units image for menus
