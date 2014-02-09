@@ -132,6 +132,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
                 //console.log("Le placement est fini !");
                 gameStatut = GameStatut.IDLE;
                 ContentManager.unSelectAllTiles();
+                ContentManager.clearUnitsMenu();
                 /* On essaye de rendre les cases autour colorée aussi pour que  */
             }
         }, null, false, { collision: this.Collision });
