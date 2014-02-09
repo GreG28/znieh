@@ -182,18 +182,21 @@
         var that = this;
 
         this._container.on("click", function(evt) {
+
             console.log("[UNIT] x" + container.x + " y" + container.y);
             ContentManager.unSelectAllTiles();
+            ContentManager.clearUnitsMenu();
             selectedUnit = that;
 
             // L'unité est déjà sélectionnée
-            if(selectedUnit.shape_selected_unit.visible == true) {
-                gameStatut = GameStatut.MOVE;
+            if(gameStatut != GameStatut.PLACEMENT) {
+                if(selectedUnit.shape_selected_unit.visible == true) {
+                    gameStatut = GameStatut.MOVE;
+                }
+                else {
+                    gameStatut = GameStatut.IDLE;
+                }
             }
-            else {
-                gameStatut = GameStatut.IDLE;
-            }
-
 
             var limit = 7; // TODO : Sélectionner la limite de déplacement de l'unité
             var easystar = new EasyStar.js();
@@ -208,6 +211,8 @@
             }
 
             if(gameStatut == GameStatut.IDLE) {
+                $("#unit-" + (that.unitID - units.length - 1)).addClass("selected");
+
                 for (var x = 0; x < map.textTiles.length; x++) {
                     for (var y = 0; y < map.textTiles[0].length; y++) {
                         //console.log("[x" + i + ", y" + j + "] - [x" + x + ", y" + y + "]");
