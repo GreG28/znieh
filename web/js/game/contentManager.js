@@ -6,6 +6,33 @@ GameStatut = {
     ATTACK:         4,
 }
 
+$(window).keydown(function(e){
+    if(gameStatut == GameStatut.IDLE) {
+        ContentManager.unSelectAllTiles();
+        ContentManager.clearUnitsMenu();
+
+        //cross browser issues exist
+        if(!e){ var e = window.event; }
+
+        // On sélectionne l'unité
+        $("#unit-" + (parseInt(e.keyCode) - 49)).addClass("selected");
+        selectedUnit = ContentManager.units[(parseInt(e.keyCode) - 49)];
+        if(selectedUnit != null)
+            selectedUnit.getAllTilesStatut();
+    }
+});
+
+var KEYCODE_0 = 48;
+var KEYCODE_1 = 49;
+var KEYCODE_2 = 50;
+var KEYCODE_3 = 51;
+var KEYCODE_4 = 52;
+var KEYCODE_5 = 53;
+var KEYCODE_6 = 54;
+var KEYCODE_7 = 55;
+var KEYCODE_8 = 56;
+var KEYCODE_9 = 57;
+
 var unistJson;
 var tilesetSheet;
 var map;
@@ -113,6 +140,7 @@ function ContentManager(stage, width, height) {
         createjs.Ticker.setFPS(60);
 
     }
+
 
     /**
      * Refresh and show FPS
