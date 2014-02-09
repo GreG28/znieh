@@ -185,11 +185,12 @@
 
             console.log("[UNIT] x" + container.x + " y" + container.y);
             ContentManager.unSelectAllTiles();
-            ContentManager.clearUnitsMenu();
             selectedUnit = that;
 
             // L'unité est déjà sélectionnée
             if(gameStatut != GameStatut.PLACEMENT) {
+                ContentManager.clearUnitsMenu();
+
                 if(selectedUnit.shape_selected_unit.visible == true) {
                     gameStatut = GameStatut.MOVE;
                 }
