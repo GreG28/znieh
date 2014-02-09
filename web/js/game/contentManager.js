@@ -22,6 +22,7 @@ $(window).keydown(function(e){
     }
 });
 
+
 var KEYCODE_0 = 48;
 var KEYCODE_1 = 49;
 var KEYCODE_2 = 50;
@@ -50,7 +51,8 @@ var unitsToMove = [];
 var substage;
 
 var selectedUnit = null;
-
+var unitsCache = [];
+var unitsPlacement = [];
 var gameStatut;
 
 /**
@@ -106,6 +108,7 @@ function ContentManager(stage, width, height) {
         loadingQueue.loadManifest([{id:"mailarmor2", src:"../img/sprites/mailarmor2.png"}]);
 
         gameStatut = GameStatut.IDLE;
+
     }
 
     /**
@@ -135,6 +138,8 @@ function ContentManager(stage, width, height) {
         addUnitImageInMenu();
 
         gameStatut = GameStatut.PLACEMENT;
+
+
 
         createjs.Ticker.addEventListener("tick", tick);
         createjs.Ticker.useRAF = true;
@@ -244,6 +249,7 @@ function ContentManager(stage, width, height) {
             Start = map.GetBounds(x, y).GetBottomCenter();
             Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y);
 
+            unitsCache.push(Hero);
 
             var cache_widht = Hero.width;
             var cache_height = Hero.height;
