@@ -12,4 +12,43 @@ use Doctrine\ORM\EntityRepository;
  */
 class FriendsLinkRepository extends EntityRepository
 {
+	public function findDouble($slug, $user)
+  	{
+		  $qb = $this->_em->createQueryBuilder();
+
+		  $qb->select('a')
+		     ->from('ZniehUserBundle:FriendsLink', 'a')
+		    ->where($qb->expr()->andX(
+		    							$qb->expr()->eq('a.user1', '?1'),
+		    							$qb->expr()->eq('a.user2', '?2')
+		    							))
+			->orWhere($qb->expr()->andX(
+										$qb->expr()->eq('a.user1', '?3'),
+										$qb->expr()->eq('a.user2', '?4')
+										))
+			->setParameter(1, $user)
+			->setParameter(2, $slug)
+			->setParameter(3, $slug)
+			->setParameter(4, $user);		
+
+			return $qb->getQuery()
+		              ->getOneOrNullResult();
+  	}
+
+  	public function findFriends($slug)
+  	{
+		  $qb = $this->_em->createQueryBuilder();
+
+		  $qb->select('a')
+		     ->from('ZniehUserBundle:FriendsLink', 'a')
+		    ->where($qb->expr()->orX(
+		    							$qb->expr()->eq('a.user1', '?1'),
+		    							$qb->expr()->eq('a.user2', '?2')
+		    						))
+			->setParameter(1, $slug)
+			->setParameter(2, $slug);		
+
+			return $qb->getQuery()
+		              ->getResult();
+  	}
 }

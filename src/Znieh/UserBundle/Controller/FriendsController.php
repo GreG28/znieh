@@ -28,12 +28,16 @@ class FriendsController extends Controller
      */
     public function indexAction()
     {
+        $slug = $this->container->get('security.context')->getToken()->getUser();
+
         $em = $this->getDoctrine()->getManager();
-        $entities = $em->getRepository('ZniehUserBundle:Friends')->findAll();
+        $entities = $em->getRepository('ZniehUserBundle:FriendsLink')
+                        ->findFriends($slug);
 
         return array(
             'entities' => $entities,
             'mess' => "",
+            'userAct' => $slug,
         );
     }
 
@@ -87,15 +91,18 @@ class FriendsController extends Controller
     {
         $entities = new Friends();
         $user = new User();
-    
+        $slug = $this->container->get('security.context')->getToken()->getUser();
+
         $form = $this->createCreateForm($entities);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isValid() and $entities->getName() != $slug->getUsernameCanonical()) {
             $em = $this->getDoctrine()->getManager();
             $user = $em->getRepository('ZniehUserBundle:User')
                        ->findOneByUsernameCanonical($entities->getName());
         }
+        else
+            $user = null;
 
         return array(
             'entities' => $entities,
@@ -105,8 +112,8 @@ class FriendsController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="friends_link")
-     * @Template("ZniehUserBundle:Friends:index.html.twig")
+     * @Route("/link/{id}", name="friends_link")
+     * @Template()
      */
     public function linkAction($id)
     {
@@ -116,20 +123,156 @@ class FriendsController extends Controller
         $user = $em->getRepository('ZniehUserBundle:User')
                        ->findOneById($id);
 
-        $link = new FriendsLink();
-        $link->setUser1($slug);
-        $link->setUser2($user);
-        $link->setAccept(false);
-        $link->setFriendIgnore(false);
+        $verif = $em->getRepository('ZniehUserBundle:FriendsLink')
+                          ->findDouble($slug, $user);
 
-        $em->persist($link);
-        $em->flush();
+        if($verif == null)
+        {
+            $link = new FriendsLink();
+            $link->setUser1($slug);
+            $link->setUser2($user);
+            $link->setAccept(false);
+            $link->setFriendIgnore(false);
 
-        $entities = $em->getRepository('ZniehUserBundle:Friends')->findAll();
+            $em->persist($link);
+            $em->flush();
 
-        return array(
+            $mess = "La demande d'amis a bien été prise en compte";
+        }
+        else
+            $mess = "Vous êtes déjà amis avec cette personne";
+
+        $entities = $em->getRepository('ZniehUserBundle:FriendsLink')
+                        ->findByUser1($slug->getId());
+
+        return $this->redirect( $this->generateUrl('friends', array(
             'entities' => $entities,
-            'mess' => "La demande d'amis a bien été prise en compte",
-        );
+            'mess' => $mess,
+            'userAct' => $slug,
+        )) );
+    }
+
+    /**
+     * @Route("/accept/{id}", name="friends_accept")
+     * @Template()
+     */
+    public function acceptAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $slug = $this->container->get('security.context')->getToken()->getUser();
+
+        $user = $em->getRepository('ZniehUserBundle:User')
+                    ->findOneById($id);
+
+        $friendsLink = $em->getRepository('ZniehUserBundle:FriendsLink')
+                          ->findDouble($slug, $user);
+
+        if($friendsLink != null)
+        {
+            $friendsLink->setAccept(true);
+            $em->flush();
+        }
+
+        $entities = $em->getRepository('ZniehUserBundle:FriendsLink')
+                        ->findFriends($slug);
+
+        return $this->redirect( $this->generateUrl('friends', array(
+            'entities' => $entities,
+            'mess' => "",
+            'userAct' => $slug,
+        )) );
+    }
+
+    /**
+     * @Route("/ignore/{id}", name="friends_ignore")
+     * @Template()
+     */
+    public function ignoreAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $slug = $this->container->get('security.context')->getToken()->getUser();
+
+        $user = $em->getRepository('ZniehUserBundle:User')
+                    ->findOneById($id);
+
+        $friendsLink = $em->getRepository('ZniehUserBundle:FriendsLink')
+                          ->findDouble($slug, $user);
+
+        if($friendsLink != null)
+        {
+            $friendsLink->setFriendIgnore(true);
+            $em->flush();
+        }
+
+        $entities = $em->getRepository('ZniehUserBundle:FriendsLink')
+                        ->findFriends($slug);
+
+        return $this->redirect( $this->generateUrl('friends', array(
+            'entities' => $entities,
+            'mess' => "",
+            'userAct' => $slug,
+        )) );
+    }
+
+    /**
+     * @Route("/notIgnore/{id}", name="friends_notIgnore")
+     * @Template()
+     */
+    public function notIgnoreAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $slug = $this->container->get('security.context')->getToken()->getUser();
+
+        $user = $em->getRepository('ZniehUserBundle:User')
+                    ->findOneById($id);
+
+        $friendsLink = $em->getRepository('ZniehUserBundle:FriendsLink')
+                          ->findDouble($slug, $user);
+
+        if($friendsLink != null)
+        {
+            $friendsLink->setFriendIgnore(false);
+            $em->flush();
+        }
+
+        $entities = $em->getRepository('ZniehUserBundle:FriendsLink')
+                        ->findFriends($slug);
+
+        return $this->redirect( $this->generateUrl('friends', array(
+            'entities' => $entities,
+            'mess' => "",
+            'userAct' => $slug,
+        )) );
+    }
+
+    /**
+     * @Route("/delete/{id}", name="friends_delete")
+     * @Template()
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $slug = $this->container->get('security.context')->getToken()->getUser();
+
+        $user = $em->getRepository('ZniehUserBundle:User')
+                    ->findOneById($id);
+
+        $friendsLink = $em->getRepository('ZniehUserBundle:FriendsLink')
+                          ->findDouble($slug, $user);
+
+        if($friendsLink != null)
+        {
+            $em->remove($friendsLink);
+            $em->flush();
+        }
+
+        $entities = $em->getRepository('ZniehUserBundle:FriendsLink')
+                        ->findFriends($slug);
+
+        return $this->redirect( $this->generateUrl('friends', array(
+            'entities' => $entities,
+            'mess' => "L'amis a bien été supprimé",
+            'userAct' => $slug,
+        )) );
     }
 }
