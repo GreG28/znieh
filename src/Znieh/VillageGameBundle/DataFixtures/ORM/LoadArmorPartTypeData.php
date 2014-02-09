@@ -16,7 +16,7 @@ class LoadArmorPartTypeData extends AbstractFixtureLoader implements OrderedFixt
      */
     public function load(ObjectManager $manager)
     {
-      $armorPartTypesData = $this->getModelFixtures();
+        $armorPartTypesData = $this->getModelFixtures();
 
         // Create weaponPartTypes
         foreach($armorPartTypesData as $armorPartTypeData) {
@@ -24,6 +24,7 @@ class LoadArmorPartTypeData extends AbstractFixtureLoader implements OrderedFixt
 
             $armorPartType
                 ->setName($armorPartTypeData['name'])
+                ->setEffects($armorPartTypeData['effects'])
             ;
 
             $manager->persist($armorPartType);

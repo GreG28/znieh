@@ -34,6 +34,9 @@ class LoadArmorPartData extends AbstractFixtureLoader implements OrderedFixtureI
             if (!empty($armorPartData['effects'])) {
                 $armorPart->setEffects($armorPartData['effects']);
             }
+            foreach ($type->getEffects() as $key => $effect) {
+                $armorPart->addEffect($key, $effect);
+            }
 
             $points = empty($armorPartData['points']) ? $step->getPoints() : $armorPartData['points'];
             $armorPart->setPoints($points);
