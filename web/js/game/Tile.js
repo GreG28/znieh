@@ -90,8 +90,21 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         var shape_selection_possible = this.shape_selection_possible;
         var shape_selection_impossible = this.shape_selection_impossible;
 
+        var self = this;
         this._container.on("mouseover", function(evt) {
             shape_hover.visible = true;
+
+            // TODO : Ghost de l'unité qui suit la souris pendant le placement des unités
+            // if(gameStatut == GameStatut.PLACEMENT) {
+            //     selectedUnit = unitsCache[$("#myUnits div.selected").attr("data-unit")];
+            //     if(selectedUnit != null) {
+            //         selectedUnit._container.x = map.GetBounds(self.i, self.j).GetBottomCenter().x;
+            //         selectedUnit._container.y = map.GetBounds(self.i, self.j).GetBottomCenter().y;
+            //         console.log(selectedUnit._container.x);
+            //         console.log("On change");
+            //         selectedUnit.sprite_base.gotoAndPlay("move-left"); //animate
+            //     }
+            // }
         });
 
         this._container.on("mouseout", function(evt) {
@@ -104,7 +117,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         this._container.on("click", function(evt, data) {
             if(gameStatut == GameStatut.PLACEMENT)
             {
-                if(data.collision == Enum.TileCollision.Passable && _i < (map.gameWidth / 3)) {
+                if(data.collision == Enum.TileCollision.Passable && ((_i < (map.gameWidth / 3) && left == true) || ((_i >= (2 * map.gameWidth / 3)) && left == false))) {
                     console.log("[TILE] x" + _i + " y" + _j);
                     var idUnit = $("#myUnits div.selected").attr("data-unit");
 
