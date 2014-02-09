@@ -110,7 +110,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
                         if(units[idUnit].statut == 0) {
                             ContentManager.newUnit(_i,_j, units[idUnit].sprite, units[idUnit].taille, idUnit);
                             nextUnitID++;
-                            if(nextUnitID == numberOfUnits) {
+                            if(ContentManager.units.length == numberOfUnits) {
                                 gameStatut = GameStatut.IDLE;
                                 ContentManager.clearUnitsMenu();
                             }
