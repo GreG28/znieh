@@ -181,10 +181,15 @@
             //         selectedUnit.sprite_base.gotoAndPlay("move-left"); //animate
             //     }
             // }
+
+            setInfoSide(null);
         });
 
         this._container.on("mouseout", function(evt) {
             shape_hover.visible = false;
+
+            if(selectedUnit == null)
+                setEnnemySide();
         });
 
         var i = this._i;
@@ -195,6 +200,7 @@
             console.log("[UNIT] x" + container.x + " y" + container.y);
             ContentManager.unSelectAllTiles();
             selectedUnit = that;
+            setInfoSide(selectedUnit);
 
             // L'unité est déjà sélectionnée
             if(gameStatut != GameStatut.PLACEMENT) {
