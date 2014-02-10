@@ -112,6 +112,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         var _j = this.j;
 
         this._container.on("click", function(evt, data) {
+            setEnnemySide();
             if(gameStatut == GameStatut.PLACEMENT)
             {
                 if(data.collision == Enum.TileCollision.Passable && ((_i < (map.gameWidth / 3) && left == true) || ((_i >= (2 * map.gameWidth / 3)) && left == false))) {
@@ -142,6 +143,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
                 gameStatut = GameStatut.IDLE;
                 ContentManager.unSelectAllTiles();
                 ContentManager.clearUnitsMenu();
+                selectedUnit = null;
                 /* On essaye de rendre les cases autour colorée aussi pour que  */
             }
         }, null, false, { collision: this.Collision });

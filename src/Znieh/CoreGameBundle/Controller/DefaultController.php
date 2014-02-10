@@ -35,14 +35,4 @@ class DefaultController extends Controller
     }
 
 
-    /**
-     * @Route("/game/search")
-     * @Template()
-     * @Security("has_role('ROLE_USER')")
-     */
-    public function searchAction()
-    {
-    }
-
-
 }
