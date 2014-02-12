@@ -7,9 +7,13 @@ GameStatut = {
 }
 
 $(window).keydown(function(e){
+    if(gameStatut == GameStatut.MOVE)
+        gameStatut = GameStatut.IDLE;
+
     if(gameStatut == GameStatut.IDLE) {
         ContentManager.unSelectAllTiles();
         ContentManager.clearUnitsMenu();
+        setEnnemySide();
 
         //cross browser issues exist
         if(!e){ var e = window.event; }
@@ -17,8 +21,10 @@ $(window).keydown(function(e){
         // On sélectionne l'unité
         $("#unit-" + (parseInt(e.keyCode) - 49)).addClass("selected");
         selectedUnit = ContentManager.units[(parseInt(e.keyCode) - 49)];
-        if(selectedUnit != null)
+        if(selectedUnit != null) {
             selectedUnit.getAllTilesStatut();
+            setInfoSide(selectedUnit);
+        }
     }
 });
 

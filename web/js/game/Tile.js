@@ -140,14 +140,15 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
                 else
                     console.log("Vous ne pouvez pas placer votre personnage à cet endroit.");
             }
-            // le placement est fini !
+            else if(gameStatut == GameStatut.MOVE) {
+                selectedUnit.move(_i, _j);
+                gameStatut = GameStatut.IDLE;
+            }
             else {
-                //console.log("Le placement est fini !");
                 gameStatut = GameStatut.IDLE;
                 ContentManager.unSelectAllTiles();
                 ContentManager.clearUnitsMenu();
                 selectedUnit = null;
-                /* On essaye de rendre les cases autour colorée aussi pour que  */
             }
         }, null, false, { collision: this.Collision });
 
