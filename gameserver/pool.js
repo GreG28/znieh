@@ -41,7 +41,7 @@ Pool.init = function(world) {
 						var battle = world.battle.new(player, this.players[i]);
 
 						player.battle = battle;
-						this.players[i] = battle;
+						this.players[i].battle = battle;
 
 						return;
 					}

@@ -117,6 +117,7 @@ io.sockets.on('connection', function (socket) {
     });
 
     var waitingController = require('./waitingController')(world, player);
+    var fightController = require('./fightController')(world, player);
 
   });
 

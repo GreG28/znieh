@@ -1,4 +1,4 @@
-
+var http = require('http');
 var Battle = {};
 module.exports = Battle;
 
@@ -8,12 +8,12 @@ Battle.init = function() {
 
 Battle.new = function(p1, p2) {
 	return {
-		player1 = p1,
-		player2 = p2,
-		turn = 0,
-		map = undefined,
+		player1: p1,
+		player2: p2,
+		turn: 1,
+		map: undefined,
 
-		victory = new function(winner) {
+		victory: function(winner) {
 			// TODO: Set Symfony URL
 			http.get("###", function(res) {
 			 	console.log("Got response: " + res.statusCode);
@@ -22,11 +22,11 @@ Battle.new = function(p1, p2) {
 			}); 
 
 			if(winner == 1) {
-				player1.socket.emit("service", { msg: 'You are successful!'});
-				player2.socket.emit("service", { msg: 'Game over!'});
+				this.player1.socket.emit("service", { msg: 'You are successful!'});
+				this.player2.socket.emit("service", { msg: 'Game over!'});
 			} else {
-				player1.socket.emit("service", { msg: 'Game over!'});
-				player2.socket.emit("service", { msg: 'You are successful!'});
+				this.player1.socket.emit("service", { msg: 'Game over!'});
+				this.player2.socket.emit("service", { msg: 'You are successful!'});
 			}
 
 			player1.status = 'init';

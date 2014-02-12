@@ -102,6 +102,7 @@ $("#rightSide").html(rightPart);
 
   <button id="join" type="button" class="btn btn-primary">Join pool</button>
   <button id="ready" type="button" class="btn btn-primary">Ready <em>(start search)</em></button>
+  <button id="next-turn" type="button" class="btn btn-primary">Next Turn</button>
 
   <p><br />
     Pool ID : <input type="text" id="poolId" value="0" /></input>
@@ -125,11 +126,45 @@ $("#rightSide").html(rightPart);
     var gameSocket = undefined;
 
     gameSocket = io.connect('127.0.0.1:1337');
-    $('#console').append('Connected<br>');
 
     gameSocket.emit('auth', { username: '{{ app.user.username }}' , token: '{{ app.user.token }}' });
 
+
+
     // In
+    gameSocket.on('connecting', function () {
+      $('#console').append('Connecting...<br />');
+    });
+
+    gameSocket.on('connect', function () {
+      $('#console').append('Connected<br>');
+    });
+
+    gameSocket.on('disconnect', function () {
+      $('#console').append('<strong>You got disconnected from server.</strong><br />');
+    });
+
+    gameSocket.on('connect_failed', function () {
+      $('#console').append('<strong>Cannot establish connection to server.</strong><br />');
+    });
+
+    gameSocket.on('reconnect_failed', function () {
+      $('#console').append('<strong>Cannot establish connection to server.</strong><br />');
+    });
+
+    gameSocket.on('reconnect', function () {
+      $('#console').append('Sucessfully reconnected to server.<br>');
+    });
+
+    gameSocket.on('reconnecting', function () {
+      $('#console').append('Reconnecting to server...<br />');
+    });
+
+
+    gameSocket.on('error', function () {
+      $('#console').append('An error has occured: server is offline.<br />');
+    });
+
     gameSocket.on('welcome', function (data) {
       console.log(data);
       $('#console').append('Server has send welcome message. Your name is : ' + data + '<br />');
@@ -172,6 +207,10 @@ $("#rightSide").html(rightPart);
     $('#fight').click(function () {
       gameSocket.emit('get-pools', null);
       $('#pools').html('<strong>Loading ...</strong><br>');
+    });
+
+     $('#next-turn').click(function () {
+      gameSocket.emit('next-turn', null);
     });
 
   </script>
