@@ -16,6 +16,7 @@ var io = require('socket.io').listen(app);
 var fs = require('fs');
 var db = require('./db');
 var skillHandler = require('./skillHandler');
+var battle = require('./battle');
 var config = require('nconf');
 var Moniker = require('moniker');
 var port = 1337;
@@ -81,6 +82,9 @@ world.db.initTables();
 
 // Pools
 world.pool.init(world);
+
+// Battle
+world.battle = battle;
 
 // Player class
 var Player = require('./player');

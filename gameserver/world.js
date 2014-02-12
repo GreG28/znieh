@@ -10,6 +10,8 @@ World.handlers = [];
 World.players = [];
 World.pool = require('./pool');
 
+World.battle = undefined;
+
 World.broadcast = function(key, value) {
 	this.io.sockets.emit(key, value);
 }

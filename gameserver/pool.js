@@ -23,13 +23,27 @@ Pool.init = function(world) {
 					if(this.players[i].status == 'ready' && this.players[i].name != player.name) {
 						player.socket.emit("service", { msg: 'Game found! Other player is: ' + this.players[i].name });
 						this.players[i].socket.emit("service", { msg: 'Game found! Other player is: ' + player.name });
+
+						var leftOrRight = Math.round(Math.random());
+
+						if(leftOrRight) {
+							player.socket.emit("service", { msg: 'You are playing on the left side.' });
+							this.players[i].socket.emit("service", { msg: 'You are playing on the right side.' });
+						} else {
+							player.socket.emit("service", { msg: 'You are playing on the right side.' });
+							this.players[i].socket.emit("service", { msg: 'You are playing on the left side.' });
+						}
 					
 						// TODO: Yes/No
 						player.status = 'fighting';
 						this.players[i].status = 'fighting';
 
-						return;
+						var battle = world.battle.new(player, this.players[i]);
 
+						player.battle = battle;
+						this.players[i] = battle;
+
+						return;
 					}
 				}
 

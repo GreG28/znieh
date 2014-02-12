@@ -3,6 +3,7 @@ function Player(name, socket) {
     this.socket = socket;
     this.status = 'init';
     this.pool = undefined;
+    this.battle = undefined;
 }
 
 
