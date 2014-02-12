@@ -17,8 +17,26 @@ UnitHandler.StatSet = function (life, penetration, precision, evade, parry, defe
 	this.magicSupport = magicSupport;
 }
 
-UnitHandler.Weapon = function (name, damages, attribute, isRanged, stats)
+UnitHandler.Weapon = function (name, type, damages, attribute, range, stats){
+	this.name = name;
+	this.type = type;
+	this.damages = damages;
+	this.attribute = attribute;
+	this.range = range;
+	this.stats = stats;
+}
 
-UnitHandler.Unit = function(name, sign, stats){
+UnitHandler.Armor = function (name, type, damages, range, stats){
+	this.name = name;
+	this.type = type;
+	this.range = range;
+	this.stats = stats;
+}
 
+UnitHandler.Unit = function(name, sign, stats, weapon, armor){
+	this.name = name;
+	this.sign = sign;
+	this.stats = stats;
+	this.weapon = weapon;
+	this.armor = armor;
 }
