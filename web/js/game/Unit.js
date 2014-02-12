@@ -202,18 +202,6 @@
             selectedUnit = that;
             setInfoSide(selectedUnit);
 
-            // L'unité est déjà sélectionnée
-            if(gameStatut != GameStatut.PLACEMENT) {
-                ContentManager.clearUnitsMenu();
-
-                if(selectedUnit.shape_selected_unit.visible == true) {
-                    gameStatut = GameStatut.MOVE;
-                }
-                else {
-                    gameStatut = GameStatut.IDLE;
-                }
-            }
-
             that.getAllTilesStatut();
 
         });
@@ -228,19 +216,89 @@
         substage.addChild(this._container);
     };
 
-    Unit.prototype.getAllTilesStatut = function () {
+    Unit.prototype.move = function (x, y) {
+
+        var origin_x = this._i
+        var origin_y = this._j;
+
         var limit = 7; // TODO : Sélectionner la limite de déplacement de l'unité
         var easystar = new EasyStar.js();
         var acceptableTiles = [ 1, 2];
         easystar.setGrid(map.textTiles);
         easystar.setAcceptableTiles(acceptableTiles);
 
+        unitsPlacement.length = 0;
         for (var t = ContentManager.units.length - 1; t >= 0; t--) {
             unitsPlacement.push([ContentManager.units[t]._i, ContentManager.units[t]._j]);
             easystar.avoidAdditionalPoint(ContentManager.units[t]._i, ContentManager.units[t]._j);
         }
 
-        if(gameStatut == GameStatut.IDLE) {
+        self = this;
+        easystar.findPath(self._i, self._j, x, y, function(path) {
+            if(path.length <= limit) {
+                var filtered_new = $(unitsPlacement).filter(function(){
+                    return x == this[0] && y == this[1];
+                });
+
+                if(filtered_new.length == 0) {
+                    self._container.x = map.GetBounds(x, y).GetBottomCenter().x;
+                    self._container.y = map.GetBounds(x, y).GetBottomCenter().y;
+                    self._i = x;""
+                    self._j = y;
+
+                    self.shape_hover.graphics.drawRect((-16), (-16), 32, 32 - 2); // Change size as-needed
+                    self.shape_selected.graphics.drawRect((-16), (-16), 32 - 2, 32 - 2); // Change size as-needed
+                    self.shape_selected_unit.graphics.drawRect((-16), (-16), 32 - 2, 32 - 2); // Change size as-needed
+
+                    self._container.removeAllChildren();
+                    self._container.addChild(self.shape_hover);
+                    self._container.addChild(self.shape_selected);
+                    self._container.addChild(self.shape_selected_unit);
+                    self._container.addChild(self.sprite_base);
+
+                    var placement = [origin_x, origin_y];
+                    var filtered = $(unitsPlacement).filter(function(){
+                        return placement[0] == this[0] && placement[1] == this[1];
+                    });
+
+                    if(filtered.length > 0){
+                        map.tiles[origin_y][origin_x].shape_hover.visible = false; // Change size as-needed
+                        map.tiles[origin_y][origin_x].shape_selection_possible.visible = false; // Change size as-needed
+                        map.tiles[origin_y][origin_x].shape_selection_impossible.visible = false; // Change size as-needed
+                    }
+
+                    self.sprite_base.gotoAndPlay("move-left"); //animate
+                    ContentManager.units[self.unitID - units.length - 1] = self;
+                }
+                else console.log("Une unité est déjà sur la case.");
+            }
+            else console.log("Cette unité ne peut pas se déplacer aussi loin.")
+        });
+        easystar.calculate();
+
+        ContentManager.unSelectAllTiles();
+        ContentManager.clearUnitsMenu();
+        setEnnemySide();
+    }
+
+    Unit.prototype.getAllTilesStatut = function () {
+        if(gameStatut != GameStatut.PLACEMENT) {
+            ContentManager.clearUnitsMenu();
+        }
+
+        var limit = 7; // TODO : Sélectionner la limite de déplacement de l'unité
+        var easystar = new EasyStar.js();
+        var acceptableTiles = [ 1, 2];
+        easystar.setGrid(map.textTiles);
+        easystar.setAcceptableTiles(acceptableTiles);
+
+        unitsPlacement.length = 0;
+        for (var t = ContentManager.units.length - 1; t >= 0; t--) {
+            unitsPlacement.push([ContentManager.units[t]._i, ContentManager.units[t]._j]);
+            easystar.avoidAdditionalPoint(ContentManager.units[t]._i, ContentManager.units[t]._j);
+        }
+
+        if(gameStatut == GameStatut.IDLE || gameStatut == GameStatut.MOVE) {
             $("#unit-" + (this.unitID - units.length - 1)).addClass("selected");
 
             for (var x = 0; x < map.textTiles.length; x++) {
@@ -282,9 +340,15 @@
                 }
             }
         }
-        else if(gameStatut == GameStatut.MOVE) {
-            // On déplace le personnage
+
+        if(gameStatut == GameStatut.IDLE) {
+            gameStatut = GameStatut.MOVE;
         }
+        else {
+            gameStatut = GameStatut.IDLE;
+        }
+
+
     }
 
     /**
