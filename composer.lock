@@ -2574,20 +2574,21 @@
         },
         {
             "name": "symfony/icu",
-            "version": "1.0.x-dev",
+            "version": "1.2.x-dev",
             "target-dir": "Symfony/Component/Icu",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Icu.git",
-                "reference": "fdba214b1e087c149843bde976263c53ac10c975"
+                "reference": "98e197da54df1f966dd5e8a4992135703569c987"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Icu/zipball/fdba214b1e087c149843bde976263c53ac10c975",
-                "reference": "fdba214b1e087c149843bde976263c53ac10c975",
+                "url": "https://api.github.com/repos/symfony/Icu/zipball/98e197da54df1f966dd5e8a4992135703569c987",
+                "reference": "98e197da54df1f966dd5e8a4992135703569c987",
                 "shasum": ""
             },
             "require": {
+                "lib-icu": ">=4.4",
                 "php": ">=5.3.3",
                 "symfony/intl": "~2.3"
             },
@@ -2617,7 +2618,7 @@
                 "icu",
                 "intl"
             ],
-            "time": "2013-10-04 09:12:07"
+            "time": "2013-10-04 10:06:38"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -2742,12 +2743,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "82d9a76996e30c7c46a4b61f1129c0fec0866de3"
+                "reference": "a68d69183d1b4d4e48305de5b35dfa93b26b0274"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/82d9a76996e30c7c46a4b61f1129c0fec0866de3",
-                "reference": "82d9a76996e30c7c46a4b61f1129c0fec0866de3",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/a68d69183d1b4d4e48305de5b35dfa93b26b0274",
+                "reference": "a68d69183d1b4d4e48305de5b35dfa93b26b0274",
                 "shasum": ""
             },
             "require": {
@@ -2849,7 +2850,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-02-12 21:00:41"
+            "time": "2014-02-11 15:39:28"
         },
         {
             "name": "twbs/bootstrap",

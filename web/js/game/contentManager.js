@@ -4,7 +4,7 @@ GameStatut = {
     PLACEMENT:      2,
     MOVE:           3,
     ATTACK:         4,
-}
+};
 
 $(window).keydown(function(e){
     if(gameStatut == GameStatut.MOVE)
@@ -16,11 +16,11 @@ $(window).keydown(function(e){
         setEnnemySide();
 
         //cross browser issues exist
-        if(!e){ var e = window.event; }
+        if(!e){e = window.event; }
 
         // On sélectionne l'unité
-        $("#unit-" + (parseInt(e.keyCode) - 49)).addClass("selected");
-        selectedUnit = ContentManager.units[(parseInt(e.keyCode) - 49)];
+        $("#unit-" + (parseInt(e.keyCode,10) - 49)).addClass("selected");
+        selectedUnit = ContentManager.units[(parseInt(e.keyCode,10) - 49)];
         if(selectedUnit != null) {
             selectedUnit.getAllTilesStatut();
             setInfoSide(selectedUnit);
@@ -95,7 +95,6 @@ function ContentManager(stage, width, height) {
      * Initialize all downloads
      */
     this.init = function () {
-        "use strict";
 
         // coloration du canvas pour tests
         substage = new createjs.Container();
@@ -117,7 +116,7 @@ function ContentManager(stage, width, height) {
 
         gameStatut = GameStatut.IDLE;
 
-    }
+    };
 
     /**
      * Initialize map with all parameters
@@ -196,7 +195,7 @@ function ContentManager(stage, width, height) {
         $("#unit-" + idUnit).removeClass("selected");
         $("#unit-" + idUnit).addClass("valid");
 
-        var nextIdUnit = (parseInt(idUnit) + 1) % units.length;
+        var nextIdUnit = (parseInt(idUnit,10) + 1) % units.length;
         if(units[nextIdUnit] != null) {
             if(units[nextIdUnit].statut == -1) {
                 units[nextIdUnit].statut = 0;
@@ -218,7 +217,7 @@ function ContentManager(stage, width, height) {
             }
         }
 
-        for(var i = 0 ; i < ContentManager.units.lenght; i++)
+        for(i = 0 ; i < ContentManager.units.lenght; i++)
             ContentManager.units[i].shape_selected.visible = false;
     };
 
@@ -226,8 +225,8 @@ function ContentManager(stage, width, height) {
         for (var i = units.length - 1; i >= 0; i--) {
             $("#unit-" + i).removeClass("valid");
             $("#unit-" + i).removeClass("selected");
-        };
-    }
+        }
+    };
 
     /**
      * Generate units image for menus
