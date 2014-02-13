@@ -218,7 +218,7 @@
 
     Unit.prototype.move = function (x, y) {
 
-        var origin_x = this._i
+        var origin_x = this._i;
         var origin_y = this._j;
 
         var limit = 7; // TODO : Sélectionner la limite de déplacement de l'unité
@@ -243,7 +243,7 @@
                 if(filtered_new.length == 0) {
                     self._container.x = map.GetBounds(x, y).GetBottomCenter().x;
                     self._container.y = map.GetBounds(x, y).GetBottomCenter().y;
-                    self._i = x;""
+                    self._i = x;
                     self._j = y;
 
                     self.shape_hover.graphics.drawRect((-16), (-16), 32, 32 - 2); // Change size as-needed
@@ -268,18 +268,17 @@
                     }
 
                     self.sprite_base.gotoAndPlay("move-left"); //animate
-                    ContentManager.units[self.unitID - units.length - 1] = self;
                 }
                 else console.log("Une unité est déjà sur la case.");
             }
-            else console.log("Cette unité ne peut pas se déplacer aussi loin.")
+            else console.log("Cette unité ne peut pas se déplacer aussi loin.");
         });
         easystar.calculate();
 
         ContentManager.unSelectAllTiles();
         ContentManager.clearUnitsMenu();
         setEnnemySide();
-    }
+    };
 
     Unit.prototype.getAllTilesStatut = function () {
         if(gameStatut != GameStatut.PLACEMENT) {
@@ -349,7 +348,7 @@
         }
 
 
-    }
+    };
 
     /**
      * Gets a rectangle around the Unit
