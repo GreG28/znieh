@@ -32,14 +32,15 @@ UnitHandler.Armor = function (name, type, damages, stats){
 	this.stats = stats;
 }
 
-UnitHandler.Unit = function(name, sign, stats, weapon, armor, values, tags){
+UnitHandler.Unit = function(name, sign, stats, weapon, armor, skills,  values, tags){
 	this.name = name;
 	this.sign = sign;
 	this.stats = stats;
 	this.weapon = weapon;
 	this.armor = armor;
-	this.valueList = values;
-	this.tagList = tags;
+	this.values = values;
+	this.tags = tags;
+	this.skills = skills;
 }
 
 //A value is either a Strength or a Weakness, can be bad or good(yin will tell you if it's positive or negative effect)
@@ -52,8 +53,6 @@ UnitHandler.Unit = function(name, sign, stats, weapon, armor, values, tags){
  }
 
 var unitList = new Array();
-var valueList = new Array();
-var tagList = new Array();
 
 UnitHandler.loadUnit = function(){
 	var data = require('./json/unitex.json');
