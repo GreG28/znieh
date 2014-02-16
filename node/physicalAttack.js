@@ -6,10 +6,10 @@ var finalDamage = 0;
 var nonParriedDamage = 0.85;
 
 //Unit stat:
-var precisionScore = 50;
-var dodgeScore = 30;
-var parryScore = 50;
-var enemyDefenseScore = 36;
+var precisionScore;
+var dodgeScore;
+var parryScore;
+var enemyDefenseScore;
 
 console.log(physicalHit());
 //get weapon final damage with ratio
@@ -68,6 +68,10 @@ function setParriedDamages() {
 }
 //main function
 function physicalHit(){
+	precisionScore = 50;
+	dodgeScore = 30;
+	parryScore = 50;
+	enemyDefenseScore = 36;
 	dodged = isDodged();
 	if(!dodged){
 		parried =isParried();
