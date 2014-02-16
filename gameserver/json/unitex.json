@@ -1,0 +1,87 @@
+[{
+    "name":"D\u00e9faut",
+    "units":
+    [{
+        "name":"Archer",
+        "sign": {
+            "name":"Force"
+        },
+        "size": {
+            "name":"Normal"
+        },
+        "weight": {
+            "name":"Muscl\u00e9"
+        },
+        "weapon": {
+            "parts": [
+            {
+                "name":"Corde en cuir r\u00eache de vie",
+                "effects": {
+                    "vie":20
+                },
+                "discr":"weaponpart"
+            },
+            {
+                "name":"Arc long en c\u00e8dre",
+                "effects":
+                {
+                    "vie":20
+                },
+                "discr":"weaponpart"
+            },
+            {
+                "name":"Poign\u00e9e d'arc en cuivre de p\u00e9n\u00e9tration",
+                "effects": {
+                    "penetration":20
+                },
+                "discr":"weaponpart"
+            },
+            {
+                "name":"Fl\u00e8che en cuivre d'agilit\u00e9",
+                "effects": {
+                    "agilite":20
+                },
+                "discr":"weaponpart"
+            }],
+            "type": {
+                "name":"Arc"
+            }
+
+        },
+        "armor":
+        {
+            "pieces":[
+            {
+                "part": {
+                    "name":"Casque en cuir brut d'armure",
+                    "effects": {
+                        "armure":15,
+                        "agilite":5
+                    },
+                    "discr":"armorpart"
+                },
+                "rune": {
+                    "name":"Rune du survivant majeur",
+                    "effects": {
+                        "vie":20
+                    },"type": {
+                        "name":"Majeur"
+                    },
+                    "discr":"rune"
+                },
+                "insigna": {
+                    "name":"Insigne de b\u00e9n\u00e9diction",
+                    "effects": {
+                        "benediction":10
+                    },
+                    "discr":"insigna"
+                }
+            }
+            ],
+            "type": {
+                "name":"Interm\u00e9diaire"
+            }
+        }
+
+    }]
+}]

@@ -26,10 +26,9 @@ UnitHandler.Weapon = function (name, type, damages, attribute, range, stats){
 	this.stats = stats;
 }
 
-UnitHandler.Armor = function (name, type, damages, range, stats){
+UnitHandler.Armor = function (name, type, damages, stats){
 	this.name = name;
 	this.type = type;
-	this.range = range;
 	this.stats = stats;
 }
 
@@ -40,3 +39,29 @@ UnitHandler.Unit = function(name, sign, stats, weapon, armor){
 	this.weapon = weapon;
 	this.armor = armor;
 }
+
+var unitList = new Array();
+
+UnitHandler.loadUnit = function(){
+	var data = require('./json/unitex.json');
+	var unitName;
+	var sign;
+	//add stats here
+	var weaponName;
+	var armorName;
+	var weaponType;
+	var damages;
+	var range;
+	//add runes
+	for(var unit in data){
+		unitName = data[0].units[unit].name;
+		sign = data[0].units[unit].sign.name;
+
+		weaponType = data[0].units[unit].weapon.type.name;
+
+		armorType = data[0].units[unit].armor.type.name;
+		console.log(new UnitHandler.Unit(unitName, sign, "", new UnitHandler.Weapon(weaponName, weaponType), new UnitHandler.Armor(armorName, armorType)))
+	}
+}
+var test = UnitHandler;
+test.loadUnit();
