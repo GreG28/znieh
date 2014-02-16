@@ -2,10 +2,6 @@
 
 {% block body -%}
     <h1>Gestion des amis</h1>
-    {% if mess != "" %}
-    <h6>{{ mess }}</h6>
-    {% endif %}
-
     <ul>
         <li>
             <a href="{{ path('friends_new') }}">
@@ -15,16 +11,7 @@
     </ul>
 
     <h3>Demande d'amis</h3>
-    {% if entities == null %}
-    <h5>Vous n'avez pas de demande d'amis</h5>
-    {% else %}
     <table>
-        <thead>
-            <tr>
-                <th>Noms</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
@@ -89,35 +76,29 @@
                 {% endif %}
                 <td>
                     <ul>
-                        {% if entity.friendIgnore == false %}
                         <li>
-                                {% if entity.user1 == userAct %}
-                                <a href="{{ path('friends_ignore', { 'id': entity.user2.id }) }}">
-                                    Ignorer
-                                {% else %}
-                                <a href="{{ path('friends_ignore', { 'id': entity.user1.id }) }}">
-                                    Ignorer
-                                {% endif %}
+                            {% if entity.user1 == userAct and entity.user1Ignore == false %}
+                            <a href="{{ path('friends_ignore', { 'id': entity.user2.id }) }}">
+                                Ignorer
+                            {% elseif entity.user2 == userAct and entity.user2Ignore == false %}
+                            <a href="{{ path('friends_ignore', { 'id': entity.user1.id }) }}">
+                                Ignorer
+                            {% elseif entity.user1 == userAct and entity.user1Ignore == true %}
+                            <a href="{{ path('friends_notIgnore', { 'id': entity.user2.id }) }}">
+                                Débloquer
+                            {% elseif entity.user2 == userAct and entity.user2Ignore == true %}
+                            <a href="{{ path('friends_notIgnore', { 'id': entity.user1.id }) }}">
+                                Débloquer
+                            {% endif %}
                         </li>
-                        {% else %}
                         <li>
-                                {% if entity.user1 == userAct %}
-                                <a href="{{ path('friends_notIgnore', { 'id': entity.user2.id }) }}">
-                                    Débloquer
-                                {% else %}
-                                <a href="{{ path('friends_notIgnore', { 'id': entity.user1.id }) }}">
-                                    Débloquer
-                                {% endif %}
-                        </li>
-                        {% endif %}
-                        <li>
-                                {% if entity.user1 == userAct %}
-                                <a href="{{ path('friends_delete', { 'id': entity.user2.id }) }}">
-                                    supprimer
-                                {% else %}
-                                <a href="{{ path('friends_delete', { 'id': entity.user1.id }) }}">
-                                    Supprimer
-                                {% endif %}
+                            {% if entity.user1 == userAct %}
+                            <a href="{{ path('friends_delete', { 'id': entity.user2.id }) }}">
+                                supprimer
+                            {% else %}
+                            <a href="{{ path('friends_delete', { 'id': entity.user1.id }) }}">
+                                Supprimer
+                            {% endif %}
                         </li>
                     </ul>
                 </td>

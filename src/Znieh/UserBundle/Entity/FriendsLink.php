@@ -34,9 +34,16 @@ class FriendsLink
     /**
      * @var boolean
      *
-     * @ORM\Column(name="friendIgnore", type="boolean")
+     * @ORM\Column(name="user1Ignore", type="boolean")
      */
-    private $friendIgnore;
+    private $user1Ignore;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="user2Ignore", type="boolean")
+     */
+    private $user2Ignore;
 
 
     public function setUser1(\Znieh\UserBundle\Entity\User $user1 = null)
@@ -83,27 +90,51 @@ class FriendsLink
     }
 
     /**
-     * Set friendIgnore
+     * Set user1Ignore
      *
      * @param boolean $friendIgnore
      *
      * @return FriendsLink
      */
-    public function setFriendIgnore($friendIgnore)
+    public function setUser1Ignore($friendIgnore)
     {
-        $this->friendIgnore = $friendIgnore;
+        $this->user1Ignore = $friendIgnore;
     
         return $this;
     }
 
     /**
-     * Get friendIgnore
+     * Get user1Ignore
      *
      * @return boolean 
      */
-    public function getFriendIgnore()
+    public function getUser1Ignore()
     {
-        return $this->friendIgnore;
+        return $this->user1Ignore;
+    }
+
+    /**
+     * Set user2Ignore
+     *
+     * @param boolean $friendIgnore
+     *
+     * @return FriendsLink
+     */
+    public function setUser2Ignore($friendIgnore)
+    {
+        $this->user2Ignore = $friendIgnore;
+    
+        return $this;
+    }
+
+    /**
+     * Get user2Ignore
+     *
+     * @return boolean 
+     */
+    public function getUser2Ignore()
+    {
+        return $this->user2Ignore;
     }
 }
 

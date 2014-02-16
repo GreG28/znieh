@@ -200,7 +200,10 @@ class FriendsController extends Controller
 
         if($friendsLink != null)
         {
-            $friendsLink->setFriendIgnore(true);
+           if($friendsLink->getUser1() == $slug)
+              $friendsLink->setUser1Ignore(true);
+            else
+              $friendsLink->setUser2Ignore(true);
             $em->flush();
         }
 
@@ -231,7 +234,10 @@ class FriendsController extends Controller
 
         if($friendsLink != null)
         {
-            $friendsLink->setFriendIgnore(false);
+            if($friendsLink->getUser1() == $slug)
+              $friendsLink->setUser1Ignore(false);
+            else
+              $friendsLink->setUser2Ignore(false);
             $em->flush();
         }
 
