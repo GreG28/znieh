@@ -15,7 +15,11 @@ var enemyDefenseScore;
 var attackingUnit;
 var attackedUnit;
 
-console.log(physicalHit());
+
+//for testing purpose
+//console.log(physicalHit());
+
+
 //get weapon final damage with ratio
 function getDamages() {
 	switch(attackingUnit.weapon.attribute)
