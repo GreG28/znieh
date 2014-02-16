@@ -6,15 +6,30 @@ var finalDamage = 0;
 var nonParriedDamage = 0.85;
 
 //Unit stat:
+
 var precisionScore;
 var dodgeScore;
 var parryScore;
 var enemyDefenseScore;
 
+var attackingUnit;
+var attackedUnit;
+
 console.log(physicalHit());
 //get weapon final damage with ratio
 function getDamages() {
-	return 50;
+	switch(attackingUnit.weapon.attribute)
+	{
+	case "agility":
+	  return attackingUnit.weapon.damages + attackingUnit.stats.agility * attackingUnit.weapon.ratio;
+	  break;
+	case "strength":
+	  return attackingUnit.weapon.damages + attackingUnit.stats.strength * attackingUnit.weapon.ratio;
+	  break;
+	case "intelligence":
+	  return attackingUnit.weapon.damages + attackingUnit.stats.intelligence * attackingUnit.weapon.ratio;
+	  break;
+	}
 }
 
 //get superiority bonusses like buff or specific weapon, skill or spell
@@ -67,11 +82,14 @@ function setParriedDamages() {
 		nonParriedDamage = 1;
 }
 //main function
-function physicalHit(){
+function physicalHit(attackUnit, defenseUnit){
+	attackingUnit = attackunit;
+	attackedUnit = defenseUnit;
 	precisionScore = 50;
 	dodgeScore = 30;
 	parryScore = 50;
 	enemyDefenseScore = 36;
+
 	dodged = isDodged();
 	if(!dodged){
 		parried =isParried();
