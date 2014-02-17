@@ -62,7 +62,6 @@ You must have both node and less installed :
 
     npm install -g less
 
-
 You can configure node_paths in app/config/parameters.yml
 
 Use npm to install bower, compass and grunt-cli :
@@ -70,6 +69,10 @@ Use npm to install bower, compass and grunt-cli :
     npm install -g bower
     npm install -g compass
     npm install -g grunt-cli
+
+Download the package dependencies :
+
+    npm install
 
 Download the bower dependencies :
 
