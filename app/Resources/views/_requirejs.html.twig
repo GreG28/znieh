@@ -1,0 +1,11 @@
+<script src="{{ asset('assets/vendor/requirejs/require.js') }}"></script>
+<script>
+    requirejs.config({
+        baseUrl: '{{ asset('assets/js') }}'
+    });
+    require(['common', 'app/default'], function (common) {
+        {% if module %}
+            require(['{{ module }}']);
+        {% endif %}
+    });
+</script>
