@@ -47,10 +47,6 @@ define(['jquery', 'socketio'], function ($, io) {
     return index;
   };
 
-
-
-
-
   // In
   socket.on('service', function (data) {
     console.log(data);
