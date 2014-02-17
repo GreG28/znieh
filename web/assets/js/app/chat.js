@@ -1,11 +1,11 @@
 /**
  * The chat module
  */
-define(['jquery', 'socketio'], function ($, io) {
+define(['jquery', 'socketio', 'user'], function ($, io, user) {
   console.log('chat module loaded');
 
   var socket = io.connect('127.0.0.1:1338');
-  socket.emit('auth', {username: 'admin', token: 'abc'});
+  socket.emit('auth', {username: user.name, token: 'abc'});
 
   var conversations = [];
 
