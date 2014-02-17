@@ -5,7 +5,7 @@ define(['jquery', 'socketio'], function ($, io) {
   console.log('chat module loaded');
 
   var socket = io.connect('127.0.0.1:1338');
-  socket.emit('auth', {username: '{{ app.user.username }}', token: 'abc'});
+  socket.emit('auth', {username: 'admin', token: 'abc'});
 
   var conversations = [];
 
