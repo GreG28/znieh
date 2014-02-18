@@ -3,7 +3,6 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
 
 (function (window) {
     function Tile(texture, collision, x, y, render) {
-        "use strict";
         this.initialize(texture, collision, x, y, render);
     }
 
@@ -16,7 +15,6 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
      * @param  {boolean} render
      */
     Tile.prototype.initialize = function(texture, collision, x, y, render) {
-        "use strict";
 
         if (texture !== null) {
             this.empty = false;
@@ -48,7 +46,6 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
      */
     Tile.prototype.render = function() {
         // On définit les coordonnées de la Tile
-        "use strict";
 
         this.texture.x = 0;
         this.texture.y = 0;
