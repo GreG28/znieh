@@ -95,6 +95,7 @@ function ContentManager(stage, width, height) {
      * Initialize all downloads
      */
     this.init = function () {
+        "use strict";
 
         // coloration du canvas pour tests
         substage = new createjs.Container();
@@ -123,7 +124,6 @@ function ContentManager(stage, width, height) {
      */
     function initMap () {
 
-        "use strict";
         ContentManager.tilesheight = 32;
         ContentManager.tileswidth = 32;
 
@@ -173,7 +173,6 @@ function ContentManager(stage, width, height) {
      * @param  {int} idUnit
      */
     ContentManager.newUnit = function(x, y, type, taille, idUnit) {
-        "use strict";
 
         unistJson = jQuery.parseJSON(loadingQueue.getResult("units-json",true));
         var loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
@@ -205,7 +204,6 @@ function ContentManager(stage, width, height) {
     };
 
     ContentManager.unSelectAllTiles = function() {
-        "use strict";
 
         for(var i = 0; i < map.gameWidth; i++) {
             for(var j = 0; j < map.gameWidth; j++) {
@@ -233,7 +231,6 @@ function ContentManager(stage, width, height) {
      */
     function addUnitImageInMenu ()
     {
-        "use strict";
 
         var x;
         var y;
