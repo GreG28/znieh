@@ -20,8 +20,6 @@
     // level must be of type Level
     // position must be of type Point
     function Unit(imgUnit, map, position, unitsInfos, taille, i, j) {
-        "use strict";
-        //alert(JSON.stringify(unitsInfos, null, 4));
         this.initialize(imgUnit, map, position, unitsInfos, taille, i, j);
     }
 
@@ -39,8 +37,6 @@
      * @param  {int} j
      */
     Unit.prototype.initialize = function (imgUnit, map, position, unitsInfos, taille, i, j) {
-
-        "use strict";
 
         var width = unitsInfos.specifications[taille].sprites.frames.width;
         var left = unitsInfos.specifications[taille].sprites.weapon.left;
@@ -120,7 +116,6 @@
      * @param {Position} position
      */
     Unit.prototype.Reset = function (position) {
-        "use strict";
 
         this.sprite_base.x = 0;
         this.sprite_base.y = 0;
@@ -365,8 +360,7 @@
      * Handles input, performs physics and animates the Unit sprite
      */
     Unit.prototype.tick = function () {
-        "use strict";
-
+        
         // It not possible to have a predictable tick/update time
         // requestAnimationFrame could help but is currently not widely and properly supported by browsers
         // this.elapsed = (Ticker.getTime() - this.lastUpdate) / 1000;
