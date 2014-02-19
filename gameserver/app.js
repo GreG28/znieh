@@ -6,75 +6,51 @@
  * @author alfo
  * @version 0.1.2
  */
+"use strict";
 
+var serverLoadStart = new Date();
+var os = require('os');
+var util = require('util');
+//var process = require('process');
+console.log('Server is starting...');
+console.log('Load start is at: ' + serverLoadStart.toString())
+console.log('Available memory: ' + Math.round(os.freemem()/1048576) + 'M, total memory: ' + Math.round(os.totalmem()/1048576) + 'M');
+console.log('Used memory: ' + (process.memoryUsage().rss/1048576).toFixed(2) + "M");
 
 /*
  * Loading dependencies
  */
-var app = require('http').createServer(handler);
-var io = require('socket.io').listen(app);
-var fs = require('fs');
-var db = require('./db');
-var skillHandler = require('./skillHandler');
-var battle = require('./battle');
-var config = require('nconf');
-var Moniker = require('moniker');
+var logger = require('./util/logger');
+var config = require('./util/config');
+var db = require('./util/db');
+var httpserver = require('./network/httpserver');
+var socketio = require('./network/socketio');
+
 var port = 1337;
-
-
 
 /*
  * Librairies configuration
  */
-
-// Setup nconf to use (in-order):
-//   1. Command-line arguments
-//   2. Environment variables
-//   3. A file located at 'config.json'
-//
-config.argv()
-    .env()
-    .file({ file: 'config.json' })
-    .file({ file: 'config.user.json'});
-
-// Reduce log level
-io.set('log level', 1);
+logger.init();
+config.init();
+db.init();
+db.initTables();
+db.testConnection();
+httpserver.init();
+socketio.init();
 
 
-// used to dump config file
-/*config.save(function (err) {
-    fs.readFile('config.user.json', function (err, data) {
-        console.dir(JSON.parse(data.toString()))
-    });
-});*/
-
-/*
- * Beginning of app launch
- */
-
-
-app.listen(config.get('app:port'));
-
-
-
-function handler (req, res) {
-  fs.readFile(__dirname + '/index.html',
-  function (err, data) {
-    if (err) {
-      res.writeHead(500);
-      return res.end('Error loading index.html');
-    }
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.end(data);
-  });
-}
+console.log('Server loaded in: ' + Math.abs(new Date() - serverLoadStart) + 'ms');
+console.log('Used memory: ' + (process.memoryUsage().rss/1048576).toFixed(2) + "M");
 
 // World
 
-var world = require('./world');
-world.config = config;
-world.io = io;
-world.db = db;
+var world = require('./model/world');
+
+var skillHandler = require('./skillHandler');
+var battle = require('./battle');
+
+world.init();
 
 // Database
 world.db.init(world.config);
@@ -97,7 +73,7 @@ world.handlers.skills.loadSkills();
 /*
  * Controller
  */
-io.sockets.on('connection', function (socket) {
+socketio.on('connection', function (socket) {
 
   var authController = require('./authController')(socket, world, function(user){
     var player = new Player(user.username, socket);
