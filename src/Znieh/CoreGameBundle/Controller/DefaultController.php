@@ -33,4 +33,17 @@ class DefaultController extends Controller
             'teamjson' => $teamjson
         );
     }
+
+
+    /**
+     * @Route("/game/search")
+     * @Template()
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function searchAction()
+    {
+
+    }
+
+
 }
