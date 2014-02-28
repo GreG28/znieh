@@ -3,4 +3,135 @@
 {% block body %}
 
 
+<div class="modal fade" id="modalFight">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+		    <h4 class="modal-title">Fight</h4>
+		  </div>
+		  <div class="modal-body">
+		    <p>Click on fight to begin a fight with another players</p>
+		    <p>and to join a pool !</p>
+	    	<button id="fight" type="button" class="btn btn-primary btn-lg btn-middle">Fight</button>
+		  </div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="modalPools">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+		  <div class="modal-header">
+		    <h4 class="modal-title">Join a Pool</h4>
+		  </div>
+		  <div class="modal-body">
+		    <p>We have to watch the differents pools where the player can fight</p>
+			<div class="btn-group" data-toggle="buttons">
+	    	</div>
+	      </div>
+    	
+    	<div class="modal-footer">
+	    	<button id="join" type="button" class="btn btn-primary" disabled="disabled">Join pool</button>
+		 	Ready <em>(start search)</em></button>
+	 	</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+<!-- <button id="ready" type="button" class="btn btn-primary"> -->
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+  {{ parent() }}
+
+  <script>
+
+    "use strict";
+
+  	$('#modalFight').modal({
+	  backdrop: 'static',
+	  keyboard: false,
+	  show: true
+	});
+
+	$('#modalPools').modal({
+	  backdrop: 'static',
+	  keyboard: false,
+	  show: false
+	});
+
+    var gameSocket = undefined;
+
+    gameSocket = io.connect('127.0.0.1:1337');
+    $('#console').append('Connected<br>');
+
+    gameSocket.emit('auth', { username: '{{ app.user.username }}' , token: '{{ app.user.token }}' });
+
+    // In
+    gameSocket.on('welcome', function (data) {
+      console.log(data);
+      $('#console').append('Server has send welcome message. Your name is : ' + data + '<br />');
+    });
+
+    gameSocket.on('service', function (data) {
+      console.log(data);
+      $('#console').append('Service message : ' + data.msg + '<br />');
+    });
+
+    gameSocket.on('players', function (data) {
+      console.log(data);
+      $('#console').append('Current players : ' + data.players + '<br />');
+    });
+
+    gameSocket.on('pools-list', function (data) {
+      console.log(data);
+      var _data = data.data;
+      var size = _data.length;
+      var div_labels = $('#modalPools .modal-body .btn-group');
+      for(var i = 0 ; i < size ; i=i+1 )
+  	  {
+  	  	div_labels.append("<label class=\"btn btn-primary\"><input class=\"input\" type=\"radio\" name=\"options\" value=\""+i+"\"><div class=\"thumbnail\"><div class=\"caption\"><h4>"+_data[i].name+"</h4><p>"+_data[i].attribute1+"</p><p>"+_data[i].attribute2+"</p><p>"+_data[i].attribute3+"</p></div></div></input></label>");
+      }
+    });
+
+
+    // Out
+    $('#join').click(function () {
+      var pool_selected = $("#modalPools .modal-body .active .input").attr("value");
+      gameSocket.emit('join', {pool: pool_selected}, function (data) {
+        $('#console').append('<strong>Callback</strong><br>');
+      });
+      $('#console').append('<strong>Trying to join pool...</strong><br>');
+    });
+
+    $('#auth').click(function () {
+      gameSocket.emit('auth', { username: '{{ app.user.username }}' , token: '{{ app.user.token }}' });
+      $('#console').append('<strong>Trying to auth...</strong><br>');
+    });
+
+    $('#ready').click(function () {
+      gameSocket.emit('ready', null);
+      $('#console').append('<strong>Ready to fight. Looking for a game...</strong><br>');
+    });
+
+    $('#fight').click(function () {
+      gameSocket.emit('get-pools', null);
+      $('#pools').html('<strong>Loading ...</strong><br>');
+      $('#modalFight').modal('hide');
+      $('#modalPools').modal('show');
+    });
+
+    $('#modalPools .modal-body div').click(function () {
+      $('#join').removeAttr('disabled');
+    });
+
+  </script>
+
 {% endblock %}
