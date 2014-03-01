@@ -67,7 +67,7 @@ function setMyUnitsSide() {
           units[event.data.id].statut = 0;
         }
       }
-      else if(gameStatut == GameStatut.IDLE) {
+      else if(gameStatut == GameStatut.IDLE || gameStatut == GameStatut.MOVE) {
         ContentManager.unSelectAllTiles();
         ContentManager.clearUnitsMenu();
 
@@ -143,8 +143,6 @@ $(document).ready(function(){
 {% endblock %}
 
 {% block body %}
-
-
   <div class="col-sm-12">
     <div class="row">
       <div class="col-sm-3" id="leftSide">
