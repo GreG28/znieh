@@ -32,7 +32,6 @@
     	
     	<div class="modal-footer">
 	    	<button id="join" type="button" class="btn btn-primary" disabled="disabled">Join pool</button>
-		 	Ready <em>(start search)</em></button>
 	 	</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
@@ -107,8 +106,17 @@
       var pool_selected = $("#modalPools .modal-body .active .input").attr("value");
       gameSocket.emit('join', {pool: pool_selected}, function (data) {
         $('#console').append('<strong>Callback</strong><br>');
+        $('#modalPools').modal('hide');
       });
       $('#console').append('<strong>Trying to join pool...</strong><br>');
+
+      // When i'm sure the player are inside the pool ! 
+      $('#modalPools .modal-body p').remove();
+      $('#modalPools .modal-body').append('<p>Now you can choose your army ...</p>');
+      $('#modalPools .modal-body').append('<p>BLALALALALALALALA !!! </p>');
+      $('#modalPools .modal-body .btn-group').remove();
+      $('#modalPools .modal-footer button').remove();
+      $('#modalPools .modal-footer').append('<button id="ready" type="button" class="btn btn-primary" >Ready <em>(start search)</em></button>');
     });
 
     $('#auth').click(function () {
