@@ -156,19 +156,40 @@ $(document).ready(function(){
     </div>
   </div>
 
-  <button id="join" type="button" class="btn btn-primary">Join pool</button>
-  <button id="ready" type="button" class="btn btn-primary">Ready <em>(start search)</em></button>
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-3">
+        <button id="join" type="button" class="btn btn-primary">Join pool</button>
+        <button id="ready" type="button" class="btn btn-primary">Ready <em>(start search)</em></button>
 
-  <p><br />
-    Pool ID : <input type="text" id="poolId" value="0" /></input>
-  </p>
+        <p><br />
+          Pool ID : <input type="text" id="poolId" value="0" /></input>
+        </p>
 
-  <br /><br />
-  <pre id="console" style="border: 1px dotted grey; padding: 10px;width: 600px;"><strong>Console Log :</strong><br /><br /></pre>
+        <br /><br />
+        <pre id="console" style="border: 1px dotted grey; padding: 10px;width: 300px;"><strong>Console Log :</strong><br /><br /></pre>
 
-  <div id="pools" style="border: 1px dotted grey; width: 600px; padding: 10px;">
-    <button id="fight" type="button" class="btn btn-primary">Fight !</button>
+        <div id="pools" style="border: 1px dotted grey; width: 300px; padding: 10px;">
+          <button id="fight" type="button" class="btn btn-primary">Fight !</button>
+        </div>
+      </div>
+      <div class="col-sm-5" style="font-size:12px; line-height: 15px;">
+        <div class="panel panel-default">
+          <div class="panel-heading"><strong>Journal de combat</strong></div>
+          <div class="panel-body" style="height:100px; overflow:auto;">
+            [12:50:13] <span class="text-success"><strong>Bobby</strong></span> attaque <span class="text-danger"><strong>Bledard</strong></span> avec Tempête de feu (<span class="text-success"><strong>35 dégâts</strong></span>)<br />
+            [12:51:02] <span class="text-success"><strong>Jacky</strong></span> attaque <span class="text-danger"><strong>Bledard</strong></span> avec Tremblement de terre (<span class="text-success"><strong>72 dégâts</strong></span>)<br />
+            [12:51:02] <span class="text-danger"><strong>Bledard</strong></span> est mort<br />
+            [12:51:50] <span class="text-danger"><strong>Ninja</strong></span> attaque <span class="text-success"><strong>Jacky</strong></span> avec Tempête de feu (<span class="text-danger"><strong>37 dégâts</strong></span>)<br />
+            [12:51:50] <span class="text-danger"><strong>Ninja</strong></span> attaque <span class="text-success"><strong>Jacky</strong></span> avec Tremblement de terre (<span class="text-danger"><strong>75 dégâts</strong></span>)<br />
+            [12:51:50] <span class="text-success"><strong>Bledard</strong></span> est mort<br />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
+
 
 {% endblock %}
 
