@@ -26,17 +26,35 @@
 		  </div>
 		  <div class="modal-body">
 		    <p>We have to watch the differents pools where the player can fight</p>
-			<div class="btn-group" data-toggle="buttons">
+			  <div class="btn-group" data-toggle="buttons">
 	    	</div>
-	      </div>
+      </div>
     	
     	<div class="modal-footer">
-	    	<button id="join" type="button" class="btn btn-primary" disabled="disabled">Join pool</button>
+	    	<button id="join" type="button" class="btn btn-primary" disabled="disabled" data-loading-text="Loading...">Join pool</button>
 	 	</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<div class="modal fade" id="modalReady">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Are you ready ?</h4>
+      </div>
+      <div class="modal-body">
+        <p>Now you can choose your army ...</p>
+        <p>BLALALALALALALALA !!! </p>
+      </div>
+      
+      <div class="modal-footer">
+        <!-- When i'm sure the player are inside the pool ! -->
+        <button id="ready" type="button" class="btn btn-primary" data-loading-text="Loading...">Ready</em></button>
+    </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 
@@ -55,16 +73,22 @@
     "use strict";
 
   	$('#modalFight').modal({
-	  backdrop: 'static',
-	  keyboard: false,
-	  show: true
-	});
+      backdrop: 'static',
+      keyboard: false,
+      show: true
+    });
 
-	$('#modalPools').modal({
-	  backdrop: 'static',
-	  keyboard: false,
-	  show: false
-	});
+    $('#modalPools').modal({
+      backdrop: 'static',
+      keyboard: false,
+      show: false
+    });
+
+    $('#modalReady').modal({
+      backdrop: 'static',
+      keyboard: false,
+      show: false
+    });
 
     var gameSocket = undefined;
 
@@ -109,14 +133,11 @@
         $('#modalPools').modal('hide');
       });
       $('#console').append('<strong>Trying to join pool...</strong><br>');
-
-      // When i'm sure the player are inside the pool ! 
-      $('#modalPools .modal-body p').remove();
-      $('#modalPools .modal-body').append('<p>Now you can choose your army ...</p>');
-      $('#modalPools .modal-body').append('<p>BLALALALALALALALA !!! </p>');
-      $('#modalPools .modal-body .btn-group').remove();
-      $('#modalPools .modal-footer button').remove();
-      $('#modalPools .modal-footer').append('<button id="ready" type="button" class="btn btn-primary" >Ready <em>(start search)</em></button>');
+      $('#join').button('loading');
+      
+      /*When we are sure the player is resgistered inside a pool*/
+      $('#modalPools').modal('hide');
+      $('#modalReady').modal('show');
     });
 
     $('#auth').click(function () {
@@ -125,8 +146,13 @@
     });
 
     $('#ready').click(function () {
+      $('#console').append('Billy');
       gameSocket.emit('ready', null);
       $('#console').append('<strong>Ready to fight. Looking for a game...</strong><br>');
+      $('#ready').button('loading');
+      /* Waiting to receive a proposal of another player to fight*/
+
+      
     });
 
     $('#fight').click(function () {
