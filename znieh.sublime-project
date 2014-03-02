@@ -4,7 +4,7 @@
 		{
 			"follow_symlinks": true,
 			"path": "./",
-      "file_exclude_patterns" : ["bootstrap.min.css","*.min.*", "jQuery*", "require.js", "*.jpg","bootstrap*"],
+      "file_exclude_patterns" : ["bootstrap.min.css","*.min.*", "jQuery.js", "require.js", "*.jpg"],
       "folder_exclude_patterns" : ["node_modules"]
 		}
 	]
