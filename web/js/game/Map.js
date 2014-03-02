@@ -14,6 +14,7 @@ Array.matrix = function (m, n, initial) {
 (function (window) {
 
     var StaticTile = new Tile(null, Enum.TileCollision.Passable, 0, 0);
+
     function Map() {
         var mapData = [];
 
@@ -33,6 +34,10 @@ Array.matrix = function (m, n, initial) {
         this.LoadTiles(mapData.layers[0].data);
     }
 
+    /**
+     * Transform 1D Array Map in 2D Array Map
+     * @param {Array} mapData
+     */
     Map.prototype.ParseLevelLines = function (mapData) {
         for (var i = 0; i < this.gameWidth; i++) {
             for (var j = 0; j < this.gameHeight; j++) {
@@ -41,6 +46,10 @@ Array.matrix = function (m, n, initial) {
         }
     };
 
+    /**
+     * Put Tiles with proprierties in Array Map
+     * @param {Array} mapData
+     */
     Map.prototype.LoadTiles = function (mapData) {
         this.ParseLevelLines(mapData); // Doit récupérer les chiffres indiquant les sprites à partir du JSON et les foutre dans textTiles
 
@@ -55,7 +64,12 @@ Array.matrix = function (m, n, initial) {
 
     };
 
-
+    /**
+     * Create and load Tile proprierties
+     * @param {int} tileType
+     * @param {int} x
+     * @param {int} y
+     */
     Map.prototype.LoadTile = function (tileType, x, y) {
         var property;
         if(this.properties[tileType - 1] != null && this.properties[tileType - 1].block == "true")
@@ -83,39 +97,41 @@ Array.matrix = function (m, n, initial) {
         }
     };
 
+    /**
+     * Load Tile image from tileSheet
+     * @param  {int} idTile
+     * @return {createjs.Sprite}
+     */
     Map.prototype.loadTileImg = function (idTile) {
         var cellBitmap = new createjs.Sprite(tilesetSheet);
         cellBitmap.gotoAndStop(idTile - 1);
         return cellBitmap;
     };
 
-    /// <summary>
-    /// Gets the bounding rectangle of a tile in world space.
-    /// </summary>
+    /**
+     * Get a rectangle around a Tile
+     */
     Map.prototype.GetBounds = function (x, y) {
         return new XNARectangle(x * StaticTile.width, y * StaticTile.height, StaticTile.width, StaticTile.height);
     };
 
-    /// <summary>
-    /// Width of level measured in tiles.
-    /// </summary>
+    /**
+     * Width of level measured in Tiles
+     */
     Map.prototype.Width = function () {
         return this.gameWidth;
     };
 
-    /// <summary>
-    /// Height of the level measured in tiles.
-    /// </summary>
+    /**
+     * Height of level measured in Tiles
+     */
     Map.prototype.Height = function () {
         return this.gameHeight;
     };
 
-    /// <summary>
-    /// Gets the collision mode of the tile at a particular location.
-    /// This method handles tiles outside of the levels boundries by making it
-    /// impossible to escape past the left or right edges, but allowing things
-    /// to jump beyond the top of the level and fall off the bottom.
-    /// </summary>
+    /**
+     * Get the collision proprierty of a Tile at a particular point
+     */
     Map.prototype.GetCollision = function (x, y) {
         // Prevent escaping past the level ends.
         if (x < 0 || x >= this.Width()) {

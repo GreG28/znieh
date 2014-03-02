@@ -248,3 +248,79 @@ h3.section-title {
     width: 300px;
   }
 }
+
+#leftSide .unit,
+#rightSide .unit {
+  background: white;
+  margin-bottom: 5px;
+  border: 1px solid black;
+}
+
+#leftSide .selected,
+#rightSide .selected {
+  background: #d7e9f2;
+  border: 1px dashed black;
+}
+
+#leftSide .valid,
+#rightSide .valid {
+  background: #d9fad9;
+}
+
+.unit .portrait {
+  overflow: hidden;
+  width: 48px;
+  height: 48px;
+  float: left;
+}
+
+.unit .name {
+  font-size: 12px;
+  float:left;
+  font-weight: bold;
+}
+
+.unit .life {
+  margin-top:10px;
+  height: 16px;
+}
+
+.unit .stats {
+  font-size: 12px;
+  margin-top: -25px;
+}
+
+.unit .skills {
+  margin-top: -15px;
+}
+
+.unit .skills img {
+  float: right;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+#leftSide .infos,
+#rightSide .infos {
+  background: white;
+  margin-bottom: 5px;
+  border: 1px solid black;
+}
+
+.infos h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.infos .stats {
+  font-size: 12px;
+}
+
+.infos hr {
+  margin: 0px;
+}
+
+.infos hr.delimitor {
+  margin: 0px;
+  margin-top: 10px;
+}
