@@ -54,13 +54,12 @@ define(['jquery', 'socketio', 'user'], function ($, io, user) {
   });
 
   socket.on('message', function (data) {
-    var index = undefined;
 
     for (var i = 0; i < conversations.length; i++) {
       if(conversations[i] == data.from) index = i;
     }
 
-    if(index == undefined) index = addConversation(data.from);
+    if(index === undefined) index = addConversation(data.from);
 
     date = moment(data.date, "X").calendar();
     $('#tab' + index + ' > p').append('['+date+'] '+data.from+' -> '+data.to+': '+data.msg+'<br />');
@@ -74,13 +73,12 @@ define(['jquery', 'socketio', 'user'], function ($, io, user) {
 
     // Out
     $('#send').click(function () {
-      var index = undefined;
 
       for (var i = 0; i < conversations.length; i++) {
         if(conversations[i] == $('#target').val()) index = i;
       }
 
-      if(index == undefined) index = addConversation($('#target').val());
+      if(index === undefined) index = addConversation($('#target').val());
 
       date = moment().calendar();
       $('#tab' + index + ' > p').append('['+date+'] -> '+$('#target').val()+': '+$('#msg').val()+'<br />');
