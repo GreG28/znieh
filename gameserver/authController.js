@@ -2,7 +2,7 @@ var crypto = require('crypto');
 
 module.exports = authController = function(socket, world, callback) {
 
-	socket.on("auth", function(data) {
+	socket.on("auth", function(data, cb) {
 
 		var isAuthenticated = false;
 
@@ -15,6 +15,7 @@ module.exports = authController = function(socket, world, callback) {
 			var endpoint = socket.handshake.address;
 			console.log('[INFO] Possible hack detected: Player connected from '+ endpoint.address + ' is trying to auth again -> player kicked.')
 			socket.emit("service", { msg: 'Auth: Already authenticated' });
+			cb(false);
 			socket.disconnect();
 			return -1;
 		}
@@ -25,6 +26,7 @@ module.exports = authController = function(socket, world, callback) {
 			var endpoint = socket.handshake.address;
 			console.log('[INFO] Possible hack detected: Player connected from '+ endpoint.address + ' has send an empty token -> player kicked.')
 			socket.emit("service", { msg: 'Auth: Empty token' });
+			cb(false);
 			socket.disconnect();
 			return -2;
 		}
@@ -39,9 +41,9 @@ module.exports = authController = function(socket, world, callback) {
 			};
 			
 			socket.set('authenticated', true);
+			cb(true);
 			socket.emit("service", { msg: 'Auth: OK' });
 			console.log("User " + data.username + " is now logged in.")
-			callback(user);
 
 		});
     });

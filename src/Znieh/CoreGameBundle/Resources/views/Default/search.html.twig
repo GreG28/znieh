@@ -95,7 +95,9 @@
     gameSocket = io.connect('127.0.0.1:1337');
     $('#console').append('Connected<br>');
 
-    gameSocket.emit('auth', { username: '{{ app.user.username }}' , token: '{{ app.user.token }}' });
+    gameSocket.emit('auth', { username: '{{ app.user.username }}' , token: '{{ app.user.token }}' }, function(success) {
+      console.log(success);
+    });
 
     // In
     gameSocket.on('welcome', function (data) {
