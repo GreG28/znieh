@@ -1,0 +1,23 @@
+{
+  "name": "Znieh Games Server",
+  "version": "0.0.0",
+  "authors": [
+    "Aurélien David <contact@spyl.net>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.0.2",
+    "requirejs": "~2.1.9",
+    "requirejs-domready": "~2.0.1",
+    "sass-bootstrap": "~3.0.0",
+    "jquery.ui": "~1.10.4",
+    "socket.io-client": "~0.9.16"
+  }
+}
