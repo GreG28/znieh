@@ -16,4 +16,14 @@ module.exports = fightController = function(world, player) {
 		}
 	});
 
+	player.socket.on("place-unit", function(data) {
+		if(player.status != "fighting") return -1;
+
+		if(player.battle == undefined) return -2;
+
+		if(player.battle.finishedUnitPlacement) return -3;
+
+		player.battle.map[data.x][data.y] = data.unit;
+	}
+
 }
