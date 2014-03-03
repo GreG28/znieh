@@ -89,10 +89,10 @@ function setParriedDamages() {
 function physicalHit(attackUnit, defenseUnit){
 	attackingUnit = attackunit;
 	attackedUnit = defenseUnit;
-	precisionScore = 50;
-	dodgeScore = 30;
-	parryScore = 50;
-	enemyDefenseScore = 36;
+	precisionScore = attackingUnit.precision;
+	dodgeScore = attackedUnit.evade;
+	parryScore = attackedUnit.parry;
+	enemyDefenseScore = attackedUnit.defense;
 
 	dodged = isDodged();
 	if(!dodged){
