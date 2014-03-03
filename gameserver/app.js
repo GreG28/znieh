@@ -7,124 +7,52 @@
  * @version 0.1.2
  */
 
+"use strict";
+
+var serverLoadStart = new Date();
+
+var os = require('os');
+var util = require('util');
+//var process = require('process');
+
+
+console.log('Server is starting...');
+console.log('Load start is at: ' + serverLoadStart.toString())
+console.log('Available memory: ' + Math.round(os.freemem()/1048576) + 'M, total memory: ' + Math.round(os.totalmem()/1048576) + 'M');
+console.log('Used memory: ' + (process.memoryUsage().rss/1048576).toFixed(2) + "M");
 
 /*
  * Loading dependencies
  */
-var app = require('http').createServer(handler);
-var io = require('socket.io').listen(app);
-var fs = require('fs');
-var db = require('./db');
-var skillHandler = require('./skillHandler');
-var battle = require('./battle');
-var config = require('nconf');
-var Moniker = require('moniker');
-var port = 1337;
-
-
+var logger = require('./util/logger');
+var config = require('./util/config');
+var db = require('./util/db');
+var httpserver = require('./network/httpserver');
+var socketio = require('./network/socketio');
+var world = require('./model/world');
+var pools = require('./model/pools');
+var battle = require('./model/battle');
+var skillHandler = require('./model/handlers/skills');
 
 /*
- * Librairies configuration
+ * Instances loading
  */
-
-// Setup nconf to use (in-order):
-//   1. Command-line arguments
-//   2. Environment variables
-//   3. A file located at 'config.json'
-//
-config.argv()
-    .env()
-    .file({ file: 'config.json' })
-    .file({ file: 'config.user.json'});
-
-// Reduce log level
-io.set('log level', 1);
-
-
-// used to dump config file
-/*config.save(function (err) {
-    fs.readFile('config.user.json', function (err, data) {
-        console.dir(JSON.parse(data.toString()))
-    });
-});*/
-
-/*
- * Beginning of app launch
- */
+logger.init();
+config.init();
+db.init();
+db.initTables();
+db.testConnection();
+httpserver.init();
+socketio.init();
+world.init();
+pools.init();
+battle.init();
+skillHandler.loadSpells();
+skillHandler.loadSkills();
 
 
-app.listen(config.get('app:port'));
+var mainController = require('./controllers/mainController');
+mainController.init();
 
-
-
-function handler (req, res) {
-  fs.readFile(__dirname + '/index.html',
-  function (err, data) {
-    if (err) {
-      res.writeHead(500);
-      return res.end('Error loading index.html');
-    }
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.end(data);
-  });
-}
-
-// World
-
-var world = require('./world');
-world.config = config;
-world.io = io;
-world.db = db;
-
-// Database
-world.db.init(world.config);
-world.db.initTables();
-
-// Pools
-world.pool.init(world);
-
-// Battle
-world.battle = battle;
-
-// Player class
-var Player = require('./player');
-
-// Handler test
-world.handlers.skills = skillHandler;
-world.handlers.skills.loadSpells();
-world.handlers.skills.loadSkills();
-
-/*
- * Controller
- */
-io.sockets.on('connection', function (socket) {
-
-  var authController = require('./authController')(socket, world, function(user){
-    var player = new Player(user.username, socket);
-    world.players.push(player);
-
-    socket.emit("welcome", player.name);
-    world.broadcast("service", { msg: 'Player ' + player.name + ' is now connected.' });
-    world.broadcastUserList();
-    
-
-    socket.on('disconnect', function () {
-      world.broadcast("service", { msg: 'player ' + player.name + ' is now disconnected.' });
-      world.removePlayer(player);
-      world.pool.removePlayer(player);
-      world.broadcastUserList();
-      console.log("User " + player.name + " is now disconnected.");
-    });
-
-    var waitingController = require('./waitingController')(world, player);
-    var fightController = require('./fightController')(world, player);
-
-  });
-
-  
-});
-
-
-
-
-
+console.log('Server loaded in: ' + Math.abs(new Date() - serverLoadStart) + 'ms');
+console.log('Used memory: ' + (process.memoryUsage().rss/1048576).toFixed(2) + "M");

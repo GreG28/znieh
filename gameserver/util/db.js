@@ -1,4 +1,6 @@
 /*
+ * db.js
+ *
  * ORM for Znieh server
  *
  * @author alfo
@@ -6,9 +8,12 @@
 
 var crypto = require('crypto');
 var Sequelize = require('sequelize');
+var config = require('./config');
+var logger = require('../util/logger');
+
 var orm = undefined;
 
-module.exports.init = function (config) {
+module.exports.init = function () {
 	orm = new Sequelize(config.get('db:database'), config.get('db:username'), config.get('db:password'), {
 	host: config.get('db:host'),
 	port: config.get('db:port'),
@@ -23,6 +28,9 @@ module.exports.init = function (config) {
 	pool: { maxConnections: config.get('db:maxConnections'), maxIdleTime: 30 },
 	language: 'en'
 	});
+
+
+	logger.info('Database loaded.');
 }
 
 module.exports.initTables = function () {
@@ -50,4 +58,27 @@ module.exports.initTables = function () {
 	}, {
 		tableName: 'fos_user'
 	});
+
+
+	logger.info('Database schemas loaded.');
+}
+
+module.exports.testConnection = function () {
+	/*orm.query('SELECT 1', null, {
+    	logging: console.log,
+    	plain: false,
+    	raw: false
+  	}).success(function(data) {
+  		console.log(data);
+		logger.info('Database connection a.');
+  	}).error(function(err) {
+  		console.log(err);
+  	});
+	
+
+	orm.authenticate().complete(function (err)
+	{
+		if(!!err) logger.error('Database connection failed.');
+		else logger.info('Database connection succeeded.');
+	});*/
 }

@@ -1,5 +1,16 @@
+/**
+ * fightController.js
+ *
+ * Fight controller of the gameserver: pool list, join, ...
+ *
+ * @author alfo
+ */
 
-module.exports = fightController = function(world, player) {
+var socketio = require('../network/socketio');
+var logger = require('../util/logger');
+var world = require('../model/world');
+
+module.exports = function(player) {
 
 	player.socket.on("next-turn", function(data) {
 		if(player.status != "fighting") return -1;

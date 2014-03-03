@@ -10,6 +10,7 @@
         "socket.io": "latest",
         "moniker": "latest",
         "nconf": "latest",
+        "winston": "latest",
         "sequelize": "*",
         "sequelize-mysql": "*",
         "mysql": "*"
