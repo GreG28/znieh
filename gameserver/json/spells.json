@@ -206,17 +206,6 @@
     "attribute": "Magie supportive",
     "time": 1,
     "cooldown": 5,
-    "description": "Soigne la cible de {{x}} points de vie."
-  },
-  "rayon_magique": {
-    "name": "Rayon Magique",
-    "step": "Dégâts magiques II",
-    "cost": 7,
-    "damages": 80,
-    "ratio": 0.5,
-    "attribute": "Dégâts magiques",
-    "time": 1,
-    "cooldown": 6,
-    "descripion": "Fais des dégâts en ligne droite dans la direction pointé par le lanceur de sorts."
+    "description": "Soigne la cible."
   }
 }
