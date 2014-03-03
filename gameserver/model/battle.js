@@ -1,12 +1,21 @@
+/**
+ * battle.js
+ *
+ * Battle instance
+ *
+ * @author alfo
+ */
+
 var http = require('http');
-var Battle = {};
-module.exports = Battle;
+var logger = require('../util/logger');
 
-Battle.init = function() {
 
+module.exports.init = function() {
+
+	logger.info('Battle factory initiated.');
 }
 
-Battle.new = function(p1, p2) {
+module.exports.new = function(p1, p2) {
 	return {
 		player1: p1,
 		player2: p2,

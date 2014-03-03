@@ -1,6 +1,8 @@
 {
   "app": {
-    "port": 1337
+    "devmode": true,
+    "port": 1337,
+    "httpport": 8080
   },
   "db": {
     "host": "localhost",
