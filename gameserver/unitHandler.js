@@ -17,16 +17,17 @@ UnitHandler.StatSet = function (life, penetration, precision, evade, parry, defe
 	this.magicSupport = magicSupport;
 }
 
-UnitHandler.Weapon = function (name, type, damages, attribute, range, stats){
+UnitHandler.Weapon = function (name, type, damages, attribute, range, stats, ratio){
 	this.name = name;
 	this.type = type;
 	this.damages = damages;
 	this.attribute = attribute;
 	this.range = range;
 	this.stats = stats;
+	this.ratio = ratio;
 }
 
-UnitHandler.Armor = function (name, type, damages, stats){
+UnitHandler.Armor = function (name, type, stats){
 	this.name = name;
 	this.type = type;
 	this.stats = stats;
@@ -65,14 +66,21 @@ UnitHandler.loadUnit = function(){
 	var damages;
 	var range;
 	//add runes
-	for(var unit in data){
+	for(var unit in data[0].units){
 		unitName = data[0].units[unit].name;
 		sign = data[0].units[unit].sign.name;
 
 		weaponType = data[0].units[unit].weapon.type.name;
+		weaponName = data[0].units[unit].weapon.name.name;
+		weaponDamages = data[0].units[unit].weapon.damages.number;
+		weaponAttribute = data[0].units[unit].weapon.attribute.name;
+		weaponRange = data[0].units[unit].weapon.range.number;
+		weaponRatio = data[0].units[unit].weapon.ratio.number;
 
 		armorType = data[0].units[unit].armor.type.name;
-		unitList.push(new UnitHandler.Unit(unitName, sign, "", new UnitHandler.Weapon(weaponName, weaponType), new UnitHandler.Armor(armorName, armorType)))
+		armorName = data[0].units[unit].armor.name.name;
+
+		unitList.push(new UnitHandler.Unit(unitName, sign, new UnitHandler.StatSet(50,30,30,30,30,30,30,30,30,30,30,30,30), new UnitHandler.Weapon(weaponName, weaponType, weaponDamages, weaponAttribute, weaponRange, "", weaponRatio), new UnitHandler.Armor(armorName, armorType, "")))
 	}
 
 	return unitList;
