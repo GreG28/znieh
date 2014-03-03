@@ -1,7 +1,7 @@
 /**
 * Module loaded on the game page
 */
-define(['jquery', 'map'], function ($) {
+define(['jquery'], function ($) {
   Array.matrix = function (m, n, initial) {
       var a, i, j, mat = [];
       for (i = 0; i < m; i += 1) {

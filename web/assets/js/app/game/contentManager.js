@@ -1,7 +1,9 @@
 /**
 * Module loaded on the game page
 */
-define(['jquery', 'contentManager'], function ($) {
+define(['jquery', 'createjs', 'app/game/map', 'app/game/tile', 'app/game/unit', 'app/game/xnaRectangle'], function ($, createjs) {
+  console.log('contentManager loaded');
+
   GameStatut = {
       IDLE:           0,      // Le joueur peut sélectionner une de ses unités mais ne peut effectuer aucune autre action
       START:          1,

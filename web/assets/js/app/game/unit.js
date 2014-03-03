@@ -1,7 +1,7 @@
 /**
 * Module loaded on the game page
 */
-define(['jquery', 'unit'], function ($) {
+define(['jquery'], function ($) {
     (function (window) {
          // Constants for controling horizontal movement
         var MoveAcceleration = 13000.0;

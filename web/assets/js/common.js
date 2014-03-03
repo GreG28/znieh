@@ -19,6 +19,8 @@ requirejs.config({
          */
         jquery: '../vendor/jquery/dist/jquery.min',
         jqueryui: '../libs/jquery-ui-1.10.4.custom.min',
+        easystar: '../libs/easystar-0.1.6.min',
+        createjs: '../libs/easeljs-0.7.1.min',
         bootstrap: '../vendor/bootstrap/dist/js/bootstrap.min',
         socketio: '../vendor/socket.io-client/dist/socket.io.min'
     },

@@ -1,7 +1,7 @@
 /**
 * Module loaded on the game page
 */
-define(['jquery', 'tile'], function ($) {
+define(['jquery'], function ($) {
     function Enum() { }
     Enum.TileCollision = { Passable: 0, Impassable: 1 };
 

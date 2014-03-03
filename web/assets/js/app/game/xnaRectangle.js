@@ -1,7 +1,7 @@
 /**
 * Module loaded on the game page
 */
-define(['jquery', 'xnaRectangle'], function ($) {
+define(['jquery'], function ($) {
     (function (window) {
         //
         function XNARectangle(x, y, width, height) {
