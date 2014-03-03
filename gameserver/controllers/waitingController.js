@@ -32,7 +32,7 @@ module.exports = function(player) {
 			};
 
 			pools[i] = pool;
-		};
+		}
 
 		callback(pools);
 	});
@@ -95,4 +95,4 @@ module.exports = function(player) {
 		player.pool.notifyPlayerReady(player);
 		
     });
-}
+};
