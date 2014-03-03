@@ -1,0 +1,12 @@
+<script src="{{ asset('assets/vendor/requirejs/require.js') }}"></script>
+<script>
+    requirejs.config({
+        baseUrl: '{{ asset('assets/js') }}'
+    });
+    define('user', { name: '{% if app.user %}{{ app.user.username }}{% endif %}' });
+    require(['common', 'app/default'], function (common) {
+        {% if module %}
+            require(['{{ module }}']);
+        {% endif %}
+    });
+</script>

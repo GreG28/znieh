@@ -1,0 +1,21 @@
+/*
+ * Represents the main "layout" CSS file
+ */
+
+@import "base";
+@import "../vendor/sass-bootstrap/lib/bootstrap";
+
+#menu {
+    height:40px;
+    margin-bottom:30px;
+    padding-left:162px;
+}
+
+#menu a.link {
+    color:#fff;
+    font-size:18px;
+    font-family:Arial;
+    padding:0px 4px;
+    position:relative;
+    text-decoration:none;
+}
