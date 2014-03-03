@@ -1,9 +1,52 @@
+GameStatut = {
+    IDLE:           0,      // Le joueur peut sélectionner une de ses unités mais ne peut effectuer aucune autre action
+    START:          1,
+    PLACEMENT:      2,
+    MOVE:           3,
+    ATTACK:         4,
+}
+
+$(window).keydown(function(e){
+    if(gameStatut == GameStatut.MOVE)
+        gameStatut = GameStatut.IDLE;
+
+    if(gameStatut == GameStatut.IDLE) {
+        ContentManager.unSelectAllTiles();
+        ContentManager.clearUnitsMenu();
+        setEnnemySide();
+
+        //cross browser issues exist
+        if(!e){ var e = window.event; }
+
+        // On sélectionne l'unité
+        $("#unit-" + (parseInt(e.keyCode) - 49)).addClass("selected");
+        selectedUnit = ContentManager.units[(parseInt(e.keyCode) - 49)];
+        if(selectedUnit != null) {
+            selectedUnit.getAllTilesStatut();
+            setInfoSide(selectedUnit);
+        }
+    }
+});
+
+
+var KEYCODE_0 = 48;
+var KEYCODE_1 = 49;
+var KEYCODE_2 = 50;
+var KEYCODE_3 = 51;
+var KEYCODE_4 = 52;
+var KEYCODE_5 = 53;
+var KEYCODE_6 = 54;
+var KEYCODE_7 = 55;
+var KEYCODE_8 = 56;
+var KEYCODE_9 = 57;
+
 var unistJson;
 var tilesetSheet;
 var map;
 var Hero;
 var Start;
 var spritePerso;
+
 //to stock the units created
 var unitsCreated = [];
 var loadingQueue;
@@ -13,8 +56,20 @@ var loadingQueue;
 var unitsToMove = [];
 var substage;
 
-function ContentManager(stage, width, height) {
+var selectedUnit = null;
+var unitsCache = [];
+var unitsPlacement = [];
+var gameStatut;
+var placement_en_cours = true;
+var selected_Unit = null;
 
+/**
+ * Used to download all ressources and start the game
+ * @param {createjs.Stage} stage
+ * @param {int} width
+ * @param {int} height
+ */
+function ContentManager(stage, width, height) {
     ContentManager.nextUnitID = 0;
 
     ContentManager.getNextUnitID = function () {
@@ -36,12 +91,15 @@ function ContentManager(stage, width, height) {
 
     ContentManager.units = [];
 
+    /**
+     * Initialize all downloads
+     */
     this.init = function () {
         "use strict";
 
         // coloration du canvas pour tests
         substage = new createjs.Container();
-       
+
        // First Try to deform the map
 
         stage.addChild(substage);
@@ -56,11 +114,16 @@ function ContentManager(stage, width, height) {
         loadingQueue.loadManifest([{id:"units-json", src:"../json/units.json"}]);
         loadingQueue.loadManifest([{id:"mailarmor", src:"../img/sprites/mailarmor.png"}]);
         loadingQueue.loadManifest([{id:"mailarmor2", src:"../img/sprites/mailarmor2.png"}]);
-    };
 
-    function initMap() {
+        gameStatut = GameStatut.IDLE;
 
-        "use strict";
+    }
+
+    /**
+     * Initialize map with all parameters
+     */
+    function initMap () {
+
         ContentManager.tilesheight = 32;
         ContentManager.tileswidth = 32;
 
@@ -81,29 +144,35 @@ function ContentManager(stage, width, height) {
 
         addUnitImageInMenu();
 
+        gameStatut = GameStatut.PLACEMENT;
+
+
+
         createjs.Ticker.addEventListener("tick", tick);
         createjs.Ticker.useRAF = true;
         createjs.Ticker.setFPS(60);
 
     }
 
-    function tick(event) {
+
+    /**
+     * Refresh and show FPS
+     * @param  {createjs.Event} event
+     */
+    function tick (event) {
         $("#fps").html("<strong>FPS:</strong> " + Math.round(createjs.Ticker.getMeasuredFPS()));
         stage.update(event);
     }
 
-    function createUnit(x, y, type, taille) {
-        "use strict";
-
-        var loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
-        spritePerso = loadingQueue.getResult(loading_id);
-        Start = map.GetBounds(x, y).GetBottomCenter();
-        // we add the new unit to the array to get them !
-        unitsCreated.push(new Unit(spritePerso, map, Start, unistJson[type], taille));
-    }
-
+    /**
+     * Create a unity and keep it in memory
+     * @param  {int} x
+     * @param  {int} y
+     * @param  {string} type
+     * @param  {string} taille
+     * @param  {int} idUnit
+     */
     ContentManager.newUnit = function(x, y, type, taille, idUnit) {
-        "use strict";
 
         unistJson = jQuery.parseJSON(loadingQueue.getResult("units-json",true));
         var loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
@@ -117,26 +186,51 @@ function ContentManager(stage, width, height) {
             }
         }
 
-        Hero = new Unit(spritePerso, map, Start, unistJson[type], taille);
+        Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y);
         ContentManager.units.push(Hero);
         units[idUnit].unitID = Hero.unitID;
         units[idUnit].statut = 1; // Placé
-        $("#unit-" + idUnit).append('<i class="glyphicon glyphicon-ok"></i>');
-        $("#unit-" + idUnit).removeClass("active");
 
-        var nextIdUnit = (idUnit + 1) % units.length;
+        $("#unit-" + idUnit).removeClass("selected");
+        $("#unit-" + idUnit).addClass("valid");
 
+        var nextIdUnit = (parseInt(idUnit) + 1) % units.length;
         if(units[nextIdUnit] != null) {
             if(units[nextIdUnit].statut == -1) {
                 units[nextIdUnit].statut = 0;
-                $("#unit-" + nextIdUnit).addClass("active");
+                $("#unit-" + nextIdUnit).addClass("selected");
             }
         }
     };
 
-    function addUnitImageInMenu()
+    ContentManager.unSelectAllTiles = function() {
+
+        for(var i = 0; i < map.gameWidth; i++) {
+            for(var j = 0; j < map.gameWidth; j++) {
+                map.tiles[i][j].shape_selection_possible.visible = false;
+                map.tiles[i][j].shape_selection_impossible.visible = false;
+
+                if(selectedUnit != null)
+                    selectedUnit.shape_selected_unit.visible = false;
+            }
+        }
+
+        for(var i = 0 ; i < ContentManager.units.lenght; i++)
+            ContentManager.units[i].shape_selected.visible = false;
+    };
+
+    ContentManager.clearUnitsMenu = function() {
+        for (var i = units.length - 1; i >= 0; i--) {
+            $("#unit-" + i).removeClass("valid");
+            $("#unit-" + i).removeClass("selected");
+        };
+    }
+
+    /**
+     * Generate units image for menus
+     */
+    function addUnitImageInMenu ()
     {
-        "use strict";
 
         var x;
         var y;
@@ -156,8 +250,9 @@ function ContentManager(stage, width, height) {
             var loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
             spritePerso = loadingQueue.getResult(loading_id);
             Start = map.GetBounds(x, y).GetBottomCenter();
-            Hero = new Unit(spritePerso, map, Start, unistJson[type], taille);
+            Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y);
 
+            unitsCache.push(Hero);
 
             var cache_widht = Hero.width;
             var cache_height = Hero.height;
