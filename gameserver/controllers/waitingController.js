@@ -7,21 +7,23 @@
  */
 
 var socketio = require('../network/socketio');
+var config = require('../util/config');
 var logger = require('../util/logger');
 var world = require('../model/world');
+var pools = require('../model/pools');
 
 module.exports = function(player) {
 
 	/**
 	 * Returns the lsit of the pools
 	 */
-	player.socket.on("get-pools", function(data, callback) {
+	player.socket.on("get-pools", function(data, cb) {
     	
     	logger.verbose('Player "' + player.name + '"" is trying to get list of pools.');
 		
 		var pools = [];
 
-		for (var i = 0; i < world.config.get('pool:count'); i++) {
+		for (var i = 0; i < config.get('pool:count'); i++) {
 			var pool = {
 				'name': 'pool-' + i,
 				'attribute1': 'value1',
@@ -32,7 +34,7 @@ module.exports = function(player) {
 			pools[i] = pool;
 		};
 
-		callback(pools);
+		cb(pools);
 	});
 
 
@@ -41,29 +43,29 @@ module.exports = function(player) {
 	 */
     player.socket.on("join", function(data) {
 
-    	logger.verbose('Player "' + player.name + '" is trying to join a pool.');
+    	logger.verbose('Player "' + player.name + '" is trying join pool #' + data.pool + '.');
 
     	var poolId = parseInt(data.pool);
 
     	// If the pool really exists
-		if(poolId >= world.config.get('pool:count')) {
+		if(poolId >= config.get('pool:count')) {
 			player.socket.emit("service", { msg: 'Bad pool ID.' });
 			return;
 		}
 
 		// If the player is not already registred in this pool
-		if(world.pool[poolId].hasPlayer(player)) {
+		if(pools[poolId].hasPlayer(player)) {
 			player.socket.emit("service", { msg: 'Already registred in this pool.' });
 			return;
 		}
 
 		// If the player is not already registred in another pool
-		if(world.pool.hasPlayer(player)) {
+		if(pools.hasPlayer(player)) {
 			player.socket.emit("service", { msg: 'Already registred in a pool.' });
 			return;
 		}
 
-		world.pool[poolId].addPlayer(player);
+		pools[poolId].addPlayer(player);
 
 		player.socket.emit("service", { msg: 'Added to pool #' + data.pool + '.' });
 		logger.verbose('Player "' + player.name + '" has joined pool #' + data.pool);
@@ -74,7 +76,7 @@ module.exports = function(player) {
      * Starts the search of an available battle
      */
     player.socket.on("ready", function(data) {
-    	if(!world.pool.hasPlayer(player)) {
+    	if(!pools.hasPlayer(player)) {
 			player.socket.emit("service", { msg: 'You must be in a pool.' });
 			return;
 		}

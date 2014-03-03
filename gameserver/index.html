@@ -72,7 +72,9 @@ body { padding: 15px; }
   });
 
   $('#fight').click(function () {
-    socket.emit('get-pools', null); 
+    socket.emit('get-pools', null, function(data) {
+      $('#pools').html(JSON.stringify(data));
+    }); 
     $('#pools').html('<strong>Loading ...</strong><br>');
   });
 

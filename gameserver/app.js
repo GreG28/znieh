@@ -30,6 +30,8 @@ var db = require('./util/db');
 var httpserver = require('./network/httpserver');
 var socketio = require('./network/socketio');
 var world = require('./model/world');
+var pools = require('./model/pools');
+var battle = require('./model/battle');
 var skillHandler = require('./model/handlers/skills');
 
 /*
@@ -43,6 +45,8 @@ db.testConnection();
 httpserver.init();
 socketio.init();
 world.init();
+pools.init();
+battle.init();
 skillHandler.loadSpells();
 skillHandler.loadSkills();
 
@@ -52,9 +56,3 @@ mainController.init();
 
 console.log('Server loaded in: ' + Math.abs(new Date() - serverLoadStart) + 'ms');
 console.log('Used memory: ' + (process.memoryUsage().rss/1048576).toFixed(2) + "M");
-
-
-
-
-var battle = require('./battle');
-

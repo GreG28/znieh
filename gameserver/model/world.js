@@ -8,7 +8,6 @@
 
 var socketio = require('../network/socketio');
 var logger = require('../util/logger');
-var pool = require('../pool');
 
 module.exports.init = function() {
 	this.handlers = [];
