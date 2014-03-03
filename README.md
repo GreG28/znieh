@@ -84,6 +84,11 @@ Use grunt to initially compile the SASS files
 
     grunt
 
+If you don't have SASS yet, install Ruby then
+
+    gem install sass
+    gem install compass
+
 Later, when you're actually developing, you'll use grunt to watch for file changes and automatically re-compile:
 
     grunt watch
