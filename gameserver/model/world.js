@@ -1,29 +1,42 @@
+/**
+ * world.js
+ *
+ * World: contains all methods concerning the world
+ *
+ * @author alfo
+ */
 
-var World = {};
-module.exports = World;
+var socketio = require('../network/socketio');
+var logger = require('../util/logger');
+var pool = require('../pool');
 
-World.handlers = [];
+module.exports.init = function() {
+	this.handlers = [];
+	this.players = [];
+	this.battle = undefined;
 
-World.players = [];
-World.pool = require('../pool');
 
-World.battle = undefined;
-
-World.broadcast = function(key, value) {
-	this.io.sockets.emit(key, value);
+	logger.info('World initiated.');
 }
 
-World.broadcastUserList = function() {
+
+module.exports.broadcast = function(key, value) {
+	//socketio.sockets.emit(key, value);
+	logger.warn('Broadcasting is not yet implemented!');
+}
+
+module.exports.broadcastUserList = function() {
     var str = '';
 
     for(var i=0; i < this.players.length; i++) {
 		var player = this.players[i];
 		str += player.name + ', ';
     }
-    this.io.sockets.emit("players", { players: str });
+    logger.warn('Broadcasting is not yet implemented!');
+    //socketio.sockets.emit("players", { players: str });
 }
 
-World.removePlayer = function(player) {
+module.exports.removePlayer = function(player) {
     for(var i=0; i < this.players.length; i++) {
 		if(player.name === this.players[i].name) {
 		    this.players.splice(i, 1);

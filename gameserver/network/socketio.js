@@ -7,13 +7,14 @@
  */
 
 var io = require('socket.io');
+var httpserver = require('./httpserver');
 var config = require('../util/config');
 var logger = require('../util/logger');
 
-module.exports = io;
-
 module.exports.init = function () {
-	io.listen(config.get('app:port'), { log: false });
+	io = io.listen(config.get('app:port'), { log: false });
+	module.exports = io;
 
 	logger.info('Networking loaded.');
+	logger.info('Listening on websocket://0.0.0.0:' + config.get('app:port'));
 }

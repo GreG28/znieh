@@ -19,7 +19,7 @@ module.exports.init = function() {
 	});
 
 	winston.add(winston.transports.Console, {
-		level: 'info',
+		level: 'verbose',
 		colorize: true
 	});
 
