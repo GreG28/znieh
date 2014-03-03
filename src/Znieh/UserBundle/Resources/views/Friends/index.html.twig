@@ -16,43 +16,28 @@
         {% for entity in entities %}
             <tr>
                 {% if entity.accept == false %}
-                {% if entity.user1 == userAct %} {# si l'user actuel est l'user1 (il a fait la demande) -> on affiche l'user2 #}
-                <td>{{ entity.user2.usernameCanonical }}</td>
-                {% else %}
+                {% if entity.user1 != userAct %} {# User qui recoit la demande (user2) #}
                 <td>{{ entity.user1.usernameCanonical }}</td>
-                {% endif %}
                 <td>
                         <ul>
                             <li>
-                                {% if entity.user1 == userAct %}
-                                <a href="{{ path('friends_accept', { 'id': entity.user2.id }) }}">
-                                    Accepter
-                                </a>
-                                {% else %}
                                 <a href="{{ path('friends_accept', { 'id': entity.user1.id }) }}">
                                     Accepter
                                 </a>
-                                {% endif %}
                             </li>
                             <li>
-                                {% if entity.user1 == userAct %}
-                                <a href="{{ path('friends_delete', { 'id': entity.user2.id }) }}">
-                                    Refuser
-                                </a>
-                                {% else %}
                                 <a href="{{ path('friends_delete', { 'id': entity.user1.id }) }}">
-                                    Accepter
+                                    Ignorer
                                 </a>
-                                {% endif %}
                             </li>
                         </ul>
                 </td>
+                {% endif %}
                 {% endif %}
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    {% endif %}
 
     <h3>Liste de mes amis</h3>
     {% if entities == null %}

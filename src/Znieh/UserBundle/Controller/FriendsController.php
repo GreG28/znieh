@@ -36,7 +36,6 @@ class FriendsController extends Controller
 
         return array(
             'entities' => $entities,
-            'mess' => "",
             'userAct' => $slug,
         );
     }
@@ -132,22 +131,18 @@ class FriendsController extends Controller
             $link->setUser1($slug);
             $link->setUser2($user);
             $link->setAccept(false);
-            $link->setFriendIgnore(false);
+            $link->setUser1Ignore(false);
+            $link->setUser2Ignore(false);
 
             $em->persist($link);
             $em->flush();
-
-            $mess = "La demande d'amis a bien été prise en compte";
         }
-        else
-            $mess = "Vous êtes déjà amis avec cette personne";
 
         $entities = $em->getRepository('ZniehUserBundle:FriendsLink')
                         ->findByUser1($slug->getId());
 
         return $this->redirect( $this->generateUrl('friends', array(
             'entities' => $entities,
-            'mess' => $mess,
             'userAct' => $slug,
         )) );
     }
@@ -178,7 +173,6 @@ class FriendsController extends Controller
 
         return $this->redirect( $this->generateUrl('friends', array(
             'entities' => $entities,
-            'mess' => "",
             'userAct' => $slug,
         )) );
     }
@@ -212,7 +206,6 @@ class FriendsController extends Controller
 
         return $this->redirect( $this->generateUrl('friends', array(
             'entities' => $entities,
-            'mess' => "",
             'userAct' => $slug,
         )) );
     }
@@ -246,7 +239,6 @@ class FriendsController extends Controller
 
         return $this->redirect( $this->generateUrl('friends', array(
             'entities' => $entities,
-            'mess' => "",
             'userAct' => $slug,
         )) );
     }
@@ -277,7 +269,6 @@ class FriendsController extends Controller
 
         return $this->redirect( $this->generateUrl('friends', array(
             'entities' => $entities,
-            'mess' => "L'amis a bien été supprimé",
             'userAct' => $slug,
         )) );
     }
