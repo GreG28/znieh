@@ -3,12 +3,18 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
 
 (function (window) {
     function Tile(texture, collision, x, y, render) {
-        "use strict";
         this.initialize(texture, collision, x, y, render);
     }
 
+    /**
+     * Initialize the Tile with its proprierties
+     * @param  {createjs.Sprite} texture
+     * @param  {int} collision
+     * @param  {int} x
+     * @param  {int} y
+     * @param  {boolean} render
+     */
     Tile.prototype.initialize = function(texture, collision, x, y, render) {
-        "use strict";
 
         if (texture !== null) {
             this.empty = false;
@@ -35,9 +41,11 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         }
     };
 
+    /**
+     * Render the Tile and handle actions
+     */
     Tile.prototype.render = function() {
         // On définit les coordonnées de la Tile
-        "use strict";
 
         this.texture.x = 0;
         this.texture.y = 0;
@@ -49,47 +57,96 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
 
         var container = this._container;
 
-        this.shape = new createjs.Shape();
-        this.shape.name = "contour";
-        this.shape.graphics.beginStroke("#ffffff");
-        this.shape.graphics.setStrokeStyle(2); // 2 pixel
-        this.shape.graphics.drawRect(_x,_y,width,height); // Change size as-needed
-        this.shape.visible = false;
+        this.shape_hover = new createjs.Shape();
+        this.shape_hover.name = "contour";
+        this.shape_hover.graphics.beginStroke("#ffffff");
+        this.shape_hover.graphics.setStrokeStyle(2); // 2 pixel
+        this.shape_hover.graphics.drawRect(_x,_y,width,height); // Change size as-needed
+        this.shape_hover.visible = false;
+
+        this.shape_selection_possible = new createjs.Shape();
+        this.shape_selection_possible.name = "contour_selection_possible";
+        this.shape_selection_possible.graphics.beginStroke("#00af00");
+        this.shape_selection_possible.graphics.setStrokeStyle(2); // 2 pixel
+        this.shape_selection_possible.graphics.drawRect(_x,_y,width - 2,height - 2); // Change size as-needed
+        this.shape_selection_possible.visible = false;
+
+        this.shape_selection_impossible = new createjs.Shape();
+        this.shape_selection_impossible.name = "contour_selection_impossible";
+        this.shape_selection_impossible.graphics.beginStroke("#cc231e");
+        this.shape_selection_impossible.graphics.setStrokeStyle(2); // 2 pixel
+        this.shape_selection_impossible.graphics.drawRect(_x,_y,width - 2,height - 2); // Change size as-needed
+        this.shape_selection_impossible.visible = false;
 
         this._container.addChild(this.texture);
-        this._container.addChild(this.shape);
+        this._container.addChild(this.shape_hover);
+        this._container.addChild(this.shape_selection_possible);
+        this._container.addChild(this.shape_selection_impossible);
 
-        var shape = this.shape;
+        var shape_hover = this.shape_hover;
+        var shape_selection_possible = this.shape_selection_possible;
+        var shape_selection_impossible = this.shape_selection_impossible;
 
+        var self = this;
         this._container.on("mouseover", function(evt) {
-            shape.visible = true;
+            shape_hover.visible = true;
+
+            // TODO : Ghost de l'unité qui suit la souris pendant le placement des unités
+            // if(gameStatut == GameStatut.PLACEMENT) {
+            //     selectedUnit = unitsCache[$("#myUnits div.selected").attr("data-unit")];
+            //     if(selectedUnit != null) {
+            //         selectedUnit._container.x = map.GetBounds(self.i, self.j).GetBottomCenter().x;
+            //         selectedUnit._container.y = map.GetBounds(self.i, self.j).GetBottomCenter().y;
+            //         console.log(selectedUnit._container.x);
+            //         console.log("On change");
+            //         selectedUnit.sprite_base.gotoAndPlay("move-left"); //animate
+            //     }
+            // }
         });
 
         this._container.on("mouseout", function(evt) {
-            shape.visible = false;
+            shape_hover.visible = false;
         });
 
         var _i = this.i;
         var _j = this.j;
 
         this._container.on("click", function(evt, data) {
-            if(data.collision == Enum.TileCollision.Passable && _i < (map.gameWidth / 3)) {
-                console.log("[TILE] x" + _i + " y" + _j);
-                var idUnit = $("#myUnits a.active").attr("data-unit");
+            setEnnemySide();
+            if(gameStatut == GameStatut.PLACEMENT)
+            {
+                if(data.collision == Enum.TileCollision.Passable && ((_i < (map.gameWidth / 3) && left == true) || ((_i >= (2 * map.gameWidth / 3)) && left == false))) {
+                    console.log("[TILE] x" + _i + " y" + _j);
+                    var idUnit = $("#myUnits div.selected").attr("data-unit");
 
-                if(units[idUnit] != null) {
-                    if(units[idUnit].statut == 0) {
-                        ContentManager.newUnit(_i,_j, units[idUnit].sprite, units[idUnit].taille, idUnit);
-                        nextUnitID++;
+                    if(units[idUnit] != null) {
+                        if(units[idUnit].statut == 0) {
+                            ContentManager.newUnit(_i,_j, units[idUnit].sprite, units[idUnit].taille, idUnit);
+                            nextUnitID++;
+                            if(ContentManager.units.length == numberOfUnits) {
+                                gameStatut = GameStatut.IDLE;
+                                ContentManager.clearUnitsMenu();
+                            }
+                        }
                     }
-                    else
+                    else {
+                        gameStatut = GameStatut.IDLE;
                         console.log("Cette unité ne peut être placée");
+                    }
                 }
                 else
-                    console.log("Il n'y a plus de personnages à placer");
+                    console.log("Vous ne pouvez pas placer votre personnage à cet endroit.");
             }
-            else
-                console.log("Vous ne pouvez pas placer votre personnage à cet endroit.");
+            else if(gameStatut == GameStatut.MOVE) {
+                selectedUnit.move(_i, _j);
+                gameStatut = GameStatut.IDLE;
+            }
+            else {
+                gameStatut = GameStatut.IDLE;
+                ContentManager.unSelectAllTiles();
+                ContentManager.clearUnitsMenu();
+                selectedUnit = null;
+            }
         }, null, false, { collision: this.Collision });
 
         this._container.x = this.x;
