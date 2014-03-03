@@ -626,3 +626,96 @@
 {"level":"info","message":"User alfo is now logged in.","timestamp":"2014-03-03T16:05:45.273Z"}
 {"level":"warn","message":"Broadcasting is not yet implemented!","timestamp":"2014-03-03T16:05:45.273Z"}
 {"level":"warn","message":"Broadcasting is not yet implemented!","timestamp":"2014-03-03T16:05:45.274Z"}
+{"level":"info","message":"Logger loaded.","timestamp":"2014-03-03T21:40:38.183Z"}
+{"level":"info","message":"Configuration loaded.","timestamp":"2014-03-03T21:40:38.227Z"}
+{"level":"info","message":"Database loaded.","timestamp":"2014-03-03T21:40:38.280Z"}
+{"level":"info","message":"Database schemas loaded.","timestamp":"2014-03-03T21:40:38.309Z"}
+{"level":"info","message":"HTTP Server loaded.","timestamp":"2014-03-03T21:40:38.316Z"}
+{"level":"info","message":"Listening on http://0.0.0.0:undefined","timestamp":"2014-03-03T21:40:38.317Z"}
+{"level":"info","message":"Networking loaded.","timestamp":"2014-03-03T21:40:38.323Z"}
+{"level":"info","message":"Listening on websocket://0.0.0.0:1337","timestamp":"2014-03-03T21:40:38.323Z"}
+{"level":"info","message":"World initiated.","timestamp":"2014-03-03T21:40:38.330Z"}
+{"level":"info","message":"Pools initiated.","timestamp":"2014-03-03T21:40:38.332Z"}
+{"level":"info","message":"Battle factory initiated.","timestamp":"2014-03-03T21:40:38.334Z"}
+{"level":"info","message":"Spells loaded.","timestamp":"2014-03-03T21:40:38.338Z"}
+{"level":"info","message":"Skills loaded.","timestamp":"2014-03-03T21:40:38.339Z"}
+{"level":"info","message":"Main controller started. Server is ready!","timestamp":"2014-03-03T21:40:38.343Z"}
+{"level":"info","message":"Logger loaded.","timestamp":"2014-03-03T22:25:46.746Z"}
+{"level":"info","message":"Configuration loaded.","timestamp":"2014-03-03T22:25:46.824Z"}
+{"level":"info","message":"Database loaded.","timestamp":"2014-03-03T22:25:46.879Z"}
+{"level":"info","message":"Database schemas loaded.","timestamp":"2014-03-03T22:25:46.905Z"}
+{"level":"info","message":"HTTP Server loaded.","timestamp":"2014-03-03T22:25:46.911Z"}
+{"level":"info","message":"Listening on http://0.0.0.0:undefined","timestamp":"2014-03-03T22:25:46.912Z"}
+{"level":"info","message":"Networking loaded.","timestamp":"2014-03-03T22:25:46.917Z"}
+{"level":"info","message":"Listening on websocket://0.0.0.0:1337","timestamp":"2014-03-03T22:25:46.918Z"}
+{"level":"info","message":"World initiated.","timestamp":"2014-03-03T22:25:46.918Z"}
+{"level":"info","message":"Pools initiated.","timestamp":"2014-03-03T22:25:46.919Z"}
+{"level":"info","message":"Battle factory initiated.","timestamp":"2014-03-03T22:25:46.919Z"}
+{"level":"info","message":"Spells loaded.","timestamp":"2014-03-03T22:25:46.921Z"}
+{"level":"info","message":"Skills loaded.","timestamp":"2014-03-03T22:25:46.924Z"}
+{"level":"info","message":"Main controller started. Server is ready!","timestamp":"2014-03-03T22:25:46.932Z"}
+{"level":"info","message":"User admin is now logged in.","timestamp":"2014-03-03T22:26:04.623Z"}
+{"level":"info","message":"Logger loaded.","timestamp":"2014-03-03T22:26:46.035Z"}
+{"level":"info","message":"Configuration loaded.","timestamp":"2014-03-03T22:26:46.060Z"}
+{"level":"info","message":"Database loaded.","timestamp":"2014-03-03T22:26:46.089Z"}
+{"level":"info","message":"Database schemas loaded.","timestamp":"2014-03-03T22:26:46.105Z"}
+{"level":"info","message":"HTTP Server loaded.","timestamp":"2014-03-03T22:26:46.110Z"}
+{"level":"info","message":"Listening on http://0.0.0.0:undefined","timestamp":"2014-03-03T22:26:46.111Z"}
+{"level":"info","message":"Networking loaded.","timestamp":"2014-03-03T22:26:46.123Z"}
+{"level":"info","message":"Listening on websocket://0.0.0.0:1337","timestamp":"2014-03-03T22:26:46.124Z"}
+{"level":"info","message":"World initiated.","timestamp":"2014-03-03T22:26:46.125Z"}
+{"level":"info","message":"Pools initiated.","timestamp":"2014-03-03T22:26:46.127Z"}
+{"level":"info","message":"Battle factory initiated.","timestamp":"2014-03-03T22:26:46.128Z"}
+{"level":"info","message":"Spells loaded.","timestamp":"2014-03-03T22:26:46.130Z"}
+{"level":"info","message":"Skills loaded.","timestamp":"2014-03-03T22:26:46.132Z"}
+{"level":"info","message":"Main controller started. Server is ready!","timestamp":"2014-03-03T22:26:46.136Z"}
+{"level":"info","message":"User admin is now logged in.","timestamp":"2014-03-03T22:26:52.376Z"}
+{"level":"info","message":"Logger loaded.","timestamp":"2014-03-03T22:29:03.958Z"}
+{"level":"info","message":"Configuration loaded.","timestamp":"2014-03-03T22:29:04.004Z"}
+{"level":"info","message":"Database loaded.","timestamp":"2014-03-03T22:29:04.055Z"}
+{"level":"info","message":"Database schemas loaded.","timestamp":"2014-03-03T22:29:04.081Z"}
+{"level":"info","message":"HTTP Server loaded.","timestamp":"2014-03-03T22:29:04.089Z"}
+{"level":"info","message":"Listening on http://0.0.0.0:undefined","timestamp":"2014-03-03T22:29:04.100Z"}
+{"level":"info","message":"Networking loaded.","timestamp":"2014-03-03T22:29:04.107Z"}
+{"level":"info","message":"Listening on websocket://0.0.0.0:1337","timestamp":"2014-03-03T22:29:04.108Z"}
+{"level":"info","message":"World initiated.","timestamp":"2014-03-03T22:29:04.109Z"}
+{"level":"info","message":"Pools initiated.","timestamp":"2014-03-03T22:29:04.110Z"}
+{"level":"info","message":"Battle factory initiated.","timestamp":"2014-03-03T22:29:04.110Z"}
+{"level":"info","message":"Spells loaded.","timestamp":"2014-03-03T22:29:04.112Z"}
+{"level":"info","message":"Skills loaded.","timestamp":"2014-03-03T22:29:04.114Z"}
+{"level":"info","message":"Main controller started. Server is ready!","timestamp":"2014-03-03T22:29:04.118Z"}
+{"level":"info","message":"User admin is now logged in.","timestamp":"2014-03-03T22:29:19.174Z"}
+{"level":"info","message":"Logger loaded.","timestamp":"2014-03-03T22:31:41.859Z"}
+{"level":"info","message":"Configuration loaded.","timestamp":"2014-03-03T22:31:41.884Z"}
+{"level":"info","message":"Database loaded.","timestamp":"2014-03-03T22:31:41.913Z"}
+{"level":"info","message":"Database schemas loaded.","timestamp":"2014-03-03T22:31:41.930Z"}
+{"level":"info","message":"HTTP Server loaded.","timestamp":"2014-03-03T22:31:41.935Z"}
+{"level":"info","message":"Listening on http://0.0.0.0:undefined","timestamp":"2014-03-03T22:31:41.936Z"}
+{"level":"info","message":"Networking loaded.","timestamp":"2014-03-03T22:31:41.946Z"}
+{"level":"info","message":"Listening on websocket://0.0.0.0:1337","timestamp":"2014-03-03T22:31:41.947Z"}
+{"level":"info","message":"World initiated.","timestamp":"2014-03-03T22:31:41.950Z"}
+{"level":"info","message":"Pools initiated.","timestamp":"2014-03-03T22:31:41.953Z"}
+{"level":"info","message":"Battle factory initiated.","timestamp":"2014-03-03T22:31:41.956Z"}
+{"level":"info","message":"Spells loaded.","timestamp":"2014-03-03T22:31:41.960Z"}
+{"level":"info","message":"Skills loaded.","timestamp":"2014-03-03T22:31:41.962Z"}
+{"level":"info","message":"Main controller started. Server is ready!","timestamp":"2014-03-03T22:31:41.966Z"}
+{"level":"info","message":"User admin is now logged in.","timestamp":"2014-03-03T22:31:48.672Z"}
+{"level":"warn","message":"Broadcasting is not yet implemented!","timestamp":"2014-03-03T22:31:48.675Z"}
+{"level":"warn","message":"Broadcasting is not yet implemented!","timestamp":"2014-03-03T22:31:48.677Z"}
+{"level":"info","message":"Logger loaded.","timestamp":"2014-03-03T22:33:10.801Z"}
+{"level":"info","message":"Configuration loaded.","timestamp":"2014-03-03T22:33:10.825Z"}
+{"level":"info","message":"Database loaded.","timestamp":"2014-03-03T22:33:10.854Z"}
+{"level":"info","message":"Database schemas loaded.","timestamp":"2014-03-03T22:33:10.871Z"}
+{"level":"info","message":"HTTP Server loaded.","timestamp":"2014-03-03T22:33:10.877Z"}
+{"level":"info","message":"Listening on http://0.0.0.0:undefined","timestamp":"2014-03-03T22:33:10.878Z"}
+{"level":"info","message":"Networking loaded.","timestamp":"2014-03-03T22:33:10.888Z"}
+{"level":"info","message":"Listening on websocket://0.0.0.0:1337","timestamp":"2014-03-03T22:33:10.889Z"}
+{"level":"info","message":"World initiated.","timestamp":"2014-03-03T22:33:10.890Z"}
+{"level":"info","message":"Pools initiated.","timestamp":"2014-03-03T22:33:10.891Z"}
+{"level":"info","message":"Battle factory initiated.","timestamp":"2014-03-03T22:33:10.891Z"}
+{"level":"info","message":"Spells loaded.","timestamp":"2014-03-03T22:33:10.893Z"}
+{"level":"info","message":"Skills loaded.","timestamp":"2014-03-03T22:33:10.895Z"}
+{"level":"info","message":"Main controller started. Server is ready!","timestamp":"2014-03-03T22:33:10.899Z"}
+{"level":"info","message":"User admin is now logged in.","timestamp":"2014-03-03T22:33:17.082Z"}
+{"level":"warn","message":"Broadcasting is not yet implemented!","timestamp":"2014-03-03T22:33:17.084Z"}
+{"level":"warn","message":"Broadcasting is not yet implemented!","timestamp":"2014-03-03T22:33:17.088Z"}
