@@ -1,105 +1,115 @@
-var dodged = false;
-var parried = false;
-var criticalHit = 0;
-var baseDamage = 0;
-var finalDamage = 0;
-var nonParriedDamage = 0.85;
+var physicalAttack = {};
+module.exports = physicalAttack;
 
-//Unit stat:
+physicalAttack.utility = function(){
+	var dodged = false;
+	var parried = false;
+	var criticalHit = 0;
+	var baseDamage = 0;
+	var finalDamage = 0;
+	var nonParriedDamage = 0.75;
 
-var precisionScore;
-var dodgeScore;
-var parryScore;
-var enemyDefenseScore;
 
-var attackingUnit;
-var attackedUnit;
+	var precisionScore;
+	var dodgeScore;
+	var parryScore;
+	var enemyDefenseScore;
 
+	var attackingUnit;
+	var attackedUnit;
+}
 
 //for testing purpose
 //console.log(physicalHit());
 
 
 //get weapon final damage with ratio
-function getDamages() {
-	switch(attackingUnit.weapon.attribute)
+physicalAttack.getDamages = function() {
+	switch(physicalAttack.utility.attackingUnit.weapon.attribute)
 	{
-	case "agility":
-	  return attackingUnit.weapon.damages + attackingUnit.stats.agility * attackingUnit.weapon.ratio;
+	case "Agility":
+	  return physicalAttack.utility.attackingUnit.weapon.damages + physicalAttack.utility.attackingUnit.stats.agility * physicalAttack.utility.attackingUnit.weapon.ratio;
 	  break;
-	case "strength":
-	  return attackingUnit.weapon.damages + attackingUnit.stats.strength * attackingUnit.weapon.ratio;
+	case "Strength":
+	  return physicalAttack.utility.attackingUnit.weapon.damages + physicalAttack.utility.attackingUnit.stats.strength * physicalAttack.utility.attackingUnit.weapon.ratio;
 	  break;
-	case "intelligence":
-	  return attackingUnit.weapon.damages + attackingUnit.stats.intelligence * attackingUnit.weapon.ratio;
+	case "Intelligence":
+	  return physicalAttack.utility.attackingUnit.weapon.damages + physicalAttack.utility.attackingUnit.stats.intelligence * physicalAttack.utility.attackingUnit.weapon.ratio;
 	  break;
 	}
 }
 
 //get superiority bonusses like buff or specific weapon, skill or spell
-function getStrengthWeakness() {
+physicalAttack.getStrengthWeakness = function() {
 	return 1;
 }
 
 //check if the hit is critical
-function isCriticalHit() {
-	if((Math.floor((Math.random()*100)+1)) <= precisionScore * 0.4) 
+physicalAttack.isCriticalHit = function() {
+	if((Math.floor((Math.random()*100)+1)) <= physicalAttack.utility.precisionScore * 0.4) 
 		return 1;
 	else
 		return 0;
 }
 
 //check if the hit is dodged
-function isDodged() {
-	if((Math.floor((Math.random()*100)+1)) <= dodgeScore * 0.15)
+physicalAttack.isDodged = function() {
+	if((Math.floor((Math.random()*100)+1)) <= physicalAttack.utility.dodgeScore * 0.15)
 		return true;
 	else
 		return false;
 }
 
 //check if the hit is parried
-function isParried() {
-	if((Math.floor((Math.random()*100)+1)) <= parryScore * 0.5)
+physicalAttack.isParried = function() {
+	if((Math.floor((Math.random()*100)+1)) <= physicalAttack.utility.parryScore * 0.5)
 		return true;
 	else
 		return false;
 }
 
 //check if there will be any bonus magic damage give
-function getMagicDamage() {
+physicalAttack.getMagicDamage = function() {
 	return 0;
 }
 
 //get the armor reduction combined with penetration
-function getArmorReduction() {
-	if(enemyDefenseScore < 40)
-		return (1 - (enemyDefenseScore * 0.66) / 100).toFixed(2);
+physicalAttack.getArmorReduction = function() {
+	if(physicalAttack.utility.enemyDefenseScore < 40)
+		return (1 - (physicalAttack.utility.enemyDefenseScore * 0.66) / 100).toFixed(2);
 	else
-		return (1 - (150 / (enemyDefenseScore + 130))).toFixed(2);
+		return(1 - (150 / (physicalAttack.utility.enemyDefenseScore + 130))).toFixed(2);
 }
 
 //setParriedDamage
-function setParriedDamages() {
-	if(parried)
-		nonParriedDamage = 0.75;
+physicalAttack.setParriedDamages = function() {
+	if(physicalAttack.utility.parried)
+		physicalAttack.utility.nonParriedDamage = 0.75;
 	else
-		nonParriedDamage = 1;
+		physicalAttack.utility.nonParriedDamage = 1;
 }
 //main function
-function physicalHit(attackUnit, defenseUnit){
-	attackingUnit = attackunit;
-	attackedUnit = defenseUnit;
-	precisionScore = attackingUnit.precision;
-	dodgeScore = attackedUnit.evade;
-	parryScore = attackedUnit.parry;
-	enemyDefenseScore = attackedUnit.defense;
+physicalAttack.physicalHit = function(attackUnit, defenseUnit){
+	physicalAttack.utility.attackingUnit = attackUnit;
+	physicalAttack.utility.attackedUnit = defenseUnit;
+	physicalAttack.utility.precisionScore = physicalAttack.utility.attackingUnit.stats.precision;
+	physicalAttack.utility.dodgeScore = physicalAttack.utility.attackedUnit.stats.evade;
+	physicalAttack.utility.parryScore = physicalAttack.utility.attackedUnit.stats.parry;
+	physicalAttack.utility.enemyDefenseScore = physicalAttack.utility.attackedUnit.stats.defense;
 
-	dodged = isDodged();
-	if(!dodged){
-		parried =isParried();
-		criticalHit = isCriticalHit();
-		setParriedDamages();
-		finalDamage = (getDamages() +  criticalHit * getDamages()) * getStrengthWeakness() * getArmorReduction() * nonParriedDamage + getMagicDamage();
+	physicalAttack.utility.dodged = physicalAttack.isDodged();
+	if(!physicalAttack.utility.dodged){
+		physicalAttack.utility.parried = physicalAttack.isParried();
+		physicalAttack.utility.criticalHit = physicalAttack.isCriticalHit();
+		physicalAttack.setParriedDamages();
+		if(physicalAttack.utility.parried)
+			console.log("Parried");
+		physicalAttack.utility.finalDamage = (physicalAttack.getDamages() +  physicalAttack.utility.criticalHit * physicalAttack.getDamages()) * physicalAttack.getStrengthWeakness() * physicalAttack.getArmorReduction() * physicalAttack.utility.nonParriedDamage + physicalAttack.getMagicDamage();
 	}
-	return finalDamage;
+	else{
+		console.log("Dodged");
+		return 0;
+	}
+
+	return physicalAttack.utility.finalDamage.toFixed(2);
 }
