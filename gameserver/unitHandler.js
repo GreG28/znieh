@@ -72,8 +72,8 @@ UnitHandler.loadUnit = function(){
 		weaponType = data[0].units[unit].weapon.type.name;
 
 		armorType = data[0].units[unit].armor.type.name;
-		console.log(new UnitHandler.Unit(unitName, sign, "", new UnitHandler.Weapon(weaponName, weaponType), new UnitHandler.Armor(armorName, armorType)))
+		unitList.push(new UnitHandler.Unit(unitName, sign, "", new UnitHandler.Weapon(weaponName, weaponType), new UnitHandler.Armor(armorName, armorType)))
 	}
+
+	return unitList;
 }
-var test = UnitHandler;
-test.loadUnit();
