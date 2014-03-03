@@ -1,8 +1,10 @@
 /**
 * Module loaded on the game page
 */
-define(['jquery'], function ($) {
+define(['jquery', 'app/game/enum', 'app/game/tile'], function ($, Enum, Tile) {
     (function (window) {
+        function Enum() { }
+        Enum.TileCollision = { Passable: 0, Impassable: 1 };
          // Constants for controling horizontal movement
         var MoveAcceleration = 13000.0;
         var MaxMoveSpeed = 1750.0;

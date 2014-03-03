@@ -17,10 +17,13 @@ requirejs.config({
          * AMD, you will likely need a paths entry and also an entry in
          * shim (beyond what you see for the bootstrap shim).
          */
-        jquery: '../vendor/jquery/dist/jquery.min',
+        jquery: '../vendor/jquery/jquery.min',
         jqueryui: '../libs/jquery-ui-1.10.4.custom.min',
         easystar: '../libs/easystar-0.1.6.min',
-        createjs: '../libs/easeljs-0.7.1.min',
+        easel: '../libs/easeljs-0.7.1.min',
+        sound : '../libs/soundjs-0.5.2.min',
+        tween: '../libs/tweenjs-0.5.1.min',
+        preload: '../libs/preloadjs-0.4.1.min',
         bootstrap: '../vendor/bootstrap/dist/js/bootstrap.min',
         socketio: '../vendor/socket.io-client/dist/socket.io.min'
     },
@@ -38,6 +41,16 @@ requirejs.config({
          * a little more work here.
          */
         bootstrap: ['jquery'],
-        jqueryui: ['jquery']
+        jqueryui: ['jquery'],
+        easel: {
+            exports: 'createjs'
+        },
+        tween: {
+            deps: ['easel'],
+            exports: 'Tween'
+        },
+        preload: {
+            exports: 'createjs.PreloadJS'
+        }
     }
 });

@@ -1,8 +1,8 @@
 /**
 * Module loaded on the game page
 */
-define(['jquery', 'createjs', 'app/game/map', 'app/game/tile', 'app/game/unit', 'app/game/xnaRectangle'], function ($, createjs) {
-  console.log('contentManager loaded');
+define(['jquery', 'app/game/map', 'app/game/tile', 'app/game/unit', 'app/game/xnaRectangle', 'app/game/enum'], function ($, Map, Tile, Unit, xnaRectangle, Enum) {
+  console.log('ContentManager loaded');
 
   GameStatut = {
       IDLE:           0,      // Le joueur peut sélectionner une de ses unités mais ne peut effectuer aucune autre action
@@ -11,6 +11,9 @@ define(['jquery', 'createjs', 'app/game/map', 'app/game/tile', 'app/game/unit', 
       MOVE:           3,      // Une unité est sélectionnée, le joueur peut maintenant la déplacer
       ATTACK:         4,      // Une unité est sélectionnée, a déjà été déplacée, elle peut maintenant attaquer
   };
+
+  function Enum() { }
+  Enum.TileCollision = { Passable: 0, Impassable: 1 };
 
   $(window).keydown(function(e){
       if(gameStatut == GameStatut.MOVE)
@@ -46,36 +49,14 @@ define(['jquery', 'createjs', 'app/game/map', 'app/game/tile', 'app/game/unit', 
   var KEYCODE_8 = 56;
   var KEYCODE_9 = 57;
 
-  var unistJson;
-  var tilesetSheet;
-  var map;
-  var Hero;
-  var Start;
-  var spritePerso;
-
-  //to stock the units created
-  var unitsCreated = [];
-  var loadingQueue;
-
-  // this is the units created from the list inside,
-  // the HTML page
-  var unitsToMove = [];
-  var substage;
-
-  var selectedUnit = null;
-  var unitsCache = [];
-  var unitsPlacement = [];
-  var gameStatut;
-  var placement_en_cours = true;
-  var selected_Unit = null;
-
+  var ContentManager;
   /**
    * Used to download all ressources and start the game
    * @param {createjs.Stage} stage
    * @param {int} width
    * @param {int} height
    */
-  function ContentManager(stage, width, height) {
+  ContentManager = function ContentManager(stage, width, height) {
       ContentManager.nextUnitID = 0;
 
       ContentManager.getNextUnitID = function () {
@@ -95,7 +76,29 @@ define(['jquery', 'createjs', 'app/game/map', 'app/game/tile', 'app/game/unit', 
           GRANDMUSCLE: "grandmuscle",
       };
 
-      ContentManager.units = [];
+      this.units = [];
+      this.unistJson = null;
+      this.tilesetSheet = null;
+      this.map = null;
+      this.Hero = null;
+      this.Start = null;
+      this.spritePerso = null;
+
+      //to stock the units created
+      this.unitsCreated = [];
+      this.loadingQueue = null;
+
+      // this is the units created from the list inside,
+      // the HTML page
+      this.unitsToMove = [];
+      this.substage = null;
+
+      this.selectedUnit = null;
+      this.unitsCache = [];
+      this.unitsPlacement = [];
+      this.gameStatut = null;
+      this.placement_en_cours = true;
+      this.selected_Unit = null;
 
       /**
        * Initialize all downloads
@@ -185,15 +188,15 @@ define(['jquery', 'createjs', 'app/game/map', 'app/game/tile', 'app/game/unit', 
           spritePerso = loadingQueue.getResult(loading_id);
           Start = map.GetBounds(x, y).GetBottomCenter();
 
-          for (var i = ContentManager.units.length - 1; i >= 0; i--) {
-              if(ContentManager.units[i].position.x == Start.x && ContentManager.units[i].position.y == Start.y) {
+          for (var i = this.units.length - 1; i >= 0; i--) {
+              if(this.units[i].position.x == Start.x && this.units[i].position.y == Start.y) {
                   console.log("Vous ne pouvez pas placer votre personnage à ce endroit.");
                   return false;
               }
           }
 
           Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y);
-          ContentManager.units.push(Hero);
+          this.units.push(Hero);
           units[idUnit].unitID = Hero.unitID;
           units[idUnit].statut = 1; // Placé
 
@@ -273,4 +276,6 @@ define(['jquery', 'createjs', 'app/game/map', 'app/game/tile', 'app/game/unit', 
       }
 
   }
+
+  return ContentManager;
 });

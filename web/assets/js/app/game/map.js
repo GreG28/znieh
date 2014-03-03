@@ -1,7 +1,7 @@
 /**
 * Module loaded on the game page
 */
-define(['jquery'], function ($) {
+define(['jquery', 'app/game/tile', 'app/game/unit', 'app/game/enum'], function ($, Tile, Unit, Enum) {
   Array.matrix = function (m, n, initial) {
       var a, i, j, mat = [];
       for (i = 0; i < m; i += 1) {

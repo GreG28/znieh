@@ -1,14 +1,12 @@
 /**
 * Module loaded on the game page
 */
-define(['jquery'], function ($) {
-    function Enum() { }
-    Enum.TileCollision = { Passable: 0, Impassable: 1 };
+define(['jquery', 'easel'], function ($, createjs) {
 
-    (function (window) {
-        function Tile(texture, collision, x, y, render) {
+        var Tile;
+        Tile = function Tile(texture, collision, x, y, render) {
             this.initialize(texture, collision, x, y, render);
-        }
+        };
 
         /**
          * Initialize the Tile with its proprierties
@@ -166,6 +164,5 @@ define(['jquery'], function ($) {
         Tile.prototype.width = 32;
         Tile.prototype.height = 32;
 
-        window.Tile = Tile;
-    } (window));
+       return Tile;
 });

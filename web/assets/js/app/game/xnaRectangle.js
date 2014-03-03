@@ -1,7 +1,7 @@
 /**
 * Module loaded on the game page
 */
-define(['jquery'], function ($) {
+define(['jquery', 'easel'], function ($, createjs) {
     (function (window) {
         //
         function XNARectangle(x, y, width, height) {

@@ -1,5 +1,5 @@
 
-define(['jquery', 'createjs', 'app/game/contentManager'], function ($, createjs, ContentManager) {
+define(['jquery', 'easel', 'app/game/contentManager'], function ($, createjs, ContentManager) {
   console.log('game loaded');
 
   var canvas = document.getElementById("canvas");
