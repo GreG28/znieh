@@ -15,7 +15,7 @@ var crypto = require('crypto');
 
 module.exports = function(socket, callback) {
 
-	socket.on("auth", function(data) {
+	socket.on("auth", function(data, cb) {
 
 		logger.verbose('Authentication packet from: ' + socket.handshake.address.address);
 
@@ -30,6 +30,7 @@ module.exports = function(socket, callback) {
 			var endpoint = socket.handshake.address;
 			logger.info('Possible hack detected from: '+ endpoint.address + ' (trying to auth again -> player kicked).');
 			socket.emit("service", { msg: 'Auth: Already authenticated' });
+			cb(false);
 			socket.disconnect();
 			return -1;
 		}
@@ -40,6 +41,7 @@ module.exports = function(socket, callback) {
 			var endpoint = socket.handshake.address;
 			logger.info('Possible hack detected from: '+ endpoint.address + ' (has send an empty token -> player kicked).');
 			socket.emit("service", { msg: 'Auth: Empty token' });
+			cb(false);
 			socket.disconnect();
 			return -2;
 		}
@@ -60,6 +62,7 @@ module.exports = function(socket, callback) {
 			var p = new player(user.username, socket);
     		world.players.push(p);
     		socket.emit("welcome", p.name);
+    		cb(true);
 		    world.broadcast("service", { msg: 'Player ' + p.name + ' is now connected.' });
 		    world.broadcastUserList();
 

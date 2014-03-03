@@ -62,9 +62,7 @@ body { padding: 15px; }
   });
 
   $('#auth').click(function () {
-    socket.emit('auth', {username: $("#username").val() , token: 'abc'}, function(success) {
-      console.log(success);
-    }); 
+    socket.emit('auth', {username: $("#username").val() , token: 'abc'}); 
     $('#console').append('<strong>Trying to auth...</strong><br>');
   });
 

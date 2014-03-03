@@ -17,7 +17,7 @@ module.exports = function(player) {
 	/**
 	 * Returns the lsit of the pools
 	 */
-	player.socket.on("get-pools", function(data, cb) {
+	player.socket.on("get-pools", function(data, callback) {
     	
     	logger.verbose('Player "' + player.name + '"" is trying to get list of pools.');
 		
@@ -32,16 +32,16 @@ module.exports = function(player) {
 			};
 
 			pools[i] = pool;
-		};
+		}
 
-		cb(pools);
+		callback(pools);
 	});
 
 
 	/**
 	 * Adds a player to a specified pool
 	 */
-    player.socket.on("join", function(data) {
+    player.socket.on("join", function(data, callback) {
 
     	logger.verbose('Player "' + player.name + '" is trying join pool #' + data.pool + '.');
 
@@ -50,18 +50,21 @@ module.exports = function(player) {
     	// If the pool really exists
 		if(poolId >= config.get('pool:count')) {
 			player.socket.emit("service", { msg: 'Bad pool ID.' });
+			callback(false);
 			return;
 		}
 
 		// If the player is not already registred in this pool
 		if(pools[poolId].hasPlayer(player)) {
 			player.socket.emit("service", { msg: 'Already registred in this pool.' });
+			callback(false);
 			return;
 		}
 
 		// If the player is not already registred in another pool
 		if(pools.hasPlayer(player)) {
 			player.socket.emit("service", { msg: 'Already registred in a pool.' });
+			callback(false);
 			return;
 		}
 
@@ -70,21 +73,26 @@ module.exports = function(player) {
 		player.socket.emit("service", { msg: 'Added to pool #' + data.pool + '.' });
 		logger.verbose('Player "' + player.name + '" has joined pool #' + data.pool);
 
+
+		callback(true);
+
     });
 
     /**
      * Starts the search of an available battle
      */
-    player.socket.on("ready", function(data) {
+    player.socket.on("ready", function(data, callback) {
     	if(!pools.hasPlayer(player)) {
 			player.socket.emit("service", { msg: 'You must be in a pool.' });
+			callback(false);
 			return;
 		}
 
 		player.status = 'ready';
 		player.socket.emit("service", { msg: 'Set as ready. Searching...' });
 		logger.verbose('Player "' + player.name + '" is ready to fight.');
+		callback(true);
 		player.pool.notifyPlayerReady(player);
 		
     });
-}
+};

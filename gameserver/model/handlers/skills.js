@@ -41,6 +41,7 @@ SkillHandler.loadSpells = function(){
 	    spellList.push(new SkillHandler.Spell (data[spell].name, data[spell].damages, data[spell].ratio, data[spell].attribute, data[spell].time, data[spell].cooldown, data[spell].description))
 	}
 	logger.info('Spells loaded.');
+	return spellList;
 }
 
 SkillHandler.loadSkills = function (){
@@ -49,4 +50,5 @@ SkillHandler.loadSkills = function (){
 	    skillList.push(new SkillHandler.Spell (data[skill].name, data[skill].damages, data[skill].ratio, data[skill].attribute, data[skill].time, data[skill].cooldown, data[skill].description))
 	}
 	logger.info('Skills loaded.');
+	return skillList;
 }
