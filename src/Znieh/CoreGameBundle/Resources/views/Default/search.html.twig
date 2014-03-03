@@ -96,7 +96,7 @@
     $('#console').append('Connected<br>');
 
     gameSocket.emit('auth', { username: '{{ app.user.username }}' , token: '{{ app.user.token }}' }, function(success) {
-      console.log(success);
+      console.log("auth ->" + success);
     });
 
     // In
@@ -138,8 +138,8 @@
       $('#join').button('loading');
       
       /*When we are sure the player is resgistered inside a pool*/
-      $('#modalPools').modal('hide');
-      $('#modalReady').modal('show');
+      /*$('#modalPools').modal('hide');
+      $('#modalReady').modal('show');*/
     });
 
     $('#auth').click(function () {
@@ -159,7 +159,7 @@
 
     $('#fight').click(function () {
       gameSocket.emit('get-pools', null);
-      $('#pools').html('<strong>Loading ...</strong><br>');
+      $('#console').append('<strong>Loading ...</strong><br>');
       $('#modalFight').modal('hide');
       $('#modalPools').modal('show');
     });
