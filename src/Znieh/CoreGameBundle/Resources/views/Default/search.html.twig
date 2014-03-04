@@ -158,10 +158,22 @@
     });
 
     $('#fight').click(function () {
-      gameSocket.emit('get-pools', null);
+      $('#fight').button('loading');
       $('#console').append('<strong>Loading ...</strong><br>');
-      $('#modalFight').modal('hide');
-      $('#modalPools').modal('show');
+
+      gameSocket.emit('get-pools', null, function (data) {
+        var _data = data.data;
+        var size = _data.length;
+        var div_labels = $('#modalPools .modal-body .btn-group');
+        for(var i = 0 ; i < size ; i=i+1 )
+        {
+          div_labels.append("<label class=\"btn btn-primary\"><input class=\"input\" type=\"radio\" name=\"options\" value=\""+i+"\"><div class=\"thumbnail\"><div class=\"caption\"><h4>"+_data[i].name+"</h4><p>"+_data[i].attribute1+"</p><p>"+_data[i].attribute2+"</p><p>"+_data[i].attribute3+"</p></div></div></input></label>");
+        }
+
+        $('#modalFight').modal('hide');
+        $('#modalPools').modal('show');
+        });
+      
     });
 
     $('#modalPools .modal-body div').click(function () {

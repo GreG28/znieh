@@ -12,6 +12,7 @@ var world = require('../model/world');
 var player = require('../model/player');
 
 module.exports.init = function() {
+  "use strict";
 
   socketio.sockets.on('connection', function (socket) {
 
@@ -22,7 +23,7 @@ module.exports.init = function() {
       socket.on('disconnect', function () {
         world.broadcast("service", { msg: 'player ' + player.name + ' is now disconnected.' });
         world.removePlayer(player);
-        world.pool.removePlayer(player);
+        //world.pool.removePlayer(player);
         world.broadcastUserList();
 
         logger.verbose('User "' + player.name + '" disconnected from: ' + socket.handshake.address.address);
