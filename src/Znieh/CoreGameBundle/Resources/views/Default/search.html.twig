@@ -50,16 +50,36 @@
       
       <div class="modal-footer">
         <!-- When i'm sure the player are inside the pool ! -->
-        <button id="ready" type="button" class="btn btn-primary" data-loading-text="Loading...">Ready</em></button>
+        <button id="ready" type="button" class="btn btn-primary" data-loading-text="Loading...">Ready</button></em></button>
     </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 
-
-
-<!-- <button id="ready" type="button" class="btn btn-primary"> -->
+<div class="modal fade" id="modalGameAcceptance">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Other player found</h4>
+      </div>
+      <div class="modal-body">
+        <p>We found another player :</p>
+        <p id="p_name"></p>
+        <p id="p_value1"></p>
+        <p id="p_value2"></p>
+        <p id="p_value3"></p>
+      </div>
+      
+      <div class="modal-footer">
+        <!-- If the player say no we need to find another player to play with -->
+        <p>Do you want to fight against this player ?</p>
+        <button id="Acceptance_YES" type="button" class="btn btn-primary btn-lg">Yes</button></button>
+        <button id="Acceptance_NO" type="button" class="btn btn-lg">No</button>
+    </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 {% endblock %}
 
@@ -90,6 +110,12 @@
       show: false
     });
 
+    $('#modalGameAcceptance').modal({
+      backdrop: 'static',
+      keyboard: false,
+      show: true
+    });
+
     var gameSocket = undefined;
 
     gameSocket = io.connect('127.0.0.1:1337');
@@ -115,6 +141,15 @@
       $('#console').append('Current players : ' + data.players + '<br />');
     });
 
+    // the server send a player to fight with
+    gameSocket.on('battle-found', function (data) {
+      console.log(data);
+      $('#console').append('Service message : ' + data.msg + '<br />');
+      $('#modalReady').modal('hide');
+      $('#modalGameAcceptance').modal('show');      
+      /*On affiche une page */
+    });
+
     // Out
     $('#join').click(function () {
       //we take the value of the selected pool
@@ -128,6 +163,10 @@
           $('#modalPools').modal('hide');
           $('#modalReady').modal('show');
         }
+        else
+        {
+          $('#join').button('reset');
+        }
       });
     });
 
@@ -138,12 +177,18 @@
 
     $('#ready').click(function () {
       $('#ready').button('loading');
-      $('#console').append('<strong>Ready to fight. Looking for a game...</strong><br>');
+      $('#console').append('<strong>Ready to fight !</strong><br>');
       gameSocket.emit('ready', null, function (data) {
         /* Waiting to receive a proposal of another player to fight*/
         if(data === true)
         {
-          // Here it is !!
+          $('#console').append('<strong>Looking for a game...</strong><br>');
+        }
+        else
+        {
+          $('#ready').button('reset');
+          $('#console').append('<strong>You cannot search for another player !</strong><br>');
+          $('#console').append('Wait and retry later ...<br>');
         }
       });
     });
@@ -167,6 +212,23 @@
 
     $('#modalPools .modal-body div').click(function () {
       $('#join').removeAttr('disabled');
+    });
+
+    $('Acceptance_YES').click(function() {
+      gameSocket.emit('accept-player', true, function (data) {
+        // Callback
+        // the player accept to fight this enemy
+        // now you have to hide this area and let the page with the map to load !
+      });
+    });
+
+    $('Acceptance_NO').click(function() {
+      gameSocket.emit('accept-player', false, function (data) {
+        // Callback
+        // the server has to found another enemy
+        // and we ask him to send another
+        /* data-text-loading ="<i class='icon-spinner icon-spin icon-large'></i> @Localization.Uploading" */
+      });
     });
 
   </script>
