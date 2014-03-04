@@ -12,6 +12,7 @@ var world = require('../model/world');
 var player = require('../model/player');
 
 module.exports.init = function() {
+  "use strict";
 
   socketio.sockets.on('connection', function (socket) {
 
