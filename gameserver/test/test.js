@@ -1,6 +1,6 @@
 console.log("Beginning of test phase");-
 console.log("Spells and skills loading");
-var skHandler = require('../skillHandler.js');
+var skHandler = require('../model/handlers/skills.js');
 var spells = skHandler.loadSpells();
 var skills = skHandler.loadSkills();
 console.log("_________________________________________");
@@ -16,7 +16,7 @@ for(i in skills){
 console.log("\n");
 
 console.log("Team loading from a JSON");
-var teamHandler = require('../unitHandler');
+var teamHandler = require('../model/handlers/unit');
 var team = new Array();
 team = teamHandler.loadUnit();
 console.log(team);
@@ -32,6 +32,6 @@ console.log(team[0]);
 console.log("Unit 2 : ");
 console.log(team[1]);
 console.log("_________________________________________");
-var hit = require('../physicalAttack.js');
+var hit = require('../model/physicalAttack.js');
 var result = hit.physicalHit(team[0],team[1]);
 console.log("\nDamages taken : " + result);
