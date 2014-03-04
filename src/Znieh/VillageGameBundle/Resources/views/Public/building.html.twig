@@ -7,7 +7,22 @@
       <div class="step-title">{{ step.title }}</div>
       {% for obj in objects %}
         {% if obj.step.title == step.title %}
-          <span class="game-object" data-toggle="tooltip" title="{{ obj.name }}">
+          <span class="game-object" data-trigger="manual" data-placement="top" data-html="true" title='{{ obj.name }}'
+          data-content='
+          <div>
+            {{ obj.description }}
+          </div>
+          <div class="game-object-points">
+            {{ obj.points }} points
+          </div>
+          <div>
+            {% if obj.unlocked %}
+            Débloqué.
+            {% else %}
+            {{ obj.cost }}
+            {% endif %}
+          </div>
+          '>
             <img src="{{ asset('img/icons/lame.png') }}" class="draggable" data-id="{{ obj.id }}" alt="">
             {% if obj.unlocked %}
                 <a href="#" class="btn btn-default btn-xs" data-id="{{ obj.id }}">
@@ -188,6 +203,10 @@
   }
   .game-object img {
     margin-right: 3px;
+  }
+  .game-object-points {
+    float: left;
+    background: brown;
   }
 </style>
 {% endblock %}
