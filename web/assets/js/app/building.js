@@ -1,12 +1,13 @@
  /**
   * The module loaded on the building page
   */
- define(['jquery', 'jqueryui', 'bootstrap'], function ($) {
+ define(['jquery', 'jqueryui', 'router', 'bootstrap'], function ($) {
+    console.log('building module loaded');
      $('.unlock-object').on('click', function(e){
          e.preventDefault();
          var id = $(this).data("id");
          var obj = $(this);
-         $.get('http://localhost/znieh/web/app_dev.php/village/unlock/' + id)
+         $.get(Routing.generate('znieh_villagegame_public_unlock', {object : id}))
          .done(function(data){
            console.log('done');
            obj.children().attr("src", 'img/icons/accept.png');
