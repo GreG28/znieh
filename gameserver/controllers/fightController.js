@@ -35,6 +35,6 @@ module.exports = function(player) {
 		if(player.battle.finishedUnitPlacement) return -3;
 
 		player.battle.map[data.x][data.y] = data.unit;
-	}
+	});
 
 }
