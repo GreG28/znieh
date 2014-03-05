@@ -936,3 +936,45 @@
 {"level":"info","message":"User admin is now logged in.","timestamp":"2014-03-04T14:42:41.141Z"}
 {"level":"warn","message":"Broadcasting is not yet implemented!","timestamp":"2014-03-04T14:42:41.143Z"}
 {"level":"warn","message":"Broadcasting is not yet implemented!","timestamp":"2014-03-04T14:42:41.156Z"}
+{"level":"info","message":"Logger loaded.","timestamp":"2014-03-05T10:10:57.230Z"}
+{"level":"info","message":"Configuration loaded.","timestamp":"2014-03-05T10:10:57.531Z"}
+{"level":"info","message":"Database loaded.","timestamp":"2014-03-05T10:10:57.965Z"}
+{"level":"info","message":"Database schemas loaded.","timestamp":"2014-03-05T10:10:58.130Z"}
+{"level":"info","message":"HTTP Server loaded.","timestamp":"2014-03-05T10:10:58.159Z"}
+{"level":"info","message":"Listening on http://0.0.0.0:undefined","timestamp":"2014-03-05T10:10:58.159Z"}
+{"level":"info","message":"Networking loaded.","timestamp":"2014-03-05T10:10:58.164Z"}
+{"level":"info","message":"Listening on websocket://0.0.0.0:1337","timestamp":"2014-03-05T10:10:58.165Z"}
+{"level":"info","message":"World initiated.","timestamp":"2014-03-05T10:10:58.165Z"}
+{"level":"info","message":"Pools initiated.","timestamp":"2014-03-05T10:10:58.166Z"}
+{"level":"info","message":"Battle factory initiated.","timestamp":"2014-03-05T10:10:58.166Z"}
+{"level":"info","message":"Spells loaded.","timestamp":"2014-03-05T10:10:58.168Z"}
+{"level":"info","message":"Skills loaded.","timestamp":"2014-03-05T10:10:58.170Z"}
+{"level":"info","message":"Main controller started. Server is ready!","timestamp":"2014-03-05T10:10:58.174Z"}
+{"level":"info","message":"Logger loaded.","timestamp":"2014-03-05T10:21:37.454Z"}
+{"level":"info","message":"Configuration loaded.","timestamp":"2014-03-05T10:21:37.489Z"}
+{"level":"info","message":"Database loaded.","timestamp":"2014-03-05T10:21:37.546Z"}
+{"level":"info","message":"Database schemas loaded.","timestamp":"2014-03-05T10:21:37.571Z"}
+{"level":"info","message":"HTTP Server loaded.","timestamp":"2014-03-05T10:21:37.578Z"}
+{"level":"info","message":"Listening on http://0.0.0.0:undefined","timestamp":"2014-03-05T10:21:37.580Z"}
+{"level":"info","message":"Networking loaded.","timestamp":"2014-03-05T10:21:37.586Z"}
+{"level":"info","message":"Listening on websocket://0.0.0.0:1337","timestamp":"2014-03-05T10:21:37.587Z"}
+{"level":"info","message":"World initiated.","timestamp":"2014-03-05T10:21:37.589Z"}
+{"level":"info","message":"Pools initiated.","timestamp":"2014-03-05T10:21:37.596Z"}
+{"level":"info","message":"Battle factory initiated.","timestamp":"2014-03-05T10:21:37.596Z"}
+{"level":"info","message":"Spells loaded.","timestamp":"2014-03-05T10:21:37.601Z"}
+{"level":"info","message":"Skills loaded.","timestamp":"2014-03-05T10:21:37.603Z"}
+{"level":"info","message":"Main controller started. Server is ready!","timestamp":"2014-03-05T10:21:37.607Z"}
+{"level":"info","message":"Logger loaded.","timestamp":"2014-03-05T10:50:32.383Z"}
+{"level":"info","message":"Configuration loaded.","timestamp":"2014-03-05T10:50:32.408Z"}
+{"level":"info","message":"Database loaded.","timestamp":"2014-03-05T10:50:32.437Z"}
+{"level":"info","message":"Database schemas loaded.","timestamp":"2014-03-05T10:50:32.453Z"}
+{"level":"info","message":"HTTP Server loaded.","timestamp":"2014-03-05T10:50:32.460Z"}
+{"level":"info","message":"Listening on http://0.0.0.0:undefined","timestamp":"2014-03-05T10:50:32.460Z"}
+{"level":"info","message":"Networking loaded.","timestamp":"2014-03-05T10:50:32.467Z"}
+{"level":"info","message":"Listening on websocket://0.0.0.0:1337","timestamp":"2014-03-05T10:50:32.467Z"}
+{"level":"info","message":"World initiated.","timestamp":"2014-03-05T10:50:32.472Z"}
+{"level":"info","message":"Pools initiated.","timestamp":"2014-03-05T10:50:32.475Z"}
+{"level":"info","message":"Battle factory initiated.","timestamp":"2014-03-05T10:50:32.477Z"}
+{"level":"info","message":"Spells loaded.","timestamp":"2014-03-05T10:50:32.481Z"}
+{"level":"info","message":"Skills loaded.","timestamp":"2014-03-05T10:50:32.483Z"}
+{"level":"info","message":"Main controller started. Server is ready!","timestamp":"2014-03-05T10:50:32.487Z"}
