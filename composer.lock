@@ -2673,12 +2673,12 @@
         },
         {
             "name": "symfony/icu",
-            "version": "1.1.x-dev",
+            "version": "1.2.x-dev",
             "target-dir": "Symfony/Component/Icu",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Icu.git",
-                "reference": "0b82950ece96c1f091dcdb088298bd72dbc83a47"
+                "reference": "98e197da54df1f966dd5e8a4992135703569c987"
             },
             "dist": {
                 "type": "zip",
@@ -2687,7 +2687,7 @@
                 "shasum": ""
             },
             "require": {
-                "lib-icu": ">=3.8",
+                "lib-icu": ">=4.4",
                 "php": ">=5.3.3",
                 "symfony/intl": "~2.3"
             },
@@ -2717,7 +2717,7 @@
                 "icu",
                 "intl"
             ],
-            "time": "2013-10-04 10:05:23"
+            "time": "2013-10-04 10:06:38"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -2842,12 +2842,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "dde2365de834a2d2be32c3400fca55a45853b989"
+                "reference": "a68d69183d1b4d4e48305de5b35dfa93b26b0274"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/dde2365de834a2d2be32c3400fca55a45853b989",
-                "reference": "dde2365de834a2d2be32c3400fca55a45853b989",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/a68d69183d1b4d4e48305de5b35dfa93b26b0274",
+                "reference": "a68d69183d1b4d4e48305de5b35dfa93b26b0274",
                 "shasum": ""
             },
             "require": {
@@ -2949,7 +2949,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-02-28 14:10:50"
+            "time": "2014-02-11 15:39:28"
         },
         {
             "name": "twbs/bootstrap",
