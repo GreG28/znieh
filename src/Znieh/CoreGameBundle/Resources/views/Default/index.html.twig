@@ -88,21 +88,13 @@ function setMyUnitsSide() {
     $("#unit-" + i).on("mouseover", {id: i}, function(event) {
       setInfoSide(ContentManager.units[event.data.id]);
     });
-<<<<<<< HEAD
+
 
     $("#unit-" + i).on("mouseout", {id: i}, function(event) {
       if(selectedUnit == null)
         setEnnemySide();
     });
 
-=======
-
-    $("#unit-" + i).on("mouseout", {id: i}, function(event) {
-      if(selectedUnit == null)
-        setEnnemySide();
-    });
-
->>>>>>> 4711dbfd3befb29572e428b2e0647e797999b1bc
   }
 
   $("#myUnits div.unit:first-child").addClass("selected");
@@ -125,7 +117,6 @@ function setInfoSide(data) {
   else {
     $("#leftSide").html(infoSide);
   }
-<<<<<<< HEAD
 }
 
 function setEnnemySide() {
@@ -137,19 +128,6 @@ function setEnnemySide() {
   }
 }
 
-=======
-}
-
-function setEnnemySide() {
-  if(left) {
-    $("#rightSide").html(ennemySide);
-  }
-  else {
-    $("#leftSide").html(ennemySide);
-  }
-}
-
->>>>>>> 4711dbfd3befb29572e428b2e0647e797999b1bc
 $(document).ready(function(){
   setMyUnitsSide();
   setEnnemySide();
