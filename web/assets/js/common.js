@@ -17,7 +17,7 @@ requirejs.config({
          * AMD, you will likely need a paths entry and also an entry in
          * shim (beyond what you see for the bootstrap shim).
          */
-        jquery: '../vendor/jquery/jquery.min',
+        jquery: '../vendor/jquery/dist/jquery.min',
         jqueryui: '../libs/jquery-ui-1.10.4.custom.min',
         bootstrap: '../vendor/bootstrap/dist/js/bootstrap.min',
         socketio: '../vendor/socket.io-client/dist/socket.io.min',
