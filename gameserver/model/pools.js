@@ -50,9 +50,7 @@ module.exports.init = function() {
 						player.status = 'fighting';
 						this.players[i].status = 'fighting';
 
-						var battle = battle.new(player, this.players[i]);
-
-						player.battle = battle;
+						player.battle = battle.new(player, this.players[i]);
 						this.players[i].battle = battle;
 
 						return;
