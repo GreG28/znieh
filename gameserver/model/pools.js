@@ -45,13 +45,25 @@ module.exports.init = function() {
 							player.socket.emit("service", { msg: 'You are playing on the right side.' });
 							this.players[i].socket.emit("service", { msg: 'You are playing on the left side.' });
 						}
+
+						player.socket.emit("battle-found", {
+							player: this.players[i].name,
+							side: (leftOrRight) ? 'left' : 'right',
+							value1: 'value1'
+						});
+
+						this.players[i].socket.emit("battle-found", {
+							player: player.name,
+							side: (!leftOrRight) ? 'left' : 'right',
+							value1: 'value1'
+						});
 					
 						// TODO: Yes/No
-						player.status = 'fighting';
-						this.players[i].status = 'fighting';
+						player.status = 'battle-found';
+						this.players[i].status = 'battle-found';
 
 						player.battle = battle.new(player, this.players[i]);
-						this.players[i].battle = battle;
+						this.players[i].battle = player.battle;
 
 						return;
 					}
