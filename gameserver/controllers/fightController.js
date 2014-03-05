@@ -37,4 +37,11 @@ module.exports = function(player) {
 		player.battle.map[data.x][data.y] = data.unit;
 	});
 
+	player.socket.on("accept-player", function(data) {
+		
+		
+		if(player.battle.player1.name == player.name)
+			player.battle.player1accepted = data
+	});
+
 }
