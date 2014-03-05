@@ -56,7 +56,7 @@ UnitHandler.Unit = function(name, sign, stats, weapon, armor, skills,  values, t
 var unitList = new Array();
 
 UnitHandler.loadUnit = function(){
-	var data = require('./json/unitex.json');
+	var data = require('../../json/unitex.json');
 	var unitName;
 	var sign;
 	//add stats here

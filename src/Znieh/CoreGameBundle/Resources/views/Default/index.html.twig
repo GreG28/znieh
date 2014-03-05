@@ -4,6 +4,9 @@
 
 {% block createJs %}
 
+
+<script src="{{ asset('js/jquery.js') }}"></script>
+<script src="{{ asset('js/socket.io.js') }}"></script>
 <script src="{{ asset('js/game/XNARectangle.js') }}"></script>
 <script src="{{ asset('js/game/Tile.js') }}"></script>
 <script src="{{ asset('js/game/Map.js') }}"></script>
@@ -164,8 +167,8 @@ $(document).ready(function(){
     Pool ID : <input type="text" id="poolId" value="0" /></input>
   </p>
 
-  <br /><br />
-  <pre id="console" style="border: 1px dotted grey; padding: 10px;width: 600px;"><strong>Console Log :</strong><br /><br /></pre>
+    <br /><br />
+    <pre id="console-game" style="border: 1px dotted grey; padding: 10px;width: 600px;"><strong>Console Log :</strong><br /><br /></pre>
 
   <div id="pools" style="border: 1px dotted grey; width: 600px; padding: 10px;">
     <button id="fight" type="button" class="btn btn-primary">Fight !</button>
@@ -183,9 +186,9 @@ $(document).ready(function(){
 
     gameSocket = io.connect('127.0.0.1:1337');
 
-    gameSocket.emit('auth', { username: '{{ app.user.username }}' , token: '{{ app.user.token }}' });
+    gameSocket.emit('auth', { username: '{{ app.user.username }}' , token: '{{ app.user.token }}' }, function(){});
 
-
+    $('#console-game').append('Connected<br>');
 
     // In
     gameSocket.on('connecting', function () {
@@ -223,17 +226,17 @@ $(document).ready(function(){
 
     gameSocket.on('welcome', function (data) {
       console.log(data);
-      $('#console').append('Server has send welcome message. Your name is : ' + data + '<br />');
+      $('#console-game').append('Server has send welcome message. Your name is : ' + data + '<br />');
     });
 
     gameSocket.on('service', function (data) {
       console.log(data);
-      $('#console').append('Service message : ' + data.msg + '<br />');
+      $('#console-game').append('Service message : ' + data.msg + '<br />');
     });
 
     gameSocket.on('players', function (data) {
       console.log(data);
-      $('#console').append('Current players : ' + data.players + '<br />');
+      $('#console-game').append('Current players : ' + data.players + '<br />');
     });
 
     gameSocket.on('pools-list', function (data) {
@@ -251,22 +254,25 @@ $(document).ready(function(){
     });
 
     $('#auth').click(function () {
-      gameSocket.emit('auth', { username: '{{ app.user.username }}' , token: '{{ app.user.token }}' });
+      gameSocket.emit('auth', { username: '{{ app.user.username }}' , token: '{{ app.user.token }}' }, function(){});
       $('#console').append('<strong>Trying to auth...</strong><br>');
     });
 
     $('#ready').click(function () {
-      gameSocket.emit('ready', null);
+      gameSocket.emit('ready', null, function(){});
       $('#console').append('<strong>Ready to fight. Looking for a game...</strong><br>');
+
     });
 
     $('#fight').click(function () {
-      gameSocket.emit('get-pools', null);
-      $('#pools').html('<strong>Loading ...</strong><br>');
+      gameSocket.emit('get-pools', null, function(data) {
+            $('#pools').html(JSON.stringify(data));
+          });
+          $('#pools').html('<strong>Loading ...</strong><br>');
     });
 
      $('#next-turn').click(function () {
-      gameSocket.emit('next-turn', null);
+      gameSocket.emit('next-turn', null, function(){});
     });
 
   </script>

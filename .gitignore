@@ -8,6 +8,7 @@
 znieh.sublime-workspace
 composer.phar
 /gameserver/node_modules/
+/gameserver/logs/
 /chat-server/node_modules/
 /chat-server/config.user.json
 *.psd
