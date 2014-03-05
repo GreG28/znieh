@@ -54,6 +54,8 @@ Load DataFixtures : (validate with Y to continue)
 4) Assets files
 -------------------------------------
 
+    php app/console assets:install
+    
     php app/console assetic:dump
 
     php app/console assetic:dump --env=prod --no-debug
