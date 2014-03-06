@@ -107,7 +107,7 @@ class PublicController extends Controller
     }
 
     /**
-     * @Route("/unlock/{object}")
+     * @Route("/unlock/{object}", options={"expose"=true})
      * @Template()
      */
     public function unlockAction($object)

@@ -8,11 +8,13 @@
 znieh.sublime-workspace
 composer.phar
 /gameserver/node_modules/
+/gameserver/logs/
 /chat-server/node_modules/
 /chat-server/config.user.json
 *.psd
 /gameserver/config.user.json
-/gamerserver/db.rar
+/gameserver/db.rar
+/gameserver/logs/*
 *DS_Store
 npm-debug.log
 /node_modules
