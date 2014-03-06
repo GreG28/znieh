@@ -63,8 +63,23 @@ UnitHandler.loadUnit = function(){
 	var weaponName;
 	var armorName;
 	var weaponType;
-	var damages;
-	var range;
+	var weaponDamages;
+	var weaponRange;
+
+	var cLife;
+	var cPenetration;
+	var cPrecision;
+	var cEvade;
+	var cParry;
+	var cDefense;
+	var cArmor;
+	var cStrength;
+	var cAgility;
+	var cIntelligence;
+	var cMagicDamage;
+	var cEvilScience;
+	var cMagicSupport;
+
 	//add runes
 	for(var unit in data[0].units){
 		unitName = data[0].units[unit].name;
@@ -80,7 +95,7 @@ UnitHandler.loadUnit = function(){
 		armorType = data[0].units[unit].armor.type.name;
 		armorName = data[0].units[unit].armor.name.name;
 
-		unitList.push(new UnitHandler.Unit(unitName, sign, new UnitHandler.StatSet(50,30,30,30,30,30,30,30,30,30,30,30,30), new UnitHandler.Weapon(weaponName, weaponType, weaponDamages, weaponAttribute, weaponRange, "", weaponRatio), new UnitHandler.Armor(armorName, armorType, "")))
+		unitList.push(new UnitHandler.Unit(unitName, sign, new UnitHandler.StatSet(cLife,cPenetration,cPrecision,cEvade,cParry,cDefense,cArmor,cStrength,cAgility,cIntelligence,cMagicDamage,cEvilScience,cMagicSupport), new UnitHandler.Weapon(weaponName, weaponType, weaponDamages, weaponAttribute, weaponRange, "", weaponRatio), new UnitHandler.Armor(armorName, armorType, "")))
 	}
 
 	return unitList;
