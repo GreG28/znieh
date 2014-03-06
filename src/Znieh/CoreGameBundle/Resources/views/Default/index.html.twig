@@ -180,20 +180,21 @@ $(document).ready(function(){
       <div class="col-sm-5" style="font-size:12px; line-height: 15px;">
         <div class="panel panel-default">
           <div class="panel-heading"><strong>Journal de combat</strong></div>
-          <div class="panel-body" style="height:100px; overflow:auto;">
+          <div class="panel-body" style="height:120px; overflow:auto;" id="journal">
             [12:50:13] <span class="text-success"><strong>Bobby</strong></span> attaque <span class="text-danger"><strong>Bledard</strong></span> avec Tempête de feu (<span class="text-success"><strong>35 dégâts</strong></span>)<br />
             [12:51:02] <span class="text-success"><strong>Jacky</strong></span> attaque <span class="text-danger"><strong>Bledard</strong></span> avec Tremblement de terre (<span class="text-success"><strong>72 dégâts</strong></span>)<br />
             [12:51:02] <span class="text-danger"><strong>Bledard</strong></span> est mort<br />
             [12:51:50] <span class="text-danger"><strong>Ninja</strong></span> attaque <span class="text-success"><strong>Jacky</strong></span> avec Tempête de feu (<span class="text-danger"><strong>37 dégâts</strong></span>)<br />
             [12:51:50] <span class="text-danger"><strong>Ninja</strong></span> attaque <span class="text-success"><strong>Jacky</strong></span> avec Tremblement de terre (<span class="text-danger"><strong>75 dégâts</strong></span>)<br />
             [12:51:50] <span class="text-success"><strong>Bledard</strong></span> est mort<br />
+            [12:51:55] <span class="text-danger"><strong>Bledard</strong> ne peut pas se déplacer ici.</span><br />
           </div>
         </div>
       </div>
     </div>
   </div>
 
-
+<script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
 
 {% endblock %}
 
@@ -202,6 +203,7 @@ $(document).ready(function(){
   {{ parent() }}
 
   <script>
+  $("#journal").scrollTop($("#journal")[0].scrollHeight);
 
     var gameSocket = undefined;
 
