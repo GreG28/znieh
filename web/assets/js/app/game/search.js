@@ -22,10 +22,10 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
   $('#modalGameAcceptance').modal({
     backdrop: 'static',
     keyboard: false,
-    show: true
+    show: false
   });
 
-  var gameSocket = undefined;
+  var gameSocket;
 
   gameSocket = io.connect('127.0.0.1:1337');
   $('#console').append('Connected<br>');
@@ -54,8 +54,12 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
   gameSocket.on('battle-found', function (data) {
     console.log(data);
     $('#console').append('Service message : ' + data.msg + '<br />');
+    $('#modalGameAcceptance #p_name').append(data.player);
+    $('#modalGameAcceptance #p_side').append(data.side);
+    $('#modalGameAcceptance #p_value1').append(data.value1);
     $('#modalReady').modal('hide');
     $('#modalGameAcceptance').modal('show');      
+    
     /*On affiche une page */
   });
 
@@ -118,16 +122,22 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
     $('#join').removeAttr('disabled');
   });
 
-  $('Acceptance_YES').click(function() {
+  $('#Acceptance_YES').click(function() {
+    $('#Acceptance_NO').prop('disabled',true);
+    $('#Acceptance_YES').prop('disabled',true);
     gameSocket.emit('accept-player', true, function (data) {
+      console.log(data);
       // Callback
       // the player accept to fight this enemy
       // now you have to hide this area and let the page with the map to load !
     });
   });
 
-  $('Acceptance_NO').click(function() {
+  $('#Acceptance_NO').click(function() {
+    $('#Acceptance_NO').prop('disabled',true);
+    $('#Acceptance_YES').prop('disabled',true);
     gameSocket.emit('accept-player', false, function (data) {
+      console.log(data);
       // Callback
       // the server has to found another enemy
       // and we ask him to send another
