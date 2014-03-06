@@ -7,30 +7,32 @@
       <div class="step-title">{{ step.title }}</div>
       {% for obj in objects %}
         {% if obj.step.title == step.title %}
-          <span class="game-object" data-trigger="click" data-container="body" data-toggle="popover" data-placement="top" data-html="true" data-original-title="{{ obj.name }}" data-content='
+          <span class="game-object" data-trigger="hover" data-container="body" data-toggle="popover"
+          data-placement="top" data-html="true" data-original-title='{{ obj.name }}' data-content='
           <div>
             {{ obj.description }}
+            <ul>
+              {% for key, effect in obj.effects %}
+              <li>{{ key ~ ' : ' ~ effect }}</li>
+              {% endfor %}
+            </ul>
           </div>
           <div class="game-object-points">
             {{ obj.points }} <img src="{{ asset('img/icons/doubled.png') }}" alt="">
           </div>
           <div style="float:right">
             {% if obj.unlocked %}
-            Débloqué.
+              <a href="#" class="btn btn-default btn-xs">
+                Débloqué
+              </a>
             {% else %}
-            {{ obj.cost }}
+              <a href="#" class="btn btn-default btn-xs unlock-object" data-id="{{ obj.id }}">
+                  {{ obj.cost }}
+              </a>
             {% endif %}
           </div>
           '>
-            {% if obj.unlocked %}
-                <a href="#" class="btn btn-default btn-xs" data-id="{{ obj.id }}">
-                  <img src="{{ asset('img/icons/lame.png') }}" class="draggable" data-id="{{ obj.id }}" alt="">
-                </a>
-            {% else %}
-              <a href="#" class="btn btn-default btn-xs unlock-object" data-id="{{ obj.id }}">
-                  <img src="{{ asset('img/icons/lame.png') }}" class="draggable" data-id="{{ obj.id }}" alt="">
-              </a>
-            {% endif %}
+          <img src="{{ asset('img/icons/lame.png') }}" class="draggable" data-id="{{ obj.id }}" alt="{{ obj.name }}">
           </span>
         {% endif %}
       {% endfor %}
