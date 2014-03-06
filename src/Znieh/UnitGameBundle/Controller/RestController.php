@@ -16,7 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  * Controller that provides Restfuls functions.
  *
  * @Prefix("/api")
- * @NamePrefix("znieh_api_")
+ * @NamePrefix("api_")
  * @RouteResource("User")
  */
 class RestController extends FOSRestController

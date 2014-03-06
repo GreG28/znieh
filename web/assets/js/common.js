@@ -17,10 +17,12 @@ requirejs.config({
          * AMD, you will likely need a paths entry and also an entry in
          * shim (beyond what you see for the bootstrap shim).
          */
-        jquery: '../vendor/jquery/dist/jquery.min',
+        jquery: '../vendor/jquery/jquery.min',
         jqueryui: '../libs/jquery-ui-1.10.4.custom.min',
         bootstrap: '../vendor/bootstrap/dist/js/bootstrap.min',
-        socketio: '../vendor/socket.io-client/dist/socket.io.min'
+        socketio: '../vendor/socket.io-client/dist/socket.io.min',
+        fos_routing: '../../bundles/fosjsrouting/js/router',
+        /*fos_routing_routes: '../../js/fos_js_routes'*/
     },
     shim: {
         /**
@@ -36,6 +38,7 @@ requirejs.config({
          * a little more work here.
          */
         bootstrap: ['jquery'],
-        jqueryui: ['jquery']
+        jqueryui: ['jquery'],
+        fos_routing: { exports: 'Routing' }
     }
 });
