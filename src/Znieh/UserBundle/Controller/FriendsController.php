@@ -11,6 +11,7 @@ use Znieh\UserBundle\Entity\Friends;
 use Znieh\UserBundle\Entity\User;
 use Znieh\UserBundle\Entity\FriendsLink;
 use Znieh\UserBundle\Form\FriendsType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Friends controller.
@@ -271,5 +272,34 @@ class FriendsController extends Controller
             'entities' => $entities,
             'userAct' => $slug,
         )) );
+    }
+
+     /**
+     * @Route("/api/{id}", name="friends_Json")
+     */
+     public function chatFriendsAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $em->getRepository('ZniehUserBundle:User')
+                   ->findOneById($id);
+
+        $tt = $user->getId();
+        echo $tt;
+
+        $friends = $em->getRepository('ZniehUserBundle:FriendsLink')
+                    ->findFriends($user);
+
+        if($friends == null)
+          echo 'bite lol';
+        else
+          echo 'caca';
+
+        foreach($friends as $caca)
+        {
+          echo $caca->getAccept();
+        }
+
+        return array('friends' => $friends);
     }
 }
