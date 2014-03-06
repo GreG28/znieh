@@ -28,8 +28,11 @@ module.exports.init = function() {
         logger.verbose('User "' + player.name + '" disconnected from: ' + socket.handshake.address.address);
       });
 
-      var waitingController = require('./waitingController')(player);
+      var chatController = require('./chatController')(player);
       var fightController = require('./fightController')(player);
+      var waitingController = require('./waitingController')(player);
+
+      require('./chatController').sendPendingMessages(player);
 
     });
 
