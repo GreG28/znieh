@@ -10,6 +10,7 @@ var socketio = require('../network/socketio');
 var logger = require('../util/logger');
 var world = require('../model/world');
 var player = require('../model/player');
+var pools = require('../model/pools');
 
 module.exports.init = function() {
 
@@ -22,7 +23,7 @@ module.exports.init = function() {
       socket.on('disconnect', function () {
         world.broadcast("service", { msg: 'player ' + player.name + ' is now disconnected.' });
         world.removePlayer(player);
-        //world.pool.removePlayer(player);
+        pools.removePlayer(player);
         world.broadcastUserList();
 
         logger.verbose('User "' + player.name + '" disconnected from: ' + socket.handshake.address.address);
