@@ -1,0 +1,108 @@
+#weapons {
+  position: fixed;
+  top: 20%;
+  left: 0;
+  width: 300px;
+}
+*, *:before, *:after {
+  -webkit-box-sizing: initial;
+  -moz-box-sizing: initial;
+  box-sizing: initial;
+}
+.root {
+  position: relative;
+  overflow: hidden;
+}
+.level {
+  margin-left: 400px;
+  position: relative;
+}
+.level:before {
+  content: "";
+  width: 50px;
+  border-top: 2px solid #eee9dc;
+  position: absolute;
+  left: -98px;
+  top: 50%;
+  margin-top: 1px;
+}
+.step {
+  min-height: 300px;
+  position: relative;
+}
+.step:before {
+  content: "";
+  height: 100%;
+  border-left: 2px solid #eee9dc;
+  position: absolute;
+  left: -48px;
+}
+.step:after {
+  content: "";
+  width: 46px;
+  border-top: 2px solid #eee9dc;
+  position: absolute;
+  left: -46px;
+  top: 50%;
+  margin-top: 1px;
+}
+.step:first-child:before {
+  width: 10px;
+  height: 50%;
+  top: 50%;
+  margin-top: 2px;
+  border-top-left-radius: 10px;
+}
+.step:first-child:after {
+  height: 10px;
+  border-top-left-radius: 10px;
+}
+.step:last-child:before {
+  width: 10px;
+  height: 50%;
+  border-bottom-left-radius: 10px;
+}
+.step:last-child:after {
+  height: 10px;
+  border-top: none;
+  border-bottom: 2px solid #eee9dc;
+  border-bottom-left-radius: 10px;
+  margin-top: -11px;
+}
+.step:only-child:before {
+  border-top: none;
+  border-bottom: none;
+  content: none;
+  margin-top: 0px;
+}
+.step:only-child:after {
+  width: 52px;
+  left: -52px;
+  top: 50.60%;
+  border-bottom-left-radius: 0;
+}
+.step-content {
+  width: 280px;
+  height: 200px;
+  padding: 5px 10px;
+  border: 2px solid #eee9dc;
+  border-radius: 5px;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -115px;
+  background-color: brown;
+}
+.game-object {
+  padding: 5px 5px 5px 5px;
+  width: 50px;
+  height: 20px;
+}
+.game-object img {
+  margin-right: 3px;
+}
+.game-object-points {
+  float: left;
+
+}

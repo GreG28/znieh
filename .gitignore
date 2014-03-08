@@ -13,7 +13,8 @@ composer.phar
 /chat-server/config.user.json
 *.psd
 /gameserver/config.user.json
-/gamerserver/db.rar
+/gameserver/db.rar
+/gameserver/logs/*
 *DS_Store
 npm-debug.log
 /node_modules
