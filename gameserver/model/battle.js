@@ -20,8 +20,8 @@ module.exports.new = function(p1, p2) {
 		player1: p1,
 		player2: p2,
 
-		player1accepted: false,
-		player2accepted: false,
+		player1accepted: undefined,
+		player2accepted: undefined,
 		
 		turn: 1,
 		map: undefined,
