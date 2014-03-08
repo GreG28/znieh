@@ -50,6 +50,22 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
     $('#console').append('Current players : ' + data.players + '<br />');
   });
 
+  gameSocket.on('search-started', function (data) {
+    console.log('search-started ->' + data);
+    $('#console').append('La recherche de partie a commencé : ' + data.search-started + '<br />');
+  });
+
+  gameSocket.on('search-restarted', function (data) {
+    console.log('search-restarted ->' + data);
+    $('#console').append('La recherche de partie a recommencé : ' + data.search-restarted + '<br />');
+    $('#modalGameAcceptance').modal('hide');
+    $('#modalReady').modal('show');      
+    /*remise à jours du modal acceptance */
+    $('#modalGameAcceptance #p_name').empty();
+    $('#modalGameAcceptance #p_side').empty();
+    $('#modalGameAcceptance #p_value1').empty();
+  });
+
   // the server send a player to fight with
   gameSocket.on('battle-found', function (data) {
     console.log(data);
