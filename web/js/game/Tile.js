@@ -139,7 +139,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
             }
             else if(gameStatut == GameStatut.MOVE) {
                 selectedUnit.move(_i, _j);
-                gameStatut = GameStatut.IDLE;
+                gameStatut = GameStatut.ATTACK;
             }
             else {
                 gameStatut = GameStatut.IDLE;
