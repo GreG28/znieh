@@ -1,7 +1,7 @@
 /**
  * server.js
  * 
- * Main file for Znieh game.
+ * Main file for Znieh gameserver.
  *
  * @author alfo
  * @version 0.1.2
@@ -13,8 +13,6 @@ var serverLoadStart = new Date();
 
 var os = require('os');
 var util = require('util');
-//var process = require('process');
-
 
 console.log('Server is starting...');
 console.log('Load start is at: ' + serverLoadStart.toString())
@@ -50,9 +48,14 @@ battle.init();
 skillHandler.loadSpells();
 skillHandler.loadSkills();
 
-
+/*
+ * Main controller initialization
+ */
 var mainController = require('./controllers/mainController');
 mainController.init();
 
+/*
+ * Server is loaded
+ */
 console.log('Server loaded in: ' + Math.abs(new Date() - serverLoadStart) + 'ms');
 console.log('Used memory: ' + (process.memoryUsage().rss/1048576).toFixed(2) + "M");
