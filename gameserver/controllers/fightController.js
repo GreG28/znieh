@@ -56,8 +56,21 @@ module.exports = function(player) {
 
 				player.battle.player1.socket.emit("search-restarted", null);
 				player.battle.player2.socket.emit("search-restarted", null);
+
+				return;
+
+			} else {
+				player.battle.player1.status = 'placing-units';
+				player.battle.player2.status = 'placing-units';
+
+				player.battle.player1.socket.emit("placement-started", null);
+				player.battle.player2.socket.emit("placement-started", null);
+
+				return;
 			}
 		}
+
+
 	});
 
 }
