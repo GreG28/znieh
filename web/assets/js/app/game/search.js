@@ -52,12 +52,12 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
 
   gameSocket.on('search-started', function (data) {
     console.log('search-started ->' + data);
-    $('#console').append('La recherche de partie a commencé : ' + data.search-started + '<br />');
+    $('#console').append('La recherche de partie a commencé : ' + data + '<br />');
   });
 
   gameSocket.on('search-restarted', function (data) {
     console.log('search-restarted ->' + data);
-    $('#console').append('La recherche de partie a recommencé : ' + data.search-restarted + '<br />');
+    $('#console').append('La recherche de partie a recommencé : ' + data + '<br />');
     $('#modalGameAcceptance').modal('hide');
     $('#modalReady').modal('show');      
     /*remise à jours du modal acceptance */
@@ -69,12 +69,21 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
   // the server send a player to fight with
   gameSocket.on('battle-found', function (data) {
     console.log(data);
-    $('#console').append('Service message : ' + data.msg + '<br />');
     $('#modalGameAcceptance #p_name').append(data.player);
     $('#modalGameAcceptance #p_side').append(data.side);
     $('#modalGameAcceptance #p_value1').append(data.value1);
     $('#modalReady').modal('hide');
     $('#modalGameAcceptance').modal('show');      
+    
+    /*On affiche une page */
+  });
+
+  gameSocket.on('placement-started', function (data) {
+    console.log(data);
+    $('#console').append('Service message : placement started <br />');
+    
+    /*For the moment this part is hide when the players are starting to place their units*/
+    $('#modalGameAcceptance').modal('hide');      
     
     /*On affiche une page */
   });
@@ -157,7 +166,6 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
       // Callback
       // the server has to found another enemy
       // and we ask him to send another
-      /* data-text-loading ="<i class='icon-spinner icon-spin icon-large'></i> @Localization.Uploading" */
     });
   });
 });
