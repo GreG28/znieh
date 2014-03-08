@@ -102,14 +102,11 @@ physicalAttack.physicalHit = function(attackUnit, defenseUnit){
 		physicalAttack.utility.parried = physicalAttack.isParried();
 		physicalAttack.utility.criticalHit = physicalAttack.isCriticalHit();
 		physicalAttack.setParriedDamages();
-		if(physicalAttack.utility.parried)
-			console.log("Parried");
+
 		physicalAttack.utility.finalDamage = (physicalAttack.getDamages() +  physicalAttack.utility.criticalHit * physicalAttack.getDamages()) * physicalAttack.getStrengthWeakness() * physicalAttack.getArmorReduction() * physicalAttack.utility.nonParriedDamage + physicalAttack.getMagicDamage();
 	}
 	else{
-		console.log("Dodged");
 		return 0;
 	}
-
-	return physicalAttack.utility.finalDamage.toFixed(2);
+	return physicalAttack.utility.finalDamage.toFixed(0);
 }
