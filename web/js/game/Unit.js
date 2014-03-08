@@ -193,8 +193,15 @@
 
         this._container.on("click", function(evt) {
             if(gameStatut == GameStatut.ATTACK) {
-                console.log("ATTAQUE CE NAAAAZE");
-                gameStatut = GameStatut.IDLE;
+                if((selectedUnit._i == that._i - 1 && selectedUnit._j == that._j) || (selectedUnit._i == that._i + 1 && selectedUnit._j == that._j) || (selectedUnit._i == that._i && selectedUnit._j == that._j - 1) || (selectedUnit._i == that._i && selectedUnit._j == that._j + 1)) {
+                    console.log("ATTAQUE CE NAAAAZE");
+                    // On demande au serveur si l'attaque est valide et on récupère le nombre de dégats qu'on affichera
+                    gameStatut = GameStatut.IDLE;
+                    ContentManager.unSelectAllTiles();
+                    setEnnemySide();
+                    ContentManager.clearUnitsMenu();
+                    selectedUnit = null;
+                }
             }
             else {
                 console.log("[UNIT] x" + container.x + " y" + container.y);
@@ -278,8 +285,6 @@
         easystar.calculate();
 
         ContentManager.unSelectAllTiles();
-        ContentManager.clearUnitsMenu();
-        setEnnemySide();
     }
 
     Unit.prototype.getAllTilesStatut = function () {

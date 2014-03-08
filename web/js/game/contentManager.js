@@ -204,7 +204,6 @@ function ContentManager(stage, width, height) {
     };
 
     ContentManager.unSelectAllTiles = function() {
-
         for(var i = 0; i < map.gameWidth; i++) {
             for(var j = 0; j < map.gameWidth; j++) {
                 map.tiles[i][j].shape_selection_possible.visible = false;
@@ -224,6 +223,13 @@ function ContentManager(stage, width, height) {
             $("#unit-" + i).removeClass("valid");
             $("#unit-" + i).removeClass("selected");
         };
+    }
+
+    ContentManager.selectTilesAttack = function(x, y) {
+        map.tiles[y - 1][x].shape_selection_possible.visible = true;
+        map.tiles[y + 1][x].shape_selection_possible.visible = true;
+        map.tiles[y][x - 1].shape_selection_possible.visible = true;
+        map.tiles[y][x + 1].shape_selection_possible.visible = true;
     }
 
     /**
