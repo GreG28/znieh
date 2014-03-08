@@ -1,10 +1,10 @@
 GameStatut = {
     IDLE:           0,      // Le joueur peut sélectionner une de ses unités mais ne peut effectuer aucune autre action
     START:          1,
-    PLACEMENT:      2,
-    MOVE:           3,
-    ATTACK:         4,
-}
+    PLACEMENT:      2,      // Le joueur peut placer son unité
+    MOVE:           3,      // Une unité est sélectionnée, le joueur peut maintenant la déplacer
+    ATTACK:         4,      // Une unité est sélectionnée, a déjà été déplacée, elle peut maintenant attaquer
+ };
 
 $(window).keydown(function(e){
     if(gameStatut == GameStatut.MOVE)

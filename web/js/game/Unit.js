@@ -192,12 +192,18 @@
         var that = this;
 
         this._container.on("click", function(evt) {
-            console.log("[UNIT] x" + container.x + " y" + container.y);
-            ContentManager.unSelectAllTiles();
-            selectedUnit = that;
-            setInfoSide(selectedUnit);
+            if(gameStatut == GameStatut.ATTACK) {
+                console.log("ATTAQUE CE NAAAAZE");
+                gameStatut = GameStatut.IDLE;
+            }
+            else {
+                console.log("[UNIT] x" + container.x + " y" + container.y);
+                ContentManager.unSelectAllTiles();
+                selectedUnit = that;
+                setInfoSide(selectedUnit);
 
-            that.getAllTilesStatut();
+                that.getAllTilesStatut();
+            }
 
         });
 
@@ -361,7 +367,7 @@
      * Handles input, performs physics and animates the Unit sprite
      */
     Unit.prototype.tick = function () {
-        
+
         // It not possible to have a predictable tick/update time
         // requestAnimationFrame could help but is currently not widely and properly supported by browsers
         // this.elapsed = (Ticker.getTime() - this.lastUpdate) / 1000;
