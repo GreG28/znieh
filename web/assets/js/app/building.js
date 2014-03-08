@@ -3,21 +3,44 @@
   */
  define(['jquery', 'jqueryui', 'router', 'bootstrap'], function ($) {
     console.log('building module loaded');
-     $('.unlock-object').on('click', function(e){
-         e.preventDefault();
-         var id = $(this).data("id");
-         var obj = $(this);
-         $.get(Routing.generate('znieh_villagegame_public_unlock', {object : id}))
-         .done(function(data){
-           console.log('done');
-           obj.children().attr("src", 'img/icons/accept.png');
-         })
-         .fail(function(e) {
-           console.log('fail');
+
+    /** for popover stay on focus **/
+    (function($) {
+        var oldHide = $.fn.popover.Constructor.prototype.hide;
+
+        $.fn.popover.Constructor.prototype.hide = function() {
+            if (this.options.trigger === "hover" && this.tip().is(":hover")) {
+                var that = this;
+                // try again after what would have been the delay
+                setTimeout(function() {
+                    return that.hide.call(that, arguments);
+                }, that.options.delay.hide);
+                return;
+            }
+            oldHide.call(this, arguments);
+        };
+
+    })(jQuery);
+
+    $(document).ready(function() {
+        $('body').on('click', '.unlock-object', function(e) {
+          e.preventDefault();
+            var id = $(this).data("id");
+            var obj = $(this);
+            obj.button('loading');
+            $.get(Routing.generate('znieh_villagegame_public_unlock', {object : id}))
+            .done(function(data) {
+              console.log('done');
+              obj.button('reset');
+              obj.text('Débloqué');
+            })
+            .fail(function(e) {
+              console.log('fail');
+            });
          });
-     });
-     $(document).ready(function(){
-         $('.game-object').tooltip();
+         $('.game-object').popover().parent().on('click', '.unlock-object', function() {
+              console.log('click');
+          });
          var form = $('#znieh_unitgamebundle_weapon').parent();
          $(form).hide();
          $( ".draggable" ).draggable({ cursor: "move", helper: "clone", revert: "invalid" });
@@ -36,13 +59,12 @@
                      $(form)[0].reset();
                  }
              });
-
          });
-         $( "#droppable" ).droppable({
-               drop: function( event, ui ) {
-                   console.log($('#znieh_unitgamebundle_weapon_parts_' + ui.draggable.data("id")));
-                   $('#znieh_unitgamebundle_weapon_parts_' + ui.draggable.data("id")).prop('checked', true);
-               }
+         $("#droppable").droppable({
+              drop: function( event, ui ) {
+                  console.log($('#znieh_unitgamebundle_weapon_parts_' + ui.draggable.data("id")));
+                  $('#znieh_unitgamebundle_weapon_parts_' + ui.draggable.data("id")).prop('checked', true);
+              }
          });
      });
  });
