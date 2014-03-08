@@ -40,8 +40,24 @@ module.exports = function(player) {
 	player.socket.on("accept-player", function(data) {
 		
 		
-		if(player.battle.player1.name == player.name)
-			player.battle.player1accepted = data
+		if(player.battle.player1.name == player.name) {
+			player.battle.player1accepted = data;
+		}
+		else {
+			player.battle.player2accepted = data;
+		}
+
+		// If both player have answered
+		if(player.battle.player1accepted !== undefined && player.battle.player2accepted !== undefined) {
+			// If at least one player have denied the battle
+			if(player.battle.player1accepted === false || player.battle.player2accepted === false) {
+				player.battle.player1.status = 'ready';
+				player.battle.player2.status = 'ready';
+
+				player.battle.player1.socket.emit("search-restarted", null);
+				player.battle.player2.socket.emit("search-restarted", null);
+			}
+		}
 	});
 
 }
