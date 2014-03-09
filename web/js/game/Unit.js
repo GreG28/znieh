@@ -192,12 +192,25 @@
         var that = this;
 
         this._container.on("click", function(evt) {
-            console.log("[UNIT] x" + container.x + " y" + container.y);
-            ContentManager.unSelectAllTiles();
-            selectedUnit = that;
-            setInfoSide(selectedUnit);
+            if(gameStatut == GameStatut.ATTACK) {
+                if((selectedUnit._i == that._i - 1 && selectedUnit._j == that._j) || (selectedUnit._i == that._i + 1 && selectedUnit._j == that._j) || (selectedUnit._i == that._i && selectedUnit._j == that._j - 1) || (selectedUnit._i == that._i && selectedUnit._j == that._j + 1)) {
+                    console.log("ATTAQUE CE NAAAAZE");
+                    // On demande au serveur si l'attaque est valide et on récupère le nombre de dégats qu'on affichera
+                    gameStatut = GameStatut.IDLE;
+                    ContentManager.unSelectAllTiles();
+                    setEnnemySide();
+                    ContentManager.clearUnitsMenu();
+                    selectedUnit = null;
+                }
+            }
+            else {
+                console.log("[UNIT] x" + container.x + " y" + container.y);
+                ContentManager.unSelectAllTiles();
+                selectedUnit = that;
+                setInfoSide(selectedUnit);
 
-            that.getAllTilesStatut();
+                that.getAllTilesStatut();
+            }
 
         });
 
@@ -272,8 +285,6 @@
         easystar.calculate();
 
         ContentManager.unSelectAllTiles();
-        ContentManager.clearUnitsMenu();
-        setEnnemySide();
     }
 
     Unit.prototype.getAllTilesStatut = function () {
@@ -361,7 +372,7 @@
      * Handles input, performs physics and animates the Unit sprite
      */
     Unit.prototype.tick = function () {
-        
+
         // It not possible to have a predictable tick/update time
         // requestAnimationFrame could help but is currently not widely and properly supported by browsers
         // this.elapsed = (Ticker.getTime() - this.lastUpdate) / 1000;
