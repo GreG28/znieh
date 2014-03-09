@@ -75,7 +75,9 @@ Message : <input type="text" id="msg" value="Hello, World." />
   });
 
   $('#auth').click(function () {
-    socket.emit('auth', {username: $("#username").val() , token: 'abc'}, function(){});
+    socket.emit('auth', {username: $("#username").val() , token: 'abc'}, function(){
+        initChat();
+    });
     $('#console').append('<strong>Trying to auth...</strong><br>');
   });
 
@@ -93,8 +95,22 @@ Message : <input type="text" id="msg" value="Hello, World." />
 
 
   /* CHAT SERVER */
+var initChat = function() {
+  socket.emit('friends-list');
 
-  var addConversation = function(from) {
+  conversations[conversations.length] = "Friends list";
+
+  $('#chat-conversations')
+    .append('<li class="chat-conversation"><a href="#tab0" data-toggle="tab">Friends list</a></li>');
+  $('#chat-messages').append('<div class="tab-pane" id="tab0"><ul class="chat-message"></ul></div>');
+
+  $('#chat-conversations > li').addClass('active');
+  $('#chat-messages > div').addClass('active');
+
+};
+
+
+var addConversation = function(from) {
   conversations[conversations.length] = from;
   var index = conversations.length - 1;
 
@@ -102,7 +118,7 @@ Message : <input type="text" id="msg" value="Hello, World." />
     .append('<li class="chat-conversation"><a href="#tab' + index + '" data-toggle="tab">' + from + '</a></li>');
   $('#chat-messages').append('<div class="tab-pane" id="tab' + index + '"><p class="chat-message"></p><input type="text" class="form-control chat-input" id="chat-input-' + index + '" placeholder="Entrez votre message..."/></div>');
 
-  if(conversations.length == 1) {
+  /*if(conversations.length == 1) {
     $('#chat-conversations > li').addClass('active');
     /*$('#chat-conversations > li > a').each(function() {
     var elem = $(this);
@@ -115,9 +131,9 @@ Message : <input type="text" id="msg" value="Hello, World." />
             elem.css('color', 'rgb(255, 255, 255)');
         }    
       }, 200);
-    });*/
+    });
     $('#chat-messages > div').addClass('active');
-  }
+  }*/
 
   $('#chat-input-' + index).keyup(function(e){
     if(e.keyCode == 13)
@@ -145,6 +161,19 @@ socket.on('message', function (data) {
   $('#tab' + index + ' > p').append('['+date+'] '+data.from+' -> '+data.to+': '+data.msg+'<br />');
   
   $('#console').append('<strong>['+date+'] '+data.from+' -> '+data.to+': '+data.msg+'</strong><br />');
+
+});
+
+socket.on('friends-list', function (data) {
+
+  for (var i = 0; i < data.length; i++) {
+    $('#tab0 > ul').append('<li><a href="#" id="friend' + i + '" data-name="' + data[i] + '">' + data[i] + '</a></li>');
+
+    $('#friend' + i).on('click', function(handler) {
+      addConversation($(handler.target).data('name'));
+      console.log(handler);
+    });
+  }
 
 });
 

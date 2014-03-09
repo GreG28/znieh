@@ -49,6 +49,14 @@
 	    	});
 	    }
  	});
+
+ 	player.socket.on("friends-list", function(data) {
+ 		//TODO: Waiting for @onedkr API implementation
+ 		var friends = ["test", "test2", "test3"];
+
+ 		player.socket.emit("friends-list", friends);
+ 		
+ 	});
 }
 
 module.exports.sendPendingMessages = function(player) {
