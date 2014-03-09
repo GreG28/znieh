@@ -3,6 +3,88 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
 <style type="text/css">
 body { padding: 15px; }
+
+#chat {
+  width: 700px;
+  height: 320px;
+  border: 1px dashed grey;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.nav-tabs > li > a {
+  border: 1px solid #ddd;
+  border-radius: 4px 4px 0 0;
+}
+
+.nav-tabs > li.active > a {
+  color: #fff;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+
+.nav-tabs > li.active > a:hover {
+  background-color: #357ebd;
+  color: #eee;
+}
+
+.chat-messages {
+  height: 220px;
+  overflow-y: scroll;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chat-messages li
+{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+
+.chat-messages li.left .chat-body
+{
+    margin-left: 65px;
+}
+
+.chat-messages li.right .chat-body
+{
+    margin-right: 65px;
+}
+
+.chat-messages li .chat-body p
+{
+    margin: 0;
+    color: #777777;
+}
+
+.chat-messages > ul > small {
+  margin-top: -20px;
+}
+
+.glyphicon
+{
+    margin-right: 5px;
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
 </style>
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="http://127.0.0.1:1337/socket.io/socket.io.js"></script>
@@ -115,8 +197,8 @@ var addConversation = function(from) {
   var index = conversations.length - 1;
 
   $('#chat-conversations')
-    .append('<li class="chat-conversation"><a href="#tab' + index + '" data-toggle="tab">' + from + '</a></li>');
-  $('#chat-messages').append('<div class="tab-pane" id="tab' + index + '"><p class="chat-message"></p><input type="text" class="form-control chat-input" id="chat-input-' + index + '" placeholder="Entrez votre message..."/></div>');
+    .append('<li class="chat-conversation" id="convers' + index + '"><a href="#tab' + index + '" data-toggle="tab">' + from + '</a></li>');
+  $('#chat-messages').append('<div class="tab-pane" id="tab' + index + '"><ul class="chat-messages"></ul><input type="text" class="form-control chat-input" id="chat-input-' + index + '" placeholder="Entrez votre message..."/></div>');
 
   /*if(conversations.length == 1) {
     $('#chat-conversations > li').addClass('active');
@@ -139,7 +221,18 @@ var addConversation = function(from) {
     if(e.keyCode == 13)
     {
       var date = moment().calendar();
-      $('#tab' + index + ' > p').append('['+date+'] -> '+conversations[index]+': '+$('#chat-input-' + index).val()+'<br />');
+      $('#tab' + index + ' > ul').append('<li class="right clearfix">');
+        //$('#tab' + index + ' > ul').append('<span class="chat-img pull-left"><img src="http://placehold.it/50/55C1E7/fff&text=You" alt="User Avatar" class="img-circle" /></span>');
+        $('#tab' + index + ' > ul').append('<div class="chat-body clearfix">');
+          $('#tab' + index + ' > ul').append('<div class="header">');
+            $('#tab' + index + ' > ul').append('<strong class="primary-font">You</strong>');
+            $('#tab' + index + ' > ul').append('<small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>' + date + '</small>');
+          $('#tab' + index + ' > ul').append('</div>');
+          $('#tab' + index + ' > ul').append('<p>' + $('#chat-input-' + index).val() + '</p>');
+        $('#tab' + index + ' > ul').append('</div>');
+      $('#tab' + index + ' > ul').append('</li>');
+
+      //$('#tab' + index + ' > p').append('<span class="msg">['+date+'] -> '+conversations[index]+': '+$('#chat-input-' + index).val()+'</span><br />');
       socket.emit('message', {target: conversations[index], msg: $('#chat-input-' + index).val()}); 
       $('#chat-input-' + index).val('');
     }
@@ -158,7 +251,18 @@ socket.on('message', function (data) {
   if(index == undefined) index = addConversation(data.from);
   
   date = moment(data.date, "X").calendar();
-  $('#tab' + index + ' > p').append('['+date+'] '+data.from+' -> '+data.to+': '+data.msg+'<br />');
+  $('#tab' + index + ' > ul').append('<li class="left clearfix">');
+    //$('#tab' + index + ' > ul').append('<span class="chat-img pull-right"><img src="http://placehold.it/50/55C1E7/fff&text=' + data.from + '" alt="User Avatar" class="img-circle" /></span>');
+    $('#tab' + index + ' > ul').append('<div class="chat-body clearfix">');
+      $('#tab' + index + ' > ul').append('<div class="header">');
+        $('#tab' + index + ' > ul').append('<small class="text-muted"><span class="glyphicon glyphicon-time"></span>' + date + '</small>');
+        $('#tab' + index + ' > ul').append('<strong class="pull-right primary-font">' + data.from + '</strong>');
+      $('#tab' + index + ' > ul').append('</div>');
+      $('#tab' + index + ' > ul').append('<p>' + data.msg + '</p>');
+    $('#tab' + index + ' > ul').append('</div>');
+  $('#tab' + index + ' > ul').append('</li>');
+
+  //$('#tab' + index + ' > p').append('<span class="msg">['+date+'] '+data.from+' -> '+data.to+': '+data.msg+'</span><br />');
   
   $('#console').append('<strong>['+date+'] '+data.from+' -> '+data.to+': '+data.msg+'</strong><br />');
 
@@ -170,8 +274,19 @@ socket.on('friends-list', function (data) {
     $('#tab0 > ul').append('<li><a href="#" id="friend' + i + '" data-name="' + data[i] + '">' + data[i] + '</a></li>');
 
     $('#friend' + i).on('click', function(handler) {
-      addConversation($(handler.target).data('name'));
-      console.log(handler);
+      var index = undefined;
+
+      for (var i = 0; i < conversations.length; i++) {
+        if(conversations[i] == $(handler.target).data('name')) index = i;
+      }
+
+      if(index == undefined) index = addConversation($(handler.target).data('name'));
+
+      $('#chat-conversations > li').removeClass('active');
+      $('#chat-messages > div').removeClass('active');
+      $('#chat-conversations > li#convers' + index).addClass('active');
+      $('#chat-messages > div#tab' + index).addClass('active');
+
     });
   }
 
