@@ -94,23 +94,23 @@ class Ressource
 
     public function __construct()
     {
-        $this->gold = 0;
-        $this->sto = 0;
-        $this->copper = 0;
-        $this->bronze = 0;
-        $this->minorCloth = 0;
-        $this->standardCloth = 0;
-        $this->roughLeather = 0;
-        $this->rawLeather= 0;
-        $this->oakWood = 0;
-        $this->cedarWood = 0;
+        $this->gold = 1337;
+        $this->sto = 1337;
+        $this->copper = 1337;
+        $this->bronze = 1337;
+        $this->minorCloth = 1337;
+        $this->standardCloth = 1337;
+        $this->roughLeather = 1337;
+        $this->rawLeather= 1337;
+        $this->oakWood = 1337;
+        $this->cedarWood = 1337;
     }
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -126,14 +126,14 @@ class Ressource
     public function setGold($gold)
     {
         $this->gold = $gold;
-    
+
         return $this;
     }
 
     /**
      * Get gold
      *
-     * @return integer 
+     * @return integer
      */
     public function getGold()
     {
@@ -145,7 +145,7 @@ class Ressource
         if($this->gold >= $val)
             return true;
         return false;
-    } 
+    }
 
     public function addGold($mod)
     {
@@ -153,7 +153,7 @@ class Ressource
             $this->gold = 0;
         else
             $this->gold = $this->gold + $mod;
-    } 
+    }
 
     /**
      * Set sto
@@ -164,14 +164,14 @@ class Ressource
     public function setSto($sto)
     {
         $this->sto = $sto;
-    
+
         return $this;
     }
 
     /**
      * Get sto
      *
-     * @return integer 
+     * @return integer
      */
     public function getSto()
     {
@@ -183,7 +183,7 @@ class Ressource
         if($this->sto >= $val)
             return true;
         return false;
-    } 
+    }
 
     public function addSto($mod)
     {
@@ -191,7 +191,7 @@ class Ressource
             $this->sto = 0;
         else
             $this->sto = $this->sto + $mod;
-    } 
+    }
 
     /**
      * Set copper
@@ -202,14 +202,14 @@ class Ressource
     public function setCopper($copper)
     {
         $this->copper = $copper;
-    
+
         return $this;
     }
 
     /**
      * Get copper
      *
-     * @return integer 
+     * @return integer
      */
     public function getCopper()
     {
@@ -221,7 +221,7 @@ class Ressource
         if($this->copper >= $val)
             return true;
         return false;
-    } 
+    }
 
     public function addCopper($mod)
     {
@@ -229,7 +229,7 @@ class Ressource
             $this->copper = 0;
         else
             $this->copper = $this->copper + $mod;
-    } 
+    }
 
     /**
      * Set bronze
@@ -240,14 +240,14 @@ class Ressource
     public function setBronze($bronze)
     {
         $this->bronze = $bronze;
-    
+
         return $this;
     }
 
     /**
      * Get bronze
      *
-     * @return integer 
+     * @return integer
      */
     public function getBronze()
     {
@@ -259,7 +259,7 @@ class Ressource
         if($this->gold >= $val)
             return true;
         return false;
-    } 
+    }
 
     public function addBronze($mod)
     {
@@ -267,7 +267,7 @@ class Ressource
             $this->bronze = 0;
         else
             $this->bronze = $this->bronze + $mod;
-    } 
+    }
 
     /**
      * Set minorCloth
@@ -278,14 +278,14 @@ class Ressource
     public function setMinorCloth($minorCloth)
     {
         $this->minorCloth = $minorCloth;
-    
+
         return $this;
     }
 
     /**
      * Get minorCloth
      *
-     * @return integer 
+     * @return integer
      */
     public function getMinorCloth()
     {
@@ -297,7 +297,7 @@ class Ressource
         if($this->minorCloth >= $val)
             return true;
         return false;
-    } 
+    }
 
     public function addMinorCloth($mod)
     {
@@ -305,7 +305,7 @@ class Ressource
             $this->minorCloth = 0;
         else
             $this->minorCloth = $this->minorCloth + $mod;
-    } 
+    }
 
     /**
      * Set standardCloth
@@ -316,14 +316,14 @@ class Ressource
     public function setStandardCloth($standardCloth)
     {
         $this->standardCloth = $standardCloth;
-    
+
         return $this;
     }
 
     /**
      * Get standardCloth
      *
-     * @return integer 
+     * @return integer
      */
     public function getStandardCloth()
     {
@@ -335,7 +335,7 @@ class Ressource
         if($this->standardCloth >= $val)
             return true;
         return false;
-    } 
+    }
 
     public function addStandardCloth($mod)
     {
@@ -343,7 +343,7 @@ class Ressource
             $this->standardCloth = 0;
         else
             $this->standardCloth = $this->standardCloth + $mod;
-    } 
+    }
 
     /**
      * Set roughLeather
@@ -354,14 +354,14 @@ class Ressource
     public function setRoughLeather($roughLeather)
     {
         $this->roughLeather = $roughLeather;
-    
+
         return $this;
     }
 
     /**
      * Get roughLeather
      *
-     * @return integer 
+     * @return integer
      */
     public function getRoughLeather()
     {
@@ -373,7 +373,7 @@ class Ressource
         if($this->roughLeather >= $val)
             return true;
         return false;
-    } 
+    }
 
     public function addRoughLeather($mod)
     {
@@ -381,7 +381,7 @@ class Ressource
             $this->roughLeather = 0;
         else
             $this->roughLeather = $this->roughLeather + $mod;
-    } 
+    }
 
     /**
      * Set rawLeather
@@ -392,14 +392,14 @@ class Ressource
     public function setRawLeather($rawLeather)
     {
         $this->rawLeather = $rawLeather;
-    
+
         return $this;
     }
 
     /**
      * Get rawLeather
      *
-     * @return integer 
+     * @return integer
      */
     public function getRawLeather()
     {
@@ -411,7 +411,7 @@ class Ressource
         if($this->rawLeather >= $val)
             return true;
         return false;
-    } 
+    }
 
     public function addRawLeather($mod)
     {
@@ -419,7 +419,7 @@ class Ressource
             $this->rawLeather = 0;
         else
             $this->rawLeather = $this->rawLeather + $mod;
-    } 
+    }
 
     /**
      * Set cedarWood
@@ -430,14 +430,14 @@ class Ressource
     public function setCedarWood($cedarWood)
     {
         $this->cedarWood = $cedarWood;
-    
+
         return $this;
     }
 
     /**
      * Get cedarWood
      *
-     * @return integer 
+     * @return integer
      */
     public function getCedarWood()
     {
@@ -449,7 +449,7 @@ class Ressource
         if($this->cedarWood >= $val)
             return true;
         return false;
-    } 
+    }
 
     public function addCedarWood($mod)
     {
@@ -457,7 +457,7 @@ class Ressource
             $this->cedarWood = 0;
         else
             $this->cedarWood = $this->cedarWood + $mod;
-    } 
+    }
 
     /**
      * Set oakWood
@@ -468,14 +468,14 @@ class Ressource
     public function setOakWood($oakWood)
     {
         $this->oakWood = $oakWood;
-    
+
         return $this;
     }
 
     /**
      * Get oakWood
      *
-     * @return integer 
+     * @return integer
      */
     public function getOakWood()
     {
@@ -487,7 +487,7 @@ class Ressource
         if($this->oakWood >= $val)
             return true;
         return false;
-    } 
+    }
 
     public function addOakWood($mod)
     {
@@ -495,5 +495,5 @@ class Ressource
             $this->oakWood = 0;
         else
             $this->oakWood = $this->oakWood + $mod;
-    } 
+    }
 }

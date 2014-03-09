@@ -27,7 +27,7 @@
               </a>
             {% else %}
               <a href="#" class="btn btn-default btn-xs unlock-object" data-id="{{ obj.id }}">
-                  {{ obj.cost }}
+                  {% include 'ZniehVillageGameBundle::cost.html.twig' with { costs : obj.costs } only %}
               </a>
             {% endif %}
           </div>
