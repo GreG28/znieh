@@ -6,3 +6,17 @@
 
 @import "compass/css3";
 // setup variable or add more imports here that import mixins (not actual styles)
+
+$white: rgb(255,255,255);
+$grey: rgb(126,120,120);
+$orange: rgb(248,195,101);
+$black-major: rgb(20,20,20);
+$black-minor: rgb(35,33,34);
+
+
+$navbar-default-bg: $grey;
+$navbar-default-color: $grey;
+$body-bg: $orange;
+
+// Navbar links
+$navbar-default-link-color:                $white !default;

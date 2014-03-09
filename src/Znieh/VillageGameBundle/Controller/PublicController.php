@@ -25,6 +25,7 @@ class PublicController extends Controller
      */
     public function indexAction()
     {
+        return $this->redirect($this->generateUrl('znieh_villagegame_public_building', array('building' => 'Forge')));
         $em = $this->getDoctrine()->getManager();
 
         $buildings = $em->getRepository('ZniehVillageGameBundle:Building')->findAll();
@@ -119,8 +120,38 @@ class PublicController extends Controller
             $em = $this->getDoctrine()->getManager();
             $obj = $em->getRepository('ZniehVillageGameBundle:GameObject')->findOneById($object);
 
+            $user = $this->getUser();
+            $ressource = $user->getRessource();
+            foreach ($obj->getCosts() as $key => $cost) {
+                switch ($key) {
+                    case 'po':
+                        $ressource->addGold(-$cost);
+                        break;
+                    case 'sto':
+                        $ressource->addSto(-$cost);
+                        break;
+                    case 'cuivre':
+                        $ressource->addCopper(-$cost);
+                        break;
+                    case 'bronze':
+                        $ressource->addBronze(-$cost);
+                        break;
+                    case 'ettofeMineur':
+                        $ressource->addMinorCloth(-$cost);
+                        break;
+                    case 'variable':
+                        $ressource->addMinorCloth(-$cost);
+                        break;
+                    case 'boisReche':
+                        $ressource->addMinorCloth(-$cost);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             $unlocked = new UnlockedGameObject();
-            $unlocked->setUser($this->getUser());
+            $unlocked->setUser($user);
             $unlocked->setObject($obj);
 
             $em->persist($unlocked);
