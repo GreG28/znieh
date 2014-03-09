@@ -1,0 +1,17 @@
+body {
+  min-height: 1000px;
+  padding-top: 70px;
+}
+.border-after-village {
+  display: block;
+  height: 30px;
+  width: 100%;
+  background: $black-minor no-repeat right bottom;
+  margin-top: -170px;
+}
+.after-village-content {
+  background: $black-major no-repeat right bottom;
+  display: block;
+  height: 300px;
+  width: 100%;
+}
