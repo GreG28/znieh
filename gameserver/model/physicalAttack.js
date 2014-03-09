@@ -76,9 +76,9 @@ physicalAttack.getMagicDamage = function() {
 //get the armor reduction combined with penetration
 physicalAttack.getArmorReduction = function() {
 	if(physicalAttack.utility.enemyDefenseScore < 40)
-		return (1 - (physicalAttack.utility.enemyDefenseScore * 0.66) / 100).toFixed(2);
+		return  ((physicalAttack.utility.enemyDefenseScore * 0.66) / 100).toFixed(2);
 	else
-		return(1 - (150 / (physicalAttack.utility.enemyDefenseScore + 130))).toFixed(2);
+		return (150 / (physicalAttack.utility.enemyDefenseScore + 130)).toFixed(2);
 }
 
 //setParriedDamage
