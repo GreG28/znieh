@@ -10,6 +10,7 @@ team[1].stats.strength = 50;
 team[1].stats.defense = 50;
 
 var hit = require('../model/physicalAttack.js');
+var hit2 = require('../model/physicalAttack.js');
 var result = hit.physicalHit(team[0],team[1]);
 
 describe("physicalAttack", function() {
@@ -40,7 +41,15 @@ describe("physicalAttack", function() {
            expect(hit.getArmorReduction()).to.be.a.number;
        });
        it("should not return 0", function(){
-           expect(hit.getStrengthWeakness()).to.not.equal(0);
+           expect(hit.getArmorReduction()).to.not.equal(0);
+       });
+       it("should return a value related to the armor of defensive unit", function(){
+          var armorReduc1 = hit.getArmorReduction();
+          team[1].stats.defense = 90;
+          hit2.physicalHit(team[0],team[1]);
+          var armorReduc2 = hit2.getArmorReduction();
+          expect(armorReduc1 >= armorReduc2).to.be.true;
+          team[1].stats.defense = 50;
        });
    });
 });
