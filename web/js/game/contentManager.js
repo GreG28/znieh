@@ -114,6 +114,8 @@ function ContentManager(stage, width, height) {
         loadingQueue.loadManifest([{id:"units-json", src:"../json/units.json"}]);
         loadingQueue.loadManifest([{id:"mailarmor", src:"../img/sprites/mailarmor.png"}]);
         loadingQueue.loadManifest([{id:"mailarmor2", src:"../img/sprites/mailarmor2.png"}]);
+        loadingQueue.loadManifest([{id:"perso_july", src:"../img/sprites/perso_july.png"}]);
+        loadingQueue.loadManifest([{id:"perso_july_2", src:"../img/sprites/perso_july_2.jpeg"}]);
 
         gameStatut = GameStatut.IDLE;
 
