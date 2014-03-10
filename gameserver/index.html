@@ -232,6 +232,9 @@ var addConversation = function(from) {
         $('#tab' + index + ' > ul').append('</div>');
       $('#tab' + index + ' > ul').append('</li>');
 
+      $('#chat-conversations > li.active').scrollTop($('#chat-conversations > li.active').scrollHeight);
+
+
       //$('#tab' + index + ' > p').append('<span class="msg">['+date+'] -> '+conversations[index]+': '+$('#chat-input-' + index).val()+'</span><br />');
       socket.emit('message', {target: conversations[index], msg: $('#chat-input-' + index).val()}); 
       $('#chat-input-' + index).val('');
