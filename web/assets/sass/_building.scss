@@ -9,6 +9,11 @@
   -moz-box-sizing: initial;
   box-sizing: initial;
 }
+div {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 .root {
   position: relative;
   overflow: hidden;
