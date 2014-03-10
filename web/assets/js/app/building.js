@@ -43,6 +43,18 @@
           });
          var form = $('#znieh_unitgamebundle_weapon').parent();
          $(form).hide();
+         $('.draggable').on('click', function(e){
+             e.preventDefault();
+             if ($(this).hasClass('unlocked')) {
+                var checkBox = $('#znieh_unitgamebundle_weapon_parts_' + $(this).data("id"));
+                $(this).toggleClass('selected');
+                checkBox.prop('checked', !checkBox.attr('checked'));
+                console.log($(this).parent());
+                $(this).parent().clone().appendTo( "#weapon-container");
+             } else {
+              alert("Vous devez débloquer ce composant avant de pouvoir l'utiliser.");
+             }
+         });
          $( ".draggable" ).draggable({ cursor: "move", helper: "clone", revert: "invalid" });
          $('#create-weapon').on('click', function(){
              $.ajax({
