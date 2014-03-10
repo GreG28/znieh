@@ -81,12 +81,13 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
   gameSocket.on('placement-started', function (data) {
     console.log(data);
     $('#console').append('Service message : placement started <br />');
-    
     /*For the moment this part is hide when the players are starting to place their units*/
-    $('#modalGameAcceptance').modal('hide');      
     
-    /*On affiche une page */
-  });
+    /*On passe à la page game !*/
+    /*Darkou*/
+    //window.location = path('core_game');
+    redirect();
+    });
 
   // Out
   $('#join').click(function () {
