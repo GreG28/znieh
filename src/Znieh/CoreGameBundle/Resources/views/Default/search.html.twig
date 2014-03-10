@@ -84,4 +84,11 @@
 
 {% block requirejs %}
     {{ include('::_requirejs.html.twig', {'module': 'app/game/search'}) }}
+
+    <script type="text/javascript">
+    redirect = function()
+    {
+      window.location = "{{ path('core_game') }}";
+    }
+    </script>>
 {% endblock %}

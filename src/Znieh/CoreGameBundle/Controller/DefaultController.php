@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/game")
+     * @Route("/game", name="core_game")
      * @Template()
      * @Security("has_role('ROLE_USER')")
      */
