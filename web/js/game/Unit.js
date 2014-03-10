@@ -48,6 +48,7 @@
         var top = unitsInfos.specifications[taille].sprites.weapon.top;
         var regX = unitsInfos.specifications[taille].sprites.frames.regX;
         var regY = unitsInfos.specifications[taille].sprites.frames.regY;
+        var coef_size = Math.floor(1/(width/32)*10000)/10000;
 
         this.frameWidth = 0;
         this.frameHeight = 0;
@@ -78,9 +79,12 @@
 
         this.sprite_base = new createjs.Sprite(localSpriteSheet);
 
-        this.width = width;
-        this.height = height;
-
+        this.sprite_base.scaleX = coef_size;
+        this.sprite_base.scaleY = coef_size;
+        
+        this.width = Math.floor(width*coef_size);
+        this.height = Math.floor(height*coef_size);
+        
         this.map = map;
         this.position = position;
         this.velocity = new createjs.Point(0, 0);
