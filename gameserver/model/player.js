@@ -12,6 +12,8 @@ function Player(name, socket) {
     this.status = 'init';
     this.pool = undefined;
     this.battle = undefined;
+
+    this.disconnectTimeout = undefined;
 }
 
 module.exports = Player;

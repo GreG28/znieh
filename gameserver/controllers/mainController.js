@@ -7,9 +7,11 @@
  */
 
 var socketio = require('../network/socketio');
+var config = require('../util/config');
 var logger = require('../util/logger');
 var world = require('../model/world');
 var player = require('../model/player');
+var pools = require('../model/pools');
 
 module.exports.init = function() {
   "use strict";
@@ -21,16 +23,25 @@ module.exports.init = function() {
     var authController = require('./authController')(socket, function(player){
 
       socket.on('disconnect', function () {
-        world.broadcast("service", { msg: 'player ' + player.name + ' is now disconnected.' });
-        world.removePlayer(player);
-        //world.pool.removePlayer(player);
-        world.broadcastUserList();
+        logger.info('Socket of player "' + player.name + '" is now disconnected. Waiting 30 seconds before deleting player instance.')
+        
+        player.disconnectTimeout = setTimeout(function() {
+          world.broadcast("service", { msg: 'player ' + player.name + ' is now disconnected.' });
+          world.removePlayer(player);
+          pools.removePlayer(player);
+          world.broadcastUserList();
 
-        logger.verbose('User "' + player.name + '" disconnected from: ' + socket.handshake.address.address);
+          logger.verbose('User "' + player.name + '" disconnected (Timeout expired).');
+        }, config.get('disconnect:timeout') * 1000);
+        
+        
       });
 
-      var waitingController = require('./waitingController')(player);
+      var chatController = require('./chatController')(player);
       var fightController = require('./fightController')(player);
+      var waitingController = require('./waitingController')(player);
+
+      require('./chatController').sendPendingMessages(player);
 
     });
 

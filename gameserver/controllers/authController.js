@@ -54,6 +54,23 @@ module.exports = function(socket, callback) {
 			user = {
 				username: data.username
 			};
+
+			for(var i=0; i < world.players.length; i++) {
+				if(data.username === world.players[i].name) {
+					var p = world.players[i];
+					logger.info('Player "' + p.name + '" reconnected!');
+    				socket.emit("service", { msg: 'Reconnected successfully' });
+
+    				clearTimeout(p.disconnectTimeout);
+    				p.disconnectTimeout = undefined;
+    				p.socket = socket;
+    				socket.set('authenticated', true);
+
+    				cb(true);
+				    callback(world.players[i]);
+				    return;
+				}
+		    }
 			
 			socket.set('authenticated', true);
 			socket.emit("service", { msg: 'Auth: OK' });
