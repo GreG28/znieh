@@ -112,9 +112,9 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         var _j = this.j;
 
         this._container.on("click", function(evt, data) {
-            setEnnemySide();
             if(gameStatut == GameStatut.PLACEMENT)
             {
+                setEnnemySide();
                 if(data.collision == Enum.TileCollision.Passable && ((_i < (map.gameWidth / 3) && left == true) || ((_i >= (2 * map.gameWidth / 3)) && left == false))) {
                     console.log("[TILE] x" + _i + " y" + _j);
                     var idUnit = $("#myUnits div.selected").attr("data-unit");
@@ -139,9 +139,19 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
             }
             else if(gameStatut == GameStatut.MOVE) {
                 selectedUnit.move(_i, _j);
+                gameStatut = GameStatut.ATTACK;
+                ContentManager.selectTilesAttack(_i, _j);
+            }
+            else if(gameStatut == GameStatut.ATTACK) {
+                console.log("Il a choisi de ne pas attaquer");
+                setEnnemySide();
                 gameStatut = GameStatut.IDLE;
+                ContentManager.unSelectAllTiles();
+                ContentManager.clearUnitsMenu();
+                selectedUnit = null;
             }
             else {
+                setEnnemySide();
                 gameStatut = GameStatut.IDLE;
                 ContentManager.unSelectAllTiles();
                 ContentManager.clearUnitsMenu();
