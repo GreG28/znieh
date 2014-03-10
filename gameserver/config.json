@@ -13,6 +13,9 @@
     "password": "",
     "maxConnections": 5
   },
+  "disconnect": {
+    "timeout": 30
+  },
   "pool": {
     "count": 5
   }
