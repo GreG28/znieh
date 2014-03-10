@@ -7636,14 +7636,6 @@ td.visible-print {
     display: none !important;
   }
 }
-/* line 1, ../sass/_building.scss */
-#weapons {
-  position: fixed;
-  top: 20%;
-  left: 0;
-  width: 300px;
-}
-
 /* line 7, ../sass/_building.scss */
 *, *:before, *:after {
   -webkit-box-sizing: initial;
@@ -7777,6 +7769,11 @@ td.visible-print {
 /* line 105, ../sass/_building.scss */
 .game-object-points {
   float: left;
+}
+
+/* line 108, ../sass/_building.scss */
+.draggable.selected {
+  border: 3px solid green;
 }
 
 /* line 1, ../sass/_index.scss */
