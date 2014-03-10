@@ -24,23 +24,25 @@
 
     $(document).ready(function() {
         $('body').on('click', '.unlock-object', function(e) {
-          e.preventDefault();
+            e.preventDefault();
             var id = $(this).data("id");
             var obj = $(this);
+            var gameobj = $(this).closest('.game-object');
             obj.button('loading');
             $.get(Routing.generate('znieh_villagegame_public_unlock', {object : id}))
             .done(function(data) {
               console.log('done');
               obj.button('reset');
-              obj.text('Débloqué');
+              console.log(gameobj);
+              gameobj.data('bs.popover').options.content = 'Débloqué';
+              console.log(obj.closest('img.draggable'));
+              obj.closest('img.draggable').addClass('unlocked');
             })
             .fail(function(e) {
               console.log('fail');
             });
          });
-         $('.game-object').popover().parent().on('click', '.unlock-object', function() {
-              console.log('click');
-          });
+         $('.game-object').popover();
          var form = $('#znieh_unitgamebundle_weapon').parent();
          $(form).hide();
          $('.draggable').on('click', function(e){
