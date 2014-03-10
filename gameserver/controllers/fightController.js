@@ -9,6 +9,7 @@
 var socketio = require('../network/socketio');
 var logger = require('../util/logger');
 var world = require('../model/world');
+var hit = require('../model/physicalAttack');
 
 module.exports = function(player) {
 
@@ -35,6 +36,11 @@ module.exports = function(player) {
 		if(player.battle.finishedUnitPlacement) return -3;
 
 		player.battle.map[data.x][data.y] = data.unit;
+	});
+
+	player.socket.on("attack", function(data){
+		hit.physicalHit(data[0],data[1]);
+		player.socket.emit(data);
 	});
 
 }

@@ -108,5 +108,5 @@ physicalAttack.physicalHit = function(attackUnit, defenseUnit){
 	else{
 		return 0;
 	}
-	return physicalAttack.utility.finalDamage.toFixed(0);
+	defenseUnit.stats.life = defenseUnit.stats.life - physicalAttack.utility.finalDamage.toFixed(0);
 }
