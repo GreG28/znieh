@@ -59,6 +59,15 @@ module.exports.initTables = function () {
 		tableName: 'fos_user'
 	});
 
+	module.exports.PendingMessage = orm.define('PendingMessage', {
+		from: Sequelize.STRING,
+		to: Sequelize.STRING,
+		msg: Sequelize.STRING,
+		date: Sequelize.DATE
+	}, {
+		tableName: 'PendingMessage'
+	});
+
 
 	logger.info('Database schemas loaded.');
 }
