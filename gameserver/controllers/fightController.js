@@ -8,6 +8,7 @@
 
 var socketio = require('../network/socketio');
 var logger = require('../util/logger');
+var map = require('../model/map');
 var world = require('../model/world');
 
 module.exports = function(player) {
@@ -27,14 +28,47 @@ module.exports = function(player) {
 		}
 	});
 
-	player.socket.on("place-unit", function(data) {
-		if(player.status != "fighting") return -1;
+	player.socket.on('select-map', function(data, callback) {
+		if(player.battle.map !== undefined) {
+			player.battle.map = map.getRandomMap();
+		}
 
-		if(player.battle == undefined) return -2;
+		callback('map1.json');
+		player.socket.emit('service', { msg: 'Map selected: map1.json'});
 
-		if(player.battle.finishedUnitPlacement) return -3;
+	});
 
-		player.battle.map[data.x][data.y] = data.unit;
+	player.socket.on('get-units', function(data, callback) {
+		//TODO: Fetch available units
+		//TODO: Send available units
+	});
+
+	player.socket.on("place-unit", function(data, callback) {
+		if(player.battle.mapSelected === false) {
+			callback(false);
+			player.socket.emit('service', { msg: 'Map is not selected.'});
+			return -1;
+		}
+
+		if(player.status != "placement-started") {
+			callback(false);
+			player.socket.emit('service', { msg: 'Placement has not started yet.'});
+			return -2;
+		}
+
+		if(player.battle == undefined) {
+			callback(false);
+			player.socket.emit('service', { msg: 'No battle found'});
+			return -3;
+		}
+
+		if(player.battle.finishedUnitPlacement) {
+			callback(false);
+			player.socket.emit('service', { msg: 'Unit placement is over.'});
+			return -4;
+		}
+
+		player.battle.map.layers[data.x][data.y] = data.unit;
 	});
 
 	player.socket.on("accept-player", function(data) {
