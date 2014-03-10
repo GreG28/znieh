@@ -3,6 +3,7 @@ module.exports = UnitHandler;
 
 UnitHandler.StatSet = function (life, penetration, precision, evade, parry, defense, armor, strength, agility, intelligence, magicDamage, evilScience, magicSupport){
 	this.life = life;
+	this.maxLife = life;
 	this.penetration = penetration;
 	this.precision = precision;
 	this.evade = evade;
