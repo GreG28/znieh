@@ -7636,14 +7636,157 @@ td.visible-print {
     display: none !important;
   }
 }
-/* line 8, ../sass/layout.scss */
+/* line 1, ../sass/_building.scss */
+#weapons {
+  position: fixed;
+  top: 20%;
+  left: 0;
+  width: 300px;
+}
+
+/* line 7, ../sass/_building.scss */
+*, *:before, *:after {
+  -webkit-box-sizing: initial;
+  -moz-box-sizing: initial;
+  box-sizing: initial;
+}
+
+/* line 12, ../sass/_building.scss */
+.root {
+  position: relative;
+  overflow: hidden;
+}
+
+/* line 16, ../sass/_building.scss */
+.level {
+  margin-left: 400px;
+  position: relative;
+}
+
+/* line 20, ../sass/_building.scss */
+.level:before {
+  content: "";
+  width: 50px;
+  border-top: 2px solid #eee9dc;
+  position: absolute;
+  left: -98px;
+  top: 50%;
+  margin-top: 1px;
+}
+
+/* line 29, ../sass/_building.scss */
+.step {
+  min-height: 300px;
+  position: relative;
+}
+
+/* line 33, ../sass/_building.scss */
+.step:before {
+  content: "";
+  height: 100%;
+  border-left: 2px solid #eee9dc;
+  position: absolute;
+  left: -48px;
+}
+
+/* line 40, ../sass/_building.scss */
+.step:after {
+  content: "";
+  width: 46px;
+  border-top: 2px solid #eee9dc;
+  position: absolute;
+  left: -46px;
+  top: 50%;
+  margin-top: 1px;
+}
+
+/* line 49, ../sass/_building.scss */
+.step:first-child:before {
+  width: 10px;
+  height: 50%;
+  top: 50%;
+  margin-top: 2px;
+  border-top-left-radius: 10px;
+}
+
+/* line 56, ../sass/_building.scss */
+.step:first-child:after {
+  height: 10px;
+  border-top-left-radius: 10px;
+}
+
+/* line 60, ../sass/_building.scss */
+.step:last-child:before {
+  width: 10px;
+  height: 50%;
+  border-bottom-left-radius: 10px;
+}
+
+/* line 65, ../sass/_building.scss */
+.step:last-child:after {
+  height: 10px;
+  border-top: none;
+  border-bottom: 2px solid #eee9dc;
+  border-bottom-left-radius: 10px;
+  margin-top: -11px;
+}
+
+/* line 72, ../sass/_building.scss */
+.step:only-child:before {
+  border-top: none;
+  border-bottom: none;
+  content: none;
+  margin-top: 0px;
+}
+
+/* line 78, ../sass/_building.scss */
+.step:only-child:after {
+  width: 52px;
+  left: -52px;
+  top: 50.60%;
+  border-bottom-left-radius: 0;
+}
+
+/* line 84, ../sass/_building.scss */
+.step-content {
+  width: 280px;
+  height: 200px;
+  padding: 5px 10px;
+  border: 2px solid #eee9dc;
+  border-radius: 5px;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -115px;
+  background-color: brown;
+}
+
+/* line 97, ../sass/_building.scss */
+.game-object {
+  padding: 5px 5px 5px 5px;
+  width: 50px;
+  height: 20px;
+}
+
+/* line 102, ../sass/_building.scss */
+.game-object img {
+  margin-right: 3px;
+}
+
+/* line 105, ../sass/_building.scss */
+.game-object-points {
+  float: left;
+}
+
+/* line 9, ../sass/layout.scss */
 #menu {
   height: 40px;
   margin-bottom: 30px;
   padding-left: 162px;
 }
 
-/* line 14, ../sass/layout.scss */
+/* line 15, ../sass/layout.scss */
 #menu a.link {
   color: #fff;
   font-size: 18px;
