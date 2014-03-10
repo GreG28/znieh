@@ -1,0 +1,3 @@
+{% for key, cost in costs %}
+  {{ cost }} <img src="{{ asset('img/ressources/' ~ key ~ '.png') }}" alt="{{ key }}">
+{% endfor %}

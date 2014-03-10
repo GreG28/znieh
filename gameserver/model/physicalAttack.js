@@ -76,9 +76,9 @@ physicalAttack.getMagicDamage = function() {
 //get the armor reduction combined with penetration
 physicalAttack.getArmorReduction = function() {
 	if(physicalAttack.utility.enemyDefenseScore < 40)
-		return (1 - (physicalAttack.utility.enemyDefenseScore * 0.66) / 100).toFixed(2);
+		return  ((physicalAttack.utility.enemyDefenseScore * 0.66) / 100).toFixed(2);
 	else
-		return(1 - (150 / (physicalAttack.utility.enemyDefenseScore + 130))).toFixed(2);
+		return (150 / (physicalAttack.utility.enemyDefenseScore + 130)).toFixed(2);
 }
 
 //setParriedDamage
@@ -102,14 +102,11 @@ physicalAttack.physicalHit = function(attackUnit, defenseUnit){
 		physicalAttack.utility.parried = physicalAttack.isParried();
 		physicalAttack.utility.criticalHit = physicalAttack.isCriticalHit();
 		physicalAttack.setParriedDamages();
-		if(physicalAttack.utility.parried)
-			console.log("Parried");
+
 		physicalAttack.utility.finalDamage = (physicalAttack.getDamages() +  physicalAttack.utility.criticalHit * physicalAttack.getDamages()) * physicalAttack.getStrengthWeakness() * physicalAttack.getArmorReduction() * physicalAttack.utility.nonParriedDamage + physicalAttack.getMagicDamage();
 	}
 	else{
-		console.log("Dodged");
 		return 0;
 	}
-
-	return physicalAttack.utility.finalDamage.toFixed(2);
+	return physicalAttack.utility.finalDamage.toFixed(0);
 }
