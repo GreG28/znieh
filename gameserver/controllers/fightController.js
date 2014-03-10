@@ -43,6 +43,10 @@ module.exports = function(player) {
 		//TODO: Send available units
 	});
 
+	player.socket.on('get-side', function(data, callback) {
+
+	});
+
 	player.socket.on("place-unit", function(data, callback) {
 		if(player.battle.mapSelected === false) {
 			callback(false);
