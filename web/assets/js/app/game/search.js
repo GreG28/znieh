@@ -53,13 +53,14 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
   gameSocket.on('search-started', function (data) {
     console.log('search-started ->' + data);
     $('#console').append('La recherche de partie a commencé : ' + data + '<br />');
+    $('#modalReady .modal-footer').prepend('<p>The server is looking for another player inside that pool,<br> to play with you</p>');
   });
 
   gameSocket.on('search-restarted', function (data) {
     console.log('search-restarted ->' + data);
     $('#console').append('La recherche de partie a recommencé : ' + data + '<br />');
     $('#modalGameAcceptance').modal('hide');
-    $('#modalReady').modal('show');      
+    $('#modalReady').modal('show');
     /*remise à jours du modal acceptance */
     $('#modalGameAcceptance #p_name').empty();
     $('#modalGameAcceptance #p_side').empty();
@@ -73,19 +74,13 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
     $('#modalGameAcceptance #p_side').append(data.side);
     $('#modalGameAcceptance #p_value1').append(data.value1);
     $('#modalReady').modal('hide');
-    $('#modalGameAcceptance').modal('show');      
-    
-    /*On affiche une page */
+    $('#modalGameAcceptance').modal('show');
   });
 
   gameSocket.on('placement-started', function (data) {
     console.log(data);
     $('#console').append('Service message : placement started <br />');
-    /*For the moment this part is hide when the players are starting to place their units*/
-    
-    /*On passe à la page game !*/
-    /*Darkou*/
-    //window.location = path('core_game');
+    // We redirect the player to the game page !
     redirect();
     });
 
