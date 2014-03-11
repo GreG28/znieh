@@ -16,7 +16,11 @@
   "disconnect": {
     "timeout": 30
   },
-  "pool": {
-    "count": 5
-  }
+  "pools": [
+    {"name": "pool-1", "points": 100},
+    {"name": "pool-2", "points": 200},
+    {"name": "pool-3", "points": 500},
+    {"name": "pool-4", "points": 1000},
+    {"name": "pool-5", "points": 2000}
+  ]
 }
