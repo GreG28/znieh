@@ -13,7 +13,7 @@ physicalAttack.utility = function(){
 	var precisionScore;
 	var dodgeScore;
 	var parryScore;
-	var enemyDefenseScore;
+	var enemyArmorScore;
 
 	var attackingUnit;
 	var attackedUnit;
@@ -75,10 +75,13 @@ physicalAttack.getMagicDamage = function() {
 
 //get the armor reduction combined with penetration
 physicalAttack.getArmorReduction = function() {
-	if(physicalAttack.utility.enemyDefenseScore < 40)
-		return  ((physicalAttack.utility.enemyDefenseScore * 0.66) / 100).toFixed(2);
+	if(physicalAttack.utility.enemyArmorScore == 0)
+		return 1;
+	else if(physicalAttack.utility.enemyArmorScore < 40)
+		return  ((physicalAttack.utility.enemyArmorScore * 0.66) / 100).toFixed(2);
+
 	else
-		return (150 / (physicalAttack.utility.enemyDefenseScore + 130)).toFixed(2);
+		return (150 / (physicalAttack.utility.enemyArmorScore + 130)).toFixed(2);
 }
 
 //setParriedDamage
@@ -95,7 +98,10 @@ physicalAttack.physicalHit = function(attackUnit, defenseUnit){
 	physicalAttack.utility.precisionScore = physicalAttack.utility.attackingUnit.stats.precision;
 	physicalAttack.utility.dodgeScore = physicalAttack.utility.attackedUnit.stats.evade;
 	physicalAttack.utility.parryScore = physicalAttack.utility.attackedUnit.stats.parry;
-	physicalAttack.utility.enemyDefenseScore = physicalAttack.utility.attackedUnit.stats.defense;
+	physicalAttack.utility.enemyArmorScore = physicalAttack.utility.attackedUnit.stats.armor - (physicalAttack.utility.attackingUnit.stats.penetration / 3);
+	
+	if (physicalAttack.utility.enemyArmorScore < 0)
+		physicalAttack.utility.enemyArmorScore = 0;
 
 	physicalAttack.utility.dodged = physicalAttack.isDodged();
 	if(!physicalAttack.utility.dodged){
