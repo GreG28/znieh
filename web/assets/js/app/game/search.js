@@ -53,6 +53,7 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
   gameSocket.on('search-started', function (data) {
     console.log('search-started ->' + data);
     $('#console').append('La recherche de partie a commencé : ' + data + '<br />');
+    $('#modalReady .modal-footer').prepend('<p>The server is looking for another player inside that pool,<br> to play with you</p>');
   });
 
   gameSocket.on('search-restarted', function (data) {
