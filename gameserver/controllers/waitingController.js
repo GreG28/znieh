@@ -19,22 +19,21 @@ module.exports = function(player) {
 	 */
 	player.socket.on("get-pools", function(data, callback) {
     	
-    	logger.verbose('Player "' + player.name + '"" is trying to get list of pools.');
+    	logger.verbose('Player "' + player.name + '" is trying to get list of pools.');
 		
-		var pools = [];
+		var result = [];
 
-		for (var i = 0; i < config.get('pool:count'); i++) {
+		for (var i = 0; i < pools.length; i++) {
 			var pool = {
-				'name': 'pool-' + i,
-				'attribute1': 'value1',
-				'attribute2': 'value2',
-				'attribute3': 'value3'
+				'name': pools[i]['name'],
+				'points': pools[i]['points'],
+				'playerCount': pools[i].awaitingPlayerCount()
 			};
 
-			pools[i] = pool;
+			result[i] = pool;
 		}
 
-		callback(pools);
+		callback(result);
 	});
 
 
@@ -90,6 +89,7 @@ module.exports = function(player) {
 
 		player.status = 'ready';
 		player.socket.emit("service", { msg: 'Set as ready. Searching...' });
+		player.socket.emit("search-started", null);
 		logger.verbose('Player "' + player.name + '" is ready to fight.');
 		callback(true);
 		player.pool.notifyPlayerReady(player);
