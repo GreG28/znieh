@@ -38,9 +38,9 @@ module.exports = function(player) {
 		player.battle.map[data.x][data.y] = data.unit;
 	});
 
-	player.socket.on("attack", function(data){
+	player.socket.on("attack", function(data, callback){
 		hit.physicalHit(data[0],data[1]);
-		player.socket.emit(data);
+		callback(data);
 	});
 
 }
