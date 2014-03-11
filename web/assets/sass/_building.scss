@@ -1,13 +1,18 @@
-#weapons {
-  position: fixed;
-  top: 20%;
-  left: 0;
-  width: 300px;
-}
+// #weapons {
+//   position: fixed;
+//   top: 20%;
+//   left: 0;
+//   width: 300px;
+// }
 *, *:before, *:after {
   -webkit-box-sizing: initial;
   -moz-box-sizing: initial;
   box-sizing: initial;
+}
+div {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .root {
   position: relative;
@@ -104,4 +109,7 @@
 }
 .game-object-points {
   float: left;
+}
+.draggable.selected {
+  border: 3px solid green;
 }

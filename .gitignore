@@ -10,7 +10,7 @@ composer.phar
 /gameserver/node_modules/
 /gameserver/config.user.json
 /gameserver/db.rar
-/gameserver/logs/*
+/gameserver/logs/*.log
 *.psd
 *DS_Store
 npm-debug.log
