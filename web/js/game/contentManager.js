@@ -106,11 +106,11 @@ function ContentManager(stage, width, height) {
 
         loadingQueue = new createjs.LoadQueue(false);
         loadingQueue.addEventListener("complete", initMap);
-        loadingQueue.loadManifest([{id:"tileset", src:"../img/sprites/spritemap.png"}]); // On oblige le chargement de l'image avant l'exécution de la suite, sinon la map n'est pas chargée avant le stage.update()
+        loadingQueue.loadManifest([{id:"tileset", src:"../img/sprites/tiles.jpg"}]); // On oblige le chargement de l'image avant l'exécution de la suite, sinon la map n'est pas chargée avant le stage.update()
         loadingQueue.loadManifest([{id:"unitFirefox", src:"../img/sprites/firefox.png"}]);
         loadingQueue.loadManifest([{id:"unitFirefox2", src:"../img/sprites/firefox2.png"}]);
         loadingQueue.loadManifest([{id:"sword", src:"../img/sprites/bluesword.png"}]);
-        loadingQueue.loadManifest([{id:"map-json", src:"../json/map.json"}]);
+        loadingQueue.loadManifest([{id:"map-json", src:"../json/map_new.json"}]);
         loadingQueue.loadManifest([{id:"units-json", src:"../json/units.json"}]);
         loadingQueue.loadManifest([{id:"mailarmor", src:"../img/sprites/mailarmor.png"}]);
         loadingQueue.loadManifest([{id:"mailarmor2", src:"../img/sprites/mailarmor2.png"}]);
@@ -208,7 +208,7 @@ function ContentManager(stage, width, height) {
     };
 
     ContentManager.unSelectAllTiles = function() {
-        for(var i = 0; i < map.gameWidth; i++) {
+        for(var i = 0; i < map.gameHeight; i++) {
             for(var j = 0; j < map.gameWidth; j++) {
                 map.tiles[i][j].shape_selection_possible.visible = false;
                 map.tiles[i][j].shape_selection_impossible.visible = false;

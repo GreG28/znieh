@@ -81,10 +81,10 @@
 
         this.sprite_base.scaleX = coef_size;
         this.sprite_base.scaleY = coef_size;
-        
+
         this.width = Math.floor(width*coef_size);
         this.height = Math.floor(height*coef_size);
-        
+
         this.map = map;
         this.position = position;
         this.velocity = new createjs.Point(0, 0);
@@ -315,8 +315,8 @@
         if(gameStatut == GameStatut.IDLE || gameStatut == GameStatut.MOVE) {
             $("#unit-" + (this.unitID - units.length - 1)).addClass("selected");
 
-            for (var x = 0; x < map.textTiles.length; x++) {
-                for (var y = 0; y < map.textTiles[0].length; y++) {
+            for (var x = 0; x < map.textTiles[0].length; x++) {
+                for (var y = 0; y < map.textTiles.length; y++) {
                     //console.log("[x" + i + ", y" + j + "] - [x" + x + ", y" + y + "]");
 
                     var self = this;

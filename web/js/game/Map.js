@@ -27,9 +27,9 @@ Array.matrix = function (m, n, initial) {
         this.tileHeight = mapData.tileheight;
 
         // Building a matrix of characters that will be replaced by the level {x}.txt
-        this.textTiles = Array.matrix(this.gameWidth, this.gameHeight, "|");
+        this.textTiles = Array.matrix(this.gameHeight, this.gameWidth, "|");
         // Physical structure of the level.
-        this.tiles = Array.matrix(this.gameWidth, this.gameHeight, "|");
+        this.tiles = Array.matrix(this.gameHeight, this.gameWidth, "|");
         this.properties = mapData.tilesets[0].tileproperties;
         this.LoadTiles(mapData.layers[0].data);
     }
@@ -39,11 +39,13 @@ Array.matrix = function (m, n, initial) {
      * @param {Array} mapData
      */
     Map.prototype.ParseLevelLines = function (mapData) {
-        for (var i = 0; i < this.gameWidth; i++) {
-            for (var j = 0; j < this.gameHeight; j++) {
+        for (var i = 0; i < this.gameHeight; i++) {
+            for (var j = 0; j < this.gameWidth; j++) {
                 this.textTiles[i][j] = mapData[(i * this.gameWidth) + j];
             }
         }
+
+        console.log(this.textTiles);
     };
 
     /**
@@ -54,8 +56,8 @@ Array.matrix = function (m, n, initial) {
         this.ParseLevelLines(mapData); // Doit récupérer les chiffres indiquant les sprites à partir du JSON et les foutre dans textTiles
 
         // Loop over every tile position,
-        for (var i = 0; i < this.gameWidth; i++) {
-            for (var j = 0; j < this.gameHeight; j++) {
+        for (var i = 0; i < this.gameHeight; i++) {
+            for (var j = 0; j < this.gameWidth; j++) {
                 this.tiles[i][j] = this.LoadTile(this.textTiles[i][j], j, i);
                 //alert("Tile[" + i +"][" + j+ "]");
             }
@@ -81,19 +83,12 @@ Array.matrix = function (m, n, initial) {
             // Arbre
             case 1:
                 return new Tile(this.loadTileImg(1), property, x, y, true);
-            //break;
             // Eau
             case 2:
                 return new Tile(this.loadTileImg(2), property, x, y, true);
-            //break;
             // Roche
             case 3:
                 return new Tile(this.loadTileImg(3), property, x, y, true);
-            //break;
-            // Plaine
-            case 4:
-                return new Tile(this.loadTileImg(4), property, x, y, true);
-            //break;
         }
     };
 
