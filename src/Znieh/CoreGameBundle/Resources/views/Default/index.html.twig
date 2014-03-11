@@ -155,7 +155,7 @@ $(document).ready(function(){
       <div class="col-sm-3" id="leftSide">
       </div>
       <div class="col-sm-6">
-        <canvas id="canvas" width="480" height="480" style="margin:0px;"> Canvas not supported. Please update your browser. </canvas>
+        <canvas id="canvas" width="864" height="480" style="margin:0px;"> Canvas not supported. Please update your browser. </canvas>
         <div id="fps" style="font-size:12px; margin:0px; padding:0px;"></div>
       </div>
       <div class="col-sm-3" id="rightSide">
@@ -165,23 +165,7 @@ $(document).ready(function(){
 
   <div class="col-sm-12">
     <div class="row">
-      <div class="col-sm-3">
-        <button id="join" type="button" class="btn btn-primary">Join pool</button>
-        <button id="ready" type="button" class="btn btn-primary">Ready <em>(start search)</em></button>
-        <button id="next-turn" type="button" class="btn btn-primary">Next Turn</button>
-
-        <p><br />
-          Pool ID : <input type="text" id="poolId" value="0" /></input>
-        </p>
-
-        <br /><br />
-        <pre id="console" style="border: 1px dotted grey; padding: 10px;width: 300px;"><strong>Console Log :</strong><br /><br /></pre>
-
-        <div id="pools" style="border: 1px dotted grey; width: 300px; padding: 10px;">
-          <button id="fight" type="button" class="btn btn-primary">Fight !</button>
-        </div>
-      </div>
-      <div class="col-sm-5" style="font-size:12px; line-height: 15px;">
+      <div class="col-sm-3" style="font-size:12px; line-height: 15px;">
         <div class="panel panel-default">
           <div class="panel-heading"><strong>Journal de combat</strong></div>
           <div class="panel-body" style="height:120px; overflow:auto;" id="journal">
