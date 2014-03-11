@@ -32,7 +32,7 @@
             {% endif %}
           </div>
           '>
-          <img src="{{ asset('img/icons/lame.png') }}" class="draggable" data-id="{{ obj.id }}" alt="{{ obj.name }}">
+          <img src="{{ asset('img/icons/lame.png') }}" class="draggable {% if obj.unlocked %}unlocked{% endif %}" data-id="{{ obj.id }}" alt="{{ obj.name }}">
           </span>
         {% endif %}
       {% endfor %}
@@ -53,35 +53,42 @@
 
 <div class="container">
   {% include 'ZniehVillageGameBundle:Public:listBuilding.html.twig'  with { 'buildings' : buildings, 'active' : building.title } %}
-  <h2>{{ building.title }}</h2>
-  <p>{{ building.description }}</p>
+  <div class="row">
+    <div class="col-lg-3">
+      <h2>{{ building.title }}</h2>
+      <p>{{ building.description }}</p>
+    </div>
+    <div class="col-lg-8">
+      <div id="weapons">
+        <div class="col-lg-4">
+          Création d'armes :
+          <div id="droppable" style="margin-bottom: 10px">
+            <div id="weapon-container" style="height: 50px; width: 200px; background: white"></div>
+          </div>
+          <button id="create-weapon" class="btn btn-default">Créer</button>
+        </div>
+        <div class="col-lg-7">
+          Vos armes sauvegardées :
+          <ul>
+          {% for wep in weapons %}
+            <li> {{ wep.id }}
+                <ul>
+                  {% for part in wep.parts %}
+                    <li>{{ part.name }}</li>
+                  {% endfor %}
+                </ul>
+            </li>
+          {% endfor %}
+          </ul>
+        </div>
+        <div style="display:none">{{ form(form) }}</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
 <div class="row">
-  <div id="weapons" style="background: brown;">
-    Création d'armes :
-    <div id="droppable" style="margin-bottom: 10px">
-      <div style="height: 50px; width: 100%; background: white"></div>
-    </div>
-    <button id="create-weapon" class="btn btn-default">Créer</button>
-    <br>
-
-    Vos armes sauvegardées :
-    <ul>
-    {% for wep in weapons %}
-      <li> {{ wep.id }}
-          <ul>
-            {% for part in wep.parts %}
-              <li>{{ part.name }}</li>
-            {% endfor %}
-          </ul>
-      </li>
-    {% endfor %}
-    </ul>
-    {{ form(form) }}
-
-  </div>
   <div class="col-lg-offset-2 col-lg-9">
     <div>
       {% for step in steps %}
