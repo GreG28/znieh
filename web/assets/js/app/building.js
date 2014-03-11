@@ -26,21 +26,21 @@
         $('body').on('click', '.unlock-object', function(e) {
             e.preventDefault();
             var id = $(this).data("id");
+            var text = $(this).html();
             var obj = $(this);
-            var gameobj = $('.draggable').find("[data-id='" + id + "']");
-            console.log(gameobj);
+            var img = $('body').find("[data-id='" + id + "']");
+            var popover = img.parent();
             obj.button('loading');
             $.get(Routing.generate('znieh_villagegame_public_unlock', {object : id}))
             .done(function(data) {
-              console.log('done');
               obj.button('reset');
-              console.log(gameobj);
-              gameobj.parent().data('bs.popover').options.content = 'Débloqué';
-              console.log(obj.closest('img.draggable'));
-              obj.closest('img.draggable').addClass('unlocked');
+              obj.text('Débloqué');
+              popover.attr("data-content", popover.attr("data-content").replace(text, "Débloqué"));
+              img.addClass('unlocked');
             })
             .fail(function(e) {
               console.log('fail');
+              obj.button('reset');
             });
          });
          $('.game-object').popover();
