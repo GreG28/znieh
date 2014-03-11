@@ -10,6 +10,7 @@ var socketio = require('../network/socketio');
 var logger = require('../util/logger');
 var world = require('../model/world');
 var hit = require('../model/physicalAttack');
+var unit = require('../model/handlers/unit.js');
 
 module.exports = function(player) {
 
@@ -40,6 +41,9 @@ module.exports = function(player) {
 
 	player.socket.on("attack", function(data, callback){
 		hit.physicalHit(data[0],data[1]);
+		unit.setHasPlayed(data[0]);
+		if(data[1].stats.life <= 0)
+			delete data[1];
 		callback(data);
 	});
 

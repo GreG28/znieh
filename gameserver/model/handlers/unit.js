@@ -18,6 +18,7 @@ UnitHandler.StatSet = function (life, penetration, precision, evade, parry, defe
 	this.magicSupport = magicSupport;
 }
 
+
 UnitHandler.Weapon = function (name, type, damages, attribute, range, stats, ratio){
 	this.name = name;
 	this.type = type;
@@ -34,6 +35,14 @@ UnitHandler.Armor = function (name, type, stats){
 	this.stats = stats;
 }
 
+UnitHandler.setHasPlayed = function(unit){
+	unit.hasPlayed = true;
+}
+
+UnitHandler.resetHasPlayed = function(unit){
+	unit.hasPlayed = false;
+}
+
 UnitHandler.Unit = function(name, sign, stats, weapon, armor, skills,  values, tags){
 	this.name = name;
 	this.sign = sign;
@@ -43,6 +52,7 @@ UnitHandler.Unit = function(name, sign, stats, weapon, armor, skills,  values, t
 	this.values = values;
 	this.tags = tags;
 	this.skills = skills;
+	this.hasPlayed = false;
 }
 
 //A value is either a Strength or a Weakness, can be bad or good(yin will tell you if it's positive or negative effect)
