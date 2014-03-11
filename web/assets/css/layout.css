@@ -7636,14 +7636,6 @@ td.visible-print {
     display: none !important;
   }
 }
-/* line 1, ../sass/_building.scss */
-#weapons {
-  position: fixed;
-  top: 20%;
-  left: 0;
-  width: 300px;
-}
-
 /* line 7, ../sass/_building.scss */
 *, *:before, *:after {
   -webkit-box-sizing: initial;
@@ -7652,18 +7644,25 @@ td.visible-print {
 }
 
 /* line 12, ../sass/_building.scss */
+div {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 17, ../sass/_building.scss */
 .root {
   position: relative;
   overflow: hidden;
 }
 
-/* line 16, ../sass/_building.scss */
+/* line 21, ../sass/_building.scss */
 .level {
   margin-left: 400px;
   position: relative;
 }
 
-/* line 20, ../sass/_building.scss */
+/* line 25, ../sass/_building.scss */
 .level:before {
   content: "";
   width: 50px;
@@ -7674,13 +7673,13 @@ td.visible-print {
   margin-top: 1px;
 }
 
-/* line 29, ../sass/_building.scss */
+/* line 34, ../sass/_building.scss */
 .step {
   min-height: 300px;
   position: relative;
 }
 
-/* line 33, ../sass/_building.scss */
+/* line 38, ../sass/_building.scss */
 .step:before {
   content: "";
   height: 100%;
@@ -7689,7 +7688,7 @@ td.visible-print {
   left: -48px;
 }
 
-/* line 40, ../sass/_building.scss */
+/* line 45, ../sass/_building.scss */
 .step:after {
   content: "";
   width: 46px;
@@ -7700,7 +7699,7 @@ td.visible-print {
   margin-top: 1px;
 }
 
-/* line 49, ../sass/_building.scss */
+/* line 54, ../sass/_building.scss */
 .step:first-child:before {
   width: 10px;
   height: 50%;
@@ -7709,20 +7708,20 @@ td.visible-print {
   border-top-left-radius: 10px;
 }
 
-/* line 56, ../sass/_building.scss */
+/* line 61, ../sass/_building.scss */
 .step:first-child:after {
   height: 10px;
   border-top-left-radius: 10px;
 }
 
-/* line 60, ../sass/_building.scss */
+/* line 65, ../sass/_building.scss */
 .step:last-child:before {
   width: 10px;
   height: 50%;
   border-bottom-left-radius: 10px;
 }
 
-/* line 65, ../sass/_building.scss */
+/* line 70, ../sass/_building.scss */
 .step:last-child:after {
   height: 10px;
   border-top: none;
@@ -7731,7 +7730,7 @@ td.visible-print {
   margin-top: -11px;
 }
 
-/* line 72, ../sass/_building.scss */
+/* line 77, ../sass/_building.scss */
 .step:only-child:before {
   border-top: none;
   border-bottom: none;
@@ -7739,7 +7738,7 @@ td.visible-print {
   margin-top: 0px;
 }
 
-/* line 78, ../sass/_building.scss */
+/* line 83, ../sass/_building.scss */
 .step:only-child:after {
   width: 52px;
   left: -52px;
@@ -7747,7 +7746,7 @@ td.visible-print {
   border-bottom-left-radius: 0;
 }
 
-/* line 84, ../sass/_building.scss */
+/* line 89, ../sass/_building.scss */
 .step-content {
   width: 280px;
   height: 200px;
@@ -7762,21 +7761,26 @@ td.visible-print {
   background-color: brown;
 }
 
-/* line 97, ../sass/_building.scss */
+/* line 102, ../sass/_building.scss */
 .game-object {
   padding: 5px 5px 5px 5px;
   width: 50px;
   height: 20px;
 }
 
-/* line 102, ../sass/_building.scss */
+/* line 107, ../sass/_building.scss */
 .game-object img {
   margin-right: 3px;
 }
 
-/* line 105, ../sass/_building.scss */
+/* line 110, ../sass/_building.scss */
 .game-object-points {
   float: left;
+}
+
+/* line 108, ../sass/_building.scss */
+.draggable.selected {
+  border: 3px solid green;
 }
 
 /* line 1, ../sass/_index.scss */
@@ -7794,7 +7798,7 @@ body {
   margin-top: -170px;
 }
 
-/* line 12, ../sass/_index.scss */
+/* line 13, ../sass/_index.scss */
 .after-village-content {
   background: #141414 no-repeat right bottom;
   display: block;
@@ -8152,7 +8156,7 @@ h3.section-title {
   background: #d9fad9;
 }
 
-/* line 276, ../sass/layout.scss */
+/* line 275, ../sass/layout.scss */
 .unit .portrait {
   overflow: hidden;
   width: 48px;
@@ -8160,38 +8164,38 @@ h3.section-title {
   float: left;
 }
 
-/* line 283, ../sass/layout.scss */
+/* line 282, ../sass/layout.scss */
 .unit .name {
   font-size: 12px;
   float: left;
   font-weight: bold;
 }
 
-/* line 289, ../sass/layout.scss */
+/* line 288, ../sass/layout.scss */
 .unit .life {
   margin-top: 10px;
   height: 16px;
 }
 
-/* line 294, ../sass/layout.scss */
+/* line 293, ../sass/layout.scss */
 .unit .stats {
   font-size: 12px;
   margin-top: -25px;
 }
 
-/* line 299, ../sass/layout.scss */
+/* line 298, ../sass/layout.scss */
 .unit .skills {
   margin-top: -15px;
 }
 
-/* line 303, ../sass/layout.scss */
+/* line 302, ../sass/layout.scss */
 .unit .skills img {
   float: right;
   margin-right: 5px;
   margin-bottom: 5px;
 }
 
-/* line 310, ../sass/layout.scss */
+/* line 309, ../sass/layout.scss */
 #leftSide .infos,
 #rightSide .infos {
   background: white;
@@ -8199,23 +8203,23 @@ h3.section-title {
   border: 1px solid black;
 }
 
-/* line 316, ../sass/layout.scss */
+/* line 315, ../sass/layout.scss */
 .infos h3 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-/* line 321, ../sass/layout.scss */
+/* line 320, ../sass/layout.scss */
 .infos .stats {
   font-size: 12px;
 }
 
-/* line 325, ../sass/layout.scss */
+/* line 324, ../sass/layout.scss */
 .infos hr {
   margin: 0px;
 }
 
-/* line 329, ../sass/layout.scss */
+/* line 328, ../sass/layout.scss */
 .infos hr.delimitor {
   margin: 0px;
   margin-top: 10px;
