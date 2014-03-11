@@ -127,11 +127,12 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
     $('#console').append('<strong>Loading ...</strong><br>');
 
     gameSocket.emit('get-pools', null, function (data) {
+      console.log(data);
       var size = data.length;
       var div_labels = $('#modalPools .modal-body .btn-group');
       for(var i = 0 ; i < size ; i=i+1 )
       {
-        div_labels.append("<label class=\"btn btn-primary\"><input class=\"input\" type=\"radio\" name=\"options\" value=\""+i+"\"><div class=\"thumbnail\"><div class=\"caption\"><h4>"+data[i].name+"</h4><p>"+data[i].attribute1+"</p><p>"+data[i].attribute2+"</p><p>"+data[i].attribute3+"</p></div></div></input></label>");
+        div_labels.append("<label class=\"btn btn-primary\"><input class=\"input\" type=\"radio\" name=\"options\" value=\""+i+"\"><h4>"+data[i].name+"</h4><p>Nombre de points "+data[i].points+"</p><p>"+data[i].playerCount+" joueurs en attente</p></input></label>");
       }
       $('#modalFight').modal('hide');
       $('#modalPools').modal('show');
