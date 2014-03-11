@@ -14,12 +14,14 @@ var pools = [];
 var size = 0;
 
 module.exports.init = function() {
-	size = config.get('pool:count');
+	size = config.get('pools').length;
 
 	// Init each pool with default arrays and functions
-	for(var i = 0; i < config.get('pool:count'); i++) {
+	for(var i = 0; i < config.get('pools').length; i++) {
 
 		pools[i] = {
+			name: config.get('pools')[i]['name'],
+			points: config.get('pools')[i]['points'],
 			players: [],
 			hasPlayer: function(player) {
 				for(var i=0; i < this.players.length; i++)
@@ -29,6 +31,13 @@ module.exports.init = function() {
 			addPlayer: function(player) {
 				player.pool = this;
 				this.players.push(player);
+			},
+			awaitingPlayerCount: function() {
+				var count = 0;
+				for(var i=0; i < this.players.length; i++)
+					if('ready' === this.players[i].status) count++;
+
+			    return count;
 			},
 			notifyPlayerReady: function(player) {
 				for(var i=0; i < this.players.length; i++) {
