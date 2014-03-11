@@ -24,25 +24,40 @@
 
     $(document).ready(function() {
         $('body').on('click', '.unlock-object', function(e) {
-          e.preventDefault();
+            e.preventDefault();
             var id = $(this).data("id");
+            var text = $(this).html();
             var obj = $(this);
+            var img = $('body').find("[data-id='" + id + "']");
+            var popover = img.parent();
             obj.button('loading');
             $.get(Routing.generate('znieh_villagegame_public_unlock', {object : id}))
             .done(function(data) {
-              console.log('done');
               obj.button('reset');
               obj.text('Débloqué');
+              popover.attr("data-content", popover.attr("data-content").replace(text, "Débloqué"));
+              img.addClass('unlocked');
             })
             .fail(function(e) {
               console.log('fail');
+              obj.button('reset');
             });
          });
-         $('.game-object').popover().parent().on('click', '.unlock-object', function() {
-              console.log('click');
-          });
+         $('.game-object').popover();
          var form = $('#znieh_unitgamebundle_weapon').parent();
          $(form).hide();
+         $('.draggable').on('click', function(e){
+             e.preventDefault();
+             if ($(this).hasClass('unlocked')) {
+                var checkBox = $('#znieh_unitgamebundle_weapon_parts_' + $(this).data("id"));
+                $(this).toggleClass('selected');
+                checkBox.prop('checked', !checkBox.attr('checked'));
+                console.log($(this).parent());
+                $(this).parent().clone().appendTo( "#weapon-container");
+             } else {
+              alert("Vous devez débloquer ce composant avant de pouvoir l'utiliser.");
+             }
+         });
          $( ".draggable" ).draggable({ cursor: "move", helper: "clone", revert: "invalid" });
          $('#create-weapon').on('click', function(){
              $.ajax({
