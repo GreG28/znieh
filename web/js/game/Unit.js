@@ -261,7 +261,7 @@
                 if(filtered_new.length === 0) {
                     
                     /** This place made the perso move on the map */
-                    self.sprite_base.gotoAndPlay("right");
+                    self.sprite_base.gotoAndPlay("move-right");
                     console.log(path);
                     for(i=1; i< path.length; i++)
                     {
