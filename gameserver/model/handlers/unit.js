@@ -18,6 +18,7 @@ UnitHandler.StatSet = function (life, penetration, precision, evade, parry, defe
 	this.magicSupport = magicSupport;
 }
 
+
 UnitHandler.Weapon = function (name, type, damages, attribute, range, stats, ratio){
 	this.name = name;
 	this.type = type;
