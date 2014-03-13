@@ -74,6 +74,9 @@ module.exports.init = function() {
 						player.battle = battle.new(player, this.players[i]);
 						this.players[i].battle = player.battle;
 
+						player.battle.player1side = (leftOrRight) ? 'left' : 'right';
+						player.battle.player2side = (!leftOrRight) ? 'left' : 'right';
+
 						return;
 					}
 				}
