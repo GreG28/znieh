@@ -232,9 +232,11 @@
         substage.addChild(this._container);
     };
 
+
+    // TODO GreG */
     Unit.prototype.move = function (x, y) {
 
-        var origin_x = this._i
+        var origin_x = this._i;
         var origin_y = this._j;
 
         var limit = 7; // TODO : Sélectionner la limite de déplacement de l'unité
@@ -244,7 +246,7 @@
         easystar.setAcceptableTiles(acceptableTiles);
 
         unitsPlacement.length = 0;
-        for (var t = ContentManager.units.length - 1; t >= 0; t--) {
+        for (var t = ContentManager.units.length - 1 ; t >= 0 ; t--) {
             unitsPlacement.push([ContentManager.units[t]._i, ContentManager.units[t]._j]);
             easystar.avoidAdditionalPoint(ContentManager.units[t]._i, ContentManager.units[t]._j);
         }
@@ -256,21 +258,35 @@
                     return x == this[0] && y == this[1];
                 });
 
-                if(filtered_new.length == 0) {
-                    self._container.x = map.GetBounds(x, y).GetBottomCenter().x;
-                    self._container.y = map.GetBounds(x, y).GetBottomCenter().y;
-                    self._i = x;""
+                if(filtered_new.length === 0) {
+                    
+                    /** This place made the perso move on the map */
+                    self.sprite_base.gotoAndPlay("right");
+                    console.log(path);
+                    for(i=1; i< path.length; i++)
+                    {
+                        createjs.Tween.get(self._container).to({x:map.GetBounds(path[i].x, path[i].y).GetBottomCenter().x,y:map.GetBounds(path[i].x, path[i].y).GetBottomCenter().y,},300);
+                    }
+                    //self._container.x = map.GetBounds(x, y).GetBottomCenter().x;
+                    //self._container.y = map.GetBounds(x, y).GetBottomCenter().y;
+                    /**/
+
+
+                    /*This are the real index on the map table in x and y*/
+                    self._i = x;
                     self._j = y;
 
-                    self.shape_hover.graphics.drawRect((-16), (-16), 32, 32 - 2); // Change size as-needed
-                    self.shape_selected.graphics.drawRect((-16), (-16), 32 - 2, 32 - 2); // Change size as-needed
-                    self.shape_selected_unit.graphics.drawRect((-16), (-16), 32 - 2, 32 - 2); // Change size as-needed
+                    /* I really don't understand these ones ... */
 
-                    self._container.removeAllChildren();
+                    //self.shape_hover.graphics.drawRect((-16), (-16), 32, 32 - 2); // Change size as-needed
+                    //self.shape_selected.graphics.drawRect((-16), (-16), 32 - 2, 32 - 2); // Change size as-needed
+                    //self.shape_selected_unit.graphics.drawRect((-16), (-16), 32 - 2, 32 - 2); // Change size as-needed
+
+                    /*self._container.removeAllChildren();
                     self._container.addChild(self.shape_hover);
                     self._container.addChild(self.shape_selected);
                     self._container.addChild(self.shape_selected_unit);
-                    self._container.addChild(self.sprite_base);
+                    self._container.addChild(self.sprite_base);*/
 
                     var placement = [origin_x, origin_y];
                     var filtered = $(unitsPlacement).filter(function(){
@@ -278,22 +294,26 @@
                     });
 
                     if(filtered.length > 0){
-                        map.tiles[origin_y][origin_x].shape_hover.visible = false; // Change size as-needed
-                        map.tiles[origin_y][origin_x].shape_selection_possible.visible = false; // Change size as-needed
-                        map.tiles[origin_y][origin_x].shape_selection_impossible.visible = false; // Change size as-needed
+                        map.tiles[origin_y][origin_x].shape_hover.visible = false;
+                        map.tiles[origin_y][origin_x].shape_selection_possible.visible = false;
+                        map.tiles[origin_y][origin_x].shape_selection_impossible.visible = false;
                     }
 
-                    self.sprite_base.gotoAndPlay("move-left"); //animate
-                    ContentManager.units[self.unitID - units.length - 1] = self;
+                    /*TODO A SUPPR*/
+                    //console.log(path);
+
+                    //self.sprite_base.gotoAndPlay("move-left"); //animate
+                    // A SUPPR
+                    //ContentManager.units[self.unitID - units.length - 1] = self;
                 }
                 else console.log("Une unité est déjà sur la case.");
             }
-            else console.log("Cette unité ne peut pas se déplacer aussi loin.")
+            else console.log("Cette unité ne peut pas se déplacer aussi loin.");
         });
         easystar.calculate();
 
         ContentManager.unSelectAllTiles();
-    }
+    };
 
     Unit.prototype.getAllTilesStatut = function () {
         if(gameStatut != GameStatut.PLACEMENT) {
@@ -361,9 +381,7 @@
         else {
             gameStatut = GameStatut.IDLE;
         }
-
-
-    }
+    };
 
     /**
      * Gets a rectangle around the Unit
@@ -407,7 +425,6 @@
                 }
             }
         }
-
     };
 
     /**
