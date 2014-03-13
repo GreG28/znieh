@@ -11,9 +11,8 @@ var httpserver = require('./httpserver');
 var config = require('../util/config');
 var logger = require('../util/logger');
 
-module.exports.init = function () {
-	io = io.listen(config.get('app:port'), { log: false });
-	module.exports = io;
+module.exports.init = function () { 
+	module.exports = io.listen(config.get('app:port'), { log: false });
 
 	logger.info('Networking loaded.');
 	logger.info('Listening on websocket://0.0.0.0:' + config.get('app:port'));
