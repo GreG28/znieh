@@ -15,7 +15,7 @@ var pools = require('../model/pools');
 
 module.exports.init = function() {
   "use strict";
-
+  
   socketio.sockets.on('connection', function (socket) {
 
     logger.verbose('Websocket connection from: ' + socket.handshake.address.address);
