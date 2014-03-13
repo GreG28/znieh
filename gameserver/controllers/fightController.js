@@ -40,11 +40,19 @@ module.exports = function(player) {
 	});
 
 	player.socket.on('get-units', function(data, callback) {
-		//TODO: Fetch available units
-		//TODO: Send available units
+		callback(null);
 	});
 
 	player.socket.on('get-side', function(data, callback) {
+		if(player.battle === undefined) {
+			callback(false);
+			player.socket.emit('service', { msg: 'No battle found'});
+			return -1;
+		}
+
+		if(player.name === player.battle.player1.name)
+			callback(player.battle.player1side);
+		else callback(player.battle.player2side);
 
 	});
 
