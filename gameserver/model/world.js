@@ -5,23 +5,21 @@
  *
  * @author alfo
  */
-
-var socketio = require('../network/socketio');
+var socketio = undefined;
 var logger = require('../util/logger');
 
 module.exports.init = function() {
 	this.handlers = [];
 	this.players = [];
 	this.battle = undefined;
-
+	socketio = require('../network/socketio');
 
 	logger.info('World initiated.');
 }
 
 
 module.exports.broadcast = function(key, value) {
-	//socketio.sockets.emit(key, value);
-	logger.warn('Broadcasting is not yet implemented!');
+	socketio.sockets.emit(key, value);
 }
 
 module.exports.broadcastUserList = function() {
@@ -31,8 +29,7 @@ module.exports.broadcastUserList = function() {
 		var player = this.players[i];
 		str += player.name + ', ';
     }
-    logger.warn('Broadcasting is not yet implemented!');
-    //socketio.sockets.emit("players", { players: str });
+    socketio.sockets.emit("players", { players: str });
 }
 
 module.exports.removePlayer = function(player) {

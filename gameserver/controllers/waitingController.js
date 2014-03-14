@@ -18,8 +18,8 @@ module.exports = function(player) {
 	 * Returns the lsit of the pools
 	 */
 	player.socket.on("get-pools", function(data, callback) {
-    	
-    	logger.verbose('Player "' + player.name + '" is trying to get list of pools.');
+
+		logger.verbose('Player "' + player.name + '" is trying to get list of pools.');
 		
 		var result = [];
 

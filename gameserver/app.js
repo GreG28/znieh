@@ -29,6 +29,7 @@ var httpserver = require('./network/httpserver');
 var socketio = require('./network/socketio');
 var world = require('./model/world');
 var pools = require('./model/pools');
+var map = require('./model/map');
 var battle = require('./model/battle');
 var skillHandler = require('./model/handlers/skills');
 
@@ -44,6 +45,7 @@ httpserver.init();
 socketio.init();
 world.init();
 pools.init();
+map.init();
 battle.init();
 skillHandler.loadSpells();
 skillHandler.loadSkills();
