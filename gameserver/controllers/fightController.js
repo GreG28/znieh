@@ -41,7 +41,8 @@ module.exports = function(player) {
 	});
 
 	player.socket.on('get-units', function(data, callback) {
-		callback(null);
+		unit.loadUnit();
+		callback(unit.unitList);
 	});
 
 	player.socket.on('get-side', function(data, callback) {
