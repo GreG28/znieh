@@ -8,8 +8,10 @@
 
 var socketio = require('../network/socketio');
 var logger = require('../util/logger');
+var map = require('../model/map');
 var world = require('../model/world');
 var hit = require('../model/physicalAttack');
+var unit = require('../model/handlers/unit.js');
 
 module.exports = function(player) {
 
@@ -28,18 +30,68 @@ module.exports = function(player) {
 		}
 	});
 
-	player.socket.on("place-unit", function(data) {
-		if(player.status != "fighting") return -1;
+	player.socket.on('select-map', function(data, callback) {
+		if(player.battle.map !== undefined) {
+			player.battle.map = map.getRandomMap();
+		}
 
-		if(player.battle == undefined) return -2;
+		callback('map1.json');
+		player.socket.emit('service', { msg: 'Map selected: map1.json'});
 
-		if(player.battle.finishedUnitPlacement) return -3;
+	});
 
-		player.battle.map[data.x][data.y] = data.unit;
+	player.socket.on('get-units', function(data, callback) {
+		callback(null);
+	});
+
+	player.socket.on('get-side', function(data, callback) {
+		if(player.battle === undefined) {
+			callback(false);
+			player.socket.emit('service', { msg: 'No battle found'});
+			return -1;
+		}
+
+		if(player.name === player.battle.player1.name)
+			callback(player.battle.player1side);
+		else callback(player.battle.player2side);
+
+	});
+
+	player.socket.on("place-unit", function(data, callback) {
+		if(player.battle.mapSelected === false) {
+			callback(false);
+			player.socket.emit('service', { msg: 'Map is not selected.'});
+			return -1;
+		}
+
+		if(player.status != "placement-started") {
+			callback(false);
+			player.socket.emit('service', { msg: 'Placement has not started yet.'});
+			return -2;
+		}
+
+		if(player.battle == undefined) {
+			callback(false);
+			player.socket.emit('service', { msg: 'No battle found'});
+			return -3;
+		}
+
+		if(player.battle.finishedUnitPlacement) {
+			callback(false);
+			player.socket.emit('service', { msg: 'Unit placement is over.'});
+			return -4;
+		}
+
+		player.battle.map.layers[data.x][data.y] = data.unit;
 	});
 
 	player.socket.on("attack", function(data, callback){
+		//check if unit setHasPlayed
 		hit.physicalHit(data[0],data[1]);
+		unit.setHasPlayed(data[0]);	
+
+		if(data[1].stats.life <= 0)
+			delete data[1];
 		callback(data);
 	});
 
