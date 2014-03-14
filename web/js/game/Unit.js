@@ -236,7 +236,32 @@
     function move_tween(self, path, cpt) {
         if(cpt < path.length)
         {
-            createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1)]);
+            if(path[cpt].x > path[(cpt-1)].x) {
+                console.log(1);
+                self.sprite_base.gotoAndPlay("move-right");
+                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1)]);
+            }
+            else if(path[cpt].x < path[(cpt-1)].x) {
+                console.log(2);
+                self.sprite_base.gotoAndPlay("move-left");
+                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1)]);
+            }
+            else if(path[cpt].y > path[(cpt-1)].y) {
+                console.log(3);
+                self.sprite_base.gotoAndPlay("move-bottom");
+                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1)]);
+            }
+            else {
+                console.log(4);
+                self.sprite_base.gotoAndPlay("move-top");
+                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1)]);
+            }
+
+            if((cpt+1) === path.length)
+            {
+                self.sprite_base.gotoAndPlay("move-idle");
+            }
+
         }
     }
 
@@ -266,8 +291,6 @@
                 });
 
                 if(filtered_new.length === 0) {
-                    
-                    self.sprite_base.gotoAndPlay("move-right");
                     
                     move_tween(self,path,1);
                     
