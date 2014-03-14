@@ -51,9 +51,9 @@ module.exports = function(socket, callback) {
 		db.User.find({where: {username: data.username}})
 		.success(function(user){
 
-			user = {
+			/*user = {
 				username: data.username
-			};
+			};*/
 
 			for(var i=0; i < world.players.length; i++) {
 				if(data.username === world.players[i].name) {
@@ -76,7 +76,7 @@ module.exports = function(socket, callback) {
 			socket.emit("service", { msg: 'Auth: OK' });
 			logger.info("User " + data.username + " is now logged in.");
 
-			var p = new player(user.username, socket);
+			var p = new player(user.id, user.username, socket);
     		world.players.push(p);
     		socket.emit("welcome", p.name);
     		cb(true);
