@@ -233,6 +233,13 @@
     };
 
 
+    function move_tween(self, path, cpt) {
+        if(cpt < path.length)
+        {
+            createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1)]);
+        }
+    }
+
     // TODO GreG */
     Unit.prototype.move = function (x, y) {
 
@@ -260,33 +267,12 @@
 
                 if(filtered_new.length === 0) {
                     
-                    /** This place made the perso move on the map */
                     self.sprite_base.gotoAndPlay("move-right");
-                    console.log(path);
-                    for(i=1; i< path.length; i++)
-                    {
-                        createjs.Tween.get(self._container).to({x:map.GetBounds(path[i].x, path[i].y).GetBottomCenter().x,y:map.GetBounds(path[i].x, path[i].y).GetBottomCenter().y,},300);
-                    }
-                    //self._container.x = map.GetBounds(x, y).GetBottomCenter().x;
-                    //self._container.y = map.GetBounds(x, y).GetBottomCenter().y;
-                    /**/
-
-
-                    /*This are the real index on the map table in x and y*/
+                    
+                    move_tween(self,path,1);
+                    
                     self._i = x;
                     self._j = y;
-
-                    /* I really don't understand these ones ... */
-
-                    //self.shape_hover.graphics.drawRect((-16), (-16), 32, 32 - 2); // Change size as-needed
-                    //self.shape_selected.graphics.drawRect((-16), (-16), 32 - 2, 32 - 2); // Change size as-needed
-                    //self.shape_selected_unit.graphics.drawRect((-16), (-16), 32 - 2, 32 - 2); // Change size as-needed
-
-                    /*self._container.removeAllChildren();
-                    self._container.addChild(self.shape_hover);
-                    self._container.addChild(self.shape_selected);
-                    self._container.addChild(self.shape_selected_unit);
-                    self._container.addChild(self.sprite_base);*/
 
                     var placement = [origin_x, origin_y];
                     var filtered = $(unitsPlacement).filter(function(){
@@ -299,12 +285,6 @@
                         map.tiles[origin_y][origin_x].shape_selection_impossible.visible = false;
                     }
 
-                    /*TODO A SUPPR*/
-                    //console.log(path);
-
-                    //self.sprite_base.gotoAndPlay("move-left"); //animate
-                    // A SUPPR
-                    //ContentManager.units[self.unitID - units.length - 1] = self;
                 }
                 else console.log("Une unité est déjà sur la case.");
             }
