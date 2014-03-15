@@ -116,6 +116,10 @@ function ContentManager(stage, width, height) {
         loadingQueue.loadManifest([{id:"mailarmor2", src:"../img/sprites/mailarmor2.png"}]);
         loadingQueue.loadManifest([{id:"perso_july", src:"../img/sprites/perso_july.png"}]);
         loadingQueue.loadManifest([{id:"perso_july_2", src:"../img/sprites/perso_july_2.jpeg"}]);
+        loadingQueue.loadManifest([{id:"perso_petit", src:"../img/sprites/perso_petit.png"}]);
+        loadingQueue.loadManifest([{id:"perso_casque", src:"../img/sprites/perso_casque.png"}]);
+        loadingQueue.loadManifest([{id:"perso_casque_argent", src:"../img/sprites/perso_casqueArgent.png"}]);
+        loadingQueue.loadManifest([{id:"perso_casque_Or", src:"../img/sprites/perso_casqueOr2.png"}]);
 
         gameStatut = GameStatut.IDLE;
 
