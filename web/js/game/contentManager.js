@@ -110,7 +110,7 @@ function ContentManager(stage, width, height) {
         loadingQueue.loadManifest([{id:"unitFirefox", src:"../img/sprites/firefox.png"}]);
         loadingQueue.loadManifest([{id:"unitFirefox2", src:"../img/sprites/firefox2.png"}]);
         loadingQueue.loadManifest([{id:"sword", src:"../img/sprites/bluesword.png"}]);
-        loadingQueue.loadManifest([{id:"map-json", src:"../json/map_new.json"}]);
+        loadingQueue.loadManifest([{id:"map-json", src: route_map}]);
         loadingQueue.loadManifest([{id:"units-json", src:"../json/units.json"}]);
         loadingQueue.loadManifest([{id:"mailarmor", src:"../img/sprites/mailarmor.png"}]);
         loadingQueue.loadManifest([{id:"mailarmor2", src:"../img/sprites/mailarmor2.png"}]);
