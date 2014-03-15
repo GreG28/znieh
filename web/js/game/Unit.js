@@ -49,6 +49,10 @@
         var regX = unitsInfos.specifications[taille].sprites.frames.regX;
         var regY = unitsInfos.specifications[taille].sprites.frames.regY;
         var coef_size = Math.floor(1/(width/32)*10000)/10000;
+        if(coef_size > (Math.floor(1/(height/32)*10000)/10000))
+        {
+            coef_size = Math.floor(1/(height/32)*10000)/10000;
+        }
 
         this.frameWidth = 0;
         this.frameHeight = 0;
