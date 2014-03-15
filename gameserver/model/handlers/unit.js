@@ -84,9 +84,9 @@ UnitHandler.connect = function(id){
 
 UnitHandler.loadUnit = function(data){
 	unitList = new Array();
-
 	
-	console.log(data.team[0]);
+	data = require('../../json/unitex.json');
+
 	var unitName;
 	var sign;
 	//add stats here
@@ -96,19 +96,19 @@ UnitHandler.loadUnit = function(data){
 	var damages;
 	var range;
 	//add runes
-	for(var unit in data.team[0].units){
-		unitName = data.team[0].units[unit].name;
-		sign = data.team[0].units[unit].sign.name;
+	for(var unit in data[0].units){
+		unitName = data[0].units[unit].name;
+		sign = data[0].units[unit].sign.name;
 
-		weaponType = data.team[0].units[unit].weapon.type.name;
-		weaponName = data.team[0].units[unit].weapon.name.name;
-		weaponDamages = data.team[0].units[unit].weapon.damages.number;
-		weaponAttribute = data.team[0].units[unit].weapon.attribute.name;
-		weaponRange = data.team[0].units[unit].weapon.range.number;
-		weaponRatio = data.team[0].units[unit].weapon.ratio.number;
+		weaponType = data[0].units[unit].weapon.type.name;
+		weaponName = data[0].units[unit].weapon.name.name;
+		weaponDamages = data[0].units[unit].weapon.damages.number;
+		weaponAttribute = data[0].units[unit].weapon.attribute.name;
+		weaponRange = data[0].units[unit].weapon.range.number;
+		weaponRatio = data[0].units[unit].weapon.ratio.number;
 
-		armorType = data.team[0].units[unit].armor.type.name;
-		armorName = data.team[0].units[unit].armor.name.name;
+		armorType = data[0].units[unit].armor.type.name;
+		armorName = data[0].units[unit].armor.name.name;
 
 		unitList.push(new UnitHandler.Unit(unitName, sign, new UnitHandler.StatSet(50,30,30,30,30,30,30,30,30,30,30,30,30), new UnitHandler.Weapon(weaponName, weaponType, weaponDamages, weaponAttribute, weaponRange, "", weaponRatio), new UnitHandler.Armor(armorName, armorType, "")))
 	}
