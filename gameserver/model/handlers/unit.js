@@ -1,6 +1,7 @@
 var UnitHandler = {};
 module.exports = UnitHandler;
-var http = require('http')
+	var http = require('http');
+var url = require('url');
 
 UnitHandler.StatSet = function (life, penetration, precision, evade, parry, defense, armor, strength, agility, intelligence, magicDamage, evilScience, magicSupport){
 	this.life = life;
@@ -58,12 +59,34 @@ UnitHandler.Unit = function(name, sign, stats, weapon, armor, skills,  values, t
 
 var unitList = new Array();
 
-UnitHandler.loadUnit = function(id){
-	http.get("http://localhost/app_dev.php/api/users/1/team.json", function(res) {
-			 	console.log(res);
-			}).on('error', function(e) {
-			  	console.log("Got error: " + e.message);
-			});
+UnitHandler.connect = function(id){
+	function request(address) {
+		    http.get({ host: address, path: '/app_dev.php/api/users/'+ id + '/team.json'}, function(response) {
+		        if (response.statusCode === 302) {
+		            var newLocation = url.parse(response.headers.location).host;
+		            //console.log('We have to make new request ' + newLocation);
+		            request(newLocation);
+		        } else {
+		            //console.log("Response: %d", response.statusCode);
+		            response.on('data', function(chunk) {
+		            	UnitHandler.loadUnit(JSON.parse(chunk));
+		                //console.log('Body ' + chunk);
+		            });
+		        }
+		    }).on('error', function(err) {
+		        //console.log('Error %s', err.message);
+		    });
+		}
+
+
+	request('localhost');
+}
+
+UnitHandler.loadUnit = function(data){
+	unitList = new Array();
+
+	
+	console.log(data.team[0]);
 	var unitName;
 	var sign;
 	//add stats here
@@ -73,19 +96,19 @@ UnitHandler.loadUnit = function(id){
 	var damages;
 	var range;
 	//add runes
-	for(var unit in data[0].units){
-		unitName = data[0].units[unit].name;
-		sign = data[0].units[unit].sign.name;
+	for(var unit in data.team[0].units){
+		unitName = data.team[0].units[unit].name;
+		sign = data.team[0].units[unit].sign.name;
 
-		weaponType = data[0].units[unit].weapon.type.name;
-		weaponName = data[0].units[unit].weapon.name.name;
-		weaponDamages = data[0].units[unit].weapon.damages.number;
-		weaponAttribute = data[0].units[unit].weapon.attribute.name;
-		weaponRange = data[0].units[unit].weapon.range.number;
-		weaponRatio = data[0].units[unit].weapon.ratio.number;
+		weaponType = data.team[0].units[unit].weapon.type.name;
+		weaponName = data.team[0].units[unit].weapon.name.name;
+		weaponDamages = data.team[0].units[unit].weapon.damages.number;
+		weaponAttribute = data.team[0].units[unit].weapon.attribute.name;
+		weaponRange = data.team[0].units[unit].weapon.range.number;
+		weaponRatio = data.team[0].units[unit].weapon.ratio.number;
 
-		armorType = data[0].units[unit].armor.type.name;
-		armorName = data[0].units[unit].armor.name.name;
+		armorType = data.team[0].units[unit].armor.type.name;
+		armorName = data.team[0].units[unit].armor.name.name;
 
 		unitList.push(new UnitHandler.Unit(unitName, sign, new UnitHandler.StatSet(50,30,30,30,30,30,30,30,30,30,30,30,30), new UnitHandler.Weapon(weaponName, weaponType, weaponDamages, weaponAttribute, weaponRange, "", weaponRatio), new UnitHandler.Armor(armorName, armorType, "")))
 	}
