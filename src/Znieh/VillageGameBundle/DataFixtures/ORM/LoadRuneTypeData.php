@@ -22,8 +22,9 @@ class LoadRuneTypeData extends AbstractFixtureLoader implements OrderedFixtureIn
             $runeType = new RuneType($runeTypeData['name']);
 
             $manager->persist($runeType);
-            $manager->flush();
+            $this->addReference('RuneType-' . $runeType->getName(), $runeType);
         }
+        $manager->flush();
     }
 
     /**

@@ -1,9 +1,9 @@
 lame:
   name: Lame
 pommeau:
-  name: Pommeau 
+  name: Pommeau
 manche:
-  name: Manche 
+  name: Manche
 garde:
   name: Garde
 corde:
@@ -21,4 +21,4 @@ tete_marteau:
 hampe:
   name: Hampe
 poignee:
-  name: Poignee
+  name: Poignée
