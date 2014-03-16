@@ -27,8 +27,9 @@ class LoadWeaponPartTypeData extends AbstractFixtureLoader implements OrderedFix
             ;
 
             $manager->persist($weaponPartType);
-            $manager->flush();
+            $this->addReference('WeaponPartType-' . $weaponPartType->getName(), $weaponPartType);
         }
+        $manager->flush();
     }
 
     /**

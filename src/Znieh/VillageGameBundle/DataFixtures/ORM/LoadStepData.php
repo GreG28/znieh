@@ -21,7 +21,7 @@ class LoadStepData extends AbstractFixtureLoader implements OrderedFixtureInterf
         foreach($stepsData as $stepData) {
             $step = new Step();
 
-            $building = $manager->getRepository('ZniehVillageGameBundle:Building')->findOneByTitle($stepData['building']);
+            $building = $this->getReference('Building-' . $stepData['building']);
 
             $step
                 ->setTitle($stepData['title'])
@@ -31,13 +31,14 @@ class LoadStepData extends AbstractFixtureLoader implements OrderedFixtureInterf
             ;
 
             if (!empty($stepData['parent'])) {
-                $parent = $manager->getRepository('ZniehVillageGameBundle:Step')->findOneByTitle($stepData['parent']);
+                $parent = $this->getReference('Step-' . $stepData['parent']);
                 $step->setParent($parent);
             }
 
             $manager->persist($step);
-            $manager->flush();
+            $this->addReference('Step-' . $step->getTitle(), $step);
         }
+        $manager->flush();
     }
 
     /**
