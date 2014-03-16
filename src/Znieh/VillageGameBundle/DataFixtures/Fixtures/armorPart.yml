@@ -209,103 +209,103 @@ casque_en_brut_d_armure:
 casque_en_etmineure_de_vie:
   name: Casque en Etoffe mineure de vie
   type: Casque léger
-  step: Casques en Etoffe mineure
+  step: Casques en étoffe mineure
   effects: { vie: 20 }
 casque_en_etmineure_de_penetration:
   name: Casque en Etoffe mineure de pénétration
   type: Casque léger
-  step: Casques en Etoffe mineure
+  step: Casques en étoffe mineure
   effects: { penetration: 20 }
 casque_en_etmineure_de_precision:
   name: Casque en Etoffe mineure de précision
   type: Casque léger
-  step: Casques en Etoffe mineure
+  step: Casques en étoffe mineure
   effects: { precision: 20 }
 casque_en_etmineure_d_esquive:
   name: Casque en Etoffe mineure d'esquive
   type: Casque léger
-  step: Casques en Etoffe mineure
+  step: Casques en étoffe mineure
   effects: { esquive: 20 }
 casque_en_etmineure_de_parade:
   name: Casque en Etoffe mineure de parade
   type: Casque léger
-  step: Casques en Etoffe mineure
+  step: Casques en étoffe mineure
   effects: { parade: 20 }
 casque_en_etmineure_de_defense:
   name: Casque en Etoffe mineure de défense
   type: Casque léger
-  step: Casques en Etoffe mineure
+  step: Casques en étoffe mineure
   effects: { defense: 20 }
 casque_en_etmineure_de_force:
   name: Casque en Etoffe mineure de force
   type: Casque léger
-  step: Casques en Etoffe mineure
+  step: Casques en étoffe mineure
   effects: { force: 20 }
 casque_en_etmineure_d_agilite:
   name: Casque en Etoffe mineure d'agilité
   type: Casque léger
-  step: Casques en Etoffe mineure
+  step: Casques en étoffe mineure
   effects: { agilite: 20 }
 casque_en_etmineure_d_intelligence:
   name: Casque en Etoffe mineure d'intelligence
   type: Casque léger
-  step: Casques en Etoffe mineure
+  step: Casques en étoffe mineure
   effects: { intelligence: 20 }
 casque_en_etmineure_d_armure:
   name: Casque en Etoffe mineure d'armure
   type: Casque léger
-  step: Casques en Etoffe mineure
+  step: Casques en étoffe mineure
   effects: { armure: 20 }
 #__________________________________________
 casque_en_etstandart_de_vie:
   name: Casque en Etoffe standart de vie
   type: Casque léger
-  step: Casques en Etoffe standart
+  step: Casques en étoffe standart
   effects: { vie: 20 }
 casque_en_etstandart_de_penetration:
   name: Casque en Etoffe standart de pénétration
   type: Casque léger
-  step: Casques en Etoffe standart
+  step: Casques en étoffe standart
   effects: { penetration: 20 }
 casque_en_etstandart_de_precision:
   name: Casque en Etoffe standart de précision
   type: Casque léger
-  step: Casques en Etoffe standart
+  step: Casques en étoffe standart
   effects: { precision: 20 }
 casque_en_etstandart_d_esquive:
   name: Casque en Etoffe standart d'esquive
   type: Casque léger
-  step: Casques en Etoffe standart
+  step: Casques en étoffe standart
   effects: { esquive: 20 }
 casque_en_etstandart_de_parade:
   name: Casque en Etoffe standart de parade
   type: Casque léger
-  step: Casques en Etoffe standart
+  step: Casques en étoffe standart
   effects: { parade: 20 }
 casque_en_etstandart_de_defense:
   name: Casque en Etoffe standart de défense
   type: Casque léger
-  step: Casques en Etoffe standart
+  step: Casques en étoffe standart
   effects: { defense: 20 }
 casque_en_etstandart_de_force:
   name: Casque en Etoffe standart de force
   type: Casque léger
-  step: Casques en Etoffe standart
+  step: Casques en étoffe standart
   effects: { force: 20 }
 casque_en_etstandart_d_agilite:
   name: Casque en Etoffe standart d'agilité
   type: Casque léger
-  step: Casques en Etoffe standart
+  step: Casques en étoffe standart
   effects: { agilite: 20 }
 casque_en_etstandart_d_intelligence:
   name: Casque en Etoffe standart d'intelligence
   type: Casque léger
-  step: Casques en Etoffe standart
+  step: Casques en étoffe standart
   effects: { intelligence: 20 }
 casque_en_etstandart_d_armure:
   name: Casque en Etoffe standart d'armure
   type: Casque léger
-  step: Casques en Etoffe standart
+  step: Casques en étoffe standart
   effects: { armure: 20 }
 #_______________________________________________
 #_______________________________________________
@@ -520,103 +520,103 @@ torse_en_brut_d_armure:
 torse_en_etmineure_de_vie:
   name: Torse en Etoffe mineure de vie
   type: Torse léger
-  step: Torses en Etoffe mineure
+  step: Torses en étoffe mineure
   effects: { vie: 20 }
 torse_en_etmineure_de_penetration:
   name: Torse en Etoffe mineure de pénétration
   type: Torse léger
-  step: Torses en Etoffe mineure
+  step: Torses en étoffe mineure
   effects: { penetration: 20 }
 torse_en_etmineure_de_precision:
   name: Torse en Etoffe mineure de précision
   type: Torse léger
-  step: Torses en Etoffe mineure
+  step: Torses en étoffe mineure
   effects: {precisione: 20 }
 torse_en_etmineure_d_esquive:
   name: Torse en Etoffe mineure d'esquive
   type: Torse léger
-  step: Torses en Etoffe mineure
+  step: Torses en étoffe mineure
   effects: { esquive: 20 }
 torse_en_etmineure_de_parade:
   name: Torse en Etoffe mineure de parade
   type: Torse léger
-  step: Torses en Etoffe mineure
+  step: Torses en étoffe mineure
   effects: { parade: 20 }
 torse_en_etmineure_de_defense:
   name: Torse en Etoffe mineure de défense
   type: Torse léger
-  step: Torses en Etoffe mineure
+  step: Torses en étoffe mineure
   effects: { defense: 20 }
 torse_en_etmineure_de_force:
   name: Torse en Etoffe mineure de force
   type: Torse léger
-  step: Torses en Etoffe mineure
+  step: Torses en étoffe mineure
   effects: { force: 20 }
 torse_en_etmineure_d_agilite:
   name: Torse en Etoffe mineure d'agilité
   type: Torse léger
-  step: Torses en Etoffe mineure
+  step: Torses en étoffe mineure
   effects: { agilite: 20 }
 torse_en_etmineure_d_intelligence:
   name: Torse en Etoffe mineure d'intelligence
   type: Torse léger
-  step: Torses en Etoffe mineure
+  step: Torses en étoffe mineure
   effects: { intelligence: 20 }
 torse_en_etmineure_d_armure:
   name: Torse en Etoffe mineure d'armure
   type: Torse léger
-  step: Torses en Etoffe mineure
+  step: Torses en étoffe mineure
   effects: { armure: 20 }
 #__________________________________________
 torse_en_etstandart_de_vie:
   name: Torse en Etoffe standart de vie
   type: Torse léger
-  step: Torses en Etoffe standart
+  step: Torses en étoffe standart
   effects: { vie: 20 }
 torse_en_etstandart_de_penetration:
   name: Torse en Etoffe standart de pénétration
   type: Torse léger
-  step: Torses en Etoffe standart
+  step: Torses en étoffe standart
   effects: { penetration: 20 }
 torse_en_etstandart_de_precision:
   name: Torse en Etoffe standart de précision
   type: Torse léger
-  step: Torses en Etoffe standart
+  step: Torses en étoffe standart
   effects: {precisione: 20 }
 torse_en_etstandart_d_esquive:
   name: Torse en Etoffe standart d'esquive
   type: Torse léger
-  step: Torses en Etoffe standart
+  step: Torses en étoffe standart
   effects: { esquive: 20 }
 torse_en_etstandart_de_parade:
   name: Torse en Etoffe standart de parade
   type: Torse léger
-  step: Torses en Etoffe standart
+  step: Torses en étoffe standart
   effects: { parade: 20 }
 torse_en_etstandart_de_defense:
   name: Torse en Etoffe standart de défense
   type: Torse léger
-  step: Torses en Etoffe standart
+  step: Torses en étoffe standart
   effects: { defense: 20 }
 torse_en_etstandart_de_force:
   name: Torse en Etoffe standart de force
   type: Torse léger
-  step: Torses en Etoffe standart
+  step: Torses en étoffe standart
   effects: { force: 20 }
 torse_en_etstandart_d_agilite:
   name: Torse en Etoffe standart d'agilité
   type: Torse léger
-  step: Torses en Etoffe standart
+  step: Torses en étoffe standart
   effects: { agilite: 20 }
 torse_en_etstandart_d_intelligence:
   name: Torse en Etoffe standart d'intelligence
   type: Torse léger
-  step: Torses en Etoffe standart
+  step: Torses en étoffe standart
   effects: { intelligence: 20 }
 torse_en_etstandart_d_armure:
   name: Torse en Etoffe standart d'armure
   type: Torse léger
-  step: Torses en Etoffe standart
+  step: Torses en étoffe standart
   effects: { armure: 20 }
 #_______________________________________________
 #_______________________________________________
@@ -831,103 +831,103 @@ jambes_en_brut_d_armure:
 jambes_en_etmineure_de_vie:
   name: Jambes en Etoffe mineure de vie
   type: Jambes légères
-  step: Jambes en Etoffe mineure
+  step: Jambes en étoffe mineure
   effects: { vie: 20 }
 jambes_en_etmineure_de_penetration:
   name: Jambes en Etoffe mineure de pénétration
   type: Jambes légères
-  step: Jambes en Etoffe mineure
+  step: Jambes en étoffe mineure
   effects: { penetration: 20 }
 jambes_en_etmineure_de_precision:
   name: Jambes en Etoffe mineure de précision
   type: Jambes légères
-  step: Jambes en Etoffe mineure
+  step: Jambes en étoffe mineure
   effects: { precision: 20 }
 jambes_en_etmineure_d_esquive:
   name: Jambes en Etoffe mineure d'esquive
   type: Jambes légères
-  step: Jambes en Etoffe mineure
+  step: Jambes en étoffe mineure
   effects: { esquive: 20 }
 jambes_en_etmineure_de_parade:
   name: Jambes en Etoffe mineure de parade
   type: Jambes légères
-  step: Jambes en Etoffe mineure
+  step: Jambes en étoffe mineure
   effects: { parade: 20 }
 jambes_en_etmineure_de_defense:
   name: Jambes en Etoffe mineure de défense
   type: Jambes légères
-  step: Jambes en Etoffe mineure
+  step: Jambes en étoffe mineure
   effects: { defense: 20 }
 jambes_en_etmineure_de_force:
   name: Jambes en Etoffe mineure de force
   type: Jambes légères
-  step: Jambes en Etoffe mineure
+  step: Jambes en étoffe mineure
   effects: { force: 20 }
 jambes_en_etmineure_d_agilite:
   name: Jambes en Etoffe mineure d'agilité
   type: Jambes légères
-  step: Jambes en Etoffe mineure
+  step: Jambes en étoffe mineure
   effects: { agilite: 20 }
 jambes_en_etmineure_d_intelligence:
   name: Jambes en Etoffe mineure d'intelligence
   type: Jambes légères
-  step: Jambes en Etoffe mineure
+  step: Jambes en étoffe mineure
   effects: { intelligence: 20 }
 jambes_en_etmineure_d_armure:
   name: Jambes en Etoffe mineure d'armure
   type: Jambes légères
-  step: Jambes en Etoffe mineure
+  step: Jambes en étoffe mineure
   effects: { armure: 20 }
 #__________________________________________
 jambes_en_etstandart_de_vie:
   name: Jambes en Etoffe standart de vie
   type: Jambes légères
-  step: Jambes en Etoffe standart
+  step: Jambes en étoffe standart
   effects: { vie: 20 }
 jambes_en_etstandart_de_penetration:
   name: Jambes en Etoffe standart de pénétration
   type: Jambes légères
-  step: Jambes en Etoffe standart
+  step: Jambes en étoffe standart
   effects: { penetration: 20 }
 jambes_en_etstandart_de_precision:
   name: Jambes en Etoffe standart de précision
   type: Jambes légères
-  step: Jambes en Etoffe standart
+  step: Jambes en étoffe standart
   effects: { precision: 20 }
 jambes_en_etstandart_d_esquive:
   name: Jambes en Etoffe standart d'esquive
   type: Jambes légères
-  step: Jambes en Etoffe standart
+  step: Jambes en étoffe standart
   effects: { esquive: 20 }
 jambes_en_etstandart_de_parade:
   name: Jambes en Etoffe standart de parade
   type: Jambes légères
-  step: Jambes en Etoffe standart
+  step: Jambes en étoffe standart
   effects: { parade: 20 }
 jambes_en_etstandart_de_defense:
   name: Jambes en Etoffe standart de défense
   type: Jambes légères
-  step: Jambes en Etoffe standart
+  step: Jambes en étoffe standart
   effects: { defense: 20 }
 jambes_en_etstandart_de_force:
   name: Jambes en Etoffe standart de force
   type: Jambes légères
-  step: Jambes en Etoffe standart
+  step: Jambes en étoffe standart
   effects: { force: 20 }
 jambes_en_etstandart_d_agilite:
   name: Jambes en Etoffe standart d'agilité
   type: Jambes légères
-  step: Jambes en Etoffe standart
+  step: Jambes en étoffe standart
   effects: { agilite: 20 }
 jambes_en_etstandart_d_intelligence:
   name: Jambes en Etoffe standart d'intelligence
   type: Jambes légères
-  step: Jambes en Etoffe standart
+  step: Jambes en étoffe standart
   effects: { intelligence: 20 }
 jambes_en_etstandart_d_armure:
   name: Jambes en Etoffe standart d'armure
   type: Jambes légères
-  step: Jambes en Etoffe standart
+  step: Jambes en étoffe standart
   effects: { armure: 20 }
 #_______________________________________________
 #_______________________________________________
@@ -1142,103 +1142,103 @@ bottes_en_brut_d_armure:
 bottes_en_etmineure_de_vie:
   name: Bottes en Etoffe mineure de vie
   type: Bottes légères
-  step: Bottes en Etoffe mineure
+  step: Bottes en étoffe mineure
   effects: { vie: 20 }
 bottes_en_etmineure_de_penetration:
   name: Bottes en Etoffe mineure de pénétration
   type: Bottes légères
-  step: Bottes en Etoffe mineure
+  step: Bottes en étoffe mineure
   effects: { penetration: 20 }
 bottes_en_etmineure_de_precision:
   name: Bottes en Etoffe mineure de précision
   type: Bottes légères
-  step: Bottes en Etoffe mineure
+  step: Bottes en étoffe mineure
   effects: { precision: 20 }
 bottes_en_etmineure_d_esquive:
   name: Bottes en Etoffe mineure d'esquive
   type: Bottes légères
-  step: Bottes en Etoffe mineure
+  step: Bottes en étoffe mineure
   effects: { esquive: 20 }
 bottes_en_etmineure_de_parade:
   name: Bottes en Etoffe mineure de parade
   type: Bottes légères
-  step: Bottes en Etoffe mineure
+  step: Bottes en étoffe mineure
   effects: { parade: 20 }
 bottes_en_etmineure_de_defense:
   name: Bottes en Etoffe mineure de défense
   type: Bottes légères
-  step: Bottes en Etoffe mineure
+  step: Bottes en étoffe mineure
   effects: { defense: 20 }
 bottes_en_etmineure_de_force:
   name: Bottes en Etoffe mineure de force
   type: Bottes légères
-  step: Bottes en Etoffe mineure
+  step: Bottes en étoffe mineure
   effects: { force: 20 }
 bottes_en_etmineure_d_agilite:
   name: Bottes en Etoffe mineure d'agilité
   type: Bottes légères
-  step: Bottes en Etoffe mineure
+  step: Bottes en étoffe mineure
   effects: { agilite: 20 }
 bottes_en_etmineure_d_intelligence:
   name: Bottes en Etoffe mineure d'intelligence
   type: Bottes légères
-  step: Bottes en Etoffe mineure
+  step: Bottes en étoffe mineure
   effects: { intelligence: 20 }
 bottes_en_etmineure_d_armure:
   name: Bottes en Etoffe mineure d'armure
   type: Bottes légères
-  step: Bottes en Etoffe mineure
+  step: Bottes en étoffe mineure
   effects: { armure: 20 }
 #__________________________________________
 bottes_en_etstandart_de_vie:
   name: Bottes en Etoffe standart de vie
   type: Bottes légères
-  step: Bottes en Etoffe standart
+  step: Bottes en étoffe standart
   effects: { vie: 20 }
 bottes_en_etstandart_de_penetration:
   name: Bottes en Etoffe standart de pénétration
   type: Bottes légères
-  step: Bottes en Etoffe standart
+  step: Bottes en étoffe standart
   effects: { penetration: 20 }
 bottes_en_etstandart_de_precision:
   name: Bottes en Etoffe standart de précision
   type: Bottes légères
-  step: Bottes en Etoffe standart
+  step: Bottes en étoffe standart
   effects: { precision: 20 }
 bottes_en_etstandart_d_esquive:
   name: Bottes en Etoffe standart d'esquive
   type: Bottes légères
-  step: Bottes en Etoffe standart
+  step: Bottes en étoffe standart
   effects: { esquive: 20 }
 bottes_en_etstandart_de_parade:
   name: Bottes en Etoffe standart de parade
   type: Bottes légères
-  step: Bottes en Etoffe standart
+  step: Bottes en étoffe standart
   effects: { parade: 20 }
 bottes_en_etstandart_de_defense:
   name: Bottes en Etoffe standart de défense
   type: Bottes légères
-  step: Bottes en Etoffe standart
+  step: Bottes en étoffe standart
   effects: { defense: 20 }
 bottes_en_etstandart_de_force:
   name: Bottes en Etoffe standart de force
   type: Bottes légères
-  step: Bottes en Etoffe standart
+  step: Bottes en étoffe standart
   effects: { force: 20 }
 bottes_en_etstandart_d_agilite:
   name: Bottes en Etoffe standart d'agilité
   type: Bottes légères
-  step: Bottes en Etoffe standart
+  step: Bottes en étoffe standart
   effects: { agilite: 20 }
 bottes_en_etstandart_d_intelligence:
   name: Bottes en Etoffe standart d'intelligence
   type: Bottes légères
-  step: Bottes en Etoffe standart
+  step: Bottes en étoffe standart
   effects: { intelligence: 20 }
 bottes_en_etstandart_d_armure:
   name: Bottes en Etoffe standart d'armure
   type: Bottes légères
-  step: Bottes en Etoffe standart
+  step: Bottes en étoffe standart
   effects: { armure: 20 }
 #_______________________________________________
 #_______________________________________________
@@ -1453,101 +1453,101 @@ gants_en_brut_d_armure:
 gants_en_etmineure_de_vie:
   name: Gants en Etoffe mineure de vie
   type: Gants légers
-  step: Gants en Etoffe mineure
+  step: Gants en étoffe mineure
   effects: { vie: 20 }
 gants_en_etmineure_de_penetration:
   name: Gants en Etoffe mineure de pénétration
   type: Gants légers
-  step: Gants en Etoffe mineure
+  step: Gants en étoffe mineure
   effects: { penetration: 20 }
 gants_en_etmineure_de_precision:
   name: Gants en Etoffe mineure de précision
   type: Gants légers
-  step: Gants en Etoffe mineure
+  step: Gants en étoffe mineure
   effects: { precision: 20 }
 gants_en_etmineure_d_esquive:
   name: Gants en Etoffe mineure d'esquive
   type: Gants légers
-  step: Gants en Etoffe mineure
+  step: Gants en étoffe mineure
   effects: { esquive: 20 }
 gants_en_etmineure_de_parade:
   name: Gants en Etoffe mineure de parade
   type: Gants légers
-  step: Gants en Etoffe mineure
+  step: Gants en étoffe mineure
   effects: { parade: 20 }
 gants_en_etmineure_de_defense:
   name: Gants en Etoffe mineure de défense
   type: Gants légers
-  step: Gants en Etoffe mineure
+  step: Gants en étoffe mineure
   effects: { defense: 20 }
 gants_en_etmineure_de_force:
   name: Gants en Etoffe mineure de force
   type: Gants légers
-  step: Gants en Etoffe mineure
+  step: Gants en étoffe mineure
   effects: { force: 20 }
 gants_en_etmineure_d_agilite:
   name: Gants en Etoffe mineure d'agilité
   type: Gants légers
-  step: Gants en Etoffe mineure
+  step: Gants en étoffe mineure
   effects: { agilite: 20 }
 gants_en_etmineure_d_intelligence:
   name: Gants en Etoffe mineure d'intelligence
   type: Gants légers
-  step: Gants en Etoffe mineure
+  step: Gants en étoffe mineure
   effects: { intelligence: 20 }
 gants_en_etmineure_d_armure:
   name: Gants en Etoffe mineure d'armure
   type: Gants légers
-  step: Gants en Etoffe mineure
+  step: Gants en étoffe mineure
   effects: { armure: 20 }
 #__________________________________________
 gants_en_etstandart_de_vie:
   name: Gants en Etoffe standart de vie
   type: Gants légers
-  step: Gants en Etoffe standart
+  step: Gants en étoffe standart
   effects: { vie: 20 }
 gants_en_etstandart_de_penetration:
   name: Gants en Etoffe standart de pénétration
   type: Gants légers
-  step: Gants en Etoffe standart
+  step: Gants en étoffe standart
   effects: { penetration: 20 }
 gants_en_etstandart_de_precision:
   name: Gants en Etoffe standart de précision
   type: Gants légers
-  step: Gants en Etoffe standart
+  step: Gants en étoffe standart
   effects: { precision: 20 }
 gants_en_etstandart_d_esquive:
   name: Gants en Etoffe standart d'esquive
   type: Gants légers
-  step: Gants en Etoffe standart
+  step: Gants en étoffe standart
   effects: { esquive: 20 }
 gants_en_etstandart_de_parade:
   name: Gants en Etoffe standart de parade
   type: Gants légers
-  step: Gants en Etoffe standart
+  step: Gants en étoffe standart
   effects: { parade: 20 }
 gants_en_etstandart_de_defense:
   name: Gants en Etoffe standart de défense
   type: Gants légers
-  step: Gants en Etoffe standart
+  step: Gants en étoffe standart
   effects: { defense: 20 }
 gants_en_etstandart_de_force:
   name: Gants en Etoffe standart de force
   type: Gants légers
-  step: Gants en Etoffe standart
+  step: Gants en étoffe standart
   effects: { force: 20 }
 gants_en_etstandart_d_agilite:
   name: Gants en Etoffe standart d'agilité
   type: Gants légers
-  step: Gants en Etoffe standart
+  step: Gants en étoffe standart
   effects: { agilite: 20 }
 gants_en_etstandart_d_intelligence:
   name: Gants en Etoffe standart d'intelligence
   type: Gants légers
-  step: Gants en Etoffe standart
+  step: Gants en étoffe standart
   effects: { intelligence: 20 }
 gants_en_etstandart_d_armure:
   name: Gants en Etoffe standart d'armure
   type: Gants légers
-  step: Gants en Etoffe standart
+  step: Gants en étoffe standart
   effects: { armure: 20 }

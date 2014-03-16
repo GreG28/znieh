@@ -27,8 +27,8 @@ class LoadBuildingData  extends AbstractFixtureLoader implements OrderedFixtureI
             ;
 
             $manager->persist($building);
+            $this->addReference('Building-' . $building->getTitle(), $building);
         }
-
         $manager->flush();
     }
 
