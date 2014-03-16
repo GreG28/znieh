@@ -4,6 +4,10 @@
 //   left: 0;
 //   width: 300px;
 // }
+
+$step-height: 120px;
+$container-color: rgb(126,120,120);
+
 *, *:before, *:after {
   -webkit-box-sizing: initial;
   -moz-box-sizing: initial;
@@ -16,7 +20,7 @@ div {
 }
 .root {
   position: relative;
-  overflow: hidden;
+  margin-bottom: 30px;
 }
 .level {
   margin-left: 400px;
@@ -32,7 +36,7 @@ div {
   margin-top: 1px;
 }
 .step {
-  min-height: 300px;
+  min-height: $step-height;
   position: relative;
 }
 .step:before {
@@ -83,24 +87,31 @@ div {
 .step:only-child:after {
   width: 52px;
   left: -52px;
-  top: 50.60%;
+  top: 51.5%;
   border-bottom-left-radius: 0;
 }
 .step-content {
   width: 280px;
-  height: 200px;
+  height: $step-height;
   padding: 5px 10px;
   border: 2px solid #eee9dc;
   border-radius: 5px;
   display: block;
   position: absolute;
-  left: 0;
+  /*left: 0;
   top: 50%;
-  margin-top: -115px;
-  background-color: brown;
+  margin-top: -100px;*/
+  background-color: $red;
 }
-.game-object {
+.step-title {
+  color: $white;
+  // background-color: yellow;
+}
+.step-content > span {
   padding: 5px 5px 5px 5px;
+}
+
+.game-object {
   width: 50px;
   height: 20px;
 }
@@ -111,5 +122,29 @@ div {
   float: left;
 }
 .draggable.selected {
-  border: 3px solid green;
+  border: 2px solid #657405;
+}
+
+#weapon-container {
+  padding: 2px 5px 5px 5px;
+  height: 40px;
+  width: 135px;
+  background: $container-color;
+}
+
+#save-weapon-container {
+  height: 80px;
+  width: 400px;
+  background: $container-color;
+  padding: 5px 5px 5px 5px;
+}
+.container-case {
+  border: 2px solid black;
+  padding: 2px 2px 2px 2px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+.container-case.empty {
+
 }
