@@ -51,9 +51,10 @@ module.exports = function(socket, callback) {
 		db.User.find({where: {username: data.username}})
 		.success(function(user){
 
-			/*user = {
+			user = {
+				id: 10,
 				username: data.username
-			};*/
+			};
 
 			for(var i=0; i < world.players.length; i++) {
 				if(data.username === world.players[i].name) {

@@ -31,6 +31,12 @@ module.exports = function(player) {
 	});
 
 	player.socket.on('select-map', function(data, callback) {
+		if(player.battle === undefined) {
+			callback(false);
+			player.socket.emit('service', { msg: 'No battle found.'});
+			return -1;
+		}
+
 		if(player.battle.map !== undefined) {
 			player.battle.map = map.getRandomMap();
 		}
@@ -52,7 +58,7 @@ module.exports = function(player) {
 	player.socket.on('get-side', function(data, callback) {
 		if(player.battle === undefined) {
 			callback(false);
-			player.socket.emit('service', { msg: 'No battle found'});
+			player.socket.emit('service', { msg: 'No battle found.'});
 			return -1;
 		}
 
