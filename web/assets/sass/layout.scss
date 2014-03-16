@@ -37,6 +37,11 @@
 /** Fix footer end of page **/
 html, body {
   height: 100%;
+}
+
+body {
+  // font-size: 18px;
+  line-height: 32px;
   font-family: 'TeX Gyre Heros';
 }
 

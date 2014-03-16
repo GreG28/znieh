@@ -7636,33 +7636,33 @@ td.visible-print {
     display: none !important;
   }
 }
-/* line 7, ../sass/_building.scss */
+/* line 11, ../sass/_building.scss */
 *, *:before, *:after {
   -webkit-box-sizing: initial;
   -moz-box-sizing: initial;
   box-sizing: initial;
 }
 
-/* line 12, ../sass/_building.scss */
+/* line 16, ../sass/_building.scss */
 div {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-/* line 17, ../sass/_building.scss */
+/* line 21, ../sass/_building.scss */
 .root {
   position: relative;
-  overflow: hidden;
+  margin-bottom: 30px;
 }
 
-/* line 21, ../sass/_building.scss */
+/* line 25, ../sass/_building.scss */
 .level {
   margin-left: 400px;
   position: relative;
 }
 
-/* line 25, ../sass/_building.scss */
+/* line 29, ../sass/_building.scss */
 .level:before {
   content: "";
   width: 50px;
@@ -7673,13 +7673,13 @@ div {
   margin-top: 1px;
 }
 
-/* line 34, ../sass/_building.scss */
+/* line 38, ../sass/_building.scss */
 .step {
-  min-height: 300px;
+  min-height: 120px;
   position: relative;
 }
 
-/* line 38, ../sass/_building.scss */
+/* line 42, ../sass/_building.scss */
 .step:before {
   content: "";
   height: 100%;
@@ -7688,7 +7688,7 @@ div {
   left: -48px;
 }
 
-/* line 45, ../sass/_building.scss */
+/* line 49, ../sass/_building.scss */
 .step:after {
   content: "";
   width: 46px;
@@ -7699,7 +7699,7 @@ div {
   margin-top: 1px;
 }
 
-/* line 54, ../sass/_building.scss */
+/* line 58, ../sass/_building.scss */
 .step:first-child:before {
   width: 10px;
   height: 50%;
@@ -7708,20 +7708,20 @@ div {
   border-top-left-radius: 10px;
 }
 
-/* line 61, ../sass/_building.scss */
+/* line 65, ../sass/_building.scss */
 .step:first-child:after {
   height: 10px;
   border-top-left-radius: 10px;
 }
 
-/* line 65, ../sass/_building.scss */
+/* line 69, ../sass/_building.scss */
 .step:last-child:before {
   width: 10px;
   height: 50%;
   border-bottom-left-radius: 10px;
 }
 
-/* line 70, ../sass/_building.scss */
+/* line 74, ../sass/_building.scss */
 .step:last-child:after {
   height: 10px;
   border-top: none;
@@ -7730,7 +7730,7 @@ div {
   margin-top: -11px;
 }
 
-/* line 77, ../sass/_building.scss */
+/* line 81, ../sass/_building.scss */
 .step:only-child:before {
   border-top: none;
   border-bottom: none;
@@ -7738,49 +7738,83 @@ div {
   margin-top: 0px;
 }
 
-/* line 83, ../sass/_building.scss */
+/* line 87, ../sass/_building.scss */
 .step:only-child:after {
   width: 52px;
   left: -52px;
-  top: 50.60%;
+  top: 51.5%;
   border-bottom-left-radius: 0;
 }
 
-/* line 89, ../sass/_building.scss */
+/* line 93, ../sass/_building.scss */
 .step-content {
   width: 280px;
-  height: 200px;
+  height: 120px;
   padding: 5px 10px;
   border: 2px solid #eee9dc;
   border-radius: 5px;
   display: block;
   position: absolute;
-  left: 0;
+  /*left: 0;
   top: 50%;
-  margin-top: -115px;
-  background-color: brown;
+  margin-top: -100px;*/
+  background-color: #744c05;
 }
 
-/* line 102, ../sass/_building.scss */
-.game-object {
+/* line 106, ../sass/_building.scss */
+.step-title {
+  color: white;
+}
+
+/* line 110, ../sass/_building.scss */
+.step-content > span {
   padding: 5px 5px 5px 5px;
+}
+
+/* line 114, ../sass/_building.scss */
+.game-object {
   width: 50px;
   height: 20px;
 }
 
-/* line 107, ../sass/_building.scss */
+/* line 118, ../sass/_building.scss */
 .game-object img {
   margin-right: 3px;
 }
 
-/* line 110, ../sass/_building.scss */
+/* line 121, ../sass/_building.scss */
 .game-object-points {
   float: left;
 }
 
-/* line 113, ../sass/_building.scss */
+/* line 124, ../sass/_building.scss */
 .draggable.selected {
-  border: 3px solid green;
+  border: 2px solid #657405;
+}
+
+/* line 128, ../sass/_building.scss */
+#weapon-container {
+  padding: 2px 5px 5px 5px;
+  height: 40px;
+  width: 135px;
+  background: #7e7878;
+}
+
+/* line 135, ../sass/_building.scss */
+#save-weapon-container {
+  height: 80px;
+  width: 400px;
+  background: #7e7878;
+  padding: 5px 5px 5px 5px;
+}
+
+/* line 141, ../sass/_building.scss */
+.container-case {
+  border: 2px solid black;
+  padding: 2px 2px 2px 2px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
 }
 
 /* line 1, ../sass/_index.scss */
@@ -7878,33 +7912,38 @@ h2.post-title {
 /* line 38, ../sass/layout.scss */
 html, body {
   height: 100%;
+}
+
+/* line 42, ../sass/layout.scss */
+body {
+  line-height: 32px;
   font-family: 'TeX Gyre Heros';
 }
 
-/* line 43, ../sass/layout.scss */
+/* line 48, ../sass/layout.scss */
 .nav-tabs {
   background: #7e7259;
   border-bottom: none;
 }
 
-/* line 47, ../sass/layout.scss */
+/* line 52, ../sass/layout.scss */
 .nav-tabs a {
   color: #d5b983;
 }
 
-/* line 51, ../sass/layout.scss */
+/* line 56, ../sass/layout.scss */
 .nav-tabs li a:hover {
   background: #534a36;
   border: none;
 }
 
-/* line 56, ../sass/layout.scss */
+/* line 61, ../sass/layout.scss */
 .nav-tabs .active {
   background: #534a36;
   border: none;
 }
 
-/* line 61, ../sass/layout.scss */
+/* line 66, ../sass/layout.scss */
 #wrap {
   position: relative;
   margin: 0 auto;
@@ -7915,17 +7954,17 @@ html, body {
 /**
   Title & Buttons
   **/
-/* line 72, ../sass/layout.scss */
+/* line 77, ../sass/layout.scss */
 a:link {
   text-decoration: none;
 }
 
-/* line 76, ../sass/layout.scss */
+/* line 81, ../sass/layout.scss */
 .container p {
   text-align: justify;
 }
 
-/* line 80, ../sass/layout.scss */
+/* line 85, ../sass/layout.scss */
 h2 {
   -webkit-margin-before: 0.83em;
   -webkit-margin-after: 0.83em;
@@ -7933,7 +7972,7 @@ h2 {
   -webkit-margin-end: 0px;
 }
 
-/* line 87, ../sass/layout.scss */
+/* line 92, ../sass/layout.scss */
 h2.section-title {
   margin: 0 0 30px;
   padding: 0 0 8px;
@@ -7945,7 +7984,7 @@ h2.section-title {
   border-bottom: 5px solid #e0e0e0;
 }
 
-/* line 98, ../sass/layout.scss */
+/* line 103, ../sass/layout.scss */
 h3.section-title {
   margin: 0 0 15px;
   font-size: 28px;
@@ -7954,7 +7993,7 @@ h3.section-title {
   color: #1a1a1a;
 }
 
-/* line 147, ../sass/layout.scss */
+/* line 152, ../sass/layout.scss */
 #leftSide .unit,
 #rightSide .unit {
   background: white;
@@ -7962,20 +8001,20 @@ h3.section-title {
   border: 1px solid black;
 }
 
-/* line 154, ../sass/layout.scss */
+/* line 159, ../sass/layout.scss */
 #leftSide .selected,
 #rightSide .selected {
   background: #d7e9f2;
   border: 1px dashed black;
 }
 
-/* line 160, ../sass/layout.scss */
+/* line 165, ../sass/layout.scss */
 #leftSide .valid,
 #rightSide .valid {
   background: #d9fad9;
 }
 
-/* line 163, ../sass/layout.scss */
+/* line 168, ../sass/layout.scss */
 .unit .portrait {
   overflow: hidden;
   width: 48px;
@@ -7983,38 +8022,38 @@ h3.section-title {
   float: left;
 }
 
-/* line 170, ../sass/layout.scss */
+/* line 175, ../sass/layout.scss */
 .unit .name {
   font-size: 12px;
   float: left;
   font-weight: bold;
 }
 
-/* line 176, ../sass/layout.scss */
+/* line 181, ../sass/layout.scss */
 .unit .life {
   margin-top: 10px;
   height: 16px;
 }
 
-/* line 181, ../sass/layout.scss */
+/* line 186, ../sass/layout.scss */
 .unit .stats {
   font-size: 12px;
   margin-top: -25px;
 }
 
-/* line 186, ../sass/layout.scss */
+/* line 191, ../sass/layout.scss */
 .unit .skills {
   margin-top: -15px;
 }
 
-/* line 190, ../sass/layout.scss */
+/* line 195, ../sass/layout.scss */
 .unit .skills img {
   float: right;
   margin-right: 5px;
   margin-bottom: 5px;
 }
 
-/* line 197, ../sass/layout.scss */
+/* line 202, ../sass/layout.scss */
 #leftSide .infos,
 #rightSide .infos {
   background: white;
@@ -8022,23 +8061,23 @@ h3.section-title {
   border: 1px solid black;
 }
 
-/* line 203, ../sass/layout.scss */
+/* line 208, ../sass/layout.scss */
 .infos h3 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-/* line 208, ../sass/layout.scss */
+/* line 213, ../sass/layout.scss */
 .infos .stats {
   font-size: 12px;
 }
 
-/* line 212, ../sass/layout.scss */
+/* line 217, ../sass/layout.scss */
 .infos hr {
   margin: 0px;
 }
 
-/* line 216, ../sass/layout.scss */
+/* line 221, ../sass/layout.scss */
 .infos hr.delimitor {
   margin: 0px;
   margin-top: 10px;

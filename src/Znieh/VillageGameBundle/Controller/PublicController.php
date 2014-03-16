@@ -94,7 +94,6 @@ class PublicController extends Controller
                     $obj->setUnlocked(true);
                 }
             }
-            $obj->cost = "500 {{bois}}";
         }
 
         return array(
