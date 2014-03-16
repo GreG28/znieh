@@ -6,6 +6,7 @@
 // }
 
 $step-height: 120px;
+$container-color: rgb(126,120,120);
 
 *, *:before, *:after {
   -webkit-box-sizing: initial;
@@ -100,11 +101,17 @@ div {
   /*left: 0;
   top: 50%;
   margin-top: -100px;*/
-  background-color: brown;
+  background-color: $red;
+}
+.step-title {
+  color: $white;
+  // background-color: yellow;
+}
+.step-content > span {
+  padding: 5px 5px 5px 5px;
 }
 
 .game-object {
-  padding: 5px 5px 5px 5px;
   width: 50px;
   height: 20px;
 }
@@ -115,5 +122,29 @@ div {
   float: left;
 }
 .draggable.selected {
-  border: 3px solid green;
+  border: 2px solid #657405;
+}
+
+#weapon-container {
+  padding: 2px 5px 5px 5px;
+  height: 40px;
+  width: 135px;
+  background: $container-color;
+}
+
+#save-weapon-container {
+  height: 80px;
+  width: 400px;
+  background: $container-color;
+  padding: 5px 5px 5px 5px;
+}
+.container-case {
+  border: 2px solid black;
+  padding: 2px 2px 2px 2px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+.container-case.empty {
+
 }

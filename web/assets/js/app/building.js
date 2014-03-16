@@ -23,6 +23,15 @@
     })(jQuery);
 
     $(document).ready(function() {
+
+        $('.game-object').popover();
+        var form = $('#znieh_unitgamebundle_weapon').parent();
+
+        function isWeaponBuilding() {
+
+        }
+
+        /* Unlock object */
         $('body').on('click', '.unlock-object', function(e) {
             e.preventDefault();
             var id = $(this).data("id");
@@ -43,23 +52,31 @@
               obj.button('reset');
             });
          });
-         $('.game-object').popover();
-         var form = $('#znieh_unitgamebundle_weapon').parent();
-         $(form).hide();
+
+        /* Select component */
          $('.draggable').on('click', function(e){
              e.preventDefault();
              if ($(this).hasClass('unlocked')) {
+                var root = $(this).closest('.root');
+                var previous = $(root).find('.selected');
+                /* remove previous selection and un weapon-container */
+                previous.removeClass('selected');
+                $("#weapon-container").find("[data-id='" + $(previous).data("id") +"']").remove();
+
                 var checkBox = $('#znieh_unitgamebundle_weapon_parts_' + $(this).data("id"));
                 $(this).toggleClass('selected');
                 checkBox.prop('checked', !checkBox.attr('checked'));
-                console.log($(this).parent());
-                $(this).parent().clone().appendTo( "#weapon-container");
+                //console.log($(this).parent());
+                $(this).parent().clone().appendTo("#weapon-container");
              } else {
               alert("Vous devez débloquer ce composant avant de pouvoir l'utiliser.");
              }
          });
-         $( ".draggable" ).draggable({ cursor: "move", helper: "clone", revert: "invalid" });
+
+         /* Validate Weapon creation */
          $('#create-weapon').on('click', function(){
+            // console.og($().children());
+            $("#weapon-container").children().fadeOut();
              $.ajax({
                  type     : "POST",
                  cache    : false,
@@ -67,6 +84,7 @@
                  data     : $(form).serialize(),
                  success  : function(data) {
                      alert(data);
+                     $("#save-weapon-container").find('.empty:first').appendTo('<img src="../img/icons/lame.png" class="img-responsive">');
                      $(form)[0].reset();
                  },
                  error  : function(data) {
@@ -75,6 +93,9 @@
                  }
              });
          });
+
+         /* Allow drag and drop of component */
+         $( ".draggable" ).draggable({ cursor: "move", helper: "clone", revert: "invalid" });
          $("#droppable").droppable({
               drop: function( event, ui ) {
                   console.log($('#znieh_unitgamebundle_weapon_parts_' + ui.draggable.data("id")));
