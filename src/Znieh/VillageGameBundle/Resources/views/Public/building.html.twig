@@ -69,7 +69,18 @@
         </div>
         <div class="col-lg-7">
           Vos armes sauvegardées :
-          <ul>
+          <div id="save-weapon-container"  style="height: 50px; width: 200px; background: white">
+            {% for i in 0..30 %}
+              {% if weapons[i] is defined %}
+                  <span class="container-case"><img src="{{ asset('img/icons/lame.png') }}"></span>
+              {% else %}
+                  <span class="container-case empty"></span>
+              {% endif %}
+            {% endfor %}
+
+          </div>
+
+{#           <ul>
           {% for wep in weapons %}
             <li> {{ wep.id }}
                 <ul>
@@ -79,7 +90,7 @@
                 </ul>
             </li>
           {% endfor %}
-          </ul>
+          </ul> #}
         </div>
         <div style="display:none">{{ form(form) }}</div>
       </div>
@@ -99,7 +110,6 @@
     </div>
   </div>
 </div>
-
 
 {% endblock %}
 

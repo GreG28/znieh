@@ -7636,33 +7636,33 @@ td.visible-print {
     display: none !important;
   }
 }
-/* line 7, ../sass/_building.scss */
+/* line 10, ../sass/_building.scss */
 *, *:before, *:after {
   -webkit-box-sizing: initial;
   -moz-box-sizing: initial;
   box-sizing: initial;
 }
 
-/* line 12, ../sass/_building.scss */
+/* line 15, ../sass/_building.scss */
 div {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-/* line 17, ../sass/_building.scss */
+/* line 20, ../sass/_building.scss */
 .root {
   position: relative;
-  overflow: hidden;
+  margin-bottom: 30px;
 }
 
-/* line 21, ../sass/_building.scss */
+/* line 24, ../sass/_building.scss */
 .level {
   margin-left: 400px;
   position: relative;
 }
 
-/* line 25, ../sass/_building.scss */
+/* line 28, ../sass/_building.scss */
 .level:before {
   content: "";
   width: 50px;
@@ -7673,13 +7673,13 @@ div {
   margin-top: 1px;
 }
 
-/* line 34, ../sass/_building.scss */
+/* line 37, ../sass/_building.scss */
 .step {
-  min-height: 300px;
+  min-height: 120px;
   position: relative;
 }
 
-/* line 38, ../sass/_building.scss */
+/* line 41, ../sass/_building.scss */
 .step:before {
   content: "";
   height: 100%;
@@ -7688,7 +7688,7 @@ div {
   left: -48px;
 }
 
-/* line 45, ../sass/_building.scss */
+/* line 48, ../sass/_building.scss */
 .step:after {
   content: "";
   width: 46px;
@@ -7699,7 +7699,7 @@ div {
   margin-top: 1px;
 }
 
-/* line 54, ../sass/_building.scss */
+/* line 57, ../sass/_building.scss */
 .step:first-child:before {
   width: 10px;
   height: 50%;
@@ -7708,20 +7708,20 @@ div {
   border-top-left-radius: 10px;
 }
 
-/* line 61, ../sass/_building.scss */
+/* line 64, ../sass/_building.scss */
 .step:first-child:after {
   height: 10px;
   border-top-left-radius: 10px;
 }
 
-/* line 65, ../sass/_building.scss */
+/* line 68, ../sass/_building.scss */
 .step:last-child:before {
   width: 10px;
   height: 50%;
   border-bottom-left-radius: 10px;
 }
 
-/* line 70, ../sass/_building.scss */
+/* line 73, ../sass/_building.scss */
 .step:last-child:after {
   height: 10px;
   border-top: none;
@@ -7730,7 +7730,7 @@ div {
   margin-top: -11px;
 }
 
-/* line 77, ../sass/_building.scss */
+/* line 80, ../sass/_building.scss */
 .step:only-child:before {
   border-top: none;
   border-bottom: none;
@@ -7738,47 +7738,47 @@ div {
   margin-top: 0px;
 }
 
-/* line 83, ../sass/_building.scss */
+/* line 86, ../sass/_building.scss */
 .step:only-child:after {
   width: 52px;
   left: -52px;
-  top: 50.60%;
+  top: 51.5%;
   border-bottom-left-radius: 0;
 }
 
-/* line 89, ../sass/_building.scss */
+/* line 92, ../sass/_building.scss */
 .step-content {
   width: 280px;
-  height: 200px;
+  height: 120px;
   padding: 5px 10px;
   border: 2px solid #eee9dc;
   border-radius: 5px;
   display: block;
   position: absolute;
-  left: 0;
+  /*left: 0;
   top: 50%;
-  margin-top: -115px;
+  margin-top: -100px;*/
   background-color: brown;
 }
 
-/* line 102, ../sass/_building.scss */
+/* line 106, ../sass/_building.scss */
 .game-object {
   padding: 5px 5px 5px 5px;
   width: 50px;
   height: 20px;
 }
 
-/* line 107, ../sass/_building.scss */
+/* line 111, ../sass/_building.scss */
 .game-object img {
   margin-right: 3px;
 }
 
-/* line 110, ../sass/_building.scss */
+/* line 114, ../sass/_building.scss */
 .game-object-points {
   float: left;
 }
 
-/* line 113, ../sass/_building.scss */
+/* line 117, ../sass/_building.scss */
 .draggable.selected {
   border: 3px solid green;
 }
