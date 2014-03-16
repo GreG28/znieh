@@ -22,7 +22,7 @@ class LoadWeaponTypeData extends AbstractFixtureLoader implements OrderedFixture
         foreach($weaponTypesData as $weaponTypeData) {
             $weaponType = new WeaponType();
 
-            $building = $manager->getRepository('ZniehVillageGameBundle:Building')->findOneByTitle($weaponTypeData['building']);
+            $building = $this->getReference('Building-' . $weaponTypeData['building']);
 
             $weaponType
                 ->setName($weaponTypeData['name'])
@@ -31,14 +31,15 @@ class LoadWeaponTypeData extends AbstractFixtureLoader implements OrderedFixture
 
             if (!empty($weaponTypeData['parts'])) {
                 foreach ($weaponTypeData['parts'] as $partData) {
-                    $part = $manager->getRepository('ZniehVillageGameBundle:WeaponPartType')->findOneByName($partData);
+                    $part = $this->getReference('WeaponPartType-' . $partData);
                     $weaponType->addPart($part);
                 }
             }
 
             $manager->persist($weaponType);
-            $manager->flush();
+            $this->addReference('WeaponType-' . $weaponType->getName(), $weaponType);
         }
+        $manager->flush();
     }
 
     /**

@@ -41,7 +41,12 @@ module.exports = function(player) {
 	});
 
 	player.socket.on('get-units', function(data, callback) {
-		callback(null);
+		//unit.connect();
+		unit.loadUnit();
+		var teams = new Array();
+		teams[0] = unit.unitList;
+		teams[1] = unit.unitList;
+		callback(teams);
 	});
 
 	player.socket.on('get-side', function(data, callback) {

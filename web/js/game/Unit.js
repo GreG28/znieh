@@ -62,6 +62,7 @@
 
         animations["move-idle"] = [animations_move.idle.start, animations_move.idle.end, "move-" + animations_move.idle.name, animations_move.idle.velocity];
         animations["move-right"] = [animations_move.right.start, animations_move.right.end, "move-" + animations_move.right.name, animations_move.right.velocity];
+        animations["move-left"] = [animations_move.left.start, animations_move.left.end, "move-" + animations_move.left.name, animations_move.left.velocity];
         animations["move-top"] = [animations_move.top.start, animations_move.top.end, "move-" + animations_move.top.name, animations_move.top.velocity];
         animations["move-bottom"] = [animations_move.bottom.start, animations_move.bottom.end, "move-" + animations_move.bottom.name, animations_move.bottom.velocity];
 
@@ -232,9 +233,39 @@
         substage.addChild(this._container);
     };
 
+
+    function move_tween(self, path, cpt) {
+        if(cpt < path.length)
+        {
+            if(path[cpt].x > path[(cpt-1)].x) {
+                self.sprite_base.gotoAndPlay("move-right");
+                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1)]);
+            }
+            else if(path[cpt].x < path[(cpt-1)].x) {
+                self.sprite_base.gotoAndPlay("move-left");
+                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1)]);
+            }
+            else if(path[cpt].y > path[(cpt-1)].y) {
+                self.sprite_base.gotoAndPlay("move-bottom");
+                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1)]);
+            }
+            else {
+                self.sprite_base.gotoAndPlay("move-top");
+                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1)]);
+            }
+
+            if((cpt+1) === path.length)
+            {
+                self.sprite_base.gotoAndPlay("move-idle");
+            }
+
+        }
+    }
+
+    // TODO GreG */
     Unit.prototype.move = function (x, y) {
 
-        var origin_x = this._i
+        var origin_x = this._i;
         var origin_y = this._j;
 
         var limit = 7; // TODO : Sélectionner la limite de déplacement de l'unité
@@ -244,7 +275,7 @@
         easystar.setAcceptableTiles(acceptableTiles);
 
         unitsPlacement.length = 0;
-        for (var t = ContentManager.units.length - 1; t >= 0; t--) {
+        for (var t = ContentManager.units.length - 1 ; t >= 0 ; t--) {
             unitsPlacement.push([ContentManager.units[t]._i, ContentManager.units[t]._j]);
             easystar.avoidAdditionalPoint(ContentManager.units[t]._i, ContentManager.units[t]._j);
         }
@@ -256,21 +287,12 @@
                     return x == this[0] && y == this[1];
                 });
 
-                if(filtered_new.length == 0) {
-                    self._container.x = map.GetBounds(x, y).GetBottomCenter().x;
-                    self._container.y = map.GetBounds(x, y).GetBottomCenter().y;
-                    self._i = x;""
+                if(filtered_new.length === 0) {
+                    
+                    move_tween(self,path,1);
+                    
+                    self._i = x;
                     self._j = y;
-
-                    self.shape_hover.graphics.drawRect((-16), (-16), 32, 32 - 2); // Change size as-needed
-                    self.shape_selected.graphics.drawRect((-16), (-16), 32 - 2, 32 - 2); // Change size as-needed
-                    self.shape_selected_unit.graphics.drawRect((-16), (-16), 32 - 2, 32 - 2); // Change size as-needed
-
-                    self._container.removeAllChildren();
-                    self._container.addChild(self.shape_hover);
-                    self._container.addChild(self.shape_selected);
-                    self._container.addChild(self.shape_selected_unit);
-                    self._container.addChild(self.sprite_base);
 
                     var placement = [origin_x, origin_y];
                     var filtered = $(unitsPlacement).filter(function(){
@@ -278,22 +300,20 @@
                     });
 
                     if(filtered.length > 0){
-                        map.tiles[origin_y][origin_x].shape_hover.visible = false; // Change size as-needed
-                        map.tiles[origin_y][origin_x].shape_selection_possible.visible = false; // Change size as-needed
-                        map.tiles[origin_y][origin_x].shape_selection_impossible.visible = false; // Change size as-needed
+                        map.tiles[origin_y][origin_x].shape_hover.visible = false;
+                        map.tiles[origin_y][origin_x].shape_selection_possible.visible = false;
+                        map.tiles[origin_y][origin_x].shape_selection_impossible.visible = false;
                     }
 
-                    self.sprite_base.gotoAndPlay("move-left"); //animate
-                    ContentManager.units[self.unitID - units.length - 1] = self;
                 }
                 else console.log("Une unité est déjà sur la case.");
             }
-            else console.log("Cette unité ne peut pas se déplacer aussi loin.")
+            else console.log("Cette unité ne peut pas se déplacer aussi loin.");
         });
         easystar.calculate();
 
         ContentManager.unSelectAllTiles();
-    }
+    };
 
     Unit.prototype.getAllTilesStatut = function () {
         if(gameStatut != GameStatut.PLACEMENT) {
@@ -361,9 +381,7 @@
         else {
             gameStatut = GameStatut.IDLE;
         }
-
-
-    }
+    };
 
     /**
      * Gets a rectangle around the Unit
@@ -407,7 +425,6 @@
                 }
             }
         }
-
     };
 
     /**

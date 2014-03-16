@@ -1,5 +1,7 @@
 var UnitHandler = {};
 module.exports = UnitHandler;
+	var http = require('http');
+var url = require('url');
 
 UnitHandler.StatSet = function (life, penetration, precision, evade, parry, defense, armor, strength, agility, intelligence, magicDamage, evilScience, magicSupport){
 	this.life = life;
@@ -57,8 +59,34 @@ UnitHandler.Unit = function(name, sign, stats, weapon, armor, skills,  values, t
 
 var unitList = new Array();
 
-UnitHandler.loadUnit = function(){
-	var data = require('../../json/unitex.json');
+UnitHandler.connect = function(id){
+	function request(address) {
+		    http.get({ host: address, path: '/app_dev.php/api/users/'+ id + '/team.json'}, function(response) {
+		        if (response.statusCode === 302) {
+		            var newLocation = url.parse(response.headers.location).host;
+		            //console.log('We have to make new request ' + newLocation);
+		            request(newLocation);
+		        } else {
+		            //console.log("Response: %d", response.statusCode);
+		            response.on('data', function(chunk) {
+		            	UnitHandler.loadUnit(JSON.parse(chunk));
+		                //console.log('Body ' + chunk);
+		            });
+		        }
+		    }).on('error', function(err) {
+		        //console.log('Error %s', err.message);
+		    });
+		}
+
+
+	request('localhost');
+}
+
+UnitHandler.loadUnit = function(data){
+	unitList = new Array();
+	
+	data = require('../../json/unitex.json');
+
 	var unitName;
 	var sign;
 	//add stats here

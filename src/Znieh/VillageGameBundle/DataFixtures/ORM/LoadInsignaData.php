@@ -21,7 +21,7 @@ class LoadInsignaData extends AbstractFixtureLoader implements OrderedFixtureInt
         foreach($insignasData as $insignaData) {
             $insigna = new Insigna();
 
-            $step = $manager->getRepository('ZniehVillageGameBundle:Step')->findOneByTitle($insignaData['step']);
+            $step = $this->getReference('Step-' . $insignaData['step']);
 
             $insigna
                 ->setName($insignaData['name'])
@@ -39,8 +39,9 @@ class LoadInsignaData extends AbstractFixtureLoader implements OrderedFixtureInt
             $insigna->setCosts($costs);
 
             $manager->persist($insigna);
-            $manager->flush();
+            $this->addReference('Insigna-' . $insigna->getName(), $insigna);
         }
+        $manager->flush();
     }
 
     /**
