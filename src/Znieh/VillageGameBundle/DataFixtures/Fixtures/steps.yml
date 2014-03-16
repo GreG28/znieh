@@ -132,7 +132,7 @@ corde_en_reche:
 corde_en_brut:
   title: Cordes en cuir brut
   building: Archerie
-  parent: Corde en cuir rêche
+  parent: Cordes en cuir rêche
   points: 2
   costs: { po: 100, brut: 200 }
 arc_en_cedre:
@@ -434,7 +434,7 @@ controles_I:
 controles_II:
   title: Contrôles II
   building: Guilde des mages
-  parent: Contrôle I
+  parent: Contrôles I
   points: 2
   costs: { po: 500 }
 support_I:

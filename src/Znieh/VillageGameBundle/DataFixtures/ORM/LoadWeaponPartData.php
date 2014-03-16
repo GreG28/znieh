@@ -23,8 +23,8 @@ class LoadWeaponPartData extends AbstractFixtureLoader implements OrderedFixture
             $weaponPart = new weaponPart();
 
             //echo $weaponPartData['name'];
-            $type = $manager->getRepository('ZniehVillageGameBundle:WeaponPartType')->findOneByName($weaponPartData['type']);
-            $step = $manager->getRepository('ZniehVillageGameBundle:Step')->findOneByTitle($weaponPartData['step']);
+            $type = $this->getReference('WeaponPartType-' . $weaponPartData['type']);
+            $step = $this->getReference('Step-' . $weaponPartData['step']);
 
             $weaponPart
                 ->setName($weaponPartData['name'])
@@ -43,8 +43,9 @@ class LoadWeaponPartData extends AbstractFixtureLoader implements OrderedFixture
             $weaponPart->setCosts($costs);
 
             $manager->persist($weaponPart);
-            $manager->flush();
+            $this->addReference('WeaponPart-' . $weaponPart->getName(), $weaponPart);
         }
+        $manager->flush();
     }
 
     /**
