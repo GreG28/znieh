@@ -54,7 +54,7 @@
 <div class="container">
   {% include 'ZniehVillageGameBundle:Public:listBuilding.html.twig'  with { 'buildings' : buildings, 'active' : building.title } %}
   <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-4">
       <h2>{{ building.title }}</h2>
       <p>{{ building.description }}</p>
     </div>
@@ -63,16 +63,16 @@
         <div class="col-lg-4">
           Création d'armes :
           <div id="droppable" style="margin-bottom: 10px">
-            <div id="weapon-container" style="height: 50px; width: 200px; background: white"></div>
+            <div id="weapon-container"></div>
           </div>
           <button id="create-weapon" class="btn btn-default">Créer</button>
         </div>
         <div class="col-lg-7">
           Vos armes sauvegardées :
-          <div id="save-weapon-container"  style="height: 50px; width: 200px; background: white">
-            {% for i in 0..30 %}
+          <div id="save-weapon-container">
+            {% for i in 0..23 %}
               {% if weapons[i] is defined %}
-                  <span class="container-case"><img src="{{ asset('img/icons/lame.png') }}"></span>
+                  <span class="container-case"><img src="{{ asset('img/icons/lame.png') }}" class="img-responsive"></span>
               {% else %}
                   <span class="container-case empty"></span>
               {% endif %}

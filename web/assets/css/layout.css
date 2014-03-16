@@ -7636,33 +7636,33 @@ td.visible-print {
     display: none !important;
   }
 }
-/* line 10, ../sass/_building.scss */
+/* line 11, ../sass/_building.scss */
 *, *:before, *:after {
   -webkit-box-sizing: initial;
   -moz-box-sizing: initial;
   box-sizing: initial;
 }
 
-/* line 15, ../sass/_building.scss */
+/* line 16, ../sass/_building.scss */
 div {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-/* line 20, ../sass/_building.scss */
+/* line 21, ../sass/_building.scss */
 .root {
   position: relative;
   margin-bottom: 30px;
 }
 
-/* line 24, ../sass/_building.scss */
+/* line 25, ../sass/_building.scss */
 .level {
   margin-left: 400px;
   position: relative;
 }
 
-/* line 28, ../sass/_building.scss */
+/* line 29, ../sass/_building.scss */
 .level:before {
   content: "";
   width: 50px;
@@ -7673,13 +7673,13 @@ div {
   margin-top: 1px;
 }
 
-/* line 37, ../sass/_building.scss */
+/* line 38, ../sass/_building.scss */
 .step {
   min-height: 120px;
   position: relative;
 }
 
-/* line 41, ../sass/_building.scss */
+/* line 42, ../sass/_building.scss */
 .step:before {
   content: "";
   height: 100%;
@@ -7688,7 +7688,7 @@ div {
   left: -48px;
 }
 
-/* line 48, ../sass/_building.scss */
+/* line 49, ../sass/_building.scss */
 .step:after {
   content: "";
   width: 46px;
@@ -7699,7 +7699,7 @@ div {
   margin-top: 1px;
 }
 
-/* line 57, ../sass/_building.scss */
+/* line 58, ../sass/_building.scss */
 .step:first-child:before {
   width: 10px;
   height: 50%;
@@ -7708,20 +7708,20 @@ div {
   border-top-left-radius: 10px;
 }
 
-/* line 64, ../sass/_building.scss */
+/* line 65, ../sass/_building.scss */
 .step:first-child:after {
   height: 10px;
   border-top-left-radius: 10px;
 }
 
-/* line 68, ../sass/_building.scss */
+/* line 69, ../sass/_building.scss */
 .step:last-child:before {
   width: 10px;
   height: 50%;
   border-bottom-left-radius: 10px;
 }
 
-/* line 73, ../sass/_building.scss */
+/* line 74, ../sass/_building.scss */
 .step:last-child:after {
   height: 10px;
   border-top: none;
@@ -7730,7 +7730,7 @@ div {
   margin-top: -11px;
 }
 
-/* line 80, ../sass/_building.scss */
+/* line 81, ../sass/_building.scss */
 .step:only-child:before {
   border-top: none;
   border-bottom: none;
@@ -7738,7 +7738,7 @@ div {
   margin-top: 0px;
 }
 
-/* line 86, ../sass/_building.scss */
+/* line 87, ../sass/_building.scss */
 .step:only-child:after {
   width: 52px;
   left: -52px;
@@ -7746,7 +7746,7 @@ div {
   border-bottom-left-radius: 0;
 }
 
-/* line 92, ../sass/_building.scss */
+/* line 93, ../sass/_building.scss */
 .step-content {
   width: 280px;
   height: 120px;
@@ -7758,29 +7758,63 @@ div {
   /*left: 0;
   top: 50%;
   margin-top: -100px;*/
-  background-color: brown;
+  background-color: #744c05;
 }
 
 /* line 106, ../sass/_building.scss */
-.game-object {
+.step-title {
+  color: white;
+}
+
+/* line 110, ../sass/_building.scss */
+.step-content > span {
   padding: 5px 5px 5px 5px;
+}
+
+/* line 114, ../sass/_building.scss */
+.game-object {
   width: 50px;
   height: 20px;
 }
 
-/* line 111, ../sass/_building.scss */
+/* line 118, ../sass/_building.scss */
 .game-object img {
   margin-right: 3px;
 }
 
-/* line 114, ../sass/_building.scss */
+/* line 121, ../sass/_building.scss */
 .game-object-points {
   float: left;
 }
 
-/* line 117, ../sass/_building.scss */
+/* line 124, ../sass/_building.scss */
 .draggable.selected {
-  border: 3px solid green;
+  border: 2px solid #657405;
+}
+
+/* line 128, ../sass/_building.scss */
+#weapon-container {
+  padding: 2px 5px 5px 5px;
+  height: 40px;
+  width: 135px;
+  background: #7e7878;
+}
+
+/* line 135, ../sass/_building.scss */
+#save-weapon-container {
+  height: 80px;
+  width: 400px;
+  background: #7e7878;
+  padding: 5px 5px 5px 5px;
+}
+
+/* line 141, ../sass/_building.scss */
+.container-case {
+  border: 2px solid black;
+  padding: 2px 2px 2px 2px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
 }
 
 /* line 1, ../sass/_index.scss */
@@ -7865,7 +7899,6 @@ html, body {
 
 /* line 36, ../sass/layout.scss */
 body {
-  font-size: 18px;
   line-height: 32px;
 }
 
