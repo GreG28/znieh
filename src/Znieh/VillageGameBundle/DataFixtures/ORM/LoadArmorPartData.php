@@ -22,8 +22,8 @@ class LoadArmorPartData extends AbstractFixtureLoader implements OrderedFixtureI
             $armorPart = new ArmorPart();
 
             //echo $armorPartData['name'];
-            $type = $manager->getRepository('ZniehVillageGameBundle:ArmorPartType')->findOneByName($armorPartData['type']);
-            $step = $manager->getRepository('ZniehVillageGameBundle:Step')->findOneByTitle($armorPartData['step']);
+            $type = $this->getReference('ArmorPartType-' . $armorPartData['type']);
+            $step = $this->getReference('Step-' . $armorPartData['step']);
 
             $armorPart
                 ->setName($armorPartData['name'])
@@ -45,8 +45,8 @@ class LoadArmorPartData extends AbstractFixtureLoader implements OrderedFixtureI
             $armorPart->setCosts($costs);
 
             $manager->persist($armorPart);
-            $manager->flush();
         }
+        $manager->flush();
     }
 
     /**

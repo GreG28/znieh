@@ -28,8 +28,9 @@ class LoadArmorPartTypeData extends AbstractFixtureLoader implements OrderedFixt
             ;
 
             $manager->persist($armorPartType);
-            $manager->flush();
+            $this->addReference('ArmorPartType-' . $armorPartType->getName(), $armorPartType);
         }
+        $manager->flush();
     }
 
     /**

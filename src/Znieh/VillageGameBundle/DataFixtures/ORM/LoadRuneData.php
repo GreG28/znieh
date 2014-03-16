@@ -21,8 +21,8 @@ class LoadRuneData extends AbstractFixtureLoader implements OrderedFixtureInterf
         foreach($runesData as $runeData) {
             $rune = new Rune();
 
-            $type = $manager->getRepository('ZniehVillageGameBundle:RuneType')->findOneByName($runeData['type']);
-            $step = $manager->getRepository('ZniehVillageGameBundle:Step')->findOneByTitle($runeData['step']);
+            $type = $this->getReference('RuneType-' . $runeData['type']);
+            $step = $this->getReference('Step-' . $runeData['step']);
 
             $rune
                 ->setName($runeData['name'])
@@ -41,8 +41,9 @@ class LoadRuneData extends AbstractFixtureLoader implements OrderedFixtureInterf
             $rune->setCosts($costs);
 
             $manager->persist($rune);
-            $manager->flush();
+            $this->addReference('Rune-' . $rune->getName(), $rune);
         }
+        $manager->flush();
     }
 
     /**
