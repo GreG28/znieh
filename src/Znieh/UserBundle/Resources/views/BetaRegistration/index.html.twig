@@ -1,22 +1,24 @@
-{% extends 'ZniehUserBundle::betaLayout.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block content %}
-  <div class="col-sm-6">
-    <h1>Bienvenue sur Znieh Games !</h1>
-    <q>Le jeu où vous combattez avec des unités qui vous ressemblent !</q>
-  </div>
-  <div class="col-sm-6">
-    <img src="{{ asset('img/logo-zniehgames.png') }}" class="img-responsive" alt="">
-  </div>
-  <div class="col-sm-3">
-    <img src="{{ asset('img/logo_jeu_test1.png')}}" class="img-responsive" alt="">
-  </div>
-  <div class="col-sm-6">
-    <p>Ajoute ton email ci-dessous pour postuler à la bêta privée :</p>
-    {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': true } %}
-    {{ form(form, { 'style': 'inline' }) }}
-  </div>
-  <div class="col-sm-3">
-    <img src="{{ asset('img/logo_jeu_test1.png')}}" class="img-responsive" alt="">
-  </div>
+{% block body %}
+
+<div class="container" style="text-align: center">
+  <br>
+  {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': true } %}
+  <h3>Bienvenue sur Znieh Games !</h3>
+  <q>Le jeu où vous combattez avec des unités qui vous ressemblent !</q>
+  <br>
+  Ajoute ton email ci-dessous pour postuler à la bêta privée :
+  {{ form(form, { 'style': 'inline' }) }}
+
+{#   <a href="{{ path('znieh_villagegame_public_index') }}">
+    <img class="village" src="{{ asset('img/villageombre.png') }}" alt="">
+  </a> #}
+  <img src="{{ asset('img/LogoJeu.png') }}" alt="">
+{#   <a href="{{ path('znieh_coregame_default_search') }}">
+    <img class="arene" src="{{ asset('img/areneombre.png') }}" alt="" style="margin-top: 20px;">
+  </a> #}
+</div>
+<div class="border-after-village"></div>
+<div class="after-village-content"></div>
 {% endblock %}

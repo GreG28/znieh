@@ -7636,187 +7636,6 @@ td.visible-print {
     display: none !important;
   }
 }
-/* line 11, ../sass/_building.scss */
-*, *:before, *:after {
-  -webkit-box-sizing: initial;
-  -moz-box-sizing: initial;
-  box-sizing: initial;
-}
-
-/* line 16, ../sass/_building.scss */
-div {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-/* line 21, ../sass/_building.scss */
-.root {
-  position: relative;
-  margin-bottom: 30px;
-}
-
-/* line 25, ../sass/_building.scss */
-.level {
-  margin-left: 400px;
-  position: relative;
-}
-
-/* line 29, ../sass/_building.scss */
-.level:before {
-  content: "";
-  width: 50px;
-  border-top: 2px solid #eee9dc;
-  position: absolute;
-  left: -98px;
-  top: 50%;
-  margin-top: 1px;
-}
-
-/* line 38, ../sass/_building.scss */
-.step {
-  min-height: 120px;
-  position: relative;
-}
-
-/* line 42, ../sass/_building.scss */
-.step:before {
-  content: "";
-  height: 100%;
-  border-left: 2px solid #eee9dc;
-  position: absolute;
-  left: -48px;
-}
-
-/* line 49, ../sass/_building.scss */
-.step:after {
-  content: "";
-  width: 46px;
-  border-top: 2px solid #eee9dc;
-  position: absolute;
-  left: -46px;
-  top: 50%;
-  margin-top: 1px;
-}
-
-/* line 58, ../sass/_building.scss */
-.step:first-child:before {
-  width: 10px;
-  height: 50%;
-  top: 50%;
-  margin-top: 2px;
-  border-top-left-radius: 10px;
-}
-
-/* line 65, ../sass/_building.scss */
-.step:first-child:after {
-  height: 10px;
-  border-top-left-radius: 10px;
-}
-
-/* line 69, ../sass/_building.scss */
-.step:last-child:before {
-  width: 10px;
-  height: 50%;
-  border-bottom-left-radius: 10px;
-}
-
-/* line 74, ../sass/_building.scss */
-.step:last-child:after {
-  height: 10px;
-  border-top: none;
-  border-bottom: 2px solid #eee9dc;
-  border-bottom-left-radius: 10px;
-  margin-top: -11px;
-}
-
-/* line 81, ../sass/_building.scss */
-.step:only-child:before {
-  border-top: none;
-  border-bottom: none;
-  content: none;
-  margin-top: 0px;
-}
-
-/* line 87, ../sass/_building.scss */
-.step:only-child:after {
-  width: 52px;
-  left: -52px;
-  top: 51.5%;
-  border-bottom-left-radius: 0;
-}
-
-/* line 93, ../sass/_building.scss */
-.step-content {
-  width: 280px;
-  height: 120px;
-  padding: 5px 10px;
-  border: 2px solid #eee9dc;
-  border-radius: 5px;
-  display: block;
-  position: absolute;
-  /*left: 0;
-  top: 50%;
-  margin-top: -100px;*/
-  background-color: #744c05;
-}
-
-/* line 106, ../sass/_building.scss */
-.step-title {
-  color: white;
-}
-
-/* line 110, ../sass/_building.scss */
-.step-content > span {
-  padding: 5px 5px 5px 5px;
-}
-
-/* line 114, ../sass/_building.scss */
-.game-object {
-  width: 50px;
-  height: 20px;
-}
-
-/* line 118, ../sass/_building.scss */
-.game-object img {
-  margin-right: 3px;
-}
-
-/* line 121, ../sass/_building.scss */
-.game-object-points {
-  float: left;
-}
-
-/* line 124, ../sass/_building.scss */
-.draggable.selected {
-  border: 2px solid #657405;
-}
-
-/* line 128, ../sass/_building.scss */
-#weapon-container {
-  padding: 2px 5px 5px 5px;
-  height: 40px;
-  width: 135px;
-  background: #7e7878;
-}
-
-/* line 135, ../sass/_building.scss */
-#save-weapon-container {
-  height: 80px;
-  width: 400px;
-  background: #7e7878;
-  padding: 5px 5px 5px 5px;
-}
-
-/* line 141, ../sass/_building.scss */
-.container-case {
-  border: 2px solid black;
-  padding: 2px 2px 2px 2px;
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-}
-
 /* line 1, ../sass/_index.scss */
 body {
   min-height: 1000px;
@@ -7864,38 +7683,20 @@ body {
   color: grey;
 }
 
-/*
- * Author : GreG28
- */
-/* line 5, ../sass/_search.scss */
-.modal-large-pool {
-  width: 900px;
-}
-
-/* line 1, ../sass/_blog.scss */
-.post {
-  color: black;
-}
-
-/* line 5, ../sass/_blog.scss */
-h2.post-title {
-  color: black;
-}
-
-/* line 13, ../sass/layout.scss */
+/* line 10, ../sass/layout.scss */
 .navbar-default {
   background-image: url(../../img/background/stone.jpg);
   background-repeat: repeat;
 }
 
-/* line 18, ../sass/layout.scss */
+/* line 15, ../sass/layout.scss */
 #menu {
   height: 40px;
   margin-bottom: 30px;
   padding-left: 162px;
 }
 
-/* line 24, ../sass/layout.scss */
+/* line 21, ../sass/layout.scss */
 #menu a.link {
   color: #fff;
   font-size: 18px;
@@ -7908,42 +7709,54 @@ h2.post-title {
 /**
     Main
 **/
-/** Fix footer end of page **/
-/* line 38, ../sass/layout.scss */
-html, body {
-  height: 100%;
+/* line 34, ../sass/layout.scss */
+.alert {
+  width: 70%;
+  margin: 20px auto 20px;
 }
 
-/* line 42, ../sass/layout.scss */
+/* line 38, ../sass/layout.scss */
+.alert > ul {
+  list-style: none;
+}
+
+/** Fix footer end of page **/
+/* line 43, ../sass/layout.scss */
+html, body {
+  height: 100%;
+  min-height: 0;
+}
+
+/* line 48, ../sass/layout.scss */
 body {
   line-height: 32px;
   font-family: 'TeX Gyre Heros';
 }
 
-/* line 48, ../sass/layout.scss */
+/* line 54, ../sass/layout.scss */
 .nav-tabs {
   background: #7e7259;
   border-bottom: none;
 }
 
-/* line 52, ../sass/layout.scss */
+/* line 58, ../sass/layout.scss */
 .nav-tabs a {
   color: #d5b983;
 }
 
-/* line 56, ../sass/layout.scss */
+/* line 62, ../sass/layout.scss */
 .nav-tabs li a:hover {
   background: #534a36;
   border: none;
 }
 
-/* line 61, ../sass/layout.scss */
+/* line 67, ../sass/layout.scss */
 .nav-tabs .active {
   background: #534a36;
   border: none;
 }
 
-/* line 66, ../sass/layout.scss */
+/* line 72, ../sass/layout.scss */
 #wrap {
   position: relative;
   margin: 0 auto;
@@ -7954,17 +7767,17 @@ body {
 /**
   Title & Buttons
   **/
-/* line 77, ../sass/layout.scss */
+/* line 83, ../sass/layout.scss */
 a:link {
   text-decoration: none;
 }
 
-/* line 81, ../sass/layout.scss */
+/* line 87, ../sass/layout.scss */
 .container p {
   text-align: justify;
 }
 
-/* line 85, ../sass/layout.scss */
+/* line 91, ../sass/layout.scss */
 h2 {
   -webkit-margin-before: 0.83em;
   -webkit-margin-after: 0.83em;
@@ -7972,7 +7785,7 @@ h2 {
   -webkit-margin-end: 0px;
 }
 
-/* line 92, ../sass/layout.scss */
+/* line 98, ../sass/layout.scss */
 h2.section-title {
   margin: 0 0 30px;
   padding: 0 0 8px;
@@ -7984,101 +7797,11 @@ h2.section-title {
   border-bottom: 5px solid #e0e0e0;
 }
 
-/* line 103, ../sass/layout.scss */
+/* line 109, ../sass/layout.scss */
 h3.section-title {
   margin: 0 0 15px;
   font-size: 28px;
   line-height: 28px;
   font-weight: 700;
   color: #1a1a1a;
-}
-
-/* line 152, ../sass/layout.scss */
-#leftSide .unit,
-#rightSide .unit {
-  background: white;
-  margin-bottom: 5px;
-  border: 1px solid black;
-}
-
-/* line 159, ../sass/layout.scss */
-#leftSide .selected,
-#rightSide .selected {
-  background: #d7e9f2;
-  border: 1px dashed black;
-}
-
-/* line 165, ../sass/layout.scss */
-#leftSide .valid,
-#rightSide .valid {
-  background: #d9fad9;
-}
-
-/* line 168, ../sass/layout.scss */
-.unit .portrait {
-  overflow: hidden;
-  width: 48px;
-  height: 48px;
-  float: left;
-}
-
-/* line 175, ../sass/layout.scss */
-.unit .name {
-  font-size: 12px;
-  float: left;
-  font-weight: bold;
-}
-
-/* line 181, ../sass/layout.scss */
-.unit .life {
-  margin-top: 10px;
-  height: 16px;
-}
-
-/* line 186, ../sass/layout.scss */
-.unit .stats {
-  font-size: 12px;
-  margin-top: -25px;
-}
-
-/* line 191, ../sass/layout.scss */
-.unit .skills {
-  margin-top: -15px;
-}
-
-/* line 195, ../sass/layout.scss */
-.unit .skills img {
-  float: right;
-  margin-right: 5px;
-  margin-bottom: 5px;
-}
-
-/* line 202, ../sass/layout.scss */
-#leftSide .infos,
-#rightSide .infos {
-  background: white;
-  margin-bottom: 5px;
-  border: 1px solid black;
-}
-
-/* line 208, ../sass/layout.scss */
-.infos h3 {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-/* line 213, ../sass/layout.scss */
-.infos .stats {
-  font-size: 12px;
-}
-
-/* line 217, ../sass/layout.scss */
-.infos hr {
-  margin: 0px;
-}
-
-/* line 221, ../sass/layout.scss */
-.infos hr.delimitor {
-  margin: 0px;
-  margin-top: 10px;
 }

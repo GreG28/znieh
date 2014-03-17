@@ -4,11 +4,8 @@
 
 @import "base";
 @import "../vendor/sass-bootstrap/lib/bootstrap";
-@import "building";
 @import "index";
 @import "footer";
-@import "search";
-@import "blog";
 
 .navbar-default {
   background-image: url(../../img/background/stone.jpg);
@@ -34,9 +31,18 @@
     Main
 **/
 
+.alert {
+  width: 60%;
+  margin: 20px auto 20px;
+}
+.alert > ul {
+  list-style: none;
+}
+
 /** Fix footer end of page **/
 html, body {
   height: 100%;
+  min-height: 0;
 }
 
 body {
@@ -148,77 +154,77 @@ h3.section-title {
 //    background: #344e86;
 // }
 
-#leftSide .unit,
-#rightSide .unit {
-  background: white;
-  margin-bottom: 5px;
-  border: 1px solid black;
-}
+// #leftSide .unit,
+// #rightSide .unit {
+//   background: white;
+//   margin-bottom: 5px;
+//   border: 1px solid black;
+// }
 
-#leftSide .selected,
-#rightSide .selected {
-  background: #d7e9f2;
-  border: 1px dashed black;
-}
+// #leftSide .selected,
+// #rightSide .selected {
+//   background: #d7e9f2;
+//   border: 1px dashed black;
+// }
 
-#leftSide .valid,
-#rightSide .valid {
-  background: #d9fad9;
-}
-.unit .portrait {
-  overflow: hidden;
-  width: 48px;
-  height: 48px;
-  float: left;
-}
+// #leftSide .valid,
+// #rightSide .valid {
+//   background: #d9fad9;
+// }
+// .unit .portrait {
+//   overflow: hidden;
+//   width: 48px;
+//   height: 48px;
+//   float: left;
+// }
 
-.unit .name {
-  font-size: 12px;
-  float:left;
-  font-weight: bold;
-}
+// .unit .name {
+//   font-size: 12px;
+//   float:left;
+//   font-weight: bold;
+// }
 
-.unit .life {
-  margin-top:10px;
-  height: 16px;
-}
+// .unit .life {
+//   margin-top:10px;
+//   height: 16px;
+// }
 
-.unit .stats {
-  font-size: 12px;
-  margin-top: -25px;
-}
+// .unit .stats {
+//   font-size: 12px;
+//   margin-top: -25px;
+// }
 
-.unit .skills {
-  margin-top: -15px;
-}
+// .unit .skills {
+//   margin-top: -15px;
+// }
 
-.unit .skills img {
-  float: right;
-  margin-right: 5px;
-  margin-bottom: 5px;
-}
+// .unit .skills img {
+//   float: right;
+//   margin-right: 5px;
+//   margin-bottom: 5px;
+// }
 
-#leftSide .infos,
-#rightSide .infos {
-  background: white;
-  margin-bottom: 5px;
-  border: 1px solid black;
-}
+// #leftSide .infos,
+// #rightSide .infos {
+//   background: white;
+//   margin-bottom: 5px;
+//   border: 1px solid black;
+// }
 
-.infos h3 {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
+// .infos h3 {
+//   margin-top: 10px;
+//   margin-bottom: 10px;
+// }
 
-.infos .stats {
-  font-size: 12px;
-}
+// .infos .stats {
+//   font-size: 12px;
+// }
 
-.infos hr {
-  margin: 0px;
-}
+// .infos hr {
+//   margin: 0px;
+// }
 
-.infos hr.delimitor {
-  margin: 0px;
-  margin-top: 10px;
-}
+// .infos hr.delimitor {
+//   margin: 0px;
+//   margin-top: 10px;
+// }

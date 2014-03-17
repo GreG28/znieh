@@ -14,7 +14,6 @@ use Znieh\UserBundle\Form\Type\BetaRegistrationType;
 /**
  * BetaRegistration controller.
  *
- * @Route("/beta/registration")
  */
 class BetaRegistrationController extends Controller
 {
