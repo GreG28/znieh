@@ -14,6 +14,11 @@
   background-image: url(../../img/background/stone.jpg);
   background-repeat: repeat;
 }
+.dropdown-menu > li > a > span {
+  width: 35px;
+  display: inline-block;
+}
+
 
 #menu {
     height:40px;
