@@ -41,8 +41,8 @@ module.exports = function(player) {
 			player.battle.map = map.getRandomMap();
 		}
 
-		callback('map1.json');
-		player.socket.emit('service', { msg: 'Map selected: map1.json'});
+		callback('map_new.json');
+		player.socket.emit('service', { msg: 'Map selected: map_new.json'});
 
 	});
 
