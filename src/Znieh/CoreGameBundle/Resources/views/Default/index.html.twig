@@ -82,36 +82,50 @@ $("#journal").scrollTop($("#journal")[0].scrollHeight);
 
   gameSocket = io.connect('127.0.0.1:1337');
 
-  gameSocket.emit('auth', { username: '{{ app.user.username }}' , token: '{{ app.user.token }}' }, function(){});
-
   var route_map = "../json/";
   var continueProcess = 0;
-  gameSocket.emit('select-map', { }, function(data) {
-    route_map += data;
-    console.log('select-map');
-    console.log(data);
 
-    continueProcess++;
-  });
+  gameSocket.emit('auth', { username: '{{ app.user.username }}' , token: '{{ app.user.token }}' }, function(){
 
-  gameSocket.emit('get-side', { }, function(data) {
-    if(data == true)
-      left = true;
-    else
-      left = false;
+    gameSocket.emit('select-map', { }, function(data) {
+      route_map += data;
+      console.log('select-map');
+      console.log(data);
 
-    continueProcess++;
+      continueProcess++;
+      if(continueProcess == 3)
+      {
+        init();
+      }
+    });
 
-    console.log('get-side');
-    console.log(data);
-  });
+    gameSocket.emit('get-side', { }, function(data) {
+      if(data == true)
+        left = true;
+      else
+        left = false;
 
-  gameSocket.emit('get-units', { }, function(data) {
-    units = data;
-    console.log('get-units : ');
-    console.log(data);
+      continueProcess++;
 
-    continueProcess++;
+      console.log('get-side');
+      console.log(data);
+      if(continueProcess == 3)
+      {
+        init();
+      }
+    });
+
+    gameSocket.emit('get-units', { }, function(data) {
+      units = data;
+      console.log('get-units : ');
+      console.log(data);
+
+      continueProcess++;
+      if(continueProcess == 3)
+      {
+        init();
+      }
+    });
   });
 
   var canvas = document.getElementById("canvas");
@@ -122,7 +136,6 @@ $("#journal").scrollTop($("#journal")[0].scrollHeight);
     contentManager = new ContentManager(stage, 480, 480);
     contentManager.init();
   }
-  init();
 
   var nextUnitID = 0;
   var units = [
@@ -136,6 +149,7 @@ $("#journal").scrollTop($("#journal")[0].scrollHeight);
 
   mySide = '<h2>Mes unités</h2><div id="myUnits"></div>';
   ennemySide = '<h2>Unités ennemies</h2> <div id="ennemyUnits></div>';
+
 
   function setMyUnitsSide() {
     if(left) {
