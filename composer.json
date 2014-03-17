@@ -41,10 +41,10 @@
         "friendsofsymfony/jsrouting-bundle": "1.5.*@dev",
         "friendsofsymfony/rest-bundle": "1.1.*",
 
-        "ornicar/gravatar-bundle" : "dev-master",
+        "ornicar/gravatar-bundle" : "1.1.0",
         "genemu/form-bundle": "2.2.*",
-        "stfalcon/tinymce-bundle": "dev-master",
-		"winzou/console-bundle": "dev-master",
+        "stfalcon/tinymce-bundle": "0.3.7",
+		"winzou/console-bundle": "1.0.1",
         "twig/extensions": "1.0.*",
         "doctrine/doctrine-fixtures-bundle": "2.2.*",
 
@@ -71,6 +71,7 @@
         ]
     },
     "minimum-stability": "dev",
+    "license": "proprietary",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
