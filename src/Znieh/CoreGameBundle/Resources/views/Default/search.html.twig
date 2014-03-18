@@ -1,5 +1,10 @@
 {% extends "ZniehCoreGameBundle::layout.html.twig" %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style src="{{ asset('css/search.css') }}"></style>
+{% endblock %}
+
 {% block body %}
 
 

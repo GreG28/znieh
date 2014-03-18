@@ -25,38 +25,38 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
     show: false
   });
 
-  var gameSocket;
+  var socket;
 
-  gameSocket = io.connect('127.0.0.1:1337');
+  socket = io.connect('127.0.0.1:1337');
   $('#console').append('Connected<br>');
 
-  gameSocket.emit('auth', { username: user.name , token: 'abc' }, function(success) {
+  socket.emit('auth', { username: user.name , token: 'abc' }, function(success) {
     console.log("auth ->" + success);
   });
 
   // In
-  gameSocket.on('welcome', function (data) {
+  socket.on('welcome', function (data) {
     console.log(data);
     $('#console').append('Server has send welcome message. Your name is : ' + data + '<br />');
   });
 
-  gameSocket.on('service', function (data) {
+  socket.on('service', function (data) {
     console.log(data);
     $('#console').append('Service message : ' + data.msg + '<br />');
   });
 
-  gameSocket.on('players', function (data) {
+  socket.on('players', function (data) {
     console.log('players ->' + data);
     $('#console').append('Current players : ' + data.players + '<br />');
   });
 
-  gameSocket.on('search-started', function (data) {
+  socket.on('search-started', function (data) {
     console.log('search-started ->' + data);
     $('#console').append('La recherche de partie a commencé : ' + data + '<br />');
     $('#modalReady .modal-footer').prepend('<p>The server is looking for another player inside that pool,<br> to play with you</p>');
   });
 
-  gameSocket.on('search-restarted', function (data) {
+  socket.on('search-restarted', function (data) {
     console.log('search-restarted ->' + data);
     $('#console').append('La recherche de partie a recommencé : ' + data + '<br />');
     $('#modalGameAcceptance').modal('hide');
@@ -68,7 +68,7 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
   });
 
   // the server send a player to fight with
-  gameSocket.on('battle-found', function (data) {
+  socket.on('battle-found', function (data) {
     console.log(data);
     $('#modalGameAcceptance #p_name').append(data.player);
     $('#modalGameAcceptance #p_side').append(data.side);
@@ -77,7 +77,7 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
     $('#modalGameAcceptance').modal('show');
   });
 
-  gameSocket.on('placement-started', function (data) {
+  socket.on('placement-started', function (data) {
     console.log(data);
     $('#console').append('Service message : placement started <br />');
     // We redirect the player to the game page !
@@ -91,7 +91,7 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
     $('#console').append('<strong>Trying to join pool...</strong><br>');
     $('#join').button('loading');
 
-    gameSocket.emit('join', {pool: pool_selected}, function (data) {
+    socket.emit('join', {pool: pool_selected}, function (data) {
       /*When we are sure the player is resgistered inside a pool*/
       if(data === true) {
         $('#modalPools').modal('hide');
@@ -107,7 +107,7 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
   $('#ready').click(function () {
     $('#ready').button('loading');
     $('#console').append('<strong>Ready to fight !</strong><br>');
-    gameSocket.emit('ready', null, function (data) {
+    socket.emit('ready', null, function (data) {
       /* Waiting to receive a proposal of another player to fight*/
       if(data === true)
       {
@@ -126,7 +126,7 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
     $('#fight').button('loading');
     $('#console').append('<strong>Loading ...</strong><br>');
 
-    gameSocket.emit('get-pools', null, function (data) {
+    socket.emit('get-pools', null, function (data) {
       console.log(data);
       var size = data.length;
       var div_labels = $('#modalPools .modal-body .btn-group');
@@ -147,7 +147,7 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
   $('#Acceptance_YES').click(function() {
     $('#Acceptance_NO').prop('disabled',true);
     $('#Acceptance_YES').prop('disabled',true);
-    gameSocket.emit('accept-player', true, function (data) {
+    socket.emit('accept-player', true, function (data) {
       console.log(data);
       // Callback
       // the player accept to fight this enemy
@@ -158,7 +158,7 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
   $('#Acceptance_NO').click(function() {
     $('#Acceptance_NO').prop('disabled',true);
     $('#Acceptance_YES').prop('disabled',true);
-    gameSocket.emit('accept-player', false, function (data) {
+    socket.emit('accept-player', false, function (data) {
       console.log(data);
       // Callback
       // the server has to found another enemy
