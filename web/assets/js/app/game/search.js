@@ -1,4 +1,4 @@
-define(['jquery', 'user', 'bootstrap'], function ($, user) {
+define(['jquery', 'user', 'bootstrap', 'socketio', 'socketHandler'], function ($, io, moment, user, socket) {
   "use strict";
 
 	$('#modalFight').modal({
@@ -25,14 +25,14 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
     show: false
   });
 
-  var socket;
+  //var socket;
 
-  socket = io.connect('127.0.0.1:1337');
-  $('#console').append('Connected<br>');
+  //socket = io.connect('127.0.0.1:1337');
+  //$('#console').append('Connected<br>');
 
-  socket.emit('auth', { username: user.name , token: 'abc' }, function(success) {
+  /*socket.emit('auth', { username: user.name , token: 'abc' }, function(success) {
     console.log("auth ->" + success);
-  });
+  });*/
 
   // In
   socket.on('welcome', function (data) {
