@@ -34,8 +34,8 @@
 	    // Is user is not connected
 	    if(!isOnline) {
 	    	var message = db.PendingMessage.build({
-	    		from: player.name,
-	    		to: data.target,
+	    		from_user: player.name,
+	    		to_user: data.target,
 	    		msg: data.msg,
 	    		date: Date.now()
 	    	});
@@ -61,15 +61,15 @@
 
 module.exports.sendPendingMessages = function(player) {
 	db.PendingMessage
-	.findAll({ where: {to: player.name } })
+	.findAll({ where: {to_user: player.name } })
 	.complete(function(err, messages) {
 		if(!!err) {
 			logger.error('Error while reading pending messages: ', err);
 		} else {
 			for (var i = 0; i < messages.length; i++) {
 				player.socket.emit("message", {
-					from: messages[i].from,
-					to: messages[i].to,
+					from: messages[i].from_user,
+					to: messages[i].to_user,
 					msg: messages[i].msg,
 					date: messages[i].date / 1000
 				});
