@@ -37,7 +37,8 @@ function selectMap() {
 
 function getSide() {
   socket.emit('get-side', null, function(data) {
-    if(data === true)
+    console.log("side ? -> " + data);
+    if(data === "left")
       left = true;
     else
       left = false;
@@ -59,7 +60,11 @@ function getUnits() {
     console.log('get-units : ');
     console.log(data);
 
+    units = data[0];
+    ennemy_units = data[1];
 
+    console.log(JSON.stringify(units));
+    console.log(JSON.stringify(ennemy_units));
 
     continueProcess++;
     if(continueProcess == 3)
@@ -71,8 +76,11 @@ function getUnits() {
 
 var canvas = document.getElementById("canvas");
 var stage = new createjs.Stage(canvas);
+var ennemy_units = null;
+var infoSide = null;
 
 stage.enableMouseOver();
+
 function init() {
   console.log("init");
   contentManager = new ContentManager(stage, 480, 480);
@@ -83,12 +91,10 @@ function init() {
 }
 
 var nextUnitID = 0;
-var units = [{ "sprite": "july_perso", "taille": "petitfin", "name": "July?", "statut": -1, "life": 100 },
-];
+var units = null;
 
 mySide = '<h2>Mes unités</h2><div id="myUnits"></div>';
 ennemySide = '<h2>Unités ennemies</h2> <div id="ennemyUnits></div>';
-
 
 function setMyUnitsSide() {
   if(left) {
