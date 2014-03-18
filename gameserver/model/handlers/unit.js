@@ -33,9 +33,10 @@ UnitHandler.Armor = function (name, type, stats){
 	this.stats = stats;
 }
 
-UnitHandler.Unit = function(name, sign, stats, weapon, armor, skills,  values, tags){
+UnitHandler.Unit = function(name, sign, sprite, stats, weapon, armor, skills,  values, tags){
 	this.name = name;
 	this.sign = sign;
+	this.sprite = sprite;
 	this.stats = stats;
 	this.weapon = weapon;
 	this.armor = armor;
@@ -124,7 +125,7 @@ UnitHandler.loadUnit = function(){
 		armorType = data[0].units[unit].armor.type.name;
 		armorName = data[0].units[unit].armor.name.name;
 
-		unitList.push(new UnitHandler.Unit(unitName, sign, new UnitHandler.StatSet(cLife,cPenetration,cPrecision,cEvade,cParry,cDefense,cArmor,cStrength,cAgility,cIntelligence,cMagicDamage,cEvilScience,cMagicSupport),
+		unitList.push(new UnitHandler.Unit(unitName, sign,"", new UnitHandler.StatSet(cLife,cPenetration,cPrecision,cEvade,cParry,cDefense,cArmor,cStrength,cAgility,cIntelligence,cMagicDamage,cEvilScience,cMagicSupport),
 			new UnitHandler.Weapon(weaponName, weaponType, weaponDamages, weaponAttribute, weaponRange, new UnitHandler.StatSet(wLife,wPenetration,wPrecision,wEvade,wParry,wDefense,wArmor,wStrength,wAgility,wIntelligence,wMagicDamage,wEvilScience,wMagicSupport), weaponRatio),
 			new UnitHandler.Armor(armorName, armorType, new UnitHandler.StatSet(aLife,aPenetration,aPrecision,aEvade,aParry,aDefense,aArmor,aStrength,aAgility,aIntelligence,aMagicDamage,aEvilScience,aMagicSupport))))
 	}
