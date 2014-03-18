@@ -2,26 +2,17 @@
 
 $("#journal").scrollTop($("#journal")[0].scrollHeight);
 
-//socket = io.connect('127.0.0.1:1337');
-
 var route_map = "../json/";
 var continueProcess = 0;
 var left;
 var mySide;
 var ennemySide;
 var contentManager;
-
-/*
-function auth(_username, _token) {
-  socket.emit('auth', { username: _username , token: _token } , function(){
-
-  });
-}
-*/
+var socket;
 
 function waitForElement(){
     if(typeof window.socket !== "undefined"){
-        var socket = window.socket;
+        socket = window.socket;
         selectMap();
         getSide();
         getUnits();
