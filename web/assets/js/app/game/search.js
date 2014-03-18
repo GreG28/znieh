@@ -132,7 +132,7 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
       var div_labels = $('#modalPools .modal-body .btn-group');
       for(var i = 0 ; i < size ; i=i+1 )
       {
-        div_labels.append("<label class=\"btn btn-primary\"><input class=\"input\" type=\"radio\" name=\"options\" value=\""+i+"\"><h4>"+data[i].name+"</h4><p>Nombre de points "+data[i].points+"</p><p>"+data[i].playerCount+" joueurs en attente</p></input></label>");
+        div_labels.append("<label class=\"btn btn-primary\"><input class=\"input\" type=\"radio\" name=\"options\" value=\""+i+"\"><h4>"+data[i].name+"</h4><p class=\"label-P\">Nombre de points "+data[i].points+"</p><p class=\"label-P\">"+data[i].playerCount+" joueurs en attente</p></input></label>");
       }
       $('#modalFight').modal('hide');
       $('#modalPools').modal('show');
