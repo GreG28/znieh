@@ -2,9 +2,7 @@
 
 $("#journal").scrollTop($("#journal")[0].scrollHeight);
 
-var socket = window.socket;
-
-socket = io.connect('127.0.0.1:1337');
+//socket = io.connect('127.0.0.1:1337');
 
 var route_map = "../json/";
 var continueProcess = 0;
@@ -13,13 +11,28 @@ var mySide;
 var ennemySide;
 var contentManager;
 
+/*
 function auth(_username, _token) {
   socket.emit('auth', { username: _username , token: _token } , function(){
-    selectMap();
-    getSide();
-    getUnits();
+
   });
 }
+*/
+
+function waitForElement(){
+    if(typeof window.socket !== "undefined"){
+        var socket = window.socket;
+        selectMap();
+        getSide();
+        getUnits();
+    }
+    else{
+        setTimeout(function(){
+            waitForElement();
+        },250);
+    }
+}
+waitForElement();
 
 function selectMap() {
   socket.emit('select-map', null, function(data) {
