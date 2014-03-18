@@ -142,8 +142,6 @@ $("#myUnits div.unit:first-child").addClass("selected");
 }
 
 function setInfoSide(data) {
-// ' + data.name + '
-// ' + data.armor.pieces[0].part.name + '
 infoSide = '<h2>&nbsp;</h2> <div id="infosUnit"><div class="row infos"><div class="col-sm-12" style="text-align:center;"><h3>Jacky</h3><hr>';
 infoSide += '<h4>Statistiques</h4><div class="stats"><div class="row">';
 infoSide += '<div class="col-sm-3"><img src="../img/icons/vie.png" title="Vie"> 67</div><div class="col-sm-3"><img src="../img/icons/penetration.png" title="Pénétration"> 67</div><div class="col-sm-3"><img src="../img/icons/precision.png" title="Précision"> 67</div><div class="col-sm-3"><img src="../img/icons/esquive.png" title="Esquive"> 67</div>';
