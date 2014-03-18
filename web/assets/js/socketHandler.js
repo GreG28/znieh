@@ -6,7 +6,7 @@ define(['jquery', 'socketio', 'user'], function ($, io, user) {
 
   // Initialisation
   socket = io.connect('127.0.0.1:1337');
-  
+
   socket.emit('auth', {username: user.name, token: 'abc'}, function(success) {
     if(success) {
       console.log('Socket: auth successful');
@@ -16,7 +16,6 @@ define(['jquery', 'socketio', 'user'], function ($, io, user) {
     }
   });
 
+  window.socket = socket;
   return socket;
-
-
 });

@@ -2,7 +2,7 @@
 
 $("#journal").scrollTop($("#journal")[0].scrollHeight);
 
-var socket = undefined;
+var socket = window.socket;
 
 socket = io.connect('127.0.0.1:1337');
 
