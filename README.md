@@ -111,8 +111,6 @@ In "node" repository, execute the following command to install node_modules.
 
 Then, you have to copy the file called `config.json` to `config.user.json` and edit the values according to your environnement.
 
-You need to add one table in your database, using the following script : https://gist.github.com/alfoeternia/752b89ab189e6b56e119
-
 Finally, run the server :
 
     node app.js
