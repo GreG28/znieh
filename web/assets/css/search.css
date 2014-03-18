@@ -1,0 +1,14 @@
+.modal-large-pool
+{
+	width : 800px;
+}
+
+.modal-large-pool .btn-group
+{
+ 	width: 250px;
+}
+
+.modal-large-pools label
+{
+	max-width : 15px;
+}
