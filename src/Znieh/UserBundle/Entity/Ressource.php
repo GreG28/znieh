@@ -52,6 +52,13 @@ class Ressource
     /**
      * @var integer
      *
+     * @ORM\Column(name="iron", type="integer")
+     */
+    private $iron;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="minorCloth", type="integer")
      */
     private $minorCloth;
@@ -256,7 +263,7 @@ class Ressource
 
     public function hasEnoughBronze($val)
     {
-        if($this->gold >= $val)
+        if($this->bronze >= $val)
             return true;
         return false;
     }
@@ -267,6 +274,82 @@ class Ressource
             $this->bronze = 0;
         else
             $this->bronze = $this->bronze + $mod;
+    }
+
+    /**
+     * Set iron
+     *
+     * @param integer $iron
+     * @return Ressource
+     */
+    public function setIron($iron)
+    {
+        $this->iron = $iron;
+
+        return $this;
+    }
+
+    /**
+     * Get iron
+     *
+     * @return integer
+     */
+    public function getIron()
+    {
+        return $this->iron;
+    }
+
+    public function hasEnoughIron($val)
+    {
+        if($this->gold >= $val)
+            return true;
+        return false;
+    }
+
+    public function addIron($mod)
+    {
+        if($this->iron + $mod < 0)
+            $this->iron = 0;
+        else
+            $this->iron = $this->iron + $mod;
+    }
+
+    /**
+     * Set silver
+     *
+     * @param integer $silver
+     * @return Ressource
+     */
+    public function setSilver($silver)
+    {
+        $this->silver = $silver;
+
+        return $this;
+    }
+
+    /**
+     * Get silver
+     *
+     * @return integer
+     */
+    public function getSilver()
+    {
+        return $this->silver;
+    }
+
+    public function hasEnoughSilver($val)
+    {
+        if($this->gold >= $val)
+            return true;
+        return false;
+    }
+
+    public function addSilver($mod)
+    {
+        if($this->silver + $mod < 0)
+            $this->silver = 0;
+        else
+            $this->silver = $this->silver + $mod;
     }
 
     /**

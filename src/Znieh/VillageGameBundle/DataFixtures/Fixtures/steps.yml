@@ -18,11 +18,11 @@ lame_en_fer:
   points: 3
   costs: { po: 100, fer: 10 }
 lame_en_or:
-  title: Lames en or
+  title: Lames en argent
   building: Forge
   parent: Lames en fer
   points: 4
-  costs: { po: 140, or: 10 }
+  costs: { po: 140, silver: 10 }
 garde_en_cuivre:
   title: Gardes en cuivre
   building: Forge
