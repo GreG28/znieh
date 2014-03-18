@@ -21,6 +21,7 @@ requirejs.config({
         jqueryui: '../libs/jquery-ui-1.10.4.custom.min',
         bootstrap: '../vendor/bootstrap/dist/js/bootstrap.min',
         socketio: '../vendor/socket.io-client/dist/socket.io.min',
+        moment: '../vendor/momentjs/min/moment-with-langs.min',
         fos_routing: '../../bundles/fosjsrouting/js/router',
         /*fos_routing_routes: '../../js/fos_js_routes'*/
     },
