@@ -17,6 +17,10 @@ class UnitType extends AbstractType
         $builder
             //->add('cost')
             ->add('name')
+            ->add('sprite', 'entity', array(
+                'class' => 'ZniehUnitGameBundle:Sprite',
+                'property' => 'name',
+            ))
             ->add('sign', 'entity', array(
                 'class' => 'ZniehUnitGameBundle:Sign',
                 'property' => 'name',
