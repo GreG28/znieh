@@ -60,12 +60,12 @@ module.exports.initTables = function () {
 	});
 
 	module.exports.PendingMessage = orm.define('PendingMessage', {
-		from: Sequelize.STRING,
-		to: Sequelize.STRING,
+		from_user: Sequelize.STRING,
+		to_user: Sequelize.STRING,
 		msg: Sequelize.STRING,
 		date: Sequelize.DATE
 	}, {
-		tableName: 'PendingMessage'
+		tableName: 'pendingmessage'
 	});
 
 
