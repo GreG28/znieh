@@ -257,9 +257,18 @@ function ContentManager(stage, width, height) {
         {
             x = -10;
             y = -10;
-            console.log(JSON.stringify(units));
             type = units[i].sprite;
-            taille = units[i].taille;
+
+            /* "size":"Normal","weight":"Musclé" */
+
+            //TODO
+            taille = "petitfin";
+            if(units[i].size == "Normal" && units[i].weight == "Musclé")
+            {
+                taille = "petitfin";
+            }
+
+            console.log(taille);
             idUnit = i;
 
             unistJson = jQuery.parseJSON(loadingQueue.getResult("units-json",true));
