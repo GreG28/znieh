@@ -10,12 +10,14 @@ define(['jquery', 'socketio', 'user'], function ($, io, user) {
   socket.emit('auth', {username: user.name, token: 'abc'}, function(success) {
     if(success) {
       console.log('Socket: auth successful');
+
+      // should be avoided
+      window.socket = socket;
       require(['app/chat']);
     } else {
       console.log('Socket: connection error');
     }
   });
 
-  window.socket = socket;
   return socket;
 });
