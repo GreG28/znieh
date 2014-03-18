@@ -159,6 +159,5 @@ UnitHandler.loadUnit = function(data){
 			new UnitHandler.Weapon(weaponName, weaponType, weaponDamages, weaponAttribute, weaponRange, new UnitHandler.StatSet(wLife,wPenetration,wPrecision,wEvade,wParry,wDefense,wArmor,wStrength,wAgility,wIntelligence,wMagicDamage,wEvilScience,wMagicSupport), weaponRatio),
 			new UnitHandler.Armor(armorName, armorType, new UnitHandler.StatSet(aLife,aPenetration,aPrecision,aEvade,aParry,aDefense,aArmor,aStrength,aAgility,aIntelligence,aMagicDamage,aEvilScience,aMagicSupport))))
 	}
-
 	return unitList;
 }
