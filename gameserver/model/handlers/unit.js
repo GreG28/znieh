@@ -37,9 +37,10 @@ UnitHandler.Armor = function (name, type, stats){
 	this.stats = stats;
 }
 
-UnitHandler.Unit = function(name, sign, stats, weapon, armor, skills,  values, tags){
+UnitHandler.Unit = function(name, sign, sprite, stats, weapon, armor, skills,  values, tags){
 	this.name = name;
 	this.sign = sign;
+	this.sprite = "perso_petit";
 	this.stats = stats;
 	this.weapon = weapon;
 	this.armor = armor;
@@ -89,12 +90,56 @@ UnitHandler.loadUnit = function(data){
 
 	var unitName;
 	var sign;
-	//add stats here
+
 	var weaponName;
 	var armorName;
 	var weaponType;
-	var damages;
-	var range;
+	var weaponDamages;
+	var weaponRange;
+
+//stats
+	var cLife;
+	var cPenetration;
+	var cPrecision;
+	var cEvade;
+	var cParry;
+	var cDefense;
+	var cArmor;
+	var cStrength;
+	var cAgility;
+	var cIntelligence;
+	var cMagicDamage;
+	var cEvilScience;
+	var cMagicSupport;
+
+	var wLife;
+	var wPenetration;
+	var wPrecision;
+	var wEvade;
+	var wParry;
+	var wDefense;
+	var wArmor;
+	var wStrength;
+	var wAgility;
+	var wIntelligence;
+	var wMagicDamage;
+	var wEvilScience;
+	var wMagicSupport;
+
+	var aLife;
+	var aPenetration;
+	var aPrecision;
+	var aEvade;
+	var aParry;
+	var aDefense;
+	var aArmor;
+	var aStrength;
+	var aAgility;
+	var aIntelligence;
+	var aMagicDamage;
+	var aEvilScience;
+	var aMagicSupport;
+
 	//add runes
 	for(var unit in data[0].units){
 		unitName = data[0].units[unit].name;
@@ -110,8 +155,9 @@ UnitHandler.loadUnit = function(data){
 		armorType = data[0].units[unit].armor.type.name;
 		armorName = data[0].units[unit].armor.name.name;
 
-		unitList.push(new UnitHandler.Unit(unitName, sign, new UnitHandler.StatSet(50,30,30,30,30,30,30,30,30,30,30,30,30), new UnitHandler.Weapon(weaponName, weaponType, weaponDamages, weaponAttribute, weaponRange, "", weaponRatio), new UnitHandler.Armor(armorName, armorType, "")))
+		unitList.push(new UnitHandler.Unit(unitName, sign,"", new UnitHandler.StatSet(cLife,cPenetration,cPrecision,cEvade,cParry,cDefense,cArmor,cStrength,cAgility,cIntelligence,cMagicDamage,cEvilScience,cMagicSupport),
+			new UnitHandler.Weapon(weaponName, weaponType, weaponDamages, weaponAttribute, weaponRange, new UnitHandler.StatSet(wLife,wPenetration,wPrecision,wEvade,wParry,wDefense,wArmor,wStrength,wAgility,wIntelligence,wMagicDamage,wEvilScience,wMagicSupport), weaponRatio),
+			new UnitHandler.Armor(armorName, armorType, new UnitHandler.StatSet(aLife,aPenetration,aPrecision,aEvade,aParry,aDefense,aArmor,aStrength,aAgility,aIntelligence,aMagicDamage,aEvilScience,aMagicSupport))))
 	}
-
 	return unitList;
 }

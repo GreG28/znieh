@@ -76,15 +76,14 @@
          /* Validate Weapon creation */
          $('#create-weapon').on('click', function(){
             // console.og($().children());
-            $("#weapon-container").children().fadeOut();
-             $.ajax({
+            $("#weapon-container").children().fadeOut("slow");
+            $.ajax({
                  type     : "POST",
                  cache    : false,
                  url      : $(form).attr('action'),
                  data     : $(form).serialize(),
                  success  : function(data) {
-                     alert(data);
-                     $("#save-weapon-container").find('.empty:first').appendTo('<img src="../img/icons/lame.png" class="img-responsive">');
+                     $("#save-weapon-container").find('.empty:first').append('<img src="/znieh/web/img/icons/lame.png" class="img-responsive">');
                      $(form)[0].reset();
                  },
                  error  : function(data) {
