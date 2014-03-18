@@ -4,10 +4,10 @@ define(['jquery'], function ($) {
   $('document').ready(function() {
     $('img.village').on({
       'mouseover' : function() {
-        $(this).attr('src','/znieh/web/img/village.png');
+        $(this).attr('src','../../img/village.png');
       },
       mouseout : function() {
-        $(this).attr('src','/znieh/web/img/villageombre.png');
+        $(this).attr('src','../../img/villageombre.png');
       }
     });
     $('img.arene').on({
