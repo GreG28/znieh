@@ -384,5 +384,517 @@
                 }
             }
         }
+    },
+    "perso_petit":
+    {
+        "specifications":
+        {
+            "petitfin":
+            {
+                "description":
+                {
+                    "taille": "petit",
+                    "corpulence": "fin"
+                },
+                "sprites":
+                {
+                    "spritesheet": "perso_petit.png",
+                    "spritesheet_loading_ID": "perso_petit",
+                    "frames":
+                    {
+                        "width": 40,
+                        "height": 50,
+                        "regX": 20,
+                        "regY": 25 
+                    },
+                    "weapon":
+                    {
+                        "top": 18,
+                        "left": 15
+                    }
+                }
+            },
+            "grandmuscle":
+            {
+                "description":
+                {
+                    "taille": "grand",
+                    "corpulence": "musclé"
+                },
+                "sprites":
+                {
+                    "spritesheet": "perso_petit.png",
+                    "spritesheet_loading_ID": "perso_petit",
+                    "frames":
+                    {
+                        "width": 64,
+                        "height": 64,
+                        "regX": 32,
+                        "regY": 32
+                    },
+                    "weapon":
+                    {
+                        "top": 36,
+                        "left": 30
+                    }
+                }
+            }
+        },
+        "animations":
+        {
+            "move":
+            {
+                "idle":
+                {
+                    "start": 0,
+                    "end": 0,
+                    "name": "idle",
+                    "velocity": 0
+                },
+                "right":
+                {
+                    "start": 0,
+                    "end": 2,
+                    "name": "right",
+                    "velocity": 0.2
+                },
+                "left":
+                {
+                    "start": 0,
+                    "end": 2,
+                    "name": "left",
+                    "velocity": 0.2
+                },
+                "top":
+                {
+                    "start": 20,
+                    "end": 23,
+                    "name": "top",
+                    "velocity": 0.2
+                },
+                "bottom":
+                {
+                    "start": 35,
+                    "end": 38,
+                    "name": "bottom",
+                    "velocity": 0.2
+                }
+            },
+            "attack":
+            {
+                "right":
+                {
+                    "start": 0,
+                    "end": 5,
+                    "name": "right",
+                    "velocity": 0.2
+                },
+                "left":
+                {
+                    "start": 0,
+                    "end": 2,
+                    "name": "left",
+                    "velocity": 0.2
+                },
+                "top":
+                {
+                    "start": 15,
+                    "end": 19,
+                    "name": "top",
+                    "velocity": 0.2
+                },
+                "bottom":
+                {
+                    "start": 30,
+                    "end": 34,
+                    "name": "bottom",
+                    "velocity": 0.2
+                }
+            }
+        }
+    },
+    "perso_casque":
+    {
+        "specifications":
+        {
+            "petitfin":
+            {
+                "description":
+                {
+                    "taille": "petit",
+                    "corpulence": "fin"
+                },
+                "sprites":
+                {
+                    "spritesheet": "perso_casque.png",
+                    "spritesheet_loading_ID": "perso_casque",
+                    "frames":
+                    {
+                        "width": 40,
+                        "height": 50,
+                        "regX": 20,
+                        "regY": 25 
+                    },
+                    "weapon":
+                    {
+                        "top": 18,
+                        "left": 15
+                    }
+                }
+            },
+            "grandmuscle":
+            {
+                "description":
+                {
+                    "taille": "grand",
+                    "corpulence": "musclé"
+                },
+                "sprites":
+                {
+                    "spritesheet": "perso_casque.png",
+                    "spritesheet_loading_ID": "perso_casque",
+                    "frames":
+                    {
+                        "width": 64,
+                        "height": 64,
+                        "regX": 32,
+                        "regY": 32
+                    },
+                    "weapon":
+                    {
+                        "top": 36,
+                        "left": 30
+                    }
+                }
+            }
+        },
+        "animations":
+        {
+            "move":
+            {
+                "idle":
+                {
+                    "start": 0,
+                    "end": 0,
+                    "name": "idle",
+                    "velocity": 0
+                },
+                "right":
+                {
+                    "start": 0,
+                    "end": 2,
+                    "name": "right",
+                    "velocity": 0.2
+                },
+                "left":
+                {
+                    "start": 0,
+                    "end": 2,
+                    "name": "left",
+                    "velocity": 0.2
+                },
+                "top":
+                {
+                    "start": 20,
+                    "end": 23,
+                    "name": "top",
+                    "velocity": 0.2
+                },
+                "bottom":
+                {
+                    "start": 35,
+                    "end": 38,
+                    "name": "bottom",
+                    "velocity": 0.2
+                }
+            },
+            "attack":
+            {
+                "right":
+                {
+                    "start": 0,
+                    "end": 5,
+                    "name": "right",
+                    "velocity": 0.2
+                },
+                "left":
+                {
+                    "start": 0,
+                    "end": 2,
+                    "name": "left",
+                    "velocity": 0.2
+                },
+                "top":
+                {
+                    "start": 15,
+                    "end": 19,
+                    "name": "top",
+                    "velocity": 0.2
+                },
+                "bottom":
+                {
+                    "start": 30,
+                    "end": 34,
+                    "name": "bottom",
+                    "velocity": 0.2
+                }
+            }
+        }
+    },
+    "perso_casque_argent":
+    {
+        "specifications":
+        {
+            "petitfin":
+            {
+                "description":
+                {
+                    "taille": "petit",
+                    "corpulence": "fin"
+                },
+                "sprites":
+                {
+                    "spritesheet": "perso_casque_argent.png",
+                    "spritesheet_loading_ID": "perso_casque_argent",
+                    "frames":
+                    {
+                        "width": 40,
+                        "height": 50,
+                        "regX": 20,
+                        "regY": 25 
+                    },
+                    "weapon":
+                    {
+                        "top": 18,
+                        "left": 15
+                    }
+                }
+            },
+            "grandmuscle":
+            {
+                "description":
+                {
+                    "taille": "grand",
+                    "corpulence": "musclé"
+                },
+                "sprites":
+                {
+                    "spritesheet": "perso_casque_argent.png",
+                    "spritesheet_loading_ID": "perso_casque_argent",
+                    "frames":
+                    {
+                        "width": 64,
+                        "height": 64,
+                        "regX": 32,
+                        "regY": 32
+                    },
+                    "weapon":
+                    {
+                        "top": 36,
+                        "left": 30
+                    }
+                }
+            }
+        },
+        "animations":
+        {
+            "move":
+            {
+                "idle":
+                {
+                    "start": 0,
+                    "end": 0,
+                    "name": "idle",
+                    "velocity": 0
+                },
+                "right":
+                {
+                    "start": 0,
+                    "end": 2,
+                    "name": "right",
+                    "velocity": 0.2
+                },
+                "left":
+                {
+                    "start": 0,
+                    "end": 2,
+                    "name": "left",
+                    "velocity": 0.2
+                },
+                "top":
+                {
+                    "start": 20,
+                    "end": 23,
+                    "name": "top",
+                    "velocity": 0.2
+                },
+                "bottom":
+                {
+                    "start": 35,
+                    "end": 38,
+                    "name": "bottom",
+                    "velocity": 0.2
+                }
+            },
+            "attack":
+            {
+                "right":
+                {
+                    "start": 0,
+                    "end": 5,
+                    "name": "right",
+                    "velocity": 0.2
+                },
+                "left":
+                {
+                    "start": 0,
+                    "end": 2,
+                    "name": "left",
+                    "velocity": 0.2
+                },
+                "top":
+                {
+                    "start": 15,
+                    "end": 19,
+                    "name": "top",
+                    "velocity": 0.2
+                },
+                "bottom":
+                {
+                    "start": 30,
+                    "end": 34,
+                    "name": "bottom",
+                    "velocity": 0.2
+                }
+            }
+        }
+    },
+    "perso_casque_or":
+    {
+        "specifications":
+        {
+            "petitfin":
+            {
+                "description":
+                {
+                    "taille": "petit",
+                    "corpulence": "fin"
+                },
+                "sprites":
+                {
+                    "spritesheet": "perso_casque_Or.png",
+                    "spritesheet_loading_ID": "perso_casque_Or",
+                    "frames":
+                    {
+                        "width": 40,
+                        "height": 50,
+                        "regX": 20,
+                        "regY": 25 
+                    },
+                    "weapon":
+                    {
+                        "top": 18,
+                        "left": 15
+                    }
+                }
+            },
+            "grandmuscle":
+            {
+                "description":
+                {
+                    "taille": "grand",
+                    "corpulence": "musclé"
+                },
+                "sprites":
+                {
+                    "spritesheet": "perso_casque_Or.png",
+                    "spritesheet_loading_ID": "perso_casque_Or",
+                    "frames":
+                    {
+                        "width": 64,
+                        "height": 64,
+                        "regX": 32,
+                        "regY": 32
+                    },
+                    "weapon":
+                    {
+                        "top": 36,
+                        "left": 30
+                    }
+                }
+            }
+        },
+        "animations":
+        {
+            "move":
+            {
+                "idle":
+                {
+                    "start": 0,
+                    "end": 0,
+                    "name": "idle",
+                    "velocity": 0
+                },
+                "right":
+                {
+                    "start": 0,
+                    "end": 2,
+                    "name": "right",
+                    "velocity": 0.2
+                },
+                "left":
+                {
+                    "start": 0,
+                    "end": 2,
+                    "name": "left",
+                    "velocity": 0.2
+                },
+                "top":
+                {
+                    "start": 20,
+                    "end": 23,
+                    "name": "top",
+                    "velocity": 0.2
+                },
+                "bottom":
+                {
+                    "start": 35,
+                    "end": 38,
+                    "name": "bottom",
+                    "velocity": 0.2
+                }
+            },
+            "attack":
+            {
+                "right":
+                {
+                    "start": 0,
+                    "end": 5,
+                    "name": "right",
+                    "velocity": 0.2
+                },
+                "left":
+                {
+                    "start": 0,
+                    "end": 2,
+                    "name": "left",
+                    "velocity": 0.2
+                },
+                "top":
+                {
+                    "start": 15,
+                    "end": 19,
+                    "name": "top",
+                    "velocity": 0.2
+                },
+                "bottom":
+                {
+                    "start": 30,
+                    "end": 34,
+                    "name": "bottom",
+                    "velocity": 0.2
+                }
+            }
+        }
     }
 }
