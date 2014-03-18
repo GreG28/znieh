@@ -9,6 +9,7 @@
         #}
     });
     define('user', { name: '{% if app.user %}{{ app.user.username }}{% endif %}' });
+    define('socket', null);
     require(['common'], function (common) {
         require(['app/default'], function(){
             Routing.setBaseUrl('{{ app.request.getBaseURL() }}');
