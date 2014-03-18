@@ -268,7 +268,7 @@ function ContentManager(stage, width, height) {
                 taille = "petitfin";
             }
 
-            console.log(taille);
+            //console.log(taille);
             idUnit = i;
 
             unistJson = jQuery.parseJSON(loadingQueue.getResult("units-json",true));

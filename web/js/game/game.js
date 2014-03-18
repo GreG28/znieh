@@ -25,7 +25,6 @@ function selectMap() {
   socket.emit('select-map', null, function(data) {
     route_map += data;
     console.log('select-map');
-    console.log(data);
 
     continueProcess++;
     if(continueProcess == 3)
@@ -46,7 +45,6 @@ function getSide() {
     continueProcess++;
 
     console.log('get-side');
-    console.log(data);
     if(continueProcess == 3)
     {
       init();
@@ -57,14 +55,10 @@ function getSide() {
 function getUnits() {
   socket.emit('get-units', null, function(data) {
     units = data;
-    console.log('get-units : ');
-    console.log(data);
+    console.log('get-units ');
 
     units = data[0];
     ennemy_units = data[1];
-
-    console.log(JSON.stringify(units));
-    console.log(JSON.stringify(ennemy_units));
 
     continueProcess++;
     if(continueProcess == 3)
