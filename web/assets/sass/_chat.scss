@@ -1,0 +1,82 @@
+/* Chat */
+#chat {
+  width: 700px;
+  height: 320px;
+  border: 1px dashed grey;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#chat > .nav-tabs > li > a {
+  border: 1px solid #ddd;
+  border-radius: 4px 4px 0 0;
+}
+
+#chat > .nav-tabs > li.active > a {
+  color: #fff;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+
+#chat > .nav-tabs > li.active > a:hover {
+  background-color: #357ebd;
+  color: #eee;
+}
+
+.chat-messages {
+  height: 220px;
+  overflow-y: scroll;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chat-messages li
+{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+
+.chat-messages li.left .chat-body
+{
+    margin-left: 65px;
+}
+
+.chat-messages li.right .chat-body
+{
+    margin-right: 65px;
+}
+
+.chat-messages li .chat-body p
+{
+    margin: 0;
+    color: #777777;
+}
+
+.chat-messages > ul > small {
+  margin-top: -20px;
+}
+
+.glyphicon
+{
+    margin-right: 5px;
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}

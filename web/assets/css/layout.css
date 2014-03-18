@@ -7882,26 +7882,115 @@ h2.post-title {
   color: black;
 }
 
-/* line 13, ../sass/layout.scss */
+/* Chat */
+/* line 2, ../sass/_chat.scss */
+#chat {
+  width: 700px;
+  height: 320px;
+  border: 1px dashed grey;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+/* line 10, ../sass/_chat.scss */
+#chat > .nav-tabs > li > a {
+  border: 1px solid #ddd;
+  border-radius: 4px 4px 0 0;
+}
+
+/* line 15, ../sass/_chat.scss */
+#chat > .nav-tabs > li.active > a {
+  color: #fff;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+
+/* line 21, ../sass/_chat.scss */
+#chat > .nav-tabs > li.active > a:hover {
+  background-color: #357ebd;
+  color: #eee;
+}
+
+/* line 26, ../sass/_chat.scss */
+.chat-messages {
+  height: 220px;
+  overflow-y: scroll;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 35, ../sass/_chat.scss */
+.chat-messages li {
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px dotted #B3A9A9;
+}
+
+/* line 42, ../sass/_chat.scss */
+.chat-messages li.left .chat-body {
+  margin-left: 65px;
+}
+
+/* line 47, ../sass/_chat.scss */
+.chat-messages li.right .chat-body {
+  margin-right: 65px;
+}
+
+/* line 52, ../sass/_chat.scss */
+.chat-messages li .chat-body p {
+  margin: 0;
+  color: #777777;
+}
+
+/* line 57, ../sass/_chat.scss */
+.chat-messages > ul > small {
+  margin-top: -20px;
+}
+
+/* line 62, ../sass/_chat.scss */
+.glyphicon {
+  margin-right: 5px;
+}
+
+/* line 67, ../sass/_chat.scss */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
+}
+
+/* line 73, ../sass/_chat.scss */
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+/* line 79, ../sass/_chat.scss */
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
+}
+
+/* line 14, ../sass/layout.scss */
 .navbar-default {
   background-image: url(../../img/background/stone.jpg);
   background-repeat: repeat;
 }
 
-/* line 17, ../sass/layout.scss */
+/* line 18, ../sass/layout.scss */
 .dropdown-menu > li > a > span {
   width: 35px;
   display: inline-block;
 }
 
-/* line 23, ../sass/layout.scss */
+/* line 24, ../sass/layout.scss */
 #menu {
   height: 40px;
   margin-bottom: 30px;
   padding-left: 162px;
 }
 
-/* line 29, ../sass/layout.scss */
+/* line 30, ../sass/layout.scss */
 #menu a.link {
   color: #fff;
   font-size: 18px;
@@ -7915,41 +8004,41 @@ h2.post-title {
     Main
 **/
 /** Fix footer end of page **/
-/* line 43, ../sass/layout.scss */
+/* line 44, ../sass/layout.scss */
 html, body {
   height: 100%;
 }
 
-/* line 47, ../sass/layout.scss */
+/* line 48, ../sass/layout.scss */
 body {
   line-height: 32px;
   font-family: 'TeX Gyre Heros';
 }
 
-/* line 53, ../sass/layout.scss */
+/* line 54, ../sass/layout.scss */
 .nav-tabs {
   background: #7e7259;
   border-bottom: none;
 }
 
-/* line 57, ../sass/layout.scss */
+/* line 58, ../sass/layout.scss */
 .nav-tabs a {
   color: #d5b983;
 }
 
-/* line 61, ../sass/layout.scss */
+/* line 62, ../sass/layout.scss */
 .nav-tabs li a:hover {
   background: #534a36;
   border: none;
 }
 
-/* line 66, ../sass/layout.scss */
+/* line 67, ../sass/layout.scss */
 .nav-tabs .active {
   background: #534a36;
   border: none;
 }
 
-/* line 71, ../sass/layout.scss */
+/* line 72, ../sass/layout.scss */
 #wrap {
   position: relative;
   margin: 0 auto;
@@ -7960,17 +8049,17 @@ body {
 /**
   Title & Buttons
   **/
-/* line 82, ../sass/layout.scss */
+/* line 83, ../sass/layout.scss */
 a:link {
   text-decoration: none;
 }
 
-/* line 86, ../sass/layout.scss */
+/* line 87, ../sass/layout.scss */
 .container p {
   text-align: justify;
 }
 
-/* line 90, ../sass/layout.scss */
+/* line 91, ../sass/layout.scss */
 h2 {
   -webkit-margin-before: 0.83em;
   -webkit-margin-after: 0.83em;
@@ -7978,7 +8067,7 @@ h2 {
   -webkit-margin-end: 0px;
 }
 
-/* line 97, ../sass/layout.scss */
+/* line 98, ../sass/layout.scss */
 h2.section-title {
   margin: 0 0 30px;
   padding: 0 0 8px;
@@ -7990,7 +8079,7 @@ h2.section-title {
   border-bottom: 5px solid #e0e0e0;
 }
 
-/* line 108, ../sass/layout.scss */
+/* line 109, ../sass/layout.scss */
 h3.section-title {
   margin: 0 0 15px;
   font-size: 28px;
@@ -7999,7 +8088,7 @@ h3.section-title {
   color: #1a1a1a;
 }
 
-/* line 157, ../sass/layout.scss */
+/* line 158, ../sass/layout.scss */
 #leftSide .unit,
 #rightSide .unit {
   background: white;
@@ -8007,20 +8096,20 @@ h3.section-title {
   border: 1px solid black;
 }
 
-/* line 164, ../sass/layout.scss */
+/* line 165, ../sass/layout.scss */
 #leftSide .selected,
 #rightSide .selected {
   background: #d7e9f2;
   border: 1px dashed black;
 }
 
-/* line 170, ../sass/layout.scss */
+/* line 171, ../sass/layout.scss */
 #leftSide .valid,
 #rightSide .valid {
   background: #d9fad9;
 }
 
-/* line 173, ../sass/layout.scss */
+/* line 174, ../sass/layout.scss */
 .unit .portrait {
   overflow: hidden;
   width: 48px;
@@ -8028,38 +8117,38 @@ h3.section-title {
   float: left;
 }
 
-/* line 180, ../sass/layout.scss */
+/* line 181, ../sass/layout.scss */
 .unit .name {
   font-size: 12px;
   float: left;
   font-weight: bold;
 }
 
-/* line 186, ../sass/layout.scss */
+/* line 187, ../sass/layout.scss */
 .unit .life {
   margin-top: 10px;
   height: 16px;
 }
 
-/* line 191, ../sass/layout.scss */
+/* line 192, ../sass/layout.scss */
 .unit .stats {
   font-size: 12px;
   margin-top: -25px;
 }
 
-/* line 196, ../sass/layout.scss */
+/* line 197, ../sass/layout.scss */
 .unit .skills {
   margin-top: -15px;
 }
 
-/* line 200, ../sass/layout.scss */
+/* line 201, ../sass/layout.scss */
 .unit .skills img {
   float: right;
   margin-right: 5px;
   margin-bottom: 5px;
 }
 
-/* line 207, ../sass/layout.scss */
+/* line 208, ../sass/layout.scss */
 #leftSide .infos,
 #rightSide .infos {
   background: white;
@@ -8067,23 +8156,23 @@ h3.section-title {
   border: 1px solid black;
 }
 
-/* line 213, ../sass/layout.scss */
+/* line 214, ../sass/layout.scss */
 .infos h3 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-/* line 218, ../sass/layout.scss */
+/* line 219, ../sass/layout.scss */
 .infos .stats {
   font-size: 12px;
 }
 
-/* line 222, ../sass/layout.scss */
+/* line 223, ../sass/layout.scss */
 .infos hr {
   margin: 0px;
 }
 
-/* line 226, ../sass/layout.scss */
+/* line 227, ../sass/layout.scss */
 .infos hr.delimitor {
   margin: 0px;
   margin-top: 10px;
