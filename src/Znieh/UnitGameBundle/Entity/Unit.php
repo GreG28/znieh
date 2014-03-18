@@ -50,6 +50,12 @@ class Unit
     private $updatedAt;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Sprite")
+     * @Expose
+     */
+    private $sprite;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Sign")
      * @Expose
      */
@@ -328,6 +334,30 @@ class Unit
     public function getWeight()
     {
         return $this->weight;
+    }
+
+    /**
+     * Set sprite
+     *
+     * @param \Znieh\UnitGameBundle\Entity\Sprite $sprite
+     *
+     * @return Unit
+     */
+    public function setSprite(\Znieh\UnitGameBundle\Entity\Sprite $sprite = null)
+    {
+        $this->sprite = $sprite;
+
+        return $this;
+    }
+
+    /**
+     * Get sprite
+     *
+     * @return \Znieh\UnitGameBundle\Entity\Sprite
+     */
+    public function getSprite()
+    {
+        return $this->sprite;
     }
 
     /**
