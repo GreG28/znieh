@@ -59,6 +59,8 @@ function getUnits() {
     console.log('get-units : ');
     console.log(data);
 
+
+
     continueProcess++;
     if(continueProcess == 3)
     {
@@ -72,6 +74,7 @@ var stage = new createjs.Stage(canvas);
 
 stage.enableMouseOver();
 function init() {
+  console.log("init");
   contentManager = new ContentManager(stage, 480, 480);
   var numberOfUnits = units.length;
   setMyUnitsSide();
