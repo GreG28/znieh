@@ -37,12 +37,13 @@ UnitHandler.Armor = function (name, type, stats){
 	this.stats = stats;
 }
 
-UnitHandler.Unit = function(name, sign, sprite, size, weight, stats, weapon, armor, skills,  values, tags){
+UnitHandler.Unit = function(name, sign, sprite, size, weight, statut, stats, weapon, armor, skills,  values, tags){
 	this.name = name;
 	this.sign = sign;
 	this.sprite = "perso_petit";
 	this.size = size;
 	this.weight = weight;
+	this.statut = statut;
 	this.stats = stats;
 	this.weapon = weapon;
 	this.armor = armor;
@@ -94,6 +95,7 @@ UnitHandler.loadUnit = function(data){
 	var sign;
 	var size;
 	var weight;
+	var statut;
 
 	var weaponName;
 	var armorName;
@@ -161,7 +163,7 @@ UnitHandler.loadUnit = function(data){
 		armorType = data[0].units[unit].armor.type.name;
 		armorName = data[0].units[unit].armor.name.name;
 
-		unitList.push(new UnitHandler.Unit(unitName, sign,"",size, weight, new UnitHandler.StatSet(cLife,cPenetration,cPrecision,cEvade,cParry,cDefense,cArmor,cStrength,cAgility,cIntelligence,cMagicDamage,cEvilScience,cMagicSupport),
+		unitList.push(new UnitHandler.Unit(unitName, sign,"",size, weight, -1,new UnitHandler.StatSet(cLife,cPenetration,cPrecision,cEvade,cParry,cDefense,cArmor,cStrength,cAgility,cIntelligence,cMagicDamage,cEvilScience,cMagicSupport),
 			new UnitHandler.Weapon(weaponName, weaponType, weaponDamages, weaponAttribute, weaponRange, new UnitHandler.StatSet(wLife,wPenetration,wPrecision,wEvade,wParry,wDefense,wArmor,wStrength,wAgility,wIntelligence,wMagicDamage,wEvilScience,wMagicSupport), weaponRatio),
 			new UnitHandler.Armor(armorName, armorType, new UnitHandler.StatSet(aLife,aPenetration,aPrecision,aEvade,aParry,aDefense,aArmor,aStrength,aAgility,aIntelligence,aMagicDamage,aEvilScience,aMagicSupport))))
 	}

@@ -258,15 +258,7 @@ function ContentManager(stage, width, height) {
             x = -10;
             y = -10;
             type = units[i].sprite;
-
-            /* "size":"Normal","weight":"Musclé" */
-
-            //TODO
-            taille = "petitfin";
-            if(units[i].size == "Normal" && units[i].weight == "Musclé")
-            {
-                taille = "petitfin";
-            }
+            taille = units[i].taille;
 
             //console.log(taille);
             idUnit = i;
