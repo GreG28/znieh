@@ -8,7 +8,7 @@
   color: white;
   height: auto;
   border-top: 5px solid white;
-
+  padding-top: 20px;
 }
 
 #footer a {
@@ -17,3 +17,11 @@
 #footer a:hover {
   color: grey;
 }
+
+@media screen and (max-width: 600px) {
+  #footer p {
+    float: none !important;
+    text-align: center;
+  }
+}
+

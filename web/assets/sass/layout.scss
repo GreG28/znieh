@@ -7,9 +7,17 @@
 @import "index";
 @import "footer";
 
+.alert > ul {
+  padding: 0 0 0 0;
+}
 .navbar-default {
   background-image: url(../../img/background/stone.jpg);
   background-repeat: repeat;
+}
+
+.form-group {
+  max-width: 250px;
+  margin: 0 auto;
 }
 
 #menu {

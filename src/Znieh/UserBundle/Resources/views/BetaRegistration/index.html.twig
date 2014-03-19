@@ -2,19 +2,18 @@
 
 {% block body %}
 
-<div class="container" style="text-align: center">
-  <br>
+<div class="container" style="text-align: center; font-size: 18px">
   {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': true } %}
-  <h3>Bienvenue sur Znieh Games !</h3>
+  <h2>Bienvenue sur Znieh Games !</h2>
   <q>Le jeu où vous combattez avec des unités qui vous ressemblent !</q>
-  <br>
+  <br><br>
   Ajoute ton email ci-dessous pour postuler à la bêta privée :
   {{ form(form, { 'style': 'inline' }) }}
 
 {#   <a href="{{ path('znieh_villagegame_public_index') }}">
     <img class="village" src="{{ asset('img/villageombre.png') }}" alt="">
   </a> #}
-  <img src="{{ asset('img/LogoJeu.png') }}" alt="">
+  <img src="{{ asset('img/LogoJeu.png') }}" class="img-responsive" style="margin: 0 auto;" alt="">
 {#   <a href="{{ path('znieh_coregame_default_search') }}">
     <img class="arene" src="{{ asset('img/areneombre.png') }}" alt="" style="margin-top: 20px;">
   </a> #}
