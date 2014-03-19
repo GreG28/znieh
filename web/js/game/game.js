@@ -62,7 +62,28 @@ function getUnits() {
     console.log('get-units ');
 
     units = data[0];
+    var taille;
+
+    for(var i = 0 ; i < units.length ; i++)
+    {
+      taille = "petitfin";
+      if(units[i].size == "Normal" && units[i].weight == "Musclé")
+      {
+          units[i].taille = "petitfin";
+      }
+    }
+
     ennemy_units = data[1];
+    
+    for(var i = 0 ; i < ennemy_units.length ; i++)
+    {
+      taille = "petitfin";
+      if(ennemy_units[i].size == "Normal" && ennemy_units[i].weight == "Musclé")
+      {
+          ennemy_units[i].taille = "petitfin";
+      }
+    }
+
 
     continueProcess++;
     if(continueProcess == 3)
@@ -76,20 +97,20 @@ var canvas = document.getElementById("canvas");
 var stage = new createjs.Stage(canvas);
 var ennemy_units = null;
 var infoSide = null;
+var nextUnitID = 0;
+var units = null;
+var numberOfUnits = null;
 
 stage.enableMouseOver();
 
 function init() {
   console.log("init");
   contentManager = new ContentManager(stage, 480, 480);
-  var numberOfUnits = units.length;
+  numberOfUnits = units.length;
   setMyUnitsSide();
   setEnnemySide();
   contentManager.init();
 }
-
-var nextUnitID = 0;
-var units = null;
 
 mySide = '<h2>Mes unités</h2><div id="myUnits"></div>';
 ennemySide = '<h2>Unités ennemies</h2> <div id="ennemyUnits></div>';
