@@ -1,4 +1,4 @@
-define(['jquery', 'user', 'bootstrap'], function ($, user) {
+define(['jquery', 'user', 'bootstrap', 'socketio', 'socketHandler'], function ($, io, moment, user, socket) {
   "use strict";
 
 	$('#modalFight').modal({
@@ -25,14 +25,14 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
     show: false
   });
 
-  var socket;
+  //var socket;
 
-  socket = io.connect('127.0.0.1:1337');
-  $('#console').append('Connected<br>');
+  //socket = io.connect('127.0.0.1:1337');
+  //$('#console').append('Connected<br>');
 
-  socket.emit('auth', { username: user.name , token: 'abc' }, function(success) {
+  /*socket.emit('auth', { username: user.name , token: 'abc' }, function(success) {
     console.log("auth ->" + success);
-  });
+  });*/
 
   // In
   socket.on('welcome', function (data) {
@@ -132,7 +132,7 @@ define(['jquery', 'user', 'bootstrap'], function ($, user) {
       var div_labels = $('#modalPools .modal-body .btn-group');
       for(var i = 0 ; i < size ; i=i+1 )
       {
-        div_labels.append("<label class=\"btn btn-primary\"><input class=\"input\" type=\"radio\" name=\"options\" value=\""+i+"\"><h4>"+data[i].name+"</h4><p>Nombre de points "+data[i].points+"</p><p>"+data[i].playerCount+" joueurs en attente</p></input></label>");
+        div_labels.append("<label class=\"btn btn-primary\"><input class=\"input\" type=\"radio\" name=\"options\" value=\""+i+"\"><h4>"+data[i].name+"</h4><p class=\"label-P\">Nombre de points "+data[i].points+"</p><p class=\"label-P\">"+data[i].playerCount+" joueurs en attente</p></input></label>");
       }
       $('#modalFight').modal('hide');
       $('#modalPools').modal('show');
