@@ -3,178 +3,178 @@ lame_longue_en_cuivre:
   name: Lame longue en cuivre
   type: Lame
   step: Lames en cuivre
-  effects: { vie: 20 }
+  effects: { damage: 40, vie: 30 }
 lame_courbe_en_cuivre:
   name: Lame courbe en cuivre
   type: Lame
   step: Lames en cuivre
-  effects: { vie: 20 }
+  effects: { damage: 30, precision: 20 }
 lame_katana_en_cuivre:
   name: Lame de katana en cuivre
   type: Lame
   step: Lames en cuivre
-  effects: { vie: 20 }
+  effects: { damage: 35, penetration: 20 }
 lame_rapiere_en_cuivre:
   name: Lame de rapière en cuivre
   type: Lame
   step: Lames en cuivre
-  effects: { vie: 20 }
+  effects: { damage: 30, parade: 25 }
 lame_dague_en_cuivre:
   name: Lame de dague en cuivre
   type: Lame
   step: Lames en cuivre
-  effects: { vie: 20 }
+  effects: { damage: 25, precision: 40 }
 lame_espadon_en_cuivre:
   name: Lame d'espadon en cuivre
   type: Lame
   step: Lames en cuivre
-  effects: { vie: 20 }
+  effects: { damage: 50 }
 lame_glaive_en_cuivre:
   name: Lame de glaive en cuivre
   type: Lame
   step: Lames en cuivre
-  effects: { vie: 20 }
+  effects: { damage: 30, defense: 15 }
 #_________________________________________________
 lame_longue_en_bronze:
   name: Lame longue en bronze
   type: Lame
   step: Lames en bronze
-  effects: { vie: 20 }
+  effects: { damage: 55, vie: 50 }
 lame_courbe_en_bronze:
   name: Lame courbe en bronze
   type: Lame
   step: Lames en bronze
-  effects: { vie: 20 }
+  effects: { damage: 45, precision: 35 }
 lame_katana_en_bronze:
   name: Lame de katana en bronze
   type: Lame
   step: Lames en bronze
-  effects: { vie: 20 }
+  effects: { damage: 50, penetration: 35 }
 lame_rapiere_en_bronze:
   name: Lame de rapière en bronze
   type: Lame
   step: Lames en bronze
-  effects: { vie: 20 }
+  effects: { damage: 45, parade: 35 }
 lame_dague_en_bronze:
   name: Lame de dague en bronze
   type: Lame
   step: Lames en bronze
-  effects: { vie: 20 }
+  effects: { damage: 40, precision: 50 }
 lame_espadon_en_bronze:
   name: Lame d'espadon en bronze
   type: Lame
   step: Lames en bronze
-  effects: { vie: 20 }
+  effects: { damage: 70 }
 lame_glaive_en_bronze:
   name: Lame de glaive en bronze
   type: Lame
   step: Lames en bronze
-  effects: { vie: 20 }
+  effects: { damage: 45, defense: 25 }
 #-------------------------------------------------
 lame_longue_en_fer:
   name: Lame longue en fer
   type: Lame
   step: Lames en fer
-  effects: { vie: 20 }
+  effects: { damage: 70, vie: 60 }
 lame_courbe_en_fer:
   name: Lame courbe en fer
   type: Lame
   step: Lames en fer
-  effects: { vie: 20 }
+  effects: { damage: 60, precision: 45 }
 lame_katana_en_fer:
   name: Lame de katana en fer
   type: Lame
   step: Lames en fer
-  effects: { vie: 20 }
+  effects: { damage: 65, penetration: 45 }
 lame_rapiere_en_fer:
   name: Lame de rapière en fer
   type: Lame
   step: Lames en fer
-  effects: { vie: 20 }
+  effects: { damage: 60, parade: 45 }
 lame_dague_en_fer:
   name: Lame de dague en fer
   type: Lame
   step: Lames en fer
-  effects: { vie: 20 }
+  effects: { damage: 50, precision: 60 }
 lame_espadon_en_fer:
   name: Lame d'espadon en fer
   type: Lame
   step: Lames en fer
-  effects: { vie: 20 }
+  effects: { damage: 85 }
 lame_glaive_en_fer:
   name: Lame de glaive en fer
   type: Lame
   step: Lames en fer
-  effects: { vie: 20 }
+  effects: { damage: 60, defense: 35 }
   #-------------------------------------------------
 lame_longue_en_or:
   name: Lame longue en or
   type: Lame
   step: Lames en or
-  effects: { vie: 20 }
+  effects: { damage: 85, vie: 70 }
 lame_courbe_en_or:
   name: Lame courbe en or
   type: Lame
   step: Lames en or
-  effects: { vie: 20 }
+  effects: { damage: 75, precision: 50 }
 lame_katana_en_or:
   name: Lame de katana en or
   type: Lame
   step: Lames en or
-  effects: { vie: 20 }
+  effects: { damage: 80, penetration: 50 }
 lame_rapiere_en_or:
   name: Lame de rapière en or
   type: Lame
   step: Lames en or
-  effects: { vie: 20 }
+  effects: { damage: 70, parade: 55 }
 lame_dague_en_or:
   name: Lame de dague en or
   type: Lame
   step: Lames en or
-  effects: { vie: 20 }
+  effects: { damage: 65, precision: 80 }
 lame_espadon_en_or:
   name: Lame d'espadon en or
   type: Lame
   step: Lames en or
-  effects: { vie: 20 }
+  effects: { damage: 105 }
 lame_glaive_en_or:
   name: Lame de glaive en or
   type: Lame
   step: Lames en or
-  effects: { vie: 20 }
+  effects: { damage: 70, defense: 45 }
 #_________________________________________________
 # Gardes d'épée
 garde_en_cuivre_en_panier:
   name: Garde en panier en cuivre
   type: Garde
   step: Gardes en cuivre
-  effects: { vie: 20 }
+  effects: { force: 25 }
 garde_en_cuivre_ciselee:
   name: Garde ciselée en cuivre
   type: Garde
   step: Gardes en cuivre
-  effects: { vie: 20 }
+  effects: { agilite: 25 }
 garde_en_cuivre_arrondie:
   name: Garde arrondie en cuivre
   type: Garde
   step: Gardes en cuivre
-  effects: { vie: 20 }
+  effects: { intelligence: 25 }
 #_________________________________________________
 garde_en_bronze_en_panier:
   name: Garde en panier en bronze
   type: Garde
   step: Gardes en bronze
-  effects: { vie: 20 }
+  effects: { force: 40 }
 garde_en_bronze_ciselee:
   name: Garde ciselée en bronze
   type: Garde
   step: Gardes en bronze
-  effects: { vie: 20 }
+  effects: { agilite: 40 }
 garde_en_bronze_arrondie:
   name: Garde arrondie en bronze
   type: Garde
   step: Gardes en bronze
-  effects: { vie: 20 }
+  effects: { intelligence: 40 }
 #_________________________________________________
 # Manches d'épée
 manche_en_cedre_de_vie:
@@ -201,7 +201,7 @@ manche_en_cedre_de_parade:
   name: Manche en cèdre de parade
   type: Manche
   step: Manches en cèdre
-  effects: { vie: 20 }
+  effects: { parade: 20 }
 manche_en_cedre_defense:
   name: Manche en cèdre de défense
   type: Manche
@@ -222,7 +222,7 @@ manche_en_cedre_d_intelligence:
   type: Manche
   step: Manches en cèdre
   effects: { intelligence: 20 }
-  manche_en_cedre_d_armure:
+manche_en_cedre_d_armure:
   name: Manche en cèdre d'armure
   type: Manche
   step: Manches en cèdre
