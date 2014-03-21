@@ -6,10 +6,13 @@ define(['jquery', 'socketio', 'user'], function ($, io, user) {
 
   // Initialisation
   socket = io.connect('127.0.0.1:1337');
-  
+
   socket.emit('auth', {username: user.name, token: 'abc'}, function(success) {
     if(success) {
       console.log('Socket: auth successful');
+
+      // should be avoided
+      window.socket = socket;
       require(['app/chat']);
     } else {
       console.log('Socket: connection error');
@@ -17,6 +20,4 @@ define(['jquery', 'socketio', 'user'], function ($, io, user) {
   });
 
   return socket;
-
-
 });

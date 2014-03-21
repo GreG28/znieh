@@ -2,30 +2,33 @@
 
 $("#journal").scrollTop($("#journal")[0].scrollHeight);
 
-var socket = undefined;
-
-socket = io.connect('127.0.0.1:1337');
-
 var route_map = "../json/";
 var continueProcess = 0;
 var left;
 var mySide;
 var ennemySide;
 var contentManager;
+var socket;
 
-function auth(_username, _token) {
-  socket.emit('auth', { username: _username , token: _token } , function(){
-    selectMap();
-    getSide();
-    getUnits();
-  });
+function waitForElement(){
+    if(typeof window.socket !== "undefined"){
+        socket = window.socket;
+        selectMap();
+        getSide();
+        getUnits();
+    }
+    else{
+        setTimeout(function(){
+            waitForElement();
+        },250);
+    }
 }
+waitForElement();
 
 function selectMap() {
   socket.emit('select-map', null, function(data) {
     route_map += data;
     console.log('select-map');
-    console.log(data);
 
     continueProcess++;
     if(continueProcess == 3)
@@ -37,7 +40,8 @@ function selectMap() {
 
 function getSide() {
   socket.emit('get-side', null, function(data) {
-    if(data === true)
+    console.log("side ? -> " + data);
+    if(data === "left")
       left = true;
     else
       left = false;
@@ -45,7 +49,6 @@ function getSide() {
     continueProcess++;
 
     console.log('get-side');
-    console.log(data);
     if(continueProcess == 3)
     {
       init();
@@ -56,8 +59,31 @@ function getSide() {
 function getUnits() {
   socket.emit('get-units', null, function(data) {
     units = data;
-    console.log('get-units : ');
-    console.log(data);
+    console.log('get-units ');
+
+    units = data[0];
+    var taille;
+
+    for(var i = 0 ; i < units.length ; i++)
+    {
+      taille = "petitfin";
+      if(units[i].size == "Normal" && units[i].weight == "Musclé")
+      {
+          units[i].taille = "petitfin";
+      }
+    }
+
+    ennemy_units = data[1];
+    
+    for(var i = 0 ; i < ennemy_units.length ; i++)
+    {
+      taille = "petitfin";
+      if(ennemy_units[i].size == "Normal" && ennemy_units[i].weight == "Musclé")
+      {
+          ennemy_units[i].taille = "petitfin";
+      }
+    }
+
 
     continueProcess++;
     if(continueProcess == 3)
@@ -69,23 +95,25 @@ function getUnits() {
 
 var canvas = document.getElementById("canvas");
 var stage = new createjs.Stage(canvas);
+var ennemy_units = null;
+var infoSide = null;
+var nextUnitID = 0;
+var units = null;
+var numberOfUnits = null;
 
 stage.enableMouseOver();
+
 function init() {
+  console.log("init");
   contentManager = new ContentManager(stage, 480, 480);
-  var numberOfUnits = units.length;
+  numberOfUnits = units.length;
   setMyUnitsSide();
   setEnnemySide();
   contentManager.init();
 }
 
-var nextUnitID = 0;
-var units = [{ "sprite": "july_perso", "taille": "petitfin", "name": "July?", "statut": -1, "life": 100 },
-];
-
 mySide = '<h2>Mes unités</h2><div id="myUnits"></div>';
 ennemySide = '<h2>Unités ennemies</h2> <div id="ennemyUnits></div>';
-
 
 function setMyUnitsSide() {
   if(left) {
