@@ -257,9 +257,10 @@ function ContentManager(stage, width, height) {
         {
             x = -10;
             y = -10;
-            console.log(JSON.stringify(units));
             type = units[i].sprite;
             taille = units[i].taille;
+
+            //console.log(taille);
             idUnit = i;
 
             unistJson = jQuery.parseJSON(loadingQueue.getResult("units-json",true));
