@@ -18,7 +18,7 @@
   color: grey;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $container-desktop + 50) {
   #footer p {
     float: none !important;
     text-align: center;

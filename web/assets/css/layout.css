@@ -7684,7 +7684,7 @@ body {
   color: grey;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1020px) {
   /* line 22, ../sass/_footer.scss */
   #footer p {
     float: none !important;
@@ -7702,20 +7702,25 @@ body {
   background-repeat: repeat;
 }
 
-/* line 18, ../sass/layout.scss */
+/* line 17, ../sass/layout.scss */
+#znieh_userbundle_betaregistrationform {
+  margin-top: 10px;
+}
+
+/* line 20, ../sass/layout.scss */
 .form-group {
   max-width: 250px;
   margin: 0 auto;
 }
 
-/* line 23, ../sass/layout.scss */
+/* line 25, ../sass/layout.scss */
 #menu {
   height: 40px;
   margin-bottom: 30px;
   padding-left: 162px;
 }
 
-/* line 29, ../sass/layout.scss */
+/* line 31, ../sass/layout.scss */
 #menu a.link {
   color: #fff;
   font-size: 18px;
@@ -7728,54 +7733,54 @@ body {
 /**
     Main
 **/
-/* line 42, ../sass/layout.scss */
+/* line 44, ../sass/layout.scss */
 .alert {
   width: 60%;
   margin: 20px auto 20px;
 }
 
-/* line 46, ../sass/layout.scss */
+/* line 48, ../sass/layout.scss */
 .alert > ul {
   list-style: none;
 }
 
 /** Fix footer end of page **/
-/* line 51, ../sass/layout.scss */
+/* line 53, ../sass/layout.scss */
 html, body {
   height: 100%;
   min-height: 0;
 }
 
-/* line 56, ../sass/layout.scss */
+/* line 58, ../sass/layout.scss */
 body {
   line-height: 32px;
   font-family: 'TeX Gyre Heros';
 }
 
-/* line 62, ../sass/layout.scss */
+/* line 64, ../sass/layout.scss */
 .nav-tabs {
   background: #7e7259;
   border-bottom: none;
 }
 
-/* line 66, ../sass/layout.scss */
+/* line 68, ../sass/layout.scss */
 .nav-tabs a {
   color: #d5b983;
 }
 
-/* line 70, ../sass/layout.scss */
+/* line 72, ../sass/layout.scss */
 .nav-tabs li a:hover {
   background: #534a36;
   border: none;
 }
 
-/* line 75, ../sass/layout.scss */
+/* line 77, ../sass/layout.scss */
 .nav-tabs .active {
   background: #534a36;
   border: none;
 }
 
-/* line 80, ../sass/layout.scss */
+/* line 82, ../sass/layout.scss */
 #wrap {
   position: relative;
   margin: 0 auto;
@@ -7786,17 +7791,17 @@ body {
 /**
   Title & Buttons
   **/
-/* line 91, ../sass/layout.scss */
+/* line 93, ../sass/layout.scss */
 a:link {
   text-decoration: none;
 }
 
-/* line 95, ../sass/layout.scss */
+/* line 97, ../sass/layout.scss */
 .container p {
   text-align: justify;
 }
 
-/* line 99, ../sass/layout.scss */
+/* line 101, ../sass/layout.scss */
 h2 {
   -webkit-margin-before: 0.83em;
   -webkit-margin-after: 0.83em;
@@ -7804,7 +7809,7 @@ h2 {
   -webkit-margin-end: 0px;
 }
 
-/* line 106, ../sass/layout.scss */
+/* line 108, ../sass/layout.scss */
 h2.section-title {
   margin: 0 0 30px;
   padding: 0 0 8px;
@@ -7816,7 +7821,7 @@ h2.section-title {
   border-bottom: 5px solid #e0e0e0;
 }
 
-/* line 117, ../sass/layout.scss */
+/* line 119, ../sass/layout.scss */
 h3.section-title {
   margin: 0 0 15px;
   font-size: 28px;

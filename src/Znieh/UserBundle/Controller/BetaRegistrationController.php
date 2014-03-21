@@ -60,8 +60,9 @@ class BetaRegistrationController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-            $flash = $this->get('braincrafted_bootstrap.flash');
-            $flash->success('Votre email : '. $entity->getEmail().' est désormais inscrite !');
+
+            $this->get('session')->getFlashBag()->add('sucess', $entity->getEmail());
+
             $entity = new BetaRegistration();
             $form = $this->createCreateForm($entity);
         }

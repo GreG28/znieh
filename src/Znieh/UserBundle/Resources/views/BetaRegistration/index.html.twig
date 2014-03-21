@@ -3,11 +3,20 @@
 {% block body %}
 
 <div class="container" style="text-align: center; font-size: 18px">
-  {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': true } %}
+  {# {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': true } %} #}
+
+  {% for flashMessage in app.session.flashbag.get('sucess') %}
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Félicitations !</strong> Votre email
+      <strong>{{ flashMessage }}</strong> est désormais inscrite.
+    </div>
+  {% endfor %}
+
   <h2>Bienvenue sur Znieh Games !</h2>
-  <q>Le jeu où vous combattez avec des unités qui vous ressemblent !</q>
+  <q>Le jeu où vous <strong>combattez</strong> avec une armée <strong>vraiment</strong> personnalisable !</q>
   <br><br>
-  Ajoute ton email ci-dessous pour postuler à la bêta privée :
+  Ajoute ton email ci-dessous pour être tenu informé et t'inscrire à la <strong>bêta</strong> :
   {{ form(form, { 'style': 'inline' }) }}
 
 {#   <a href="{{ path('znieh_villagegame_public_index') }}">
