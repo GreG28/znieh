@@ -39,7 +39,7 @@ abstract class AbstractFixtureLoader extends AbstractFixture implements Containe
         $reflection = new \ReflectionClass($this);
         $directory = dirname($reflection->getFileName()) . PATH_SEPARATOR;
 
-        $fixturesPath = realpath($directory. '/../Fixtures');
+        $fixturesPath = dirname($directory) . '/Fixtures';
         echo 'Using yml file : '. $this->getModelFile(). '.yml' . PHP_EOL;
         $fixtures     = Yaml::parse(file_get_contents($fixturesPath. '/'. $this->getModelFile(). '.yml'));
 
