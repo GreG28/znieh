@@ -29,6 +29,20 @@ module.exports.new = function(p1, p2) {
 		turn: 1,
 		map: undefined,
 
+		log: {
+			data = [];
+
+			append: function(type, content) {
+				// type is 'attack', 'death', ...
+				// content is an array: 'target', 'damages', ...
+				var entry = {
+					date: new Date(),
+					type: type,
+					content: content
+				}
+			}
+		}
+
 		victory: function(winner) {
 			// TODO: Set Symfony URL
 			http.get("###", function(res) {
