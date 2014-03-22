@@ -13,26 +13,17 @@ define(['jquery', 'user', 'bootstrap', 'socketio', 'socketHandler'], function ($
     show: false
   });
 
-  $('#modalReady').modal({
+  /*$('#modalReady').modal({
     backdrop: 'static',
     keyboard: false,
     show: false
-  });
+  });*/
 
   $('#modalGameAcceptance').modal({
     backdrop: 'static',
     keyboard: false,
     show: false
   });
-
-  //var socket;
-
-  //socket = io.connect('127.0.0.1:1337');
-  //$('#console').append('Connected<br>');
-
-  /*socket.emit('auth', { username: user.name , token: 'abc' }, function(success) {
-    console.log("auth ->" + success);
-  });*/
 
   // In
   socket.on('welcome', function (data) {
@@ -53,7 +44,7 @@ define(['jquery', 'user', 'bootstrap', 'socketio', 'socketHandler'], function ($
   socket.on('search-started', function (data) {
     console.log('search-started ->' + data);
     $('#console').append('La recherche de partie a commencé : ' + data + '<br />');
-    $('#modalReady .modal-footer').prepend('<p>The server is looking for another player inside that pool,<br> to play with you</p>');
+    $('#modalPools .modal-footer').prepend('<p>The server is looking for another player inside that pool,<br> to play with you</p>');
   });
 
   socket.on('search-restarted', function (data) {
@@ -73,7 +64,7 @@ define(['jquery', 'user', 'bootstrap', 'socketio', 'socketHandler'], function ($
     $('#modalGameAcceptance #p_name').append(data.player);
     $('#modalGameAcceptance #p_side').append(data.side);
     $('#modalGameAcceptance #p_value1').append(data.value1);
-    $('#modalReady').modal('hide');
+    $('#modalPools').modal('hide');
     $('#modalGameAcceptance').modal('show');
   });
 
@@ -94,8 +85,19 @@ define(['jquery', 'user', 'bootstrap', 'socketio', 'socketHandler'], function ($
     socket.emit('join', {pool: pool_selected}, function (data) {
       /*When we are sure the player is resgistered inside a pool*/
       if(data === true) {
-        $('#modalPools').modal('hide');
-        $('#modalReady').modal('show');
+        console.log(" emit -> ready ")
+        socket.emit('ready', null, function (data) {
+          if(data === true)
+          {
+            $('#console').append('<strong>Looking for a game...</strong><br>');
+            console.log("Looking for a game");
+          }
+          else
+          {
+            $('#console').append('<strong>You cannot search for another player !</strong><br>');
+            $('#console').append('Wait and retry later ...<br>');
+          }
+        });
       }
       else
       {
@@ -104,11 +106,11 @@ define(['jquery', 'user', 'bootstrap', 'socketio', 'socketHandler'], function ($
     });
   });
 
-  $('#ready').click(function () {
+  /*$('#ready').click(function () {
     $('#ready').button('loading');
     $('#console').append('<strong>Ready to fight !</strong><br>');
     socket.emit('ready', null, function (data) {
-      /* Waiting to receive a proposal of another player to fight*/
+      // Waiting to receive a proposal of another player to fight
       if(data === true)
       {
         $('#console').append('<strong>Looking for a game...</strong><br>');
@@ -120,7 +122,7 @@ define(['jquery', 'user', 'bootstrap', 'socketio', 'socketHandler'], function ($
         $('#console').append('Wait and retry later ...<br>');
       }
     });
-  });
+  });*/
 
   $('#fight').click(function () {
     $('#fight').button('loading');
