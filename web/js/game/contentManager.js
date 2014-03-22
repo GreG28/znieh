@@ -281,6 +281,35 @@ function ContentManager(stage, width, height) {
             $("#unit-" + i +"-img").attr({src: _data});
 
         }
+
+        for(var i = 0; i < ennemyUnits.length; i++)
+        {
+            x = -10;
+            y = -10;
+            type = ennemyUnits[i].sprite;
+            taille = ennemyUnits[i].taille;
+
+            //console.log(taille);
+            idUnit = i;
+
+            unistJson = jQuery.parseJSON(loadingQueue.getResult("units-json",true));
+            var loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
+            spritePerso = loadingQueue.getResult(loading_id);
+            Start = map.GetBounds(x, y).GetBottomCenter();
+            Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y);
+
+            unitsCache.push(Hero);
+
+            var cache_widht = Hero.width;
+            var cache_height = Hero.height;
+            var cache_x = -(cache_widht/2)-1;
+            var cache_y = -(cache_widht/2)-1;
+
+            Hero._container.cache(cache_x,cache_y,cache_widht,cache_height);
+            var _data = Hero._container.getCacheDataURL();
+            $("#ennemyUnits #unit-" + i +"-img").attr({src: _data});
+
+        }
     }
 
 }
