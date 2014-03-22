@@ -77,6 +77,39 @@ abstract class GameObject
         $this->effects = array();
     }
 
+    public function getImg()
+    {
+        $max = 0;
+        $majorEffect = '';
+        foreach ($this->effects as $key => $value) {
+            if ($value > $max) {
+                $max = $value;
+                $majorEffect = $key;
+            }
+        }
+        switch ($majorEffect) {
+            case 'vie':
+                return 'life';
+            case 'parade':
+                return 'dodge';
+            case 'defense':
+                return 'defense';
+            case 'precision':
+                return 'precision';
+            case 'agilite':
+                return 'agility';
+            case 'intelligence':
+                return 'intelligence';
+            case 'penetration':
+                return 'penetration';
+            case 'force':
+                return 'strength';
+            default:
+                break;
+        }
+        return 'agility';
+    }
+
     /**
      * Set unlocked
      *

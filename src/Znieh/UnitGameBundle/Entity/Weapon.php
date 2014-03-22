@@ -47,6 +47,30 @@ class Weapon
      */
     private $type;
 
+    public function getImg()
+    {
+        $i = rand(1,3);
+
+        $type = "sword";
+        switch ($this->type->getName()) {
+            case 'Épée':
+                $type = "sword";
+                break;
+            case 'Hache':
+                $type = "axe";
+                break;
+            case 'Marteau':
+                $type = "hammer";
+                break;
+            case 'Arc':
+                $type = "bow";
+                break;
+            default:
+                break;
+        }
+        return $type . '/' . $i;
+    }
+
     public function isWeaponValid(ExecutionContextInterface $context)
     {
 
