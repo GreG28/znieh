@@ -90,6 +90,7 @@ function ContentManager(stage, width, height) {
     };
 
     ContentManager.units = [];
+    ContentManager.ennemyUnits = [];
 
     /**
      * Initialize all downloads
@@ -97,32 +98,21 @@ function ContentManager(stage, width, height) {
     this.init = function () {
         "use strict";
 
-        // coloration du canvas pour tests
         substage = new createjs.Container();
-
-       // First Try to deform the map
 
         stage.addChild(substage);
 
         loadingQueue = new createjs.LoadQueue(false);
         loadingQueue.addEventListener("complete", initMap);
         loadingQueue.loadManifest([{id:"tileset", src:"../img/sprites/tiles.jpg"}]); // On oblige le chargement de l'image avant l'exécution de la suite, sinon la map n'est pas chargée avant le stage.update()
-        loadingQueue.loadManifest([{id:"unitFirefox", src:"../img/sprites/firefox.png"}]);
-        loadingQueue.loadManifest([{id:"unitFirefox2", src:"../img/sprites/firefox2.png"}]);
-        loadingQueue.loadManifest([{id:"sword", src:"../img/sprites/bluesword.png"}]);
         loadingQueue.loadManifest([{id:"map-json", src: route_map}]);
         loadingQueue.loadManifest([{id:"units-json", src:"../json/units.json"}]);
-        loadingQueue.loadManifest([{id:"mailarmor", src:"../img/sprites/mailarmor.png"}]);
-        loadingQueue.loadManifest([{id:"mailarmor2", src:"../img/sprites/mailarmor2.png"}]);
-        loadingQueue.loadManifest([{id:"perso_july", src:"../img/sprites/perso_july.png"}]);
-        loadingQueue.loadManifest([{id:"perso_july_2", src:"../img/sprites/perso_july_2.jpeg"}]);
         loadingQueue.loadManifest([{id:"perso_petit", src:"../img/sprites/perso_petit.png"}]);
         loadingQueue.loadManifest([{id:"perso_casque", src:"../img/sprites/perso_casque.png"}]);
         loadingQueue.loadManifest([{id:"perso_casque_argent", src:"../img/sprites/perso_casqueArgent.png"}]);
         loadingQueue.loadManifest([{id:"perso_casque_Or", src:"../img/sprites/perso_casqueOr2.png"}]);
 
         gameStatut = GameStatut.IDLE;
-
     }
 
     /**
@@ -153,12 +143,9 @@ function ContentManager(stage, width, height) {
 
         gameStatut = GameStatut.PLACEMENT;
 
-
-
         createjs.Ticker.addEventListener("tick", tick);
         createjs.Ticker.useRAF = true;
         createjs.Ticker.setFPS(60);
-
     }
 
 
@@ -194,7 +181,7 @@ function ContentManager(stage, width, height) {
             }
         }
 
-        Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y);
+        Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y, true);
         ContentManager.units.push(Hero);
         units[idUnit].unitID = Hero.unitID;
         units[idUnit].statut = 1; // Placé
@@ -267,7 +254,7 @@ function ContentManager(stage, width, height) {
             var loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
             spritePerso = loadingQueue.getResult(loading_id);
             Start = map.GetBounds(x, y).GetBottomCenter();
-            Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y);
+            Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y, true);
 
             unitsCache.push(Hero);
 
@@ -296,7 +283,7 @@ function ContentManager(stage, width, height) {
             var loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
             spritePerso = loadingQueue.getResult(loading_id);
             Start = map.GetBounds(x, y).GetBottomCenter();
-            Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y);
+            Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y, false);
 
             unitsCache.push(Hero);
 
