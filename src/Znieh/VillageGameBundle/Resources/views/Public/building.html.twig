@@ -32,7 +32,7 @@
             {% endif %}
           </div>
           '>
-          <img src="{{ asset('img/icons/lame.png') }}" class="draggable {% if obj.unlocked %}unlocked{% endif %}" data-id="{{ obj.id }}" alt="{{ obj.name }}">
+          <img src="{{ asset('img/stats/'~ obj.img ~'.png') }}" class="draggable {% if obj.unlocked %}unlocked{% endif %}" data-id="{{ obj.id }}" alt="{{ obj.name }}">
           </span>
         {% endif %}
       {% endfor %}
@@ -72,7 +72,7 @@
           <div id="save-weapon-container">
             {% for i in 0..23 %}
               {% if weapons[i] is defined %}
-                  <span class="container-case"><img src="{{ asset('img/icons/lame.png') }}" class="img-responsive"></span>
+                  <span class="container-case"><img src="{{ asset('img/weapons/' ~ weapons[i].img ~'.png') }}" class="img-responsive"></span>
               {% else %}
                   <span class="container-case empty"></span>
               {% endif %}
