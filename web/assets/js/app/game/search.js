@@ -44,7 +44,8 @@ define(['jquery', 'user', 'bootstrap', 'socketio', 'socketHandler'], function ($
   socket.on('search-started', function (data) {
     console.log('search-started ->' + data);
     $('#console').append('La recherche de partie a commencé : ' + data + '<br />');
-    $('#modalPools .modal-footer').prepend('<p>The server is looking for another player inside that pool,<br> to play with you</p>');
+    //$('#modalPools .modal-footer').prepend('<p>The server is looking for another player inside that pool,<br> to play with you</p>');
+    $('#modalPools .modal-footer').prepend('<p>Le serveur recherche un autre joueur dans cette pool,<br> pour jouer avec toi</p>');
   });
 
   socket.on('search-restarted', function (data) {
