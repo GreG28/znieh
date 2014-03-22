@@ -19,14 +19,15 @@
     // imgUnit should be the PNG containing the sprite sequence
     // level must be of type Level
     // position must be of type Point
-    function Unit(imgUnit, map, position, unitsInfos, taille, i, j) {
+    function Unit(imgUnit, map, position, unitsInfos, taille, i, j, Ismine) {
         "use strict";
         //alert(JSON.stringify(unitsInfos, null, 4));
-        this.initialize(imgUnit, map, position, unitsInfos, taille, i, j);
+        this.initialize(imgUnit, map, position, unitsInfos, taille, i, j, Ismine);
     }
 
     Unit.prototype.IsAlive = true;
     Unit.prototype.IsOnGround = true;
+    Unit.prototype.IsMine = true;
 
     /**
      * Initialize the Unit with its animations
@@ -38,7 +39,7 @@
      * @param  {int} i
      * @param  {int} j
      */
-    Unit.prototype.initialize = function (imgUnit, map, position, unitsInfos, taille, i, j) {
+    Unit.prototype.initialize = function (imgUnit, map, position, unitsInfos, taille, i, j, Ismine) {
 
         "use strict";
 
@@ -59,6 +60,7 @@
 
         this._i = i;
         this._j = j;
+        this.IsMine = Ismine;
 
         var animations = {};
         var animations_move = unitsInfos.animations.move;
