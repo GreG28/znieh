@@ -95,6 +95,27 @@ module.exports = function(player) {
 		player.battle.map.layers[data.x][data.y] = data.unit;
 	});
 
+	//TODO
+	player.socket.on("placement-unit", function(data, callback) {
+		// TODO CHANGE FOR VERIFICATION
+		callback(true);
+	});
+
+	// TODO
+	player.socket.on("unit-move", function(data, callback) {
+		// TODO CHANGE FOR VERIFICATION
+		callback(true);
+	});
+
+	// TODO
+	player.socket.on("placement-finished", function(data, callback) {
+		// TODO CHANGE FOR VERIFICATION
+		callback(true);
+		ennemyPlacement = [{i:0,j:1},{i:3,j:5}];
+
+		player.socket.emit('ennemy-placement', ennemyPlacement);
+	});
+
 	player.socket.on("attack", function(data, callback){
 		//check if unit setHasPlayed
 		hit.physicalHit(data[0],data[1]);
@@ -139,4 +160,4 @@ module.exports = function(player) {
 			}
 		}
 	});
-}
+};

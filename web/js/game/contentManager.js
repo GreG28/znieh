@@ -7,22 +7,25 @@ GameStatut = {
  };
 
 $(window).keydown(function(e){
+    "use strict";
+
     if(gameStatut == GameStatut.MOVE)
         gameStatut = GameStatut.IDLE;
 
     if(gameStatut == GameStatut.IDLE) {
         ContentManager.unSelectAllTiles();
         ContentManager.clearUnitsMenu();
-        setEnnemySide();
-
+        
         //cross browser issues exist
-        if(!e){ var e = window.event; }
+        if(!e){ e = window.event; }
 
         // On sélectionne l'unité
-        $("#unit-" + (parseInt(e.keyCode) - 49)).addClass("selected");
+        $("#myUnits #unit-" + (parseInt(e.keyCode) - 49)).addClass("selected");
         selectedUnit = ContentManager.units[(parseInt(e.keyCode) - 49)];
         if(selectedUnit != null) {
             selectedUnit.getAllTilesStatut();
+            console.log("$(window).keydown(function(e) -> setInfoSide");
+            console.log(selectedUnit);
             setInfoSide(selectedUnit);
         }
     }
@@ -70,6 +73,8 @@ var selected_Unit = null;
  * @param {int} height
  */
 function ContentManager(stage, width, height) {
+    "use strict";
+
     ContentManager.nextUnitID = 0;
 
     ContentManager.getNextUnitID = function () {
@@ -96,8 +101,6 @@ function ContentManager(stage, width, height) {
      * Initialize all downloads
      */
     this.init = function () {
-        "use strict";
-
         substage = new createjs.Container();
 
         stage.addChild(substage);
@@ -113,14 +116,12 @@ function ContentManager(stage, width, height) {
         loadingQueue.loadManifest([{id:"perso_casque_Or", src:"../img/sprites/perso_casqueOr2.png"}]);
 
         gameStatut = GameStatut.IDLE;
-    }
+    };
 
     /**
      * Initialize map with all parameters
      */
     function initMap () {
-
-        "use strict";
         ContentManager.tilesheight = 32;
         ContentManager.tileswidth = 32;
 
@@ -166,8 +167,7 @@ function ContentManager(stage, width, height) {
      * @param  {string} taille
      * @param  {int} idUnit
      */
-    ContentManager.newUnit = function(x, y, type, taille, idUnit) {
-        "use strict";
+    ContentManager.newUnit = function(x, y, type, taille, idUnit, Ismine, name) {
 
         unistJson = jQuery.parseJSON(loadingQueue.getResult("units-json",true));
         var loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
@@ -181,19 +181,19 @@ function ContentManager(stage, width, height) {
             }
         }
 
-        Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y, true);
+        Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y, true, idUnit, name);
         ContentManager.units.push(Hero);
         units[idUnit].unitID = Hero.unitID;
         units[idUnit].statut = 1; // Placé
 
-        $("#unit-" + idUnit).removeClass("selected");
-        $("#unit-" + idUnit).addClass("valid");
+        $("#myUnits #unit-" + idUnit).removeClass("selected");
+        $("#myUnits #unit-" + idUnit).addClass("valid");
 
         var nextIdUnit = (parseInt(idUnit) + 1) % units.length;
         if(units[nextIdUnit] != null) {
             if(units[nextIdUnit].statut == -1) {
                 units[nextIdUnit].statut = 0;
-                $("#unit-" + nextIdUnit).addClass("selected");
+                $("#myUnits #unit-" + nextIdUnit).addClass("selected");
             }
         }
     };
@@ -209,36 +209,42 @@ function ContentManager(stage, width, height) {
             }
         }
 
-        for(var i = 0 ; i < ContentManager.units.lenght; i++)
+        for(i = 0 ; i < ContentManager.units.lenght; i++)
             ContentManager.units[i].shape_selected.visible = false;
     };
 
     ContentManager.clearUnitsMenu = function() {
         for (var i = units.length - 1; i >= 0; i--) {
-            $("#unit-" + i).removeClass("valid");
-            $("#unit-" + i).removeClass("selected");
-        };
-    }
+            $("#myUnits #unit-" + i).removeClass("valid");
+            $("#myUnits #unit-" + i).removeClass("selected");
+        }
+    };
 
     ContentManager.selectTilesAttack = function(x, y) {
         map.tiles[y - 1][x].shape_selection_possible.visible = true;
         map.tiles[y + 1][x].shape_selection_possible.visible = true;
         map.tiles[y][x - 1].shape_selection_possible.visible = true;
         map.tiles[y][x + 1].shape_selection_possible.visible = true;
-    }
+    };
 
     /**
      * Generate units image for menus
      */
     function addUnitImageInMenu ()
     {
-        "use strict";
 
         var x;
         var y;
         var type;
         var taille;
         var idUnit;
+        var cache_widht;
+        var cache_height;
+        var cache_x;
+        var cache_y;
+        var loading_id;
+        var _data;
+
 
         for(var i = 0; i < units.length; i++)
         {
@@ -251,25 +257,25 @@ function ContentManager(stage, width, height) {
             idUnit = i;
 
             unistJson = jQuery.parseJSON(loadingQueue.getResult("units-json",true));
-            var loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
+            loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
             spritePerso = loadingQueue.getResult(loading_id);
             Start = map.GetBounds(x, y).GetBottomCenter();
-            Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y, true);
+            Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y, true, idUnit);
 
             unitsCache.push(Hero);
 
-            var cache_widht = Hero.width;
-            var cache_height = Hero.height;
-            var cache_x = -(cache_widht/2)-1;
-            var cache_y = -(cache_widht/2)-1;
+            cache_widht = Hero.width;
+            cache_height = Hero.height;
+            cache_x = -(cache_widht/2)-1;
+            cache_y = -(cache_widht/2)-1;
 
             Hero._container.cache(cache_x,cache_y,cache_widht,cache_height);
-            var _data = Hero._container.getCacheDataURL();
-            $("#unit-" + i +"-img").attr({src: _data});
+            _data = Hero._container.getCacheDataURL();
+            $("#myUnits #unit-" + i +"-img").attr({src: _data});
 
         }
 
-        for(var i = 0; i < ennemyUnits.length; i++)
+        for(i = 0; i < ennemyUnits.length; i++)
         {
             x = -10;
             y = -10;
@@ -280,20 +286,20 @@ function ContentManager(stage, width, height) {
             idUnit = i;
 
             unistJson = jQuery.parseJSON(loadingQueue.getResult("units-json",true));
-            var loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
+            loading_id = unistJson[type].specifications[taille].sprites.spritesheet_loading_ID;
             spritePerso = loadingQueue.getResult(loading_id);
             Start = map.GetBounds(x, y).GetBottomCenter();
-            Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y, false);
+            Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y, false,idUnit);
 
             unitsCache.push(Hero);
 
-            var cache_widht = Hero.width;
-            var cache_height = Hero.height;
-            var cache_x = -(cache_widht/2)-1;
-            var cache_y = -(cache_widht/2)-1;
+            cache_widht = Hero.width;
+            cache_height = Hero.height;
+            cache_x = -(cache_widht/2)-1;
+            cache_y = -(cache_widht/2)-1;
 
             Hero._container.cache(cache_x,cache_y,cache_widht,cache_height);
-            var _data = Hero._container.getCacheDataURL();
+            _data = Hero._container.getCacheDataURL();
             $("#ennemyUnits #unit-" + i +"-img").attr({src: _data});
 
         }
