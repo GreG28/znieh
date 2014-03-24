@@ -1,5 +1,7 @@
 (function (window) {
      // Constants for controling horizontal movement
+    "use strict";
+
     var MoveAcceleration = 13000.0;
     var MaxMoveSpeed = 1750.0;
     var GroundDragFactor = 0.48;
@@ -19,10 +21,9 @@
     // imgUnit should be the PNG containing the sprite sequence
     // level must be of type Level
     // position must be of type Point
-    function Unit(imgUnit, map, position, unitsInfos, taille, i, j, Ismine) {
-        "use strict";
+    function Unit(imgUnit, map, position, unitsInfos, taille, i, j, Ismine, idIndex, name) {
         //alert(JSON.stringify(unitsInfos, null, 4));
-        this.initialize(imgUnit, map, position, unitsInfos, taille, i, j, Ismine);
+        this.initialize(imgUnit, map, position, unitsInfos, taille, i, j, Ismine, idIndex, name);
     }
 
     Unit.prototype.IsAlive = true;
@@ -39,9 +40,7 @@
      * @param  {int} i
      * @param  {int} j
      */
-    Unit.prototype.initialize = function (imgUnit, map, position, unitsInfos, taille, i, j, Ismine) {
-
-        "use strict";
+    Unit.prototype.initialize = function (imgUnit, map, position, unitsInfos, taille, i, j, Ismine, idIndex, name) {
 
         var width = unitsInfos.specifications[taille].sprites.frames.width;
         var left = unitsInfos.specifications[taille].sprites.weapon.left;
@@ -61,6 +60,8 @@
         this._i = i;
         this._j = j;
         this.IsMine = Ismine;
+        this.IdIndex = idIndex;
+        this.name = name;
 
         var animations = {};
         var animations_move = unitsInfos.animations.move;
@@ -178,33 +179,15 @@
         var shape_selected = this.shape_selected;
         var shape_selected_unit = this.shape_selected_unit;
 
-        this._container.on("mouseover", function(evt) {
-            shape_hover.visible = true;
+        this.that = this;
+        var that = this.that;
 
-            // TODO : Ghost de l'unité qui suit la souris pendant le placement des unités
-            // if(gameStatut == GameStatut.PLACEMENT) {
-            //     selectedUnit = unitsCache[$("#myUnits div.selected").attr("data-unit")];
-            //     if(selectedUnit != null) {
-            //         selectedUnit._container.x = map.GetBounds(that._i, that._j).GetBottomCenter().x;
-            //         selectedUnit._container.y = map.GetBounds(that._i, that._j).GetBottomCenter().y;
-            //         console.log("On change");
-            //         selectedUnit.sprite_base.gotoAndPlay("move-left"); //animate
-            //     }
-            // }
+        this._container.on("mouseover", unitMouseOver, null, false, {unit:that});
 
-            setInfoSide(null);
-        });
-
-        this._container.on("mouseout", function(evt) {
-            shape_hover.visible = false;
-
-            if(selectedUnit == null)
-                setEnnemySide();
-        });
+        this._container.on("mouseout", unitMouseOut, null, false, {unit:that});
 
         var i = this._i;
         var j = this._j;
-        var that = this;
 
         this._container.on("click", function(evt) {
             if(gameStatut == GameStatut.ATTACK) {
@@ -239,6 +222,21 @@
         substage.addChild(this._container);
     };
 
+    function unitMouseOver(evt,data) {
+            console.log("unitMouseOver");
+            console.log("unitMouseOver data -> " + data);
+            data.unit.shape_hover.visible = true;
+            setInfoSide(data.unit);
+    }    
+
+    function unitMouseOut(evt,data) {
+            console.log("unitMouseOut");
+            console.log("unitMouseOut data -> " + data);
+            data.unit.shape_hover.visible = false;
+            if(selectedUnit === null) {
+                setEnnemySide();
+            }
+    }
 
     function move_tween(self, path, cpt) {
         if(cpt < path.length)
@@ -295,6 +293,7 @@
 
                 if(filtered_new.length === 0) {
                     
+                    //Call to function for animate the picture of perso
                     move_tween(self,path,1);
                     
                     self._i = x;
@@ -351,7 +350,8 @@
                         if (path === null) {
                             shape = map.tiles[y][x].shape_selection_impossible;
                             shape.visible = true;
-                        } else {
+                        }
+                        else {
                             if(path.length <= limit) {
                                 var placement = [x, y];
                                 var filtered = $(unitsPlacement).filter(function(){

@@ -1,4 +1,6 @@
 Array.matrix = function (m, n, initial) {
+    "use strict";
+
     var a, i, j, mat = [];
     for (i = 0; i < m; i += 1) {
         a = [];
@@ -12,6 +14,7 @@ Array.matrix = function (m, n, initial) {
 
 
 (function (window) {
+    "use strict";
 
     var StaticTile = new Tile(null, Enum.TileCollision.Passable, 0, 0);
 
