@@ -82,7 +82,7 @@ abstract class GameObject
         $max = 0;
         $majorEffect = '';
         foreach ($this->effects as $key => $value) {
-            if ($value > $max) {
+            if ($value > $max && $key != "damage") {
                 $max = $value;
                 $majorEffect = $key;
             }
@@ -91,7 +91,7 @@ abstract class GameObject
             case 'vie':
                 return 'life';
             case 'parade':
-                return 'dodge';
+                return 'parry';
             case 'defense':
                 return 'defense';
             case 'precision':
@@ -104,6 +104,10 @@ abstract class GameObject
                 return 'penetration';
             case 'force':
                 return 'strength';
+            case 'esquive':
+                return 'dodge';
+            case 'armure':
+                return 'armor';
             default:
                 break;
         }

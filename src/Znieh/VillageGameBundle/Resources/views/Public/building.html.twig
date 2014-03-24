@@ -32,7 +32,7 @@
             {% endif %}
           </div>
           '>
-          <img src="{{ asset('img/stats/'~ obj.img ~'.png') }}" class="draggable {% if obj.unlocked %}unlocked{% endif %}" data-id="{{ obj.id }}" alt="{{ obj.name }}">
+          <img src="{{ asset('img/stats/'~ obj.img ~'.png') }}" class="draggable {% if obj.unlocked %}unlocked{% endif %}" data-id="{{ obj.id }}" alt="{{ obj.name }}" style="width: 24px">
           </span>
         {% endif %}
       {% endfor %}
