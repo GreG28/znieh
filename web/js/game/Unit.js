@@ -179,38 +179,17 @@
         var shape_selected = this.shape_selected;
         var shape_selected_unit = this.shape_selected_unit;
 
-        this.that = this;
-        var that = this.that;
+        var idUnit = this.IdIndex;
+        var unit = this;
 
-        this._container.on("mouseover", unitMouseOver, null, false, {unit:that});
+        this._container.on("mouseover", unitMouseOver, null, false, {idUnit:idUnit, unit:unit});
 
-        this._container.on("mouseout", unitMouseOut, null, false, {unit:that});
+        this._container.on("mouseout", unitMouseOut, null, false, {idUnit:idUnit, unit:unit});
 
-        var i = this._i;
-        var j = this._j;
+        //var i = this._i;
+        //var j = this._j;
 
-        this._container.on("click", function(evt) {
-            if(gameStatut == GameStatut.ATTACK) {
-                if((selectedUnit._i == that._i - 1 && selectedUnit._j == that._j) || (selectedUnit._i == that._i + 1 && selectedUnit._j == that._j) || (selectedUnit._i == that._i && selectedUnit._j == that._j - 1) || (selectedUnit._i == that._i && selectedUnit._j == that._j + 1)) {
-                    console.log("ATTAQUE CE NAAAAZE");
-                    // On demande au serveur si l'attaque est valide et on récupère le nombre de dégats qu'on affichera
-                    gameStatut = GameStatut.IDLE;
-                    ContentManager.unSelectAllTiles();
-                    setEnnemySide();
-                    ContentManager.clearUnitsMenu();
-                    selectedUnit = null;
-                }
-            }
-            else {
-                console.log("[UNIT] x" + container.x + " y" + container.y);
-                ContentManager.unSelectAllTiles();
-                selectedUnit = that;
-                setInfoSide(selectedUnit);
-
-                that.getAllTilesStatut();
-            }
-
-        });
+        this._container.on("click", unitClick, null, false, {idUnit:idUnit, unit:unit});
 
         this._container.x = position.x;
         this._container.y = position.y;
@@ -218,49 +197,98 @@
         this._container.height = this.sprite_base.height;
         this._container.visible = true;
 
-        //stage.addChild(this._container);
         substage.addChild(this._container);
     };
 
-    function unitMouseOver(evt,data) {
-            console.log("unitMouseOver");
-            console.log("unitMouseOver data -> " + data);
+    function unitMouseOver(evt, data) {
+            console.log("unitMouseOver data -> " + data.idUnit);
             data.unit.shape_hover.visible = true;
-            setInfoSide(data.unit);
-    }    
+            if(data.unit.IsMine)
+            {
+                setInfoSide(units[data.idUnit]);
+            }
+            else
+            {
+                setInfoSide(ennemyUnits[data.idUnit]);
+            }
+    }
 
-    function unitMouseOut(evt,data) {
-            console.log("unitMouseOut");
-            console.log("unitMouseOut data -> " + data);
+    function unitMouseOut(evt, data) {
+            console.log("unitMouseOut data -> " + data.idUnit);
             data.unit.shape_hover.visible = false;
-            if(selectedUnit === null) {
+            if(selectedUnit == null) {
                 setEnnemySide();
             }
     }
 
-    function move_tween(self, path, cpt) {
+    function unitClick(evt, data) {
+        var that = data.unit;
+        var container = that._container;
+        
+        console.log("gameStatut -> " + gameStatut);
+
+        if(gameStatut == GameStatut.ATTACK) {
+            if((selectedUnit._i == that._i - 1 && selectedUnit._j == that._j) || (selectedUnit._i == that._i + 1 && selectedUnit._j == that._j) || (selectedUnit._i == that._i && selectedUnit._j == that._j - 1) || (selectedUnit._i == that._i && selectedUnit._j == that._j + 1)) {
+                console.log("ATTAQUE CE NAAAAZE");
+                // On demande au serveur si l'attaque est valide et on récupère le nombre de dégats qu'on affichera
+                gameStatut = GameStatut.IDLE;
+                ContentManager.unSelectAllTiles();
+                setEnnemySide();
+                ContentManager.clearUnitsMenu();
+                selectedUnit = null;
+            }
+        }
+        else {
+            console.log("[UNIT] x" + container.x + " y" + container.y);
+            ContentManager.unSelectAllTiles();
+            selectedUnit = that;
+
+            var unit_clicked = null;
+            
+            if(data.unit.IsMine)
+            {
+                unit_clicked = units[data.idUnit];
+            }
+            else
+            {
+                unit_clicked = units[data.idUnit];
+            }
+            
+            setInfoSide(unit_clicked);
+            that.getAllTilesStatut();
+            gameStatut = GameStatut.MOVE;
+            console.log("fin selection to move !");
+        }
+    }
+
+    function move_tween(self, path, cpt, _i, _j) {
         if(cpt < path.length)
         {
             if(path[cpt].x > path[(cpt-1)].x) {
                 self.sprite_base.gotoAndPlay("move-right");
-                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1)]);
+                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1), _i, _j]);
             }
             else if(path[cpt].x < path[(cpt-1)].x) {
                 self.sprite_base.gotoAndPlay("move-left");
-                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1)]);
+                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1), _i, _j]);
             }
             else if(path[cpt].y > path[(cpt-1)].y) {
                 self.sprite_base.gotoAndPlay("move-bottom");
-                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1)]);
+                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1), _i, _j]);
             }
             else {
                 self.sprite_base.gotoAndPlay("move-top");
-                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1)]);
+                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1), _i, _j]);
             }
 
-            if((cpt+1) === path.length)
+            if((cpt+1) == path.length)
             {
                 self.sprite_base.gotoAndPlay("move-idle");
+                ContentManager.selectTilesAttack(_i, _j);
+                setEnnemySide();
+
+                //TODO
+                gameStatut = GameStatut.ATTACK;
             }
 
         }
@@ -291,10 +319,10 @@
                     return x == this[0] && y == this[1];
                 });
 
-                if(filtered_new.length === 0) {
+                if(filtered_new.length == 0) {
                     
                     //Call to function for animate the picture of perso
-                    move_tween(self,path,1);
+                    move_tween(self,path,1, x, y);
                     
                     self._i = x;
                     self._j = y;
@@ -338,7 +366,7 @@
         }
 
         if(gameStatut == GameStatut.IDLE || gameStatut == GameStatut.MOVE) {
-            $("#unit-" + (this.unitID - units.length - 1)).addClass("selected");
+            $("#myUnits #unit-" + (this.unitID - units.length - 1)).addClass("selected");
 
             for (var x = 0; x < map.textTiles[0].length; x++) {
                 for (var y = 0; y < map.textTiles.length; y++) {
@@ -347,7 +375,7 @@
                     var self = this;
                     easystar.findPath(this._i, this._j, x, y, function(path) {
                         var shape = null;
-                        if (path === null) {
+                        if (path == null) {
                             shape = map.tiles[y][x].shape_selection_impossible;
                             shape.visible = true;
                         }
@@ -418,15 +446,15 @@
         if (this.IsAlive && this.IsOnGround) {
             if (Math.abs(this.velocity.x) - 0.02 > 0) {
                 // Checking if we're not already playing the animation
-                if (this.currentAnimation.indexOf("walk") === -1 && this.direction === -1) {
+                if (this.currentAnimation.indexOf("walk") == -1 && this.direction == -1) {
                     this.sprite_base.gotoAndPlay("walk");
                 }
-                if (this.currentAnimation.indexOf("walk_h") === -1 && this.direction === 1) {
+                if (this.currentAnimation.indexOf("walk_h") == -1 && this.direction == 1) {
                     this.sprite_base.gotoAndPlay("walk_h");
                 }
             }
             else {
-                if (this.currentAnimation.indexOf("idle") === -1 && this.direction === 0) {
+                if (this.currentAnimation.indexOf("idle") == -1 && this.direction == 0) {
                     this.sprite_base.gotoAndPlay("idle");
                 }
             }
@@ -452,11 +480,11 @@
             for (var x = leftTile; x <= rightTile; ++x) {
                 // If this tile is collidable,
                 var collision = this.level.GetCollision(x, y);
-                if (collision !== Enum.TileCollision.Passable) {
+                if (collision != Enum.TileCollision.Passable) {
                     // Determine collision depth (with direction) and magnitude.
                     var tileBounds = this.level.GetBounds(x, y);
                     var depth = bounds.GetIntersectionDepth(tileBounds);
-                    if (depth.x !== 0 && depth.y !== 0) {
+                    if (depth.x != 0 && depth.y != 0) {
                         var absDepthX = Math.abs(depth.x);
                         var absDepthY = Math.abs(depth.y);
 

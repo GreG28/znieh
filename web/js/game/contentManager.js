@@ -10,7 +10,11 @@ $(window).keydown(function(e){
     "use strict";
 
     if(gameStatut == GameStatut.MOVE)
+    {
+        //TODO !! 
+        // Florian
         gameStatut = GameStatut.IDLE;
+    }
 
     if(gameStatut == GameStatut.IDLE) {
         ContentManager.unSelectAllTiles();
@@ -302,6 +306,15 @@ function ContentManager(stage, width, height) {
             _data = Hero._container.getCacheDataURL();
             $("#ennemyUnits #unit-" + i +"-img").attr({src: _data});
 
+        }
+
+
+        // We save the side of the ennemy !!
+        if(ContentManager.left) {
+            ennemySideSauv = $("#rightSide").html();
+        }
+        else {
+            ennemySideSauv = $("#leftSide").html();
         }
     }
 

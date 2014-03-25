@@ -29,6 +29,8 @@ Array.matrix = function (m, n, initial) {
         this.tileWidth = mapData.tilewidth;
         this.tileHeight = mapData.tileheight;
 
+        console.log("this.gameHeight -> " + this.gameHeight);
+
         // Building a matrix of characters that will be replaced by the level {x}.txt
         this.textTiles = Array.matrix(this.gameHeight, this.gameWidth, "|");
         // Physical structure of the level.
@@ -77,6 +79,7 @@ Array.matrix = function (m, n, initial) {
      */
     Map.prototype.LoadTile = function (tileType, x, y) {
         var property;
+
         if(this.properties[tileType - 1] != null && this.properties[tileType - 1].block == "true")
             property = Enum.TileCollision.Impassable;
         else

@@ -2,6 +2,8 @@ function Enum() { }
 Enum.TileCollision = { Passable: 0, Impassable: 1 };
 
 (function (window) {
+    "use strict";
+
     function Tile(texture, collision, x, y, render) {
         this.initialize(texture, collision, x, y, render);
     }
@@ -16,7 +18,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
      */
     Tile.prototype.initialize = function(texture, collision, x, y, render) {
 
-        if (texture !== null) {
+        if (texture != null) {
             this.empty = false;
         }
         else {
@@ -36,7 +38,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         // this container will hold all the animation of a Tile
         this._container = new createjs.Container();
 
-        if(render === true) {
+        if(render == true) {
             this.render();
         }
     };
@@ -99,12 +101,13 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
 
         var _i = this.i;
         var _j = this.j;
+        var that = this;
 
         this._container.on("click", function(evt, data) {
             if(gameStatut == GameStatut.PLACEMENT)
             {
                 setEnnemySide();
-                if(data.collision == Enum.TileCollision.Passable && ((_i < (map.gameWidth / 3) && left == true) || ((_i >= (2 * map.gameWidth / 3)) && left == false))) {
+                if(data.collision == Enum.TileCollision.Passable && ((_i < (map.gameWidth / 3) && ContentManager.left == true) || ((_i >= (2 * map.gameWidth / 3)) && ContentManager.left == false))) {
                     console.log("[TILE] x" + _i + " y" + _j);
                     var idUnit = $("#myUnits div.selected").attr("data-unit");
 
@@ -120,7 +123,9 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
                                 nextUnitID++;
                                 
                                 if(ContentManager.units.length == numberOfUnits) {
-                                    gameStatut = GameStatut.IDLE;
+                                    gameStatut = GameStatut.MOVE;
+                                    // TODO !!
+                                    //gameStatut = GameStatut.IDLE;
                                     ContentManager.clearUnitsMenu();
                                     socket.emit('placement-finished', null, function(data) {
                                         console.log("placement finished -> " + data);
@@ -141,17 +146,19 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
                     console.log("Vous ne pouvez pas placer votre personnage à cet endroit.");
             }
             else if(gameStatut == GameStatut.MOVE) {
+                //selectedUnit = that;
                 socket.emit('unit-move', {id:selectedUnit.idUnit,i:_i,j:_j}, function(data) {
-                    if(data === true)
+                    if(data == true)
                     {
+                        console.log("tile on click -> begin to move unit");
                         selectedUnit.move(_i, _j);
+                        console.log("tile on click -> finished to move unit");
                         gameStatut = GameStatut.ATTACK;
-                        ContentManager.selectTilesAttack(_i, _j);   
                     }
                     else
                     {
-                        console.log("YOU ARE A LYER !!!")
-                    }                    
+                        console.log("YOU ARE A LYER !!!");
+                    }
                 });
             }
             else if(gameStatut == GameStatut.ATTACK) {
