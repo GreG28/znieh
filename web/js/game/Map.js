@@ -1,4 +1,6 @@
 Array.matrix = function (m, n, initial) {
+    "use strict";
+
     var a, i, j, mat = [];
     for (i = 0; i < m; i += 1) {
         a = [];
@@ -12,6 +14,7 @@ Array.matrix = function (m, n, initial) {
 
 
 (function (window) {
+    "use strict";
 
     var StaticTile = new Tile(null, Enum.TileCollision.Passable, 0, 0);
 
@@ -25,6 +28,8 @@ Array.matrix = function (m, n, initial) {
         this.gameHeight = mapData.height;
         this.tileWidth = mapData.tilewidth;
         this.tileHeight = mapData.tileheight;
+
+        console.log("this.gameHeight -> " + this.gameHeight);
 
         // Building a matrix of characters that will be replaced by the level {x}.txt
         this.textTiles = Array.matrix(this.gameHeight, this.gameWidth, "|");
@@ -74,6 +79,7 @@ Array.matrix = function (m, n, initial) {
      */
     Map.prototype.LoadTile = function (tileType, x, y) {
         var property;
+
         if(this.properties[tileType - 1] != null && this.properties[tileType - 1].block == "true")
             property = Enum.TileCollision.Impassable;
         else
