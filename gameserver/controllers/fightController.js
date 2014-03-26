@@ -109,11 +109,12 @@ module.exports = function(player) {
 
 	// TODO
 	player.socket.on("placement-finished", function(data, callback) {
+		
 		// TODO CHANGE FOR VERIFICATION
-		callback(true);
-		ennemyPlacement = [{i:0,j:1},{i:3,j:5}];
+		ennemyPlacement = [{_i:0,_j:1},{_i:3,_j:5}];
 
 		player.socket.emit('ennemy-placement', ennemyPlacement);
+		callback(ennemyPlacement);
 	});
 
 	player.socket.on("attack", function(data, callback){

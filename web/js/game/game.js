@@ -69,7 +69,7 @@ function getUnits() {
       taille = "petitfin";
       if(units[i].size == "Normal" && units[i].weight == "Musclé")
       {
-          units[i].taille = "petitfin";
+        units[i].taille = "petitfin";
       }
     }
 
@@ -112,6 +112,7 @@ function init() {
   setMyUnitsSide();
   setEnnemySide();
   contentManager.init();
+  setSocketOnForGame();
 
   stage.enableMouseOver();
 }
@@ -240,4 +241,15 @@ function setEnnemySide() {
     {
       console.log("setEnnemySide() -> flag was false");
     }
+}
+
+function setSocketOnForGame()
+{
+  socket.on('ennemy-placement', function (data) {
+    console.log('the units are positionning well : ' + JSON.stringify(data));
+
+    for(var i = 0 ; i < data.length ; i++) {
+      ContentManager.newUnit(data[i]._i,data[i]._j, ennemyUnits[i].sprite, ennemyUnits[i].taille, i, false, ennemyUnits[i].name);
+    }
+  });  
 }
