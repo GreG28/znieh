@@ -185,10 +185,20 @@ function ContentManager(stage, width, height) {
             }
         }
 
-        Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y, true, idUnit, name);
-        ContentManager.units.push(Hero);
-        units[idUnit].unitID = Hero.unitID;
-        units[idUnit].statut = 1; // Placé
+        Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y, Ismine, idUnit, name);
+        
+        if (Ismine) {
+            ContentManager.units.push(Hero);
+            units[idUnit].unitID = Hero.unitID;
+            units[idUnit].statut = 1; // Placé
+        }
+        else
+        {
+            ContentManager.ennemyUnits.push(Hero);
+            ennemyUnits[idUnit].unitID = Hero.unitID;
+            ennemyUnits[idUnit].statut = 1; // Placé
+        }
+
 
         $("#myUnits #unit-" + idUnit).removeClass("selected");
         $("#myUnits #unit-" + idUnit).addClass("valid");
