@@ -309,10 +309,17 @@
         easystar.setGrid(map.textTiles);
         easystar.setAcceptableTiles(acceptableTiles);
 
+        // Disable tiles where your units are !
         unitsPlacement.length = 0;
         for (var t = ContentManager.units.length - 1 ; t >= 0 ; t--) {
             unitsPlacement.push([ContentManager.units[t]._i, ContentManager.units[t]._j]);
             easystar.avoidAdditionalPoint(ContentManager.units[t]._i, ContentManager.units[t]._j);
+        }
+
+        // Disable tiles where yours ennemies are !
+        for (t = ContentManager.ennemyUnits.length - 1 ; t >= 0 ; t--) {
+            unitsPlacement.push([ContentManager.ennemyUnits[t]._i, ContentManager.ennemyUnits[t]._j]);
+            easystar.avoidAdditionalPoint(ContentManager.ennemyUnits[t]._i, ContentManager.ennemyUnits[t]._j);
         }
 
         self = this;
@@ -366,6 +373,11 @@
         for (var t = ContentManager.units.length - 1; t >= 0; t--) {
             unitsPlacement.push([ContentManager.units[t]._i, ContentManager.units[t]._j]);
             easystar.avoidAdditionalPoint(ContentManager.units[t]._i, ContentManager.units[t]._j);
+        }
+
+        for (t = ContentManager.ennemyUnits.length - 1 ; t >= 0 ; t--) {
+            unitsPlacement.push([ContentManager.ennemyUnits[t]._i, ContentManager.ennemyUnits[t]._j]);
+            easystar.avoidAdditionalPoint(ContentManager.ennemyUnits[t]._i, ContentManager.ennemyUnits[t]._j);
         }
 
         if(gameStatut == GameStatut.IDLE || gameStatut == GameStatut.MOVE) {
