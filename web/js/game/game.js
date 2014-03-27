@@ -209,7 +209,7 @@ function setInfoSide(data) {
 
 function setEnnemySide() {
 
-    console.log("setEnnemySide()");
+    //console.log("setEnnemySide()");
     
     if(ennemySideSauv == null)
     {
