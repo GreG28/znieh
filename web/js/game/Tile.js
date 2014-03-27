@@ -104,6 +104,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
         var that = this;
 
         this._container.on("click", function(evt, data) {
+            console.log(gameStatut);
             if(gameStatut == GameStatut.PLACEMENT)
             {
                 setEnnemySide();
@@ -145,9 +146,11 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
                 else
                     console.log("Vous ne pouvez pas placer votre personnage à cet endroit.");
             }
-            else if(gameStatut == GameStatut.MOVE) {
+            else if(gameStatut == GameStatut.MOVE && selectedUnit.IsMine ) {
+                console.log("Unit -> move to this one");
                 //selectedUnit = that;
                 socket.emit('unit-move', {id:selectedUnit.idUnit,i:_i,j:_j}, function(data) {
+                    console.log(data);
                     if(data == true)
                     {
                         console.log("tile on click -> begin to move unit");
@@ -170,6 +173,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
                 selectedUnit = null;
             }
             else {
+                console.log("Unit -> IDDLE");
                 setEnnemySide();
                 gameStatut = GameStatut.IDLE;
                 ContentManager.unSelectAllTiles();

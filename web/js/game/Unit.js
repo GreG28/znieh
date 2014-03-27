@@ -216,9 +216,10 @@
     function unitMouseOut(evt, data) {
             console.log("unitMouseOut data -> " + data.idUnit);
             data.unit.shape_hover.visible = false;
-            if(selectedUnit == null) {
+            setEnnemySide();
+            /*if(selectedUnit == null) {
                 setEnnemySide();
-            }
+            }*/
     }
 
     function unitClick(evt, data) {
@@ -247,17 +248,19 @@
             
             if(data.unit.IsMine)
             {
+                console.log("this unit you clicked is mine !");
                 unit_clicked = units[data.idUnit];
+                that.getAllTilesStatut();
             }
             else
             {
-                unit_clicked = units[data.idUnit];
+                console.log("this unit you clicked is not your !");
+                unit_clicked = ennemyUnits[data.idUnit];
             }
             
-            setInfoSide(unit_clicked);
-            that.getAllTilesStatut();
             gameStatut = GameStatut.MOVE;
-            console.log("fin selection to move !");
+            //setInfoSide(unit_clicked);
+            //console.log("fin selection to move !");
         }
     }
 
@@ -409,12 +412,12 @@
             }
         }
 
-        if(gameStatut == GameStatut.IDLE) {
+        /*if(gameStatut == GameStatut.IDLE) {
             gameStatut = GameStatut.MOVE;
         }
         else {
             gameStatut = GameStatut.IDLE;
-        }
+        }*/
     };
 
     /**
