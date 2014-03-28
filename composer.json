@@ -4,19 +4,6 @@
     "autoload": {
         "psr-0": { "": "src/" }
     },
-    "repositories": [
-            {
-                "type": "package",
-                "package": {
-                    "name": "jquery/jquery",
-                    "version": "2.0.3",
-                    "dist": {
-                        "url": "http://code.jquery.com/jquery-2.0.3.min.js",
-                        "type": "file"
-                    }
-                }
-            }
-    ],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.4.*",
@@ -34,7 +21,7 @@
         "stof/doctrine-extensions-bundle": "~1.1@dev",
         "jms/di-extra-bundle": "1.4.*@dev",
         "jms/security-extra-bundle": "1.5.*@dev",
-        "jms/serializer-bundle": "dev-master",
+        "jms/serializer-bundle": "0.13.0",
 
 		"friendsofsymfony/user-bundle": "~2.0@dev",
         "friendsofsymfony/facebook-bundle": "1.2.*",
@@ -48,9 +35,7 @@
         "twig/extensions": "1.0.*",
         "doctrine/doctrine-fixtures-bundle": "2.2.*",
 
-        "braincrafted/bootstrap-bundle": "~2.0@alpha",
-        "twbs/bootstrap": "dev-master",
-        "jquery/jquery":  "*"
+        "braincrafted/bootstrap-bundle": "~2.0@alpha"
     },
     "scripts": {
         "post-install-cmd": [
@@ -58,16 +43,14 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Braincrafted\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::install"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Braincrafted\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::install"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ]
     },
     "minimum-stability": "dev",
