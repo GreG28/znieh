@@ -55,16 +55,10 @@ Load DataFixtures : (validate with Y to continue)
 -------------------------------------
 
     php app/console assets:install
-    
-    php app/console assetic:dump
-
-    php app/console assetic:dump --env=prod --no-debug
 
 You must have both node and less installed :
 
     npm install -g less
-
-You can configure node_paths in app/config/parameters.yml
 
 Use npm to install bower, compass and grunt-cli :
 
@@ -91,7 +85,7 @@ If you don't have SASS yet, install Ruby then
     gem install sass
     gem install compass
 
-Later, when you're actually developing, you'll use grunt to watch for file changes and automatically re-compile:
+Later, when you're actually developing, you will use grunt to watch for file changes and automatically re-compile:
 
     grunt watch
 
@@ -102,7 +96,7 @@ Later, when you're actually developing, you'll use grunt to watch for file chang
 
      php app/console cache:clear --env=prod
 
-5) Node.js
+5) Gameserver - app.js
 -------------------------------------
 
 In "node" repository, execute the following command to install node_modules.
