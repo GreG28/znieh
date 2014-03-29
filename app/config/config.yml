@@ -155,21 +155,21 @@ fos_user:
             template: ZniehUserBundle:User:resetting.email.twig
 
 # FosFacebook Configuration
-fos_facebook:
-  alias:  facebook
-  app_id: %app_id_facebook%
-  secret: %app_secret_facebook%
-  cookie: true
-  permissions: [email, user_birthday, user_location]
+#fos_facebook:
+ # alias:  facebook
+  # app_id: %app_id_facebook%
+  # secret: %app_secret_facebook%
+  # cookie: true
+  # permissions: [email, user_birthday, user_location]
 
 services:
-    my.facebook.user:
-        class: Znieh\UserBundle\Security\User\Provider\FacebookProvider
-        arguments:
-            facebook: "@fos_facebook.api"
-            userManager: "@fos_user.user_manager"
-            validator: "@validator"
-            userProvider: "@fos_user.user_provider.username"
+    # my.facebook.user:
+    #     class: Znieh\UserBundle\Security\User\Provider\FacebookProvider
+    #     arguments:
+    #         facebook: "@fos_facebook.api"
+    #         userManager: "@fos_user.user_manager"
+    #         validator: "@validator"
+    #         userProvider: "@fos_user.user_provider.username"
     znieh_user.registration:
         class: Znieh\UserBundle\EventListener\RegistrationListener
         arguments:
