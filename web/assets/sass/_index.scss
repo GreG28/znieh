@@ -1,5 +1,4 @@
 body {
-  min-height: 1000px;
   padding-top: 70px;
 }
 .border-after-village {
@@ -13,6 +12,8 @@ body {
 .after-village-content {
   background: $black-major no-repeat right bottom;
   display: block;
-  height: 300px;
+  min-height: 500px;
+  margin: 0;
+  padding: 0;
   width: 100%;
 }

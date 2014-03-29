@@ -7787,20 +7787,21 @@ div {
   float: left;
 }
 
-/* line 124, ../sass/_building.scss */
+/* line 125, ../sass/_building.scss */
 .draggable.selected {
-  border: 2px solid #657405;
+  border: 2px solid white;
 }
 
-/* line 128, ../sass/_building.scss */
+/* line 129, ../sass/_building.scss */
 #weapon-container {
   padding: 2px 5px 5px 5px;
   height: 40px;
   width: 135px;
   background: #7e7878;
+  display: inline-block;
 }
 
-/* line 135, ../sass/_building.scss */
+/* line 137, ../sass/_building.scss */
 #save-weapon-container {
   height: 80px;
   width: 400px;
@@ -7808,7 +7809,7 @@ div {
   padding: 5px 5px 5px 5px;
 }
 
-/* line 141, ../sass/_building.scss */
+/* line 143, ../sass/_building.scss */
 .container-case {
   border: 2px solid black;
   padding: 2px 2px 2px 2px;
@@ -7819,11 +7820,10 @@ div {
 
 /* line 1, ../sass/_index.scss */
 body {
-  min-height: 1000px;
   padding-top: 70px;
 }
 
-/* line 5, ../sass/_index.scss */
+/* line 4, ../sass/_index.scss */
 .border-after-village {
   display: block;
   height: 30px;
@@ -7832,11 +7832,13 @@ body {
   margin-top: -170px;
 }
 
-/* line 13, ../sass/_index.scss */
+/* line 12, ../sass/_index.scss */
 .after-village-content {
   background: #141414 no-repeat right bottom;
   display: block;
-  height: 300px;
+  min-height: 500px;
+  margin: 0;
+  padding: 0;
   width: 100%;
 }
 
@@ -7896,6 +7898,45 @@ body {
 /* line 5, ../sass/_blog.scss */
 h2.post-title {
   color: black;
+}
+
+/* line 9, ../sass/_blog.scss */
+a:link {
+  text-decoration: none;
+}
+
+/* line 13, ../sass/_blog.scss */
+.container p {
+  text-align: justify;
+}
+
+/* line 17, ../sass/_blog.scss */
+h2 {
+  -webkit-margin-before: 0.83em;
+  -webkit-margin-after: 0.83em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+}
+
+/* line 24, ../sass/_blog.scss */
+h2.section-title {
+  margin: 0 0 30px;
+  padding: 0 0 8px;
+  font-size: 34px;
+  line-height: 34px;
+  font-weight: 700;
+  font-style: italic;
+  color: #1a1a1a;
+  border-bottom: 5px solid #e0e0e0;
+}
+
+/* line 35, ../sass/_blog.scss */
+h3.section-title {
+  margin: 0 0 15px;
+  font-size: 28px;
+  line-height: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
 }
 
 /* Chat */
@@ -7987,26 +8028,218 @@ h2.post-title {
   background-color: #555;
 }
 
-/* line 14, ../sass/layout.scss */
+/* line 1, ../sass/_login.scss */
+.form-signin {
+  max-width: 400px;
+  display: block;
+  background-color: #f7f7f7;
+  -moz-box-shadow: 0 0 3px 3px #888;
+  -webkit-box-shadow: 0 0 3px 3px #888;
+  box-shadow: 0 0 3px 3px #888;
+  border-radius: 2px;
+}
+
+/* line 10, ../sass/_login.scss */
+.main {
+  padding: 38px;
+}
+
+/* line 13, ../sass/_login.scss */
+.social-box {
+  margin: 0 auto;
+  padding: 38px;
+  border-bottom: 1px #ccc solid;
+}
+
+/* line 18, ../sass/_login.scss */
+.social-box a {
+  font-weight: bold;
+  font-size: 16px;
+  padding: 8px;
+}
+
+/* line 23, ../sass/_login.scss */
+.social-box a i {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* line 27, ../sass/_login.scss */
+.heading-desc {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 38px 38px 0px 38px;
+}
+
+/* line 34, ../sass/_login.scss */
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+
+/* line 37, ../sass/_login.scss */
+.form-signin .checkbox {
+  font-weight: normal;
+}
+
+/* line 40, ../sass/_login.scss */
+.form-signin .form-control {
+  position: relative;
+  font-size: 16px;
+  height: 100%;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 49, ../sass/_login.scss */
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+/* line 52, ../sass/_login.scss */
+.form-signin input[type="text"] {
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+/* line 57, ../sass/_login.scss */
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+/* line 61, ../sass/_login.scss */
+.login-footer {
+  background: #f0f0f0;
+  margin: 0 auto;
+  border-top: 1px solid #dadada;
+  padding: 20px;
+}
+
+/* line 67, ../sass/_login.scss */
+.login-footer .left-section a {
+  font-weight: bold;
+  color: #8a8a8a;
+  line-height: 19px;
+}
+
+/* line 72, ../sass/_login.scss */
+.mg-btm {
+  margin-bottom: 20px;
+}
+
+/* line 2, ../sass/_game.scss */
+#leftSide .unit,
+#rightSide .unit {
+  background: white;
+  margin-bottom: 5px;
+  border: 1px solid black;
+}
+
+/* line 9, ../sass/_game.scss */
+#leftSide .selected,
+#rightSide .selected {
+  background: #d7e9f2;
+  border: 1px dashed black;
+}
+
+/* line 15, ../sass/_game.scss */
+#leftSide .valid,
+#rightSide .valid {
+  background: #d9fad9;
+}
+
+/* line 18, ../sass/_game.scss */
+.unit .portrait {
+  overflow: hidden;
+  width: 48px;
+  height: 48px;
+  float: left;
+}
+
+/* line 25, ../sass/_game.scss */
+.unit .name {
+  font-size: 12px;
+  float: left;
+  font-weight: bold;
+}
+
+/* line 31, ../sass/_game.scss */
+.unit .life {
+  margin-top: 10px;
+  height: 16px;
+}
+
+/* line 36, ../sass/_game.scss */
+.unit .stats {
+  font-size: 12px;
+  margin-top: -25px;
+}
+
+/* line 41, ../sass/_game.scss */
+.unit .skills {
+  margin-top: -15px;
+}
+
+/* line 45, ../sass/_game.scss */
+.unit .skills img {
+  float: right;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+/* line 52, ../sass/_game.scss */
+#leftSide .infos,
+#rightSide .infos {
+  background: white;
+  margin-bottom: 5px;
+  border: 1px solid black;
+}
+
+/* line 58, ../sass/_game.scss */
+.infos h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* line 63, ../sass/_game.scss */
+.infos .stats {
+  font-size: 12px;
+}
+
+/* line 67, ../sass/_game.scss */
+.infos hr {
+  margin: 0px;
+}
+
+/* line 71, ../sass/_game.scss */
+.infos hr.delimitor {
+  margin: 0px;
+  margin-top: 10px;
+}
+
+/* line 17, ../sass/layout.scss */
 .navbar-default {
   background-image: url(../../img/background/stone.jpg);
   background-repeat: repeat;
 }
 
-/* line 18, ../sass/layout.scss */
+/* line 21, ../sass/layout.scss */
 .dropdown-menu > li > a > span {
   width: 35px;
   display: inline-block;
 }
 
-/* line 24, ../sass/layout.scss */
+/* line 27, ../sass/layout.scss */
 #menu {
   height: 40px;
   margin-bottom: 30px;
   padding-left: 162px;
 }
 
-/* line 30, ../sass/layout.scss */
+/* line 33, ../sass/layout.scss */
 #menu a.link {
   color: #fff;
   font-size: 18px;
@@ -8016,180 +8249,48 @@ h2.post-title {
   text-decoration: none;
 }
 
-/**
-    Main
-**/
-/** Fix footer end of page **/
-/* line 44, ../sass/layout.scss */
-html, body {
-  height: 100%;
-}
-
-/* line 48, ../sass/layout.scss */
-body {
-  line-height: 32px;
-  font-family: 'TeX Gyre Heros';
-}
-
-/* line 54, ../sass/layout.scss */
+/* line 42, ../sass/layout.scss */
 .nav-tabs {
   background: #7e7259;
   border-bottom: none;
 }
 
-/* line 58, ../sass/layout.scss */
+/* line 46, ../sass/layout.scss */
 .nav-tabs a {
   color: #d5b983;
 }
 
-/* line 62, ../sass/layout.scss */
+/* line 50, ../sass/layout.scss */
 .nav-tabs li a:hover {
   background: #534a36;
   border: none;
 }
 
-/* line 67, ../sass/layout.scss */
+/* line 55, ../sass/layout.scss */
 .nav-tabs .active {
   background: #534a36;
   border: none;
 }
 
-/* line 72, ../sass/layout.scss */
+/**
+    Main
+**/
+/** Fix footer end of page **/
+/* line 66, ../sass/layout.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 70, ../sass/layout.scss */
+body {
+  line-height: 32px;
+  font-family: 'TeX Gyre Heros';
+}
+
+/* line 76, ../sass/layout.scss */
 #wrap {
   position: relative;
   margin: 0 auto;
   min-height: 100%;
   width: 100%;
-}
-
-/**
-  Title & Buttons
-  **/
-/* line 83, ../sass/layout.scss */
-a:link {
-  text-decoration: none;
-}
-
-/* line 87, ../sass/layout.scss */
-.container p {
-  text-align: justify;
-}
-
-/* line 91, ../sass/layout.scss */
-h2 {
-  -webkit-margin-before: 0.83em;
-  -webkit-margin-after: 0.83em;
-  -webkit-margin-start: 0px;
-  -webkit-margin-end: 0px;
-}
-
-/* line 98, ../sass/layout.scss */
-h2.section-title {
-  margin: 0 0 30px;
-  padding: 0 0 8px;
-  font-size: 34px;
-  line-height: 34px;
-  font-weight: 700;
-  font-style: italic;
-  color: #1a1a1a;
-  border-bottom: 5px solid #e0e0e0;
-}
-
-/* line 109, ../sass/layout.scss */
-h3.section-title {
-  margin: 0 0 15px;
-  font-size: 28px;
-  line-height: 28px;
-  font-weight: 700;
-  color: #1a1a1a;
-}
-
-/* line 158, ../sass/layout.scss */
-#leftSide .unit,
-#rightSide .unit {
-  background: white;
-  margin-bottom: 5px;
-  border: 1px solid black;
-}
-
-/* line 165, ../sass/layout.scss */
-#leftSide .selected,
-#rightSide .selected {
-  background: #d7e9f2;
-  border: 1px dashed black;
-}
-
-/* line 171, ../sass/layout.scss */
-#leftSide .valid,
-#rightSide .valid {
-  background: #d9fad9;
-}
-
-/* line 174, ../sass/layout.scss */
-.unit .portrait {
-  overflow: hidden;
-  width: 48px;
-  height: 48px;
-  float: left;
-}
-
-/* line 181, ../sass/layout.scss */
-.unit .name {
-  font-size: 12px;
-  float: left;
-  font-weight: bold;
-}
-
-/* line 187, ../sass/layout.scss */
-.unit .life {
-  margin-top: 10px;
-  height: 16px;
-}
-
-/* line 192, ../sass/layout.scss */
-.unit .stats {
-  font-size: 12px;
-  margin-top: -25px;
-}
-
-/* line 197, ../sass/layout.scss */
-.unit .skills {
-  margin-top: -15px;
-}
-
-/* line 201, ../sass/layout.scss */
-.unit .skills img {
-  float: right;
-  margin-right: 5px;
-  margin-bottom: 5px;
-}
-
-/* line 208, ../sass/layout.scss */
-#leftSide .infos,
-#rightSide .infos {
-  background: white;
-  margin-bottom: 5px;
-  border: 1px solid black;
-}
-
-/* line 214, ../sass/layout.scss */
-.infos h3 {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-/* line 219, ../sass/layout.scss */
-.infos .stats {
-  font-size: 12px;
-}
-
-/* line 223, ../sass/layout.scss */
-.infos hr {
-  margin: 0px;
-}
-
-/* line 227, ../sass/layout.scss */
-.infos hr.delimitor {
-  margin: 0px;
-  margin-top: 10px;
 }

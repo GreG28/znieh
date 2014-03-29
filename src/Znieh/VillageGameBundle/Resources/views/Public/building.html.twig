@@ -52,6 +52,19 @@
 {% block body %}
 
 <div class="container">
+  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Oups !</h4>
+        </div>
+        <div class="modal-body">
+          Vous devez débloquer ce composant avant de pouvoir l'utiliser.
+        </div>
+      </div>
+    </div>
+  </div>
   {% include 'ZniehVillageGameBundle:Public:listBuilding.html.twig'  with { 'buildings' : buildings, 'active' : building.title } %}
   <div class="row">
     <div class="col-lg-4">
@@ -62,35 +75,44 @@
       <div id="weapons">
         <div class="col-lg-4">
           Création d'armes :
-          <div id="droppable" style="margin-bottom: 10px">
-            <div id="weapon-container"></div>
+          <div class="col-lg-8">
+            <span id="droppable" style="height: 40px">
+              <span id="weapon-container"></span>
+            </span>
           </div>
-          <button id="create-weapon" class="btn btn-default">Créer</button>
+          <div class="col-lg-4">
+            <button id="create-weapon" type="button" class="btn btn-default">
+               <span class="glyphicon glyphicon-refresh"></span>
+            </button>
+          </div>
         </div>
         <div class="col-lg-7">
           Vos armes sauvegardées :
           <div id="save-weapon-container">
             {% for i in 0..23 %}
               {% if weapons[i] is defined %}
-                  <span class="container-case"><img src="{{ asset('img/weapons/' ~ weapons[i].img ~'.png') }}" class="img-responsive"></span>
+                  <span class="container-case" data-trigger="hover" data-container="body" data-toggle="popover"
+                  data-placement="bottom" data-html="true" data-original-title='{{ weapons[i].type.name }}' data-content='
+                  <div>
+                    <ul>
+                      {% for part in weapons[i].parts %}
+                        {% for key, effect in part.effects %}
+                        <li>{{ key ~ ' : ' ~ effect }}</li>
+                        {% endfor %}
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  <div class="game-object-points">
+                    5 <img src="{{ asset('img/icons/doubled.png') }}" alt="">
+                  </div>
+                  '>
+                    <img src="{{ asset('img/weapons/' ~ weapons[i].img ~'.png') }}" class="img-responsive weapon-img">
+                  </span>
               {% else %}
                   <span class="container-case empty"></span>
               {% endif %}
             {% endfor %}
-
           </div>
-
-{#           <ul>
-          {% for wep in weapons %}
-            <li> {{ wep.id }}
-                <ul>
-                  {% for part in wep.parts %}
-                    <li>{{ part.name }}</li>
-                  {% endfor %}
-                </ul>
-            </li>
-          {% endfor %}
-          </ul> #}
         </div>
         <div style="display:none">{{ form(form) }}</div>
       </div>
