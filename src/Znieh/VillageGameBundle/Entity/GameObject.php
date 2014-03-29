@@ -5,6 +5,7 @@ namespace Znieh\VillageGameBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * GameObject
@@ -63,6 +64,11 @@ abstract class GameObject
     protected $effects;
 
     /**
+     * @ORM\OneToMany(targetEntity="UnlockedGameObject", mappedBy="object")
+     **/
+    private $unlockeds;
+
+    /**
      * @var array
      *
      * @ORM\Column(name="costs", type="array", nullable=true)
@@ -75,6 +81,7 @@ abstract class GameObject
     public function __construct()
     {
         $this->effects = array();
+        $this->unlockeds = new ArrayCollection();
     }
 
     public function getImg()
@@ -331,5 +338,40 @@ abstract class GameObject
         }
 
         return $this;
+    }
+
+    /**
+     * Add unlockeds
+     *
+     * @param \Znieh\VillageGameBundle\Entity\UnlockedGameObject $unlocked
+     *
+     * @return GameObject
+     */
+    public function addUnlocked(\Znieh\VillageGameBundle\Entity\UnlockedGameObject $unlocked)
+    {
+        $unlocked->setObject($this);
+        $this->unlockeds[] = $unlocked;
+
+        return $this;
+    }
+
+    /**
+     * Remove unlockeds
+     *
+     * @param \Znieh\VillageGameBundle\Entity\UnlockedGameObject $unlocked
+     */
+    public function removeUnlocked(\Znieh\VillageGameBundle\Entity\UnlockedGameObject $unlocked)
+    {
+        $this->unlockeds->removeElement($unlocked);
+    }
+
+    /**
+     * Get unlockeds
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUnlockeds()
+    {
+        return $this->unlockeds;
     }
 }

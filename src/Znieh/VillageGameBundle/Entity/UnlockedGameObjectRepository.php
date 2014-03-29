@@ -26,4 +26,13 @@ class UnlockedGameObjectRepository extends EntityRepository
 
       return $query->getResult();
 	}
+
+  public function findUnlockedArmorPartsByUserAndType($userId, $typeId)
+  {
+      $qb = $this->createQueryBuilder('a');
+      $query =  $qb->leftJoin('a.step', 's')
+                   ->where($qb->expr()->eq('s.building', $building))
+                   ->getQuery();
+      return $query->getResult();
+  }
 }

@@ -31,4 +31,15 @@ class WeaponRepository extends EntityRepository
                  ->getQuery();
      return $query->getResult();
    }
+
+   public function findAllByUser($user)
+    {
+      $qb = $this->createQueryBuilder('w');
+      $query = $qb
+                  ->leftJoin('w.user', 'u')
+                   ->addSelect('u')
+                  ->where($qb->expr()->eq('u.id', $user))
+                  ;
+      return $query;
+    }
 }

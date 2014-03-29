@@ -15,7 +15,8 @@
             <li class="active"><a href="#">Home</a></li>
             <li><a href="{{ path('live_blog_public_index') }}">Blog</a></li>
             <li><a href="{{ path('znieh_villagegame_public_index') }}">Village</a></li>
-            <li><a href="{{ path('znieh_coregame_default_search') }}">Arène</a></li>
+            <li><a href="{{ path('znieh_villagegame_public_index') }}">Caserne</a></li>
+            <li><a href="{{ path('znieh_coregame_default_search') }}">Jouer</a></li>
             <li><a href="#">Boutique</a></li>
             {# <li><a href="{{ path('znieh_coregame_default_index') }}">Jouer</a></li> #}
             {% if is_granted("ROLE_USER") %}
