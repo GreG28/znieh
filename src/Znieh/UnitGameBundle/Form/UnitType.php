@@ -5,6 +5,7 @@ namespace Znieh\UnitGameBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Znieh\UnitGameBundle\Entity\WeaponRepository;
 
 class UnitType extends AbstractType
 {
@@ -20,6 +21,7 @@ class UnitType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $userId = $this->userId;
         $builder
             //->add('cost')
             ->add('name', null, array('label' => 'Nom'))
@@ -45,7 +47,16 @@ class UnitType extends AbstractType
             ))
             //->add('createdAt')
             //->add('updatedAt')
-            ->add('weapon', new WeaponType(), array('label' => 'Arme'))
+            //->add('weapon', new WeaponType(), array('label' => 'Arme'))
+            ->add('weapon', 'entity', array(
+                'label' => 'Arme',
+                'class' => 'ZniehUnitGameBundle:Weapon',
+                'property' => 'id',
+                'required' => true,
+                'query_builder' => function(WeaponRepository $er) use ($userId) {
+                    return $er->findAllByUser($userId);
+                },
+            ))
             ->add('armor', new ArmorType($this->userId), array('label' => 'Armure'))
         ;
     }

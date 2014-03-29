@@ -21,16 +21,16 @@ class ArmorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type', 'entity', array(
+            /*->add('type', 'entity', array(
                 'class' => 'ZniehVillageGameBundle:ArmorType',
                 'property' => 'name',
                 'required' => true
-            ))
-            ->add('helm', new ArmorPieceType($this->userId, 0))
-            ->add('torso', new ArmorPieceType($this->userId, 1))
-            ->add('gloves', new ArmorPieceType($this->userId, 2))
-            ->add('greaves', new ArmorPieceType($this->userId, 3))
-            ->add('boots', new ArmorPieceType($this->userId, 4))
+            ))*/
+            ->add('helm', new ArmorPieceType($this->userId, 'Casque'), array('label' => 'Tête'))
+            ->add('torso', new ArmorPieceType($this->userId, 'Torse'), array('label' => 'Torse'))
+            ->add('gloves', new ArmorPieceType($this->userId, 'Gants'), array('label' => 'Gants'))
+            ->add('greaves', new ArmorPieceType($this->userId, 'Jambes'), array('label' => 'Jambes'))
+            ->add('boots', new ArmorPieceType($this->userId, 'Bottes'), array('label' => 'Bottes'))
             /*
             ->add('pieces', 'bootstrap_collection', array(
                     'type' => new ArmorPieceType(),

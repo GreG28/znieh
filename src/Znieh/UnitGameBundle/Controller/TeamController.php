@@ -31,10 +31,12 @@ class TeamController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('ZniehUnitGameBundle:Team')->findAll();
+        $teams = $em->getRepository('ZniehUnitGameBundle:Team')->findAll();
+        $units = $em->getRepository('ZniehUnitGameBundle:Unit')->findAll();
 
         return array(
-            'entities' => $entities,
+            'teams' => $teams,
+            'units' => $units
         );
     }
     /**

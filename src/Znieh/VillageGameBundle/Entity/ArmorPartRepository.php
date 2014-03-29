@@ -21,7 +21,7 @@ class ArmorPartRepository extends EntityRepository
 	    			 ->addSelect('u')
 	    			 ->leftJoin('u.user', 'us')
 	    			 ->addSelect('us')
-	                 ->where($qb->expr()->eq('t.id', $typeId))
+	                 ->where($qb->expr()->like('t.name', $qb->expr()->literal($typeId.'%')))
 	                 ->andWhere($qb->expr()->eq('us.id', $userId))
 	                 ;
 	    return $query;

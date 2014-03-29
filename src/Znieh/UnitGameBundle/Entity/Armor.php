@@ -66,6 +66,10 @@ class Armor
      */
     private $type;
 
+    public function guessType() {
+        return "Lourd";
+    }
+
     /**
      * Get id
      *

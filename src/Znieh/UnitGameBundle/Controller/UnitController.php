@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Znieh\UnitGameBundle\Entity\Unit;
 use Znieh\UnitGameBundle\Entity\Armor;
 use Znieh\UnitGameBundle\Entity\ArmorPiece;
@@ -16,6 +17,7 @@ use Znieh\UnitGameBundle\Form\UnitType;
  * Unit controller.
  *
  * @Route("/village/create/unit")
+ * @Security("has_role('ROLE_USER')")
  */
 class UnitController extends Controller
 {
@@ -52,8 +54,8 @@ class UnitController extends Controller
 
         if ($form->isValid()) {
             $entity->setUser($this->getUser());
-
             $em = $this->getDoctrine()->getManager();
+            $entity->getArmor()->setType($em->getRepository('ZniehVillageGame:ArmorType')->findOneByName($entity->getArmor()->guessType()));
             $em->persist($entity);
             $em->flush();
 
@@ -95,14 +97,6 @@ class UnitController extends Controller
     public function newAction()
     {
         $entity = new Unit();
-
-        /*$armor = new Armor();
-        $armor->addPiece(new ArmorPiece());
-        $armor->addPiece(new ArmorPiece());
-        $armor->addPiece(new ArmorPiece());
-        $armor->addPiece(new ArmorPiece());
-        $armor->addPiece(new ArmorPiece());
-        $entity->setArmor($armor);*/
         $form   = $this->createCreateForm($entity);
 
         return array(
@@ -172,7 +166,7 @@ class UnitController extends Controller
     */
     private function createEditForm(Unit $entity)
     {
-        $form = $this->createForm(new UnitType(), $entity, array(
+        $form = $this->createForm(new UnitType($this->getUser()->getId()), $entity, array(
             'action' => $this->generateUrl('village_create_unit_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
