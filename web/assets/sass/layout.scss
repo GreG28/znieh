@@ -10,6 +10,9 @@
 @import "search";
 @import "blog";
 @import "chat";
+@import "login";
+@import "game";
+
 
 .navbar-default {
   background-image: url(../../img/background/stone.jpg);
@@ -36,21 +39,6 @@
     text-decoration:none;
 }
 
-/**
-    Main
-**/
-
-/** Fix footer end of page **/
-html, body {
-  height: 100%;
-}
-
-body {
-  // font-size: 18px;
-  line-height: 32px;
-  font-family: 'TeX Gyre Heros';
-}
-
 .nav-tabs {
   background: #7e7259;
   border-bottom: none;
@@ -69,162 +57,25 @@ body {
   border: none;
 }
 
+
+/**
+    Main
+**/
+
+/** Fix footer end of page **/
+html, body {
+  height: 100%;
+}
+
+body {
+  // font-size: 18px;
+  line-height: 32px;
+  font-family: 'TeX Gyre Heros';
+}
+
 #wrap {
   position: relative;
   margin: 0 auto;
   min-height: 100%;
   width: 100%;
-}
-
-/**
-  Title & Buttons
-  **/
-
-a:link {
-  text-decoration: none;
-}
-
-.container p {
-  text-align: justify;
-}
-
-h2 {
-    -webkit-margin-before: 0.83em;
-    -webkit-margin-after: 0.83em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-}
-
-h2.section-title {
-    margin: 0 0 30px;
-    padding: 0 0 8px;
-    font-size: 34px;
-    line-height: 34px;
-    font-weight: 700;
-    font-style: italic;
-    color: #1a1a1a;
-    border-bottom: 5px solid #e0e0e0;
-}
-
-h3.section-title {
-    margin: 0 0 15px;
-    font-size: 28px;
-    line-height: 28px;
-    font-weight: 700;
-    color: #1a1a1a;
-}
-
-// .btn-action {
-//   font-size: 16px;
-//   border: none;
-//   background: #ffcc00;
-//   color: #ffffff;
-//   padding: 9px 12px 10px;
-//   line-height: 22px;
-//   text-decoration: none;
-//   text-shadow: none;
-//   -webkit-border-radius: 6px;
-//   -moz-border-radius: 6px;
-//   border-radius: 6px;
-//   -webkit-box-shadow: none;
-//   -moz-box-shadow: none;
-//   box-shadow: none;
-//   -webkit-transition: 0.25s;
-//   -moz-transition: 0.25s;
-//   -o-transition: 0.25s;
-//   transition: 0.25s;
-//   -webkit-backface-visibility: hidden;
-// }
-
-// .btn-action:hover {
-//   background-color: orange;
-//   color: #ffffff;
-//   outline: none;
-//   -webkit-transition: 0.25s;
-//   -moz-transition: 0.25s;
-//   -o-transition: 0.25s;
-//   transition: 0.25s;
-//   -webkit-backface-visibility: hidden;
-// }
-// .btn-action.facebook, input.btn-submit.facebook {
-//    background: #3B5998;
-//    margin-bottom: 10px;
-// }
-// .btn-action.facebook:hover, .btn-submit.facebook:hover {
-//    background: #344e86;
-// }
-
-#leftSide .unit,
-#rightSide .unit {
-  background: white;
-  margin-bottom: 5px;
-  border: 1px solid black;
-}
-
-#leftSide .selected,
-#rightSide .selected {
-  background: #d7e9f2;
-  border: 1px dashed black;
-}
-
-#leftSide .valid,
-#rightSide .valid {
-  background: #d9fad9;
-}
-.unit .portrait {
-  overflow: hidden;
-  width: 48px;
-  height: 48px;
-  float: left;
-}
-
-.unit .name {
-  font-size: 12px;
-  float:left;
-  font-weight: bold;
-}
-
-.unit .life {
-  margin-top:10px;
-  height: 16px;
-}
-
-.unit .stats {
-  font-size: 12px;
-  margin-top: -25px;
-}
-
-.unit .skills {
-  margin-top: -15px;
-}
-
-.unit .skills img {
-  float: right;
-  margin-right: 5px;
-  margin-bottom: 5px;
-}
-
-#leftSide .infos,
-#rightSide .infos {
-  background: white;
-  margin-bottom: 5px;
-  border: 1px solid black;
-}
-
-.infos h3 {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.infos .stats {
-  font-size: 12px;
-}
-
-.infos hr {
-  margin: 0px;
-}
-
-.infos hr.delimitor {
-  margin: 0px;
-  margin-top: 10px;
 }

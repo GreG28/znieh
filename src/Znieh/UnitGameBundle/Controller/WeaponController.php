@@ -56,7 +56,7 @@ class WeaponController extends Controller
                 $em->persist($entity);
                 $em->flush();
 
-                return new JsonResponse('ok');
+                return new JsonResponse(array('img' => $entity->getImg()));
             }
             return new JsonResponse('error', 401);
         }
