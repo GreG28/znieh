@@ -7,20 +7,23 @@
 {% block body %}
 <div class="container" style="text-align: center">
   <br>
-  <h3>Bienvenue sur Znieh Games !</h3>
-
-  <a href="{{ path('znieh_villagegame_public_index') }}">
-    <img class="village" src="{{ asset('img/villageombre.png') }}" alt="" style="margin-top: -40px;">
-  </a>
-  <img src="{{ asset('img/LogoJeu.png') }}" alt="">
-  <a href="{{ path('znieh_coregame_default_search') }}">
-    <img class="arene" src="{{ asset('img/areneombre.png') }}" alt="" style="margin-top: 20px;">
-  </a>
+  <div class="row">
+    <div class="col-md-6 col-md-push-3">
+      <h1>Bienvenue sur Znieh Games !</h1>
+      <img src="{{ asset('img/LogoJeu.png') }}" alt="" style="margin: 0 auto;" class="img-responsive">
+    </div>
+    <div class="col-md-3 col-md-pull-6">
+      <a href="{{ path('znieh_villagegame_public_index') }}">
+        <img class="village" src="{{ asset('img/villageombre.png') }}" alt="" style="margin-top: 200px;">
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a href="{{ path('znieh_coregame_default_search') }}">
+        <img class="arene" src="{{ asset('img/areneombre.png') }}" alt="" style="margin-top: 260px; position: relative" class="img-responsive">
+      </a>
+    </div>
+  </div>
 </div>
-<div class="container">
-
-
-</div>
-    <div class="border-after-village"></div>
-    <div class="after-village-content"></div>
+<div class="border-after-village"></div>
+<div class="after-village-content"></div>
 {% endblock %}

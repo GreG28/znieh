@@ -25,6 +25,7 @@
     $(document).ready(function() {
 
         $('.game-object').popover();
+        $('.container-case').popover();
         var form = $('#znieh_unitgamebundle_weapon').parent();
 
         function isWeaponBuilding() {
@@ -69,7 +70,7 @@
                 //console.log($(this).parent());
                 $(this).parent().clone().appendTo("#weapon-container");
              } else {
-              alert("Vous devez débloquer ce composant avant de pouvoir l'utiliser.");
+              $('.modal').modal('show');
              }
          });
 
@@ -77,13 +78,14 @@
          $('#create-weapon').on('click', function(){
             // console.og($().children());
             $("#weapon-container").children().fadeOut("slow");
+            $('.draggable').removeClass('selected');
             $.ajax({
                  type     : "POST",
                  cache    : false,
                  url      : $(form).attr('action'),
                  data     : $(form).serialize(),
                  success  : function(data) {
-                     $("#save-weapon-container").find('.empty:first').append('<img src="/znieh/web/img/icons/lame.png" class="img-responsive">');
+                     $("#save-weapon-container").find('.empty:first').append('<img src="/znieh/web/img/weapons/' + data.img + '.png" class="img-responsive">');
                      $(form)[0].reset();
                  },
                  error  : function(data) {

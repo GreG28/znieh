@@ -121,8 +121,9 @@ div {
 .game-object-points {
   float: left;
 }
+
 .draggable.selected {
-  border: 2px solid #657405;
+  border: 2px solid $white;
 }
 
 #weapon-container {
@@ -130,6 +131,7 @@ div {
   height: 40px;
   width: 135px;
   background: $container-color;
+  display: inline-block;
 }
 
 #save-weapon-container {

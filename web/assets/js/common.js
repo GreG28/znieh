@@ -4,6 +4,7 @@
  * This file is included in ::_requirejs.html.twig and in Gruntfile.js.
  */
 requirejs.config({
+    urlArgs: "bust=" + (new Date()).getTime(),
     paths: {
         /**
          * Paths are relative to baseUrl, which should be set before including
