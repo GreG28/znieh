@@ -71,6 +71,15 @@ class Weapon
         return $type . '/' . $i;
     }
 
+    public function getPoints()
+    {
+        $i = 0;
+        foreach ($this->parts as $part) {
+            $i += $part->getPoints();
+        }
+        return $i;
+    }
+
     public function isWeaponValid(ExecutionContextInterface $context)
     {
 

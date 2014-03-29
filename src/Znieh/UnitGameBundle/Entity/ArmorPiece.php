@@ -10,7 +10,7 @@ use JMS\Serializer\Annotation\Expose;
  * ArmorPiece
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Znieh\UnitGameBundle\Entity\ArmorPieceRepository")
  * @ExclusionPolicy("all")
  */
 class ArmorPiece

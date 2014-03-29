@@ -30,10 +30,34 @@ class Armor
     private $user;
 
     /**
-     * @ORM\ManyToMany(targetEntity="ArmorPiece", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="ArmorPiece", cascade={"persist"})
      * @Expose
      */
-    private $pieces;
+    private $helm;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ArmorPiece", cascade={"persist"})
+     * @Expose
+     */
+    private $torso;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ArmorPiece", cascade={"persist"})
+     * @Expose
+     */
+    private $gloves;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ArmorPiece", cascade={"persist"})
+     * @Expose
+     */
+    private $greaves;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ArmorPiece", cascade={"persist"})
+     * @Expose
+     */
+    private $boots;
 
     /**
      * @ORM\ManyToOne(targetEntity="Znieh\VillageGameBundle\Entity\ArmorType")
@@ -139,5 +163,125 @@ class Armor
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set helm
+     *
+     * @param \Znieh\UnitGameBundle\Entity\ArmorPiece $helm
+     *
+     * @return Armor
+     */
+    public function setHelm(\Znieh\UnitGameBundle\Entity\ArmorPiece $helm = null)
+    {
+        $this->helm = $helm;
+
+        return $this;
+    }
+
+    /**
+     * Get helm
+     *
+     * @return \Znieh\UnitGameBundle\Entity\ArmorPiece 
+     */
+    public function getHelm()
+    {
+        return $this->helm;
+    }
+
+    /**
+     * Set torso
+     *
+     * @param \Znieh\UnitGameBundle\Entity\ArmorPiece $torso
+     *
+     * @return Armor
+     */
+    public function setTorso(\Znieh\UnitGameBundle\Entity\ArmorPiece $torso = null)
+    {
+        $this->torso = $torso;
+
+        return $this;
+    }
+
+    /**
+     * Get torso
+     *
+     * @return \Znieh\UnitGameBundle\Entity\ArmorPiece 
+     */
+    public function getTorso()
+    {
+        return $this->torso;
+    }
+
+    /**
+     * Set gloves
+     *
+     * @param \Znieh\UnitGameBundle\Entity\ArmorPiece $gloves
+     *
+     * @return Armor
+     */
+    public function setGloves(\Znieh\UnitGameBundle\Entity\ArmorPiece $gloves = null)
+    {
+        $this->gloves = $gloves;
+
+        return $this;
+    }
+
+    /**
+     * Get gloves
+     *
+     * @return \Znieh\UnitGameBundle\Entity\ArmorPiece 
+     */
+    public function getGloves()
+    {
+        return $this->gloves;
+    }
+
+    /**
+     * Set greaves
+     *
+     * @param \Znieh\UnitGameBundle\Entity\ArmorPiece $greaves
+     *
+     * @return Armor
+     */
+    public function setGreaves(\Znieh\UnitGameBundle\Entity\ArmorPiece $greaves = null)
+    {
+        $this->greaves = $greaves;
+
+        return $this;
+    }
+
+    /**
+     * Get greaves
+     *
+     * @return \Znieh\UnitGameBundle\Entity\ArmorPiece 
+     */
+    public function getGreaves()
+    {
+        return $this->greaves;
+    }
+
+    /**
+     * Set boots
+     *
+     * @param \Znieh\UnitGameBundle\Entity\ArmorPiece $boots
+     *
+     * @return Armor
+     */
+    public function setBoots(\Znieh\UnitGameBundle\Entity\ArmorPiece $boots = null)
+    {
+        $this->boots = $boots;
+
+        return $this;
+    }
+
+    /**
+     * Get boots
+     *
+     * @return \Znieh\UnitGameBundle\Entity\ArmorPiece 
+     */
+    public function getBoots()
+    {
+        return $this->boots;
     }
 }
