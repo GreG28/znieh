@@ -20,6 +20,7 @@ requirejs.config({
          */
         jquery: '../vendor/jquery/dist/jquery.min',
         jqueryui: '../libs/jquery-ui-1.10.4.custom.min',
+        collection: '../libs/bootstrap-collection',
         bootstrap: '../vendor/bootstrap/dist/js/bootstrap.min',
         socketio: '../vendor/socket.io-client/dist/socket.io.min',
         moment: '../vendor/momentjs/min/moment-with-langs.min',
@@ -41,6 +42,7 @@ requirejs.config({
          */
         bootstrap: ['jquery'],
         jqueryui: ['jquery'],
+        collection: ['jquery'],
         fos_routing: { exports: 'Routing' }
     }
 });
