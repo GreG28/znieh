@@ -1,6 +1,8 @@
 {
     "name": "symfony/framework-standard-edition",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "license": "proprietary",
+    "type": "project",
+    "description": "Znieh Games Website",
     "autoload": {
         "psr-0": { "": "src/" }
     },
@@ -41,7 +43,6 @@
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
@@ -53,8 +54,6 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ]
     },
-    "minimum-stability": "dev",
-    "license": "proprietary",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
@@ -62,7 +61,7 @@
             "file": "app/config/parameters.yml"
         },
          "branch-alias": {
-            "dev-master": "2.3-dev"
+            "dev-master": "2.4-dev"
          }
     }
 }
