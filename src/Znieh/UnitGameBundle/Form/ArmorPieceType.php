@@ -28,6 +28,7 @@ class ArmorPieceType extends AbstractType
         $userId = $this->userId;
         $builder
             ->add('part', 'entity', array(
+                'label' => 'Pièce',
                 'class' => 'ZniehVillageGameBundle:ArmorPart',
                 'property' => 'name',
                 'required' => true,
@@ -36,10 +37,12 @@ class ArmorPieceType extends AbstractType
                 },
             ))
             ->add('rune', 'entity', array(
+                'label' => 'Rune',
                 'class' => 'ZniehVillageGameBundle:Rune',
                 'property' => 'name',
             ))
             ->add('insigna', 'entity', array(
+                'label' => 'Insigne',
                 'class' => 'ZniehVillageGameBundle:Insigna',
                 'property' => 'name',
             ))
