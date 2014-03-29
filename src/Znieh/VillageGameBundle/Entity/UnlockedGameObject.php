@@ -23,7 +23,7 @@ class UnlockedGameObject
 
     /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="GameObject")
+     * @ORM\ManyToOne(targetEntity="GameObject", inversedBy="unlockeds")
      */
     protected $object;
 

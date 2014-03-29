@@ -8,7 +8,13 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ArmorType extends AbstractType
 {
-        /**
+    private $userId;
+
+    public function __construct($userId) {
+        $this->userId = $userId;
+    }
+
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -20,13 +26,22 @@ class ArmorType extends AbstractType
                 'property' => 'name',
                 'required' => true
             ))
-            ->add('parts', 'entity', array(
-                    'class' => 'ZniehVillageGameBundle:ArmorPart',
-                    'property' => 'name',
-                    'multiple' => true,
-                    'expanded' => true,
-                    'required' => true
-                ))
+            ->add('helm', new ArmorPieceType($this->userId, 0))
+            ->add('torso', new ArmorPieceType($this->userId, 1))
+            ->add('gloves', new ArmorPieceType($this->userId, 2))
+            ->add('greaves', new ArmorPieceType($this->userId, 3))
+            ->add('boots', new ArmorPieceType($this->userId, 4))
+            /*
+            ->add('pieces', 'bootstrap_collection', array(
+                    'type' => new ArmorPieceType(),
+                    'by_reference' => false,
+                    'allow_add'          => true,
+                    'allow_delete'       => true,
+                    'add_button_text'    => 'Ajouter une question',
+                    'delete_button_text' => 'Supprimer la question',
+                    'sub_widget_col'     => 10,
+                    'button_col'         => 2
+                ))*/
         ;
     }
 

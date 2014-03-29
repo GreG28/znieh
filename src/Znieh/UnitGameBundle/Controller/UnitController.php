@@ -8,6 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Znieh\UnitGameBundle\Entity\Unit;
+use Znieh\UnitGameBundle\Entity\Armor;
+use Znieh\UnitGameBundle\Entity\ArmorPiece;
 use Znieh\UnitGameBundle\Form\UnitType;
 
 /**
@@ -73,7 +75,7 @@ class UnitController extends Controller
      */
     private function createCreateForm(Unit $entity)
     {
-        $form = $this->createForm(new UnitType(), $entity, array(
+        $form = $this->createForm(new UnitType($this->getUser()->getId()), $entity, array(
             'action' => $this->generateUrl('village_create_unit_create'),
             'method' => 'POST',
         ));
@@ -93,6 +95,14 @@ class UnitController extends Controller
     public function newAction()
     {
         $entity = new Unit();
+
+        /*$armor = new Armor();
+        $armor->addPiece(new ArmorPiece());
+        $armor->addPiece(new ArmorPiece());
+        $armor->addPiece(new ArmorPiece());
+        $armor->addPiece(new ArmorPiece());
+        $armor->addPiece(new ArmorPiece());
+        $entity->setArmor($armor);*/
         $form   = $this->createCreateForm($entity);
 
         return array(

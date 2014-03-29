@@ -20,6 +20,7 @@ class LoadStepData extends AbstractFixtureLoader implements OrderedFixtureInterf
         // Create steps
         foreach($stepsData as $stepData) {
             $step = new Step();
+            echo $stepData['title'];
 
             $building = $this->getReference('Building-' . $stepData['building']);
 
@@ -36,9 +37,9 @@ class LoadStepData extends AbstractFixtureLoader implements OrderedFixtureInterf
             }
 
             $manager->persist($step);
+            $manager->flush();
             $this->addReference('Step-' . $step->getTitle(), $step);
         }
-        $manager->flush();
     }
 
     /**

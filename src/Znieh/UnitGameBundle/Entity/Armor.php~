@@ -30,22 +30,35 @@ class Armor
     private $user;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Znieh\VillageGameBundle\Entity\ArmorPart", cascade={"persist"})
-    * @Expose
-    */
-    private $parts;
+     * @ORM\ManyToOne(targetEntity="ArmorPiece", cascade={"persist"})
+     * @Expose
+     */
+    private $helm;
+
 
     /**
-    * @ORM\ManyToMany(targetEntity="Znieh\VillageGameBundle\Entity\Rune", cascade={"persist"})
-    * @Expose
-    */
-    private $runes;
+     * @ORM\ManyToOne(targetEntity="ArmorPiece", cascade={"persist"})
+     * @Expose
+     */
+    private $torso;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Znieh\VillageGameBundle\Entity\Insigna", cascade={"persist"})
-    * @Expose
-    */
-    private $insignas;
+     * @ORM\ManyToOne(targetEntity="ArmorPiece", cascade={"persist"})
+     * @Expose
+     */
+    private $gloves;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ArmorPiece", cascade={"persist"})
+     * @Expose
+     */
+    private $greaves;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ArmorPiece", cascade={"persist"})
+     * @Expose
+     */
+    private $boots;
 
     /**
      * @ORM\ManyToOne(targetEntity="Znieh\VillageGameBundle\Entity\ArmorType")
@@ -53,7 +66,6 @@ class Armor
      * @Expose
      */
     private $type;
-
 
     /**
      * Get id
@@ -69,7 +81,7 @@ class Armor
      */
     public function __construct()
     {
-        $this->parts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->pieces = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -99,25 +111,25 @@ class Armor
     /**
      * Add parts
      *
-     * @param \Znieh\VillageGameBundle\Entity\ArmorPart $parts
+     * @param \Znieh\UnitGameBundle\Entity\ArmorPiece $piece
      *
      * @return Armor
      */
-    public function addPart(\Znieh\VillageGameBundle\Entity\ArmorPart $parts)
+    public function addPiece(\Znieh\UnitGameBundle\Entity\ArmorPiece $piece)
     {
-        $this->parts[] = $parts;
+        $this->pieces[] = $piece;
 
         return $this;
     }
 
     /**
-     * Remove parts
+     * Remove pieces
      *
-     * @param \Znieh\VillageGameBundle\Entity\ArmorPart $parts
+     * @param \Znieh\UnitGameBundle\Entity\ArmorPieces $pieces
      */
-    public function removePart(\Znieh\VillageGameBundle\Entity\ArmorPart $parts)
+    public function removePiece(\Znieh\UnitGameBundle\Entity\ArmorPiece $piece)
     {
-        $this->parts->removeElement($parts);
+        $this->pieces->removeElement($piece);
     }
 
     /**
@@ -125,9 +137,9 @@ class Armor
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getParts()
+    public function getPieces()
     {
-        return $this->parts;
+        return $this->pieces;
     }
 
     /**

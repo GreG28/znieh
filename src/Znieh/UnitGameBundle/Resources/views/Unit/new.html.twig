@@ -1,6 +1,11 @@
 {% extends '::base.html.twig' %}
 
-{% block body -%}
+{% block requirejs %}
+    {{ include('::_requirejs.html.twig', { 'module': 'app/create/unit' }) }}
+{% endblock %}
+
+
+{% block body %}
 <div class="container">
       <h1>Création d'une nouvelle unité</h1>
 

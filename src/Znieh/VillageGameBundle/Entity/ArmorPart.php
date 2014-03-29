@@ -8,7 +8,7 @@ use JMS\Serializer\Annotation\Expose;
 
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Znieh\VillageGameBundle\Entity\ArmorPartRepository")
  * @ExclusionPolicy("all")
  */
 class ArmorPart extends GameObject
