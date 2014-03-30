@@ -109,6 +109,11 @@ class Unit
         $this->teams = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    public function getPoints()
+    {
+        return $this->weapon->getPoints() + $this->armor->getPoints();
+    }
+
 
     /**
      * Get id

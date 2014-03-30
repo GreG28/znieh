@@ -96,7 +96,10 @@ class PublicController extends Controller
             }
         }
 
+        $weaponBuilding = in_array($building->getTitle(), array('Forge', 'Archerie', 'Hacherie'));
+
         return array(
+            'weaponBuilding' => $weaponBuilding,
             'steps'     => $steps,
             'building'  => $building,
             'buildings' => $buildings,

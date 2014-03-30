@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Znieh\VillageGameBundle\Entity\ArmorPartRepository;
+use Znieh\VillageGameBundle\Entity\RuneRepository;
+use Znieh\VillageGameBundle\Entity\InsignaRepository;
 
 class ArmorPieceType extends AbstractType
 {
@@ -40,11 +42,19 @@ class ArmorPieceType extends AbstractType
                 'label' => 'Rune',
                 'class' => 'ZniehVillageGameBundle:Rune',
                 'property' => 'name',
+                'required' => false,
+                'query_builder' => function(RuneRepository $er) use ($userId) {
+                    return $er->findUnlockedsByUser($userId);
+                },
             ))
             ->add('insigna', 'entity', array(
                 'label' => 'Insigne',
                 'class' => 'ZniehVillageGameBundle:Insigna',
                 'property' => 'name',
+                'required' => false,
+                'query_builder' => function(InsignaRepository $er) use ($userId) {
+                    return $er->findUnlockedsByUser($userId);
+                },
             ))
         ;
     }

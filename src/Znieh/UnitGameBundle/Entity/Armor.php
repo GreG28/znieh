@@ -66,8 +66,14 @@ class Armor
      */
     private $type;
 
-    public function guessType() {
+    public function guessType() 
+    {
         return "Lourd";
+    }
+
+    public function getPoints()
+    {
+        return $this->helm->getPoints() + $this->torso->getPoints() + $this->gloves->getPoints() + $this->greaves->getPoints() + $this->boots->getPoints();
     }
 
     /**
@@ -109,40 +115,6 @@ class Armor
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * Add parts
-     *
-     * @param \Znieh\UnitGameBundle\Entity\ArmorPiece $piece
-     *
-     * @return Armor
-     */
-    public function addPiece(\Znieh\UnitGameBundle\Entity\ArmorPiece $piece)
-    {
-        $this->pieces[] = $piece;
-
-        return $this;
-    }
-
-    /**
-     * Remove pieces
-     *
-     * @param \Znieh\UnitGameBundle\Entity\ArmorPieces $pieces
-     */
-    public function removePiece(\Znieh\UnitGameBundle\Entity\ArmorPiece $piece)
-    {
-        $this->pieces->removeElement($piece);
-    }
-
-    /**
-     * Get parts
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPieces()
-    {
-        return $this->pieces;
     }
 
     /**
