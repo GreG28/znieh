@@ -9,14 +9,11 @@
 <div class="container">
       <h1>Création d'une nouvelle unité</h1>
 
-      {{ form(form, { 'style': 'horizontal', 'label_col': 4, 'widget_col': 8 }) }}
+      {{ form(form, { 'style': 'horizontal', 'label_col': 3, 'widget_col': 8 }) }}
 
-          <ul class="record_actions">
-      <li>
-          <a href="{{ path('village_create_unit') }}">
-              Back to the list
-          </a>
-      </li>
-  </ul>
+    <a href="{{ path('village_create_unit') }}">
+              Retour
+    </a>
+
 </div>
 {% endblock %}

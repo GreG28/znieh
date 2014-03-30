@@ -55,11 +55,11 @@ class UnitController extends Controller
         if ($form->isValid()) {
             $entity->setUser($this->getUser());
             $em = $this->getDoctrine()->getManager();
-            $entity->getArmor()->setType($em->getRepository('ZniehVillageGame:ArmorType')->findOneByName($entity->getArmor()->guessType()));
+            $entity->getArmor()->setType($em->getRepository('ZniehVillageGameBundle:ArmorType')->findOneByName($entity->getArmor()->guessType()));
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('village_create_unit_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('znieh_unitgame_team_index'));
         }
 
         return array(
