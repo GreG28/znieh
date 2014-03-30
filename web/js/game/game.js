@@ -251,5 +251,9 @@ function setSocketOnForGame()
     for(var i = 0 ; i < data.length ; i++) {
       ContentManager.newUnit(data[i]._i,data[i]._j, ennemyUnits[i].sprite, ennemyUnits[i].taille, i, false, ennemyUnits[i].name);
     }
-  });  
+  });
+
+  socket.on('service', function (data) {
+    console.log('service message : ' + data.msg);
+  });
 }
