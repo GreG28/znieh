@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class UnitRepository extends EntityRepository
 {
+
+	public function findAllByUser($userId)
+	 {
+	   $qb = $this->createQueryBuilder('t');
+	   $query = $qb->leftJoin('t.user', 'u')
+	               ->addSelect('u')
+	               ->where($qb->expr()->eq('u.id', $userId))
+					;
+	   return $query;
+	 }
 }

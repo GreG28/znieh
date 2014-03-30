@@ -5,15 +5,23 @@ namespace Znieh\UnitGameBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Znieh\UnitGameBundle\Entity\UnitRepository;
 
 class TeamType extends AbstractType
 {
-        /**
+    private $userId;
+
+    public function __construct($userId) {
+        $this->userId = $userId;
+    }
+
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $userId = $this->userId;
         $builder
             ->add('name')
             ->add('units', 'entity', array(
@@ -22,7 +30,10 @@ class TeamType extends AbstractType
                 'property' => 'name',
                 'multiple' => true,
                 'expanded' => true,
-                'required' => true
+                'required' => true,
+                'query_builder' => function(UnitRepository $er) use ($userId) {
+                    return $er->findAllByUser($userId);
+                },
             ))
             /*->add('unitsAdded', 'bootstrap_collection', array(
                 'type' => new UnitType(),

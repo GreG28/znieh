@@ -54,6 +54,11 @@ class ArmorPiece
         $this->createdAt = new \DateTime();
     }
 
+    public function getPoints()
+    {
+        return $this->part->getPoints() + $this->rune->getPoints() + $this->insigna->getPoints();
+    }
+
 
     /**
      * Get id

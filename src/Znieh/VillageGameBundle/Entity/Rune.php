@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Znieh\VillageGameBundle\Entity\RuneRepository")
  */
 class Rune extends GameObject
 {

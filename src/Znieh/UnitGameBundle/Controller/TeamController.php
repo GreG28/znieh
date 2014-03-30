@@ -23,7 +23,7 @@ class TeamController extends Controller
     /**
      * Lists all Team entities.
      *
-     * @Route("/", name="village_create_team")
+     * @Route("/")
      * @Method("GET")
      * @Template()
      */
@@ -31,8 +31,8 @@ class TeamController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $teams = $em->getRepository('ZniehUnitGameBundle:Team')->findAll();
-        $units = $em->getRepository('ZniehUnitGameBundle:Unit')->findAll();
+        $teams = $em->getRepository('ZniehUnitGameBundle:Team')->findBy(array('user' => $this->getUser()));
+        $units = $em->getRepository('ZniehUnitGameBundle:Unit')->findBy(array('user' => $this->getUser()));
 
         return array(
             'teams' => $teams,
@@ -77,7 +77,7 @@ class TeamController extends Controller
      */
     private function createCreateForm(Team $entity)
     {
-        $form = $this->createForm(new TeamType(), $entity, array(
+        $form = $this->createForm(new TeamType($this->getUser()->getId()), $entity, array(
             'action' => $this->generateUrl('village_create_team_create'),
             'method' => 'POST',
         ));
@@ -166,7 +166,7 @@ class TeamController extends Controller
     */
     private function createEditForm(Team $entity)
     {
-        $form = $this->createForm(new TeamType(), $entity, array(
+        $form = $this->createForm(new TeamType($this->getUser()->getId()), $entity, array(
             'action' => $this->generateUrl('village_create_team_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));

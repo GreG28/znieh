@@ -14,19 +14,23 @@
         armor:
           type: Intermédiaire
           pieces:
-            1:
+            helm:
               part: Casque en cuir brut d'armure
               rune: Rune du survivant majeur
               insigna: Insigne de bénédiction
-            2:
+            torso:
               part: Torse en cuir rêche de parade
               rune: Rune de rayonement majeur
               insigna: Insigne de bénédiction
-            3:
+            gloves:
+              part: Gants en cuir rêche de parade
+              rune: Rune de rayonement majeur
+              insigna: Insigne de bénédiction
+            greaves:
               part: Jambes en cuir rêche de précision
               rune: Rune de rayonement majeur
               insigna: Insigne de bénédiction
-            4:
+            boots:
               part: Bottes en cuir rêche de défense
               rune: Rune de bénédiction mineur
               insigna: Insigne de bénédiction
