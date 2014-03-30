@@ -116,7 +116,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
                         if(units[idUnit].statut == 0) {
                             
                             // TODO
-                            socket.emit('placement-unit', {id:idUnit,i:_i,j:_j}, function(data) {
+                            socket.emit('place-unit', {unit:idUnit,x:_i,y:_j}, function(data) {
                                 console.log("placement unit -> " + data);
                                 ContentManager.newUnit(_i,_j, units[idUnit].sprite, units[idUnit].taille, idUnit, true, units[idUnit].name);
 

@@ -68,6 +68,7 @@ module.exports = function(player) {
 	});
 
 	player.socket.on("place-unit", function(data, callback) {
+		console.log(" CONNARD !!!! place-unit ->" + data.x + "  " + data.y + "  " + data.unit);
 		if(player.battle.mapSelected === false) {
 			callback(false);
 			player.socket.emit('service', { msg: 'Map is not selected.'});
@@ -92,6 +93,7 @@ module.exports = function(player) {
 			return -4;
 		}
 
+		console.log("place-unit ->" + data.x + "  " + data.y + "  " + data.unit);
 		player.battle.map.layers[data.x][data.y] = data.unit;
 	});
 
@@ -153,6 +155,9 @@ module.exports = function(player) {
 			} else {
 				player.battle.player1.status = 'placing-units';
 				player.battle.player2.status = 'placing-units';
+
+				//TODO
+				player.battle.status = 'placement-started';
 
 				player.battle.player1.socket.emit("placement-started", null);
 				player.battle.player2.socket.emit("placement-started", null);
