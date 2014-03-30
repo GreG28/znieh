@@ -72,50 +72,54 @@
       <p>{{ building.description }}</p>
     </div>
     <div class="col-lg-8">
-      <div id="weapons">
-        <div class="col-lg-4">
-          Création d'armes :
-          <div class="col-lg-8">
-            <span id="droppable" style="height: 40px">
-              <span id="weapon-container"></span>
-            </span>
-          </div>
+      {% if weaponBuilding == true %}
+        <div id="weapons">
           <div class="col-lg-4">
-            <button id="create-weapon" type="button" class="btn btn-default">
-               <span class="glyphicon glyphicon-refresh"></span>
-            </button>
+            Création d'armes :
+            <div class="col-lg-8">
+              <span id="droppable" style="height: 40px">
+                <span id="weapon-container"></span>
+              </span>
+            </div>
+            <div class="col-lg-4">
+              <button id="create-weapon" type="button" class="btn btn-default">
+                 <span class="glyphicon glyphicon-refresh"></span>
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-7">
-          Vos armes sauvegardées :
-          <div id="save-weapon-container">
-            {% for i in 0..23 %}
-              {% if weapons[i] is defined %}
-                  <span class="container-case" data-trigger="hover" data-container="body" data-toggle="popover"
-                  data-placement="bottom" data-html="true" data-original-title='{{ weapons[i].type.name }}' data-content='
-                  <div>
-                    <ul>
-                      {% for part in weapons[i].parts %}
-                        {% for key, effect in part.effects %}
-                        <li>{{ key ~ ' : ' ~ effect }}</li>
+          <div class="col-lg-7">
+            Vos armes sauvegardées :
+            <div id="save-weapon-container">
+              {% for i in 0..23 %}
+                {% if weapons[i] is defined %}
+                    <span class="container-case" data-trigger="hover" data-container="body" data-toggle="popover"
+                    data-placement="bottom" data-html="true" data-original-title='{{ weapons[i].type.name }}' data-content='
+                    <div>
+                      <ul>
+                        {% for part in weapons[i].parts %}
+                          {% for key, effect in part.effects %}
+                          <li>{{ key ~ ' : ' ~ effect }}</li>
+                          {% endfor %}
                         {% endfor %}
-                      {% endfor %}
-                    </ul>
-                  </div>
-                  <div class="game-object-points">
-                    5 <img src="{{ asset('img/icons/doubled.png') }}" alt="">
-                  </div>
-                  '>
-                    <img src="{{ asset('img/weapons/' ~ weapons[i].img ~'.png') }}" class="img-responsive weapon-img">
-                  </span>
-              {% else %}
-                  <span class="container-case empty"></span>
-              {% endif %}
-            {% endfor %}
+                      </ul>
+                    </div>
+                    <div class="game-object-points">
+                      5 <img src="{{ asset('img/icons/doubled.png') }}" alt="">
+                    </div>
+                    '>
+                      <img src="{{ asset('img/weapons/' ~ weapons[i].img ~'.png') }}" class="img-responsive weapon-img">
+                    </span>
+                {% else %}
+                    <span class="container-case empty"></span>
+                {% endif %}
+              {% endfor %}
+            </div>
           </div>
+          <div style="display:none">{{ form(form) }}</div>
         </div>
-        <div style="display:none">{{ form(form) }}</div>
-      </div>
+      {% else %}
+        Vous assemblez les armures directement lors de la création de l'unité    
+      {% endif %}
     </div>
   </div>
 </div>

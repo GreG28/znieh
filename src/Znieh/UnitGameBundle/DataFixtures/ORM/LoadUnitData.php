@@ -46,12 +46,30 @@ class LoadUnitData extends AbstractFixtureLoader implements OrderedFixtureInterf
                     $armorData = $unitData['armor'];
                     $armor->setType($manager->getRepository('ZniehVillageGameBundle:ArmorType')->findOneByName($armorData['type']));
 
-                    foreach ($armorData['pieces'] as $pieceData) {
+                    foreach ($armorData['pieces'] as $key => $pieceData) {
                         $piece = new ArmorPiece();
                         $piece->setPart($manager->getRepository('ZniehVillageGameBundle:ArmorPart')->findOneByName($pieceData['part']));
                         $piece->setRune($manager->getRepository('ZniehVillageGameBundle:Rune')->findOneByName($pieceData['rune']));
                         $piece->setInsigna($manager->getRepository('ZniehVillageGameBundle:Insigna')->findOneByName($pieceData['insigna']));
-                        $armor->addPiece($piece);
+                        switch ($key) {
+                            case 'helm':
+                                $armor->setHelm($piece);
+                                break;
+                            case 'torso':
+                                $armor->setTorso($piece);
+                                break;
+                            case 'gloves':
+                                $armor->setGloves($piece);
+                                break;
+                            case 'greaves':
+                                $armor->setGreaves($piece);
+                                break;
+                            case 'boots':
+                                $armor->setBoots($piece);
+                                break;
+                            default:
+                                break;
+                        }
                     }
 
                     $unit = new Unit();
