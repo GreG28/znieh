@@ -71,6 +71,7 @@ function getUnits() {
       {
         units[i].taille = "petitfin";
       }
+      //units[i].taille = units[i].sprite;
     }
 
     ennemyUnits = data[1];
@@ -82,6 +83,7 @@ function getUnits() {
       {
           ennemyUnits[i].taille = "petitfin";
       }
+      //ennemyUnits[i].taille = ennemyUnits[i].sprite;
     }
 
     units[0].statut = 0;
@@ -245,11 +247,32 @@ function setEnnemySide() {
 
 function setSocketOnForGame()
 {
-  socket.on('ennemy-placement', function (data) {
+  socket.on("ennemy-placement", function (data) {
     console.log('the units are positionning well : ' + JSON.stringify(data));
 
     for(var i = 0 ; i < data.length ; i++) {
-      ContentManager.newUnit(data[i]._i,data[i]._j, ennemyUnits[i].sprite, ennemyUnits[i].taille, i, false, ennemyUnits[i].name);
+      ContentManager.newUnit(data[i].x,data[i].y, ennemyUnits[i].sprite, ennemyUnits[i].taille, i, false, ennemyUnits[i].name);
     }
-  });  
+  });
+
+  socket.on("ennemy-move", function (data) {
+    console.log('ennemy move : ' + JSON.stringify(data));
+
+    for(var i = 0 ; i < data.length ; i++) {
+      console.log("ContentManager.ennemyUnits[i]._i -> " + ContentManager.ennemyUnits[i]._i);
+      console.log("ContentManager.ennemyUnits[j]._i -> " + ContentManager.ennemyUnits[i]._j);
+      if(ContentManager.ennemyUnits[i]._i == data[i].x && ContentManager.ennemyUnits[i]._j == data[i].y)
+      {
+        console.log("LA MEME !!! ");
+      }
+      else
+      {
+        ContentManager.ennemyUnits[i].move(data[i].x, data[i].y, false);
+      }
+    }
+  });
+
+  socket.on('service', function (data) {
+    console.log('service message : ' + data.msg);
+  });
 }

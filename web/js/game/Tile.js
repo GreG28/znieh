@@ -115,12 +115,9 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
                     if(units[idUnit] != null) {
                         if(units[idUnit].statut == 0) {
                             
-                            // TODO
-                            socket.emit('placement-unit', {id:idUnit,i:_i,j:_j}, function(data) {
+                            socket.emit('place-unit', {unit:idUnit,x:_i,y:_j}, function(data) {
                                 console.log("placement unit -> " + data);
                                 ContentManager.newUnit(_i,_j, units[idUnit].sprite, units[idUnit].taille, idUnit, true, units[idUnit].name);
-
-                                // TODO
                                 nextUnitID++;
                                 
                                 if(ContentManager.units.length == numberOfUnits) {
@@ -130,9 +127,6 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
                                     ContentManager.clearUnitsMenu();
                                     socket.emit('placement-finished', null, function(data) {
                                         console.log("placement finished -> " + data);
-
-                                        // TODO
-                                        // Watch the ennemies on the map !
                                     });
                                 }
                             });
@@ -148,13 +142,12 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
             }
             else if(gameStatut == GameStatut.MOVE && selectedUnit.IsMine ) {
                 console.log("Unit -> move to this one");
-                //selectedUnit = that;
-                socket.emit('unit-move', {id:selectedUnit.idUnit,i:_i,j:_j}, function(data) {
+                socket.emit("unit-move", {unit:selectedUnitID,x:_i,y:_j}, function(data) {
                     console.log(data);
                     if(data == true)
                     {
                         console.log("tile on click -> begin to move unit");
-                        selectedUnit.move(_i, _j);
+                        selectedUnit.move(_i, _j, true);
                         console.log("tile on click -> finished to move unit");
                         gameStatut = GameStatut.ATTACK;
                     }
