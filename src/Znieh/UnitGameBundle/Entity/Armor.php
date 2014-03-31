@@ -76,6 +76,47 @@ class Armor
         return $this->helm->getPoints() + $this->torso->getPoints() + $this->gloves->getPoints() + $this->greaves->getPoints() + $this->boots->getPoints();
     }
 
+    public function getEffects()
+    {
+        $effects = array();
+        foreach ($this->helm->getEffects() as $key => $value) {
+            if (!array_key_exists($key, $effects)) {
+                $effects[$key] = $value;
+            } else {
+                $effects[$key] += $value;
+            }
+        }
+        foreach ($this->torso->getEffects() as $key => $value) {
+            if (!array_key_exists($key, $effects)) {
+                $effects[$key] = $value;
+            } else {
+                $effects[$key] += $value;
+            }
+        }
+        foreach ($this->gloves->getEffects() as $key => $value) {
+            if (!array_key_exists($key, $effects)) {
+                $effects[$key] = $value;
+            } else {
+                $effects[$key] += $value;
+            }
+        }
+        foreach ($this->greaves->getEffects() as $key => $value) {
+            if (!array_key_exists($key, $effects)) {
+                $effects[$key] = $value;
+            } else {
+                $effects[$key] += $value;
+            }
+        }
+        foreach ($this->boots->getEffects() as $key => $value) {
+            if (!array_key_exists($key, $effects)) {
+                $effects[$key] = $value;
+            } else {
+                $effects[$key] += $value;
+            }
+        }
+        return $effects;
+    }
+
     /**
      * Get id
      *

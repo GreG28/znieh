@@ -6,6 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * Unit
@@ -114,6 +118,23 @@ class Unit
         return $this->weapon->getPoints() + $this->armor->getPoints();
     }
 
+    /**
+     * @VirtualProperty
+     * @Type("array")
+     * @SerializedName("attributes")
+     */
+    public function getAttributes()
+    {
+        $effects = array();
+        foreach ($this->armor->getEffects() as $key => $value) {
+            if (!array_key_exists($key, $effects)) {
+                $effects[$key] = $value;
+            } else {
+                $effects[$key] += $value;
+            }
+        }
+        return $effects;
+    }
 
     /**
      * Get id
