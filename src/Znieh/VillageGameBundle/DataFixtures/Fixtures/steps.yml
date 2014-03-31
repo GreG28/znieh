@@ -141,12 +141,14 @@ arc_en_cedre:
   parent: ''
   points: 1
   costs: { po: 20, cedre: 7 }
+  effects: { range: 5}
 arc_en_chene:
   title: Arcs en chêne
   building: Archerie
   parent: Arcs en cèdre
   points: 2
   costs: { po: 50, chene: 7 }
+  effects: { range: 5}
 poignee_arc_en_cuivre:
   title: Poignées d'arc en cuivre
   building: Archerie
