@@ -84,13 +84,14 @@ module.exports = function(player) {
 	});
 
 	player.socket.on("place-unit", function(data, callback) {
-		if(player.battle.mapSelected === false) {
+		
+		/*if(player.battle.mapSelected === false) {
 			callback(false);
 			player.socket.emit('service', { msg: 'Map is not selected.'});
 			return -1;
-		}
+		}*/
 
-		if(player.status != "placement-started") {
+		/*if(player.status != "placement-started") {
 			callback(false);
 			player.socket.emit('service', { msg: 'Placement has not started yet.'});
 			return -2;
@@ -106,7 +107,7 @@ module.exports = function(player) {
 			callback(false);
 			player.socket.emit('service', { msg: 'Unit placement is over.'});
 			return -4;
-		}
+		}*/
 
 		if(player.battle.player1.name == player.name) {
 			coordTeam1[data.unit] = new coord(data.x, data.y);
@@ -114,6 +115,8 @@ module.exports = function(player) {
 		else {
 			coordTeam2[data.unit] = new coord(data.x, data.y);
 		}
+
+		callback(true);
 
 		
 	});
@@ -132,6 +135,7 @@ module.exports = function(player) {
 		player.status = "placement-finished";
 		// TODO CHANGE FOR VERIFICATION
 		if(player.battle.player1.status === "placement-finished" && player.battle.player2.status === "placement-finished"){
+			console.log("BATARD EPINEUX !!!");
 			player.battle.player1.socket.emit("ennemy-placement", coordTeam2);
 			player.battle.player2.socket.emit("ennemy-placement", coordTeam1);
 		}
