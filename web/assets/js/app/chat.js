@@ -136,6 +136,14 @@
 
       initChat();
 
+      $('#close-chat').click(function() {
+        $('#chat').css('display', 'none');
+      });
+
+      $('#open-chat').click(function() {
+        $('#chat').css('display', 'inline');
+      });
+
     //} else {
     //  console.log('Chat: connection error');
     //}

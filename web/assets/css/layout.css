@@ -7947,28 +7947,34 @@ h3.section-title {
   border: 1px dashed grey;
   padding: 5px;
   border-radius: 5px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 2;
+  background-color: #F8C365;
+  display: none;
 }
 
-/* line 10, ../sass/_chat.scss */
+/* line 16, ../sass/_chat.scss */
 #chat > .nav-tabs > li > a {
   border: 1px solid #ddd;
   border-radius: 4px 4px 0 0;
 }
 
-/* line 15, ../sass/_chat.scss */
+/* line 21, ../sass/_chat.scss */
 #chat > .nav-tabs > li.active > a {
   color: #fff;
   background-color: #428bca;
   border-color: #357ebd;
 }
 
-/* line 21, ../sass/_chat.scss */
+/* line 27, ../sass/_chat.scss */
 #chat > .nav-tabs > li.active > a:hover {
   background-color: #357ebd;
   color: #eee;
 }
 
-/* line 26, ../sass/_chat.scss */
+/* line 32, ../sass/_chat.scss */
 .chat-messages {
   height: 220px;
   overflow-y: scroll;
@@ -7977,52 +7983,52 @@ h3.section-title {
   padding: 0;
 }
 
-/* line 35, ../sass/_chat.scss */
+/* line 41, ../sass/_chat.scss */
 .chat-messages li {
   margin-bottom: 10px;
   padding-bottom: 5px;
   border-bottom: 1px dotted #B3A9A9;
 }
 
-/* line 42, ../sass/_chat.scss */
+/* line 48, ../sass/_chat.scss */
 .chat-messages li.left .chat-body {
   margin-left: 65px;
 }
 
-/* line 47, ../sass/_chat.scss */
+/* line 53, ../sass/_chat.scss */
 .chat-messages li.right .chat-body {
   margin-right: 65px;
 }
 
-/* line 52, ../sass/_chat.scss */
+/* line 58, ../sass/_chat.scss */
 .chat-messages li .chat-body p {
   margin: 0;
   color: #777777;
 }
 
-/* line 57, ../sass/_chat.scss */
+/* line 63, ../sass/_chat.scss */
 .chat-messages > ul > small {
   margin-top: -20px;
 }
 
-/* line 62, ../sass/_chat.scss */
+/* line 68, ../sass/_chat.scss */
 .glyphicon {
   margin-right: 5px;
 }
 
-/* line 67, ../sass/_chat.scss */
+/* line 73, ../sass/_chat.scss */
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #F5F5F5;
 }
 
-/* line 73, ../sass/_chat.scss */
+/* line 79, ../sass/_chat.scss */
 ::-webkit-scrollbar {
   width: 12px;
   background-color: #F5F5F5;
 }
 
-/* line 79, ../sass/_chat.scss */
+/* line 85, ../sass/_chat.scss */
 ::-webkit-scrollbar-thumb {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #555;
