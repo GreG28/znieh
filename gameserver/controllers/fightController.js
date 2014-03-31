@@ -13,9 +13,12 @@ var world = require('../model/world');
 var hit = require('../model/physicalAttack');
 var unit = require('../model/handlers/unit.js');
 var turnCont = require('./turnController');
+var coord = require('./coord');
 var turnController = new turnCont();
 var unitCount = new Array();
 var teams = new Array();
+var coordTeam1 = new Array();
+var coordTeam2 = new Array();
 
 module.exports = function(player) {
 
@@ -81,7 +84,6 @@ module.exports = function(player) {
 	});
 
 	player.socket.on("place-unit", function(data, callback) {
-		console.log(" CONNARD !!!! place-unit ->" + data.x + "  " + data.y + "  " + data.unit);
 		if(player.battle.mapSelected === false) {
 			callback(false);
 			player.socket.emit('service', { msg: 'Map is not selected.'});
@@ -106,15 +108,16 @@ module.exports = function(player) {
 			return -4;
 		}
 
-		console.log("place-unit ->" + data.x + "  " + data.y + "  " + data.unit);
-		player.battle.map.layers[data.x][data.y] = data.unit;
+		if(player.battle.player1.name == player.name) {
+			coordTeam1[data.unit] = new coord(data.x, data.y);
+		}
+		else {
+			coordTeam2[data.unit] = new coord(data.x, data.y);
+		}
+
+		
 	});
 
-	//TODO
-	player.socket.on("placement-unit", function(data, callback) {
-		// TODO CHANGE FOR VERIFICATION
-		callback(true);
-	});
 
 	// TODO
 	player.socket.on("unit-move", function(data, callback) {
@@ -126,12 +129,12 @@ module.exports = function(player) {
 
 	// TODO
 	player.socket.on("placement-finished", function(data, callback) {
-		
+		player.status = "placement-finished";
 		// TODO CHANGE FOR VERIFICATION
-		ennemyPlacement = [{_i:0,_j:1},{_i:3,_j:5}];
-
-		player.socket.emit('ennemy-placement', ennemyPlacement);
-		callback(ennemyPlacement);
+		if(player.battle.player1.status === "placement-finished" && player.battle.player2.status === "placement-finished"){
+			player.battle.player1.socket.emit("ennemy-placement", coordTeam2);
+			player.battle.player2.socket.emit("ennemy-placement", coordTeam1);
+		}
 	});
 
 	player.socket.on("attack", function(data, callback){
