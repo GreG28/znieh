@@ -126,8 +126,18 @@ module.exports = function(player) {
 	player.socket.on("unit-move", function(data, callback) {
 		if(turnController.hasMoved(data[0]))
 			callback(false);
-		
-		callback(true);
+		else{
+
+		if(player.battle.player1.name == player.name) {
+			coordTeam1[data.unit] = new coord(data.x, data.y);
+			player.battle.player2.socket.emit("ennemy-placement", coordTeam1);
+		}
+		else {
+			coordTeam2[data.unit] = new coord(data.x, data.y);
+			player.battle.player1.socket.emit("ennemy-placement", coordTeam2);
+		}
+			callback(true);
+		}
 	});
 
 	// TODO
