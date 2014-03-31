@@ -12,6 +12,10 @@ var map = require('../model/map');
 var world = require('../model/world');
 var hit = require('../model/physicalAttack');
 var unit = require('../model/handlers/unit.js');
+var turnCont = require('./turnController');
+var turnController = new turnCont();
+var unitCount = new Array();
+var teams = new Array();
 
 module.exports = function(player) {
 
@@ -48,9 +52,18 @@ module.exports = function(player) {
 
 	player.socket.on('get-units', function(data, callback) {
 		//unit.connect();
-		var teams = new Array();
 		teams[0] = unit.loadUnit();
 		teams[1] = unit.loadUnit();
+		
+		for(var i in teams[0]){
+			unitCount[parseInt(i)] = parseInt(i);
+		}
+		for(var i in teams[1]){
+			unitCount[parseInt(10) + parseInt(i)] = parseInt(10) + parseInt(i);
+		}
+
+		turnController.newTurn(unitCount);
+
 		callback(teams);
 	});
 
@@ -105,7 +118,9 @@ module.exports = function(player) {
 
 	// TODO
 	player.socket.on("unit-move", function(data, callback) {
-		// TODO CHANGE FOR VERIFICATION
+		if(turnController.hasMoved(data[0]))
+			callback(false);
+		
 		callback(true);
 	});
 
@@ -121,12 +136,16 @@ module.exports = function(player) {
 
 	player.socket.on("attack", function(data, callback){
 		//check if unit setHasPlayed
-		hit.physicalHit(data[0],data[1]);
-		unit.setHasPlayed(data[0]);	
+		if(turnController.hasAttacked(data[0]))
+			callback(false)
+		else{
+			hit.physicalHit(data[0],data[1]);
+			unit.setHasPlayed(data[0]);	
 
-		if(data[1].stats.life <= 0)
-			delete data[1];
-		callback(data);
+			if(data[1].stats.life <= 0)
+				delete data[1];
+			callback(data);
+		}
 	});
 
 
