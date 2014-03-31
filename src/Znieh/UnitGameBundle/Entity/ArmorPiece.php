@@ -59,7 +59,32 @@ class ArmorPiece
         return $this->part->getPoints() + $this->rune->getPoints() + $this->insigna->getPoints();
     }
 
-
+    public function getEffects()
+    {
+        $effects = array();
+        foreach ($this->part->getEffects() as $key => $value) {
+            if (!array_key_exists($key, $effects)) {
+                $effects[$key] = $value;
+            } else {
+                $effects[$key] += $value;
+            }
+        }
+        if($this->rune != null)  foreach ($this->rune->getEffects() as $key => $value) {
+            if (!array_key_exists($key, $effects)) {
+                $effects[$key] = $value;
+            } else {
+                $effects[$key] += $value;
+            }
+        }
+        if($this->insigna != null) foreach ($this->insigna->getEffects() as $key => $value) {
+            if (!array_key_exists($key, $effects)) {
+                $effects[$key] = $value;
+            } else {
+                $effects[$key] += $value;
+            }
+        }
+        return $effects;
+    }
     /**
      * Get id
      *
