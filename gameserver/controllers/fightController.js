@@ -55,9 +55,9 @@ module.exports = function(player) {
 
 	player.socket.on('get-units', function(data, callback) {
 		//unit.connect();
-		teams[0] = unit.loadUnit();
-		teams[1] = unit.loadUnit();
-		
+		teams[0] = unit.connect(player.battle.player1.id);
+		teams[1] = unit.connect(player.battle.player2.id);
+		console.log(teams[0]);
 		for(var i in teams[0]){
 			unitCount[parseInt(i)] = parseInt(i);
 		}
