@@ -255,6 +255,23 @@ function setSocketOnForGame()
     }
   });
 
+  socket.on("ennemy-move", function (data) {
+    console.log('ennemy move : ' + JSON.stringify(data));
+
+    for(var i = 0 ; i < data.length ; i++) {
+      console.log("ContentManager.ennemyUnits[i]._i -> " + ContentManager.ennemyUnits[i]._i);
+      console.log("ContentManager.ennemyUnits[j]._i -> " + ContentManager.ennemyUnits[i]._j);
+      if(ContentManager.ennemyUnits[i]._i == data[i].x && ContentManager.ennemyUnits[i]._j == data[i].y)
+      {
+        console.log("LA MEME !!! ");
+      }
+      else
+      {
+        ContentManager.ennemyUnits[i].move(data[i].x, data[i].y, false);
+      }
+    }
+  });
+
   socket.on('service', function (data) {
     console.log('service message : ' + data.msg);
   });

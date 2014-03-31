@@ -124,18 +124,21 @@ module.exports = function(player) {
 
 	// TODO
 	player.socket.on("unit-move", function(data, callback) {
-		if(turnController.hasMoved(data[0]))
+		//console.log("data unit move -> " + data.x +"  "+ data.y + "   " + data.unit );
+		if(turnController.hasMoved(data.unit))
 			callback(false);
 		else{
 
-		if(player.battle.player1.name == player.name) {
-			coordTeam1[data.unit] = new coord(data.x, data.y);
-			player.battle.player2.socket.emit("ennemy-placement", coordTeam1);
-		}
-		else {
-			coordTeam2[data.unit] = new coord(data.x, data.y);
-			player.battle.player1.socket.emit("ennemy-placement", coordTeam2);
-		}
+			if(player.battle.player1.name == player.name) {
+				coordTeam1[data.unit] = new coord(data.x, data.y);
+				player.battle.player2.socket.emit("ennemy-move", coordTeam1);
+				turnController.setHasMoved(data.unit);
+			}
+			else {
+				coordTeam2[data.unit] = new coord(data.x, data.y);
+				player.battle.player1.socket.emit("ennemy-move", coordTeam2);
+				turnController.setHasMoved(parseInt(data.unit)+10);
+			}
 			callback(true);
 		}
 	});
@@ -145,7 +148,7 @@ module.exports = function(player) {
 		player.status = "placement-finished";
 		// TODO CHANGE FOR VERIFICATION
 		if(player.battle.player1.status === "placement-finished" && player.battle.player2.status === "placement-finished"){
-			console.log("BATARD EPINEUX !!!");
+			//console.log("BATARD EPINEUX !!!");
 			player.battle.player1.socket.emit("ennemy-placement", coordTeam2);
 			player.battle.player2.socket.emit("ennemy-placement", coordTeam1);
 		}
