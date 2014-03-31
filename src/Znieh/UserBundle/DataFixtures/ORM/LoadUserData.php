@@ -15,6 +15,44 @@ class LoadUserData  extends AbstractFixture implements OrderedFixtureInterface, 
      */
     private $container;
 
+    /**
+     * Users to save
+     */
+    private $usersData = array(
+              array(
+                'username'  => 'admin',
+                'role' => 'ROLE_ADMIN',
+              ),
+              array(
+                'username'  => 'test',
+                'role' => 'ROLE_USER',
+              ),
+              array(
+                'username'  => 'spyl',
+                'role' => 'ROLE_USER',
+              ),
+              array(
+                'username'  => 'darkou',
+                'role' => 'ROLE_USER',
+              ),
+              array(
+                'username'  => 'alexian',
+                'role' => 'ROLE_USER',
+              ),
+              array(
+                'username'  => 'deker',
+                'role' => 'ROLE_USER',
+              ),
+              array(
+                'username'  => 'greg',
+                'role' => 'ROLE_USER',
+              ),
+              array(
+                'username'  => 'julie',
+                'role' => 'ROLE_USER',
+              ),
+            );
+
 
     /**
      * {@inheritDoc}
@@ -31,32 +69,19 @@ class LoadUserData  extends AbstractFixture implements OrderedFixtureInterface, 
     {
         $factory = $this->container->get('security.encoder_factory');
 
-        // Create Admin User
-        $userAdmin = new User();
-        $encoder = $factory->getEncoder($userAdmin);
-        $userAdmin
-            ->setUsername('admin')
-            ->setEmail('admin@zniehgames.com')
-            ->setPassword($encoder->encodePassword('admin', $userAdmin->getSalt()))
-            ->setEnabled(true);
-        ;
-
-        $userAdmin->addRole('ROLE_SUPER_ADMIN');
-
-        // Create Test User
-        $userTest = new User();
-        $encoder = $factory->getEncoder($userTest);
-        $userTest
-            ->setUsername('test')
-            ->setEmail('test@zniehgames.com')
-            ->setPassword($encoder->encodePassword('test', $userTest->getSalt()))
-            ->setEnabled(true);
-        ;
-
-        $userTest->addRole('ROLE_USER');
-
-        $manager->persist($userAdmin);
-        $manager->persist($userTest);
+        // Create users
+        foreach($this->usersData as $userData) {
+            $user = new User();
+            $encoder = $factory->getEncoder($user);
+            $user
+                ->setUsername($userData['username'])
+                ->setEmail($userData['username'] .'@zniehgames.com')
+                ->setPassword($encoder->encodePassword($userData['username'], $user->getSalt()))
+                ->setEnabled(true);
+            ;
+            $user->addRole($userData['role']);
+            $manager->persist($user);
+        }
         $manager->flush();
     }
 
