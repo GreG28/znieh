@@ -148,7 +148,6 @@ module.exports = function(player) {
 		player.status = "placement-finished";
 		// TODO CHANGE FOR VERIFICATION
 		if(player.battle.player1.status === "placement-finished" && player.battle.player2.status === "placement-finished"){
-			//console.log("BATARD EPINEUX !!!");
 			player.battle.player1.socket.emit("ennemy-placement", coordTeam2);
 			player.battle.player2.socket.emit("ennemy-placement", coordTeam1);
 		}
@@ -159,12 +158,26 @@ module.exports = function(player) {
 		if(turnController.hasAttacked(data[0]))
 			callback(false)
 		else{
-			hit.physicalHit(data[0],data[1]);
-			unit.setHasPlayed(data[0]);	
+			var tab = new Array();
 
-			if(data[1].stats.life <= 0)
-				delete data[1];
-			callback(data);
+			if(player.battle.player1.name == player.name) {
+				unit.setHasAttacked(data.att);	
+				hit.physicalHit(teams[data.att], teams[parseInt(data.def) + parseInt(10)]);
+				tab[0] = teams[data.att];
+				tab[1] = teams[parseInt(data.def) + parseInt(10)];
+
+			}
+			else {
+				unit.setHasAttacked(parseInt(data.att) + parseInt(10));	
+				hit.physicalHit(teams[parseInt(data.att) + parseInt(10)], teams[data.def]);
+				tab[0] = teams[parseInt(data.att) + parseInt(10)];
+				tab[1] = teams[data.def];
+			}
+
+
+			if(tab[1].stats.life <= 0)
+				delete tab[1];
+			callback(tab);
 		}
 	});
 
