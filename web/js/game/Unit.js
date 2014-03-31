@@ -243,6 +243,7 @@
             console.log("[UNIT] x" + container.x + " y" + container.y);
             ContentManager.unSelectAllTiles();
             selectedUnit = that;
+            selectedUnitID = data.idUnit;
 
             var unit_clicked = null;
             
@@ -264,41 +265,47 @@
         }
     }
 
-    function move_tween(self, path, cpt, _i, _j) {
+    function move_tween(self, path, cpt, _i, _j, Ismine) {
         if(cpt < path.length)
         {
             if(path[cpt].x > path[(cpt-1)].x) {
                 self.sprite_base.gotoAndPlay("move-right");
-                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1), _i, _j]);
+                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1), _i, _j, Ismine]);
             }
             else if(path[cpt].x < path[(cpt-1)].x) {
                 self.sprite_base.gotoAndPlay("move-left");
-                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1), _i, _j]);
+                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1), _i, _j, Ismine]);
             }
             else if(path[cpt].y > path[(cpt-1)].y) {
                 self.sprite_base.gotoAndPlay("move-bottom");
-                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1), _i, _j]);
+                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1), _i, _j, Ismine]);
             }
             else {
                 self.sprite_base.gotoAndPlay("move-top");
-                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1), _i, _j]);
+                createjs.Tween.get(self._container,{ loop: false, override: true} ).to({x:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().x,y:map.GetBounds(path[cpt].x, path[cpt].y).GetBottomCenter().y,},200).call(move_tween,[self,path,(cpt+1), _i, _j, Ismine]);
             }
 
             if((cpt+1) == path.length)
             {
                 self.sprite_base.gotoAndPlay("move-idle");
-                ContentManager.selectTilesAttack(_i, _j);
                 setEnnemySide();
-
-                //TODO
-                gameStatut = GameStatut.ATTACK;
+                console.log("IsMine -> " + Ismine);
+                if(Ismine)
+                {
+                    ContentManager.selectTilesAttack(_i, _j);
+                    gameStatut = GameStatut.ATTACK;
+                }
+                else
+                {
+                    console.log("This was for ennemies !!!");
+                }
             }
 
         }
     }
 
     // TODO GreG */
-    Unit.prototype.move = function (x, y) {
+    Unit.prototype.move = function (x, y, Ismine) {
 
         var origin_x = this._i;
         var origin_y = this._j;
@@ -332,7 +339,7 @@
                 if(filtered_new.length == 0) {
                     
                     //Call to function for animate the picture of perso
-                    move_tween(self,path,1, x, y);
+                    move_tween(self,path,1, x, y, Ismine);
                     
                     self._i = x;
                     self._j = y;

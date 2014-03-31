@@ -12,6 +12,13 @@ var map = require('../model/map');
 var world = require('../model/world');
 var hit = require('../model/physicalAttack');
 var unit = require('../model/handlers/unit.js');
+var turnCont = require('./turnController');
+var coord = require('../model/coord');
+var turnController = new turnCont();
+var unitCount = new Array();
+var teams = new Array();
+var coordTeam1 = new Array();
+var coordTeam2 = new Array();
 
 module.exports = function(player) {
 
@@ -48,9 +55,18 @@ module.exports = function(player) {
 
 	player.socket.on('get-units', function(data, callback) {
 		//unit.connect();
-		var teams = new Array();
 		teams[0] = unit.loadUnit();
 		teams[1] = unit.loadUnit();
+		
+		for(var i in teams[0]){
+			unitCount[parseInt(i)] = parseInt(i);
+		}
+		for(var i in teams[1]){
+			unitCount[parseInt(10) + parseInt(i)] = parseInt(10) + parseInt(i);
+		}
+
+		turnController.newTurn(unitCount);
+
 		callback(teams);
 	});
 
@@ -68,13 +84,14 @@ module.exports = function(player) {
 	});
 
 	player.socket.on("place-unit", function(data, callback) {
-		if(player.battle.mapSelected === false) {
+		
+		/*if(player.battle.mapSelected === false) {
 			callback(false);
 			player.socket.emit('service', { msg: 'Map is not selected.'});
 			return -1;
-		}
+		}*/
 
-		if(player.status != "placement-started") {
+		/*if(player.status != "placement-started") {
 			callback(false);
 			player.socket.emit('service', { msg: 'Placement has not started yet.'});
 			return -2;
@@ -90,41 +107,78 @@ module.exports = function(player) {
 			callback(false);
 			player.socket.emit('service', { msg: 'Unit placement is over.'});
 			return -4;
+		}*/
+
+		if(player.battle.player1.name == player.name) {
+			coordTeam1[data.unit] = new coord(data.x, data.y);
+		}
+		else {
+			coordTeam2[data.unit] = new coord(data.x, data.y);
 		}
 
-		player.battle.map.layers[data.x][data.y] = data.unit;
+		callback(true);
+
+		
 	});
 
-	//TODO
-	player.socket.on("placement-unit", function(data, callback) {
-		// TODO CHANGE FOR VERIFICATION
-		callback(true);
-	});
 
 	// TODO
 	player.socket.on("unit-move", function(data, callback) {
-		// TODO CHANGE FOR VERIFICATION
-		callback(true);
+		//console.log("data unit move -> " + data.x +"  "+ data.y + "   " + data.unit );
+		if(turnController.hasMoved(data.unit))
+			callback(false);
+		else{
+
+			if(player.battle.player1.name == player.name) {
+				coordTeam1[data.unit] = new coord(data.x, data.y);
+				player.battle.player2.socket.emit("ennemy-move", coordTeam1);
+				turnController.setHasMoved(data.unit);
+			}
+			else {
+				coordTeam2[data.unit] = new coord(data.x, data.y);
+				player.battle.player1.socket.emit("ennemy-move", coordTeam2);
+				turnController.setHasMoved(parseInt(data.unit)+10);
+			}
+			callback(true);
+		}
 	});
 
 	// TODO
 	player.socket.on("placement-finished", function(data, callback) {
-		
+		player.status = "placement-finished";
 		// TODO CHANGE FOR VERIFICATION
-		ennemyPlacement = [{_i:0,_j:1},{_i:3,_j:5}];
-
-		player.socket.emit('ennemy-placement', ennemyPlacement);
-		callback(ennemyPlacement);
+		if(player.battle.player1.status === "placement-finished" && player.battle.player2.status === "placement-finished"){
+			player.battle.player1.socket.emit("ennemy-placement", coordTeam2);
+			player.battle.player2.socket.emit("ennemy-placement", coordTeam1);
+		}
 	});
 
 	player.socket.on("attack", function(data, callback){
 		//check if unit setHasPlayed
-		hit.physicalHit(data[0],data[1]);
-		unit.setHasPlayed(data[0]);	
+		if(turnController.hasAttacked(data[0]))
+			callback(false)
+		else{
+			var tab = new Array();
 
-		if(data[1].stats.life <= 0)
-			delete data[1];
-		callback(data);
+			if(player.battle.player1.name == player.name) {
+				unit.setHasAttacked(data.att);	
+				hit.physicalHit(teams[data.att], teams[parseInt(data.def) + parseInt(10)]);
+				tab[0] = teams[data.att];
+				tab[1] = teams[parseInt(data.def) + parseInt(10)];
+
+			}
+			else {
+				unit.setHasAttacked(parseInt(data.att) + parseInt(10));	
+				hit.physicalHit(teams[parseInt(data.att) + parseInt(10)], teams[data.def]);
+				tab[0] = teams[parseInt(data.att) + parseInt(10)];
+				tab[1] = teams[data.def];
+			}
+
+
+			if(tab[1].stats.life <= 0)
+				delete tab[1];
+			callback(tab);
+		}
 	});
 
 
@@ -153,6 +207,9 @@ module.exports = function(player) {
 			} else {
 				player.battle.player1.status = 'placing-units';
 				player.battle.player2.status = 'placing-units';
+
+				//TODO
+				player.battle.status = 'placement-started';
 
 				player.battle.player1.socket.emit("placement-started", null);
 				player.battle.player2.socket.emit("placement-started", null);

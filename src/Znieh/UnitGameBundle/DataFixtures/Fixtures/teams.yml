@@ -4,13 +4,110 @@
   save: true
   units:
      1:
-        name: Archer
+        name: Jacky
         sign: Force
         size: Normal
         weight: Musclé
+        sprite: perso_petit
         weapon:
           type: Arc
           parts: [ Corde en cuir rêche de vie, Arc long en cèdre, Poignée d'arc en cuivre de pénétration, Flèche en cuivre d'agilité ]
+        armor:
+          type: Intermédiaire
+          pieces:
+            helm:
+              part: Casque en cuir brut d'armure
+              rune: Rune du survivant majeur
+              insigna: Insigne de bénédiction
+            torso:
+              part: Torse en cuir rêche de parade
+              rune: Rune de rayonement majeur
+              insigna: Insigne de bénédiction
+            gloves:
+              part: Gants en cuir rêche de parade
+              rune: Rune de rayonement majeur
+              insigna: Insigne de bénédiction
+            greaves:
+              part: Jambes en cuir rêche de précision
+              rune: Rune de rayonement majeur
+              insigna: Insigne de bénédiction
+            boots:
+              part: Bottes en cuir rêche de défense
+              rune: Rune de bénédiction mineur
+              insigna: Insigne de bénédiction
+     2:
+        name: Bobby
+        sign: Force
+        size: Normal
+        weight: Musclé
+        sprite: perso_casque
+        weapon:
+          type: Épée
+          parts: [ Lame de dague en cuivre, Garde ciselée en cuivre, Manche en cèdre de pénétration, Pommeau en cuivre de précision]
+        armor:
+          type: Intermédiaire
+          pieces:
+            helm:
+              part: Casque en cuir brut d'armure
+              rune: Rune du survivant majeur
+              insigna: Insigne de bénédiction
+            torso:
+              part: Torse en cuir rêche de parade
+              rune: Rune de rayonement majeur
+              insigna: Insigne de bénédiction
+            gloves:
+              part: Gants en cuir rêche de parade
+              rune: Rune de rayonement majeur
+              insigna: Insigne de bénédiction
+            greaves:
+              part: Jambes en cuir rêche de précision
+              rune: Rune de rayonement majeur
+              insigna: Insigne de bénédiction
+            boots:
+              part: Bottes en cuir rêche de défense
+              rune: Rune de bénédiction mineur
+              insigna: Insigne de bénédiction
+     3:
+        name: Neirda
+        sign: Force
+        size: Normal
+        weight: Musclé
+        sprite: perso_casque_argent
+        weapon:
+          type: Hache
+          parts: [ Tête de Labrys en cuivre, Hampe en cèdre de vie, Poignée en panier en cuivre ]
+        armor:
+          type: Intermédiaire
+          pieces:
+            helm:
+              part: Casque en cuir brut d'armure
+              rune: Rune du survivant majeur
+              insigna: Insigne de bénédiction
+            torso:
+              part: Torse en cuir rêche de parade
+              rune: Rune de rayonement majeur
+              insigna: Insigne de bénédiction
+            gloves:
+              part: Gants en cuir rêche de parade
+              rune: Rune de rayonement majeur
+              insigna: Insigne de bénédiction
+            greaves:
+              part: Jambes en cuir rêche de précision
+              rune: Rune de rayonement majeur
+              insigna: Insigne de bénédiction
+            boots:
+              part: Bottes en cuir rêche de défense
+              rune: Rune de bénédiction mineur
+              insigna: Insigne de bénédiction
+     4:
+        name: Sam Soul
+        sign: Force
+        size: Normal
+        weight: Musclé
+        sprite: perso_casque_Or
+        weapon:
+          type: Hache
+          parts: [ Tête de Labrys en cuivre, Hampe en cèdre de vie, Poignée en panier en cuivre ]
         armor:
           type: Intermédiaire
           pieces:

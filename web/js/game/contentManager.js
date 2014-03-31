@@ -64,6 +64,7 @@ var unitsToMove = [];
 var substage;
 
 var selectedUnit = null;
+var selectedUnitID = null;
 var unitsCache = [];
 var unitsPlacement = [];
 var gameStatut;
