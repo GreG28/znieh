@@ -80,12 +80,14 @@ Array.matrix = function (m, n, initial) {
     Map.prototype.LoadTile = function (tileType, x, y) {
         var property;
 
-        if(this.properties[tileType - 1] != null && this.properties[tileType - 1].block == "true")
+        if(this.properties[tileType - 1] != null && this.properties[tileType - 1].blocked == "true")
             property = Enum.TileCollision.Impassable;
         else
             property = Enum.TileCollision.Passable;
 
-        switch (tileType) {
+        return new Tile(this.loadTileImg(tileType), property, x, y, true);
+
+        /*switch (tileType) {
             // Arbre
             case 1:
                 return new Tile(this.loadTileImg(1), property, x, y, true);
@@ -95,7 +97,7 @@ Array.matrix = function (m, n, initial) {
             // Roche
             case 3:
                 return new Tile(this.loadTileImg(3), property, x, y, true);
-        }
+        }*/
     };
 
     /**

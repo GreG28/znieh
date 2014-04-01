@@ -312,10 +312,9 @@
 
         var limit = 7; // TODO : Sélectionner la limite de déplacement de l'unité
         var easystar = new EasyStar.js();
-        var acceptableTiles = [ 1, 2];
+        var acceptableTiles = [86, 87, 88, 118, 119, 119, 120, 120, 150, 151, 151, 152, 214, 215, 234, 234, 246, 247, 266, 294, 296, 311, 326, 328, 358, 364, 388, 390, 390, 396, 422, 457, 471, 508, 547, 550, 551, 582, 632, 633, 648, 669, 696, 698, 699, 700, 731, 732, 766, 796, 797, 803, 862, 924];
         easystar.setGrid(map.textTiles);
         easystar.setAcceptableTiles(acceptableTiles);
-
         // Disable tiles where your units are !
         unitsPlacement.length = 0;
         for (var t = ContentManager.units.length - 1 ; t >= 0 ; t--) {
@@ -372,7 +371,7 @@
 
         var limit = 7; // TODO : Sélectionner la limite de déplacement de l'unité
         var easystar = new EasyStar.js();
-        var acceptableTiles = [ 1, 2];
+        var acceptableTiles = [86, 87, 88, 118, 119, 119, 120, 120, 150, 151, 151, 152, 214, 215, 234, 234, 246, 247, 266, 294, 296, 311, 326, 328, 358, 364, 388, 390, 390, 396, 422, 457, 471, 508, 547, 550, 551, 582, 632, 633, 648, 669, 696, 698, 699, 700, 731, 732, 766, 796, 797, 803, 862, 924];
         easystar.setGrid(map.textTiles);
         easystar.setAcceptableTiles(acceptableTiles);
 
