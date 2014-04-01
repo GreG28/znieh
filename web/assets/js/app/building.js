@@ -69,6 +69,7 @@
                 checkBox.prop('checked', !checkBox.attr('checked'));
                 //console.log($(this).parent());
                 $(this).parent().clone().appendTo("#weapon-container");
+                $("#weapon-container").find('.selected').removeClass('selected');
              } else {
               $('.modal').modal('show');
              }
@@ -85,7 +86,7 @@
                  url      : $(form).attr('action'),
                  data     : $(form).serialize(),
                  success  : function(data) {
-                     $("#save-weapon-container").find('.empty:first').append('<img src="/znieh/web/img/weapons/' + data.img + '.png" class="img-responsive">');
+                     $("#save-weapon-container").find('.empty:first').append('<img src="../../img/weapons/' + data.img + '.png" class="img-responsive">');
                      $(form)[0].reset();
                  },
                  error  : function(data) {

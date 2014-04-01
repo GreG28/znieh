@@ -8,6 +8,7 @@
             <thead>
                 <tr>
                     <th>Nom</th>
+                    <th>Points</th>
                     <th>Unités</th>
                     <th>Actions</th>
                 </tr>
@@ -16,6 +17,7 @@
             {% for entity in teams %}
                 <tr>
                     <td>{{ entity.name }}</td>
+                    <td>{{ entity.points }} <img src="{{ asset('img/icons/doubled.png') }}" alt=""></td>
                     <td>
                      <ul>
                         {% for unit in entity.units %}
@@ -44,16 +46,16 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Points combat</th>
-                    <th>Name</th>
+                    <th>Nom</th>
+                    <th>Points</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
             {% for entity in units %}
                 <tr>
-                    <td>{{ entity.points }}</td>
                     <td>{{ entity.name }}</td>
+                    <td>{{ entity.points }} <img src="{{ asset('img/icons/doubled.png') }}" alt=""></td>
                     <td>
                     <ul>
                         <li>

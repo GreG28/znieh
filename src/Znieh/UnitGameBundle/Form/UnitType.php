@@ -51,8 +51,10 @@ class UnitType extends AbstractType
             ->add('weapon', 'entity', array(
                 'label' => 'Arme',
                 'class' => 'ZniehUnitGameBundle:Weapon',
+                'expanded' => true,
                 'property' => 'id',
                 'required' => true,
+                'multiple' => false,
                 'query_builder' => function(WeaponRepository $er) use ($userId) {
                     return $er->findAllByUser($userId);
                 },

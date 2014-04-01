@@ -7637,32 +7637,37 @@ td.visible-print {
   }
 }
 /* line 11, ../sass/_building.scss */
+#create-weapon {
+  margin-top: 7px;
+}
+
+/* line 15, ../sass/_building.scss */
 *, *:before, *:after {
   -webkit-box-sizing: initial;
   -moz-box-sizing: initial;
   box-sizing: initial;
 }
 
-/* line 16, ../sass/_building.scss */
+/* line 20, ../sass/_building.scss */
 div {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-/* line 21, ../sass/_building.scss */
+/* line 25, ../sass/_building.scss */
 .root {
   position: relative;
   margin-bottom: 30px;
 }
 
-/* line 25, ../sass/_building.scss */
+/* line 29, ../sass/_building.scss */
 .level {
   margin-left: 400px;
   position: relative;
 }
 
-/* line 29, ../sass/_building.scss */
+/* line 33, ../sass/_building.scss */
 .level:before {
   content: "";
   width: 50px;
@@ -7673,13 +7678,13 @@ div {
   margin-top: 1px;
 }
 
-/* line 38, ../sass/_building.scss */
+/* line 42, ../sass/_building.scss */
 .step {
   min-height: 120px;
   position: relative;
 }
 
-/* line 42, ../sass/_building.scss */
+/* line 46, ../sass/_building.scss */
 .step:before {
   content: "";
   height: 100%;
@@ -7688,7 +7693,7 @@ div {
   left: -48px;
 }
 
-/* line 49, ../sass/_building.scss */
+/* line 53, ../sass/_building.scss */
 .step:after {
   content: "";
   width: 46px;
@@ -7699,7 +7704,7 @@ div {
   margin-top: 1px;
 }
 
-/* line 58, ../sass/_building.scss */
+/* line 62, ../sass/_building.scss */
 .step:first-child:before {
   width: 10px;
   height: 50%;
@@ -7708,20 +7713,20 @@ div {
   border-top-left-radius: 10px;
 }
 
-/* line 65, ../sass/_building.scss */
+/* line 69, ../sass/_building.scss */
 .step:first-child:after {
   height: 10px;
   border-top-left-radius: 10px;
 }
 
-/* line 69, ../sass/_building.scss */
+/* line 73, ../sass/_building.scss */
 .step:last-child:before {
   width: 10px;
   height: 50%;
   border-bottom-left-radius: 10px;
 }
 
-/* line 74, ../sass/_building.scss */
+/* line 78, ../sass/_building.scss */
 .step:last-child:after {
   height: 10px;
   border-top: none;
@@ -7730,7 +7735,7 @@ div {
   margin-top: -11px;
 }
 
-/* line 81, ../sass/_building.scss */
+/* line 85, ../sass/_building.scss */
 .step:only-child:before {
   border-top: none;
   border-bottom: none;
@@ -7738,7 +7743,7 @@ div {
   margin-top: 0px;
 }
 
-/* line 87, ../sass/_building.scss */
+/* line 91, ../sass/_building.scss */
 .step:only-child:after {
   width: 52px;
   left: -52px;
@@ -7746,7 +7751,7 @@ div {
   border-bottom-left-radius: 0;
 }
 
-/* line 93, ../sass/_building.scss */
+/* line 97, ../sass/_building.scss */
 .step-content {
   width: 280px;
   height: 120px;
@@ -7761,55 +7766,55 @@ div {
   background-color: #744c05;
 }
 
-/* line 106, ../sass/_building.scss */
+/* line 110, ../sass/_building.scss */
 .step-title {
   color: white;
 }
 
-/* line 110, ../sass/_building.scss */
+/* line 114, ../sass/_building.scss */
 .step-content > span {
   padding: 5px 5px 5px 5px;
 }
 
-/* line 114, ../sass/_building.scss */
+/* line 118, ../sass/_building.scss */
 .game-object {
   width: 50px;
   height: 20px;
 }
 
-/* line 118, ../sass/_building.scss */
+/* line 122, ../sass/_building.scss */
 .game-object img {
   margin-right: 3px;
 }
 
-/* line 121, ../sass/_building.scss */
+/* line 125, ../sass/_building.scss */
 .game-object-points {
   float: left;
 }
 
-/* line 125, ../sass/_building.scss */
+/* line 129, ../sass/_building.scss */
 .draggable.selected {
   border: 2px solid white;
 }
 
-/* line 129, ../sass/_building.scss */
+/* line 133, ../sass/_building.scss */
 #weapon-container {
-  padding: 2px 5px 5px 5px;
-  height: 40px;
-  width: 135px;
-  background: #7e7878;
+  padding: 2px 8px 5px 5px;
+  height: 35px;
+  width: 110px;
+  background: #7e7259;
   display: inline-block;
 }
 
-/* line 137, ../sass/_building.scss */
+/* line 141, ../sass/_building.scss */
 #save-weapon-container {
   height: 80px;
   width: 400px;
-  background: #7e7878;
+  background: #7e7259;
   padding: 5px 5px 5px 5px;
 }
 
-/* line 143, ../sass/_building.scss */
+/* line 147, ../sass/_building.scss */
 .container-case {
   border: 2px solid black;
   padding: 2px 2px 2px 2px;
@@ -7836,7 +7841,7 @@ body {
 .after-village-content {
   background: #141414 no-repeat right bottom;
   display: block;
-  min-height: 500px;
+  height: 500px;
   margin: 0;
   padding: 0;
   width: 100%;

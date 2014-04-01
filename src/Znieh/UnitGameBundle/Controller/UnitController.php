@@ -98,10 +98,14 @@ class UnitController extends Controller
     {
         $entity = new Unit();
         $form   = $this->createCreateForm($entity);
+        $em = $this->getDoctrine()->getManager();
+        $weapons = $em->getRepository('ZniehUnitGameBundle:Weapon')->findAllByUser($this->getUser()->getId())->getQuery()->getResult();
+
 
         return array(
             'entity' => $entity,
             'form'   => $form->createView(),
+            'weapons' => $weapons
         );
     }
 
