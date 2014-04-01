@@ -6,7 +6,11 @@
 // }
 
 $step-height: 120px;
-$container-color: rgb(126,120,120);
+$container-color: #7e7259;
+
+#create-weapon {
+  margin-top: 7px;
+}
 
 *, *:before, *:after {
   -webkit-box-sizing: initial;
@@ -127,9 +131,9 @@ div {
 }
 
 #weapon-container {
-  padding: 2px 5px 5px 5px;
-  height: 40px;
-  width: 135px;
+  padding: 2px 8px 5px 5px;
+  height: 35px;
+  width: 110px;
   background: $container-color;
   display: inline-block;
 }

@@ -47,6 +47,23 @@ class Weapon
      */
     private $type;
 
+
+
+    public function getEffects()
+    {
+        $effects = array();
+        foreach ($this->parts as $part) {
+            foreach ($part->getEffects() as $key => $value) {
+                if (!array_key_exists($key, $effects)) {
+                    $effects[$key] = $value;
+                } else {
+                    $effects[$key] += $value;
+                }
+            }
+        }
+        return $effects;
+    }
+
     public function getImg()
     {
         $i = rand(1,3);

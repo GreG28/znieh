@@ -61,6 +61,15 @@ class Team
         $this->units = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    public function getPoints()
+    {
+        $i = 0;
+        foreach ($this->units as $unit) {
+            $i += $unit->getPoints();
+        }
+        return $i;
+    }
+
     /**
      * Get id
      *
