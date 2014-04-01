@@ -11,8 +11,6 @@ $(window).keydown(function(e){
 
     if(gameStatut == GameStatut.MOVE)
     {
-        //TODO !! 
-        // Florian
         gameStatut = GameStatut.IDLE;
     }
 
@@ -70,6 +68,7 @@ var unitsPlacement = [];
 var gameStatut;
 var placement_en_cours = true;
 var selected_Unit = null;
+var EnumTilePassable = null;
 
 /**
  * Used to download all ressources and start the game

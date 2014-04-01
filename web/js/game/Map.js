@@ -19,7 +19,8 @@ Array.matrix = function (m, n, initial) {
     var StaticTile = new Tile(null, Enum.TileCollision.Passable, 0, 0);
 
     function Map() {
-        var mapData = [];
+
+        var mapData = new Array();
 
         // récupère le json de la loading queue puis le parse !
         mapData = jQuery.parseJSON(loadingQueue.getResult("map-json",true));
@@ -28,6 +29,8 @@ Array.matrix = function (m, n, initial) {
         this.gameHeight = mapData.height;
         this.tileWidth = mapData.tilewidth;
         this.tileHeight = mapData.tileheight;
+
+        this.FunctionEnumTilePassable(mapData.layers[0].data, mapData.tilesets[0].tileproperties);
 
         console.log("this.gameHeight -> " + this.gameHeight);
 
@@ -38,6 +41,47 @@ Array.matrix = function (m, n, initial) {
         this.properties = mapData.tilesets[0].tileproperties;
         this.LoadTiles(mapData.layers[0].data);
     }
+
+    Map.prototype.FunctionEnumTilePassable = function(mapData, tileBlocked)
+    {
+        var tileBloquante = new Array(tileBlocked);
+        var tmp = new Array();
+
+        for(var i = 0 ; i < mapData.length ; i++)
+        {
+            if( $.inArray(mapData[i],tmp) === -1)
+            {
+                tmp[tmp.length]=mapData[i];
+            }
+        }
+        tmp.sort(function (a, b) {
+            return a - b;
+        });
+        
+        console.log(JSON.stringify(tmp));
+
+        console.log(tileBloquante);
+        var diff = 0;
+
+        do
+        {
+            console.log("DO !!! ");
+            diff = 0;
+            for(i = 0 ; i < tmp.length ; i++)
+            {
+                //console.log(" tmp[" + i + "] = " + tmp[i] + " -> " + tileBloquante[0][tmp[i]]);
+                if(tileBloquante[0][tmp[i]] != null)
+                {
+                    console.log("tileBlocked -> " + tmp[i]);
+                    tmp.splice(i,1);
+                    diff = 1;
+                }
+            }
+        }while(diff == 1);
+        console.log(JSON.stringify(tmp));
+
+        EnumTilePassable = tmp;
+    };
 
     /**
      * Transform 1D Array Map in 2D Array Map
@@ -80,24 +124,18 @@ Array.matrix = function (m, n, initial) {
     Map.prototype.LoadTile = function (tileType, x, y) {
         var property;
 
-        if(this.properties[tileType - 1] != null && this.properties[tileType - 1].blocked == "true")
+        if(this.properties[tileType] != null && this.properties[tileType].blocked == "true")
             property = Enum.TileCollision.Impassable;
         else
             property = Enum.TileCollision.Passable;
 
-        return new Tile(this.loadTileImg(tileType), property, x, y, true);
+        /*if(this.properties[tileType - 1] != null && this.properties[tileType - 1].blocked == "true")
+            property = Enum.TileCollision.Impassable;
+        else
+            property = Enum.TileCollision.Passable;
+        */
 
-        /*switch (tileType) {
-            // Arbre
-            case 1:
-                return new Tile(this.loadTileImg(1), property, x, y, true);
-            // Eau
-            case 2:
-                return new Tile(this.loadTileImg(2), property, x, y, true);
-            // Roche
-            case 3:
-                return new Tile(this.loadTileImg(3), property, x, y, true);
-        }*/
+        return new Tile(this.loadTileImg(tileType), property, x, y, true);
     };
 
     /**
