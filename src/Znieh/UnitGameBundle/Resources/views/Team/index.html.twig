@@ -4,21 +4,31 @@
 <div class="container">
     <div class="col-md-6">
         <h1>Liste de vos équipes</h1>
+
+        {{ form_start(form, { 'style': 'horizontal', 'label_col': 3, 'widget_col': 8 }) }}
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>Sélection</th>
                     <th>Nom</th>
                     <th>Unités</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-            {% for entity in teams %}
+            {% for entity in form.teams %}
                 <tr>
-                    <td>{{ entity.name }}</td>
+                    <td>
+                    {% if teams[loop.index0].selected %}
+                        {{ form_widget(entity, {checked: true }) }}
+                    {% else %}
+                        {{ form_widget(entity) }}        
+                    {% endif %}
+                    </td> 
+                    <td>{{ teams[loop.index0].name }}</td>
                     <td>
                      <ul>
-                        {% for unit in entity.units %}
+                        {% for unit in teams[loop.index0].units %}
                             <li>{{ unit.name }}</li>
                         {% endfor %}
                      </ul>
@@ -26,7 +36,7 @@
                     <td>
                     <ul>
                         <li>
-                            <a href="{{ path('village_create_team_edit', { 'id': entity.id }) }}">modifier</a>
+                            <a href="{{ path('village_create_team_edit', { 'id': teams[loop.index0].id }) }}">modifier</a>
                         </li>
                     </ul>
                     </td>
@@ -34,6 +44,8 @@
             {% endfor %}
             </tbody>
         </table>
+        {{ form_end(form) }}
+
         <a href="{{ path('village_create_team_new') }}">
             Créer une nouvelle équipe
          </a>
