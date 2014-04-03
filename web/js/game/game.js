@@ -85,7 +85,7 @@ function getUnits() {
       }
       //ennemyUnits[i].taille = ennemyUnits[i].sprite;
     }
-
+    console.log(units);
     units[0].statut = 0;
 
     continueProcess++;
@@ -212,7 +212,7 @@ function setInfoSide(data) {
 function setEnnemySide() {
 
     //console.log("setEnnemySide()");
-    
+
     if(ennemySideSauv == null)
     {
       console.log("setEnnemySide -> First");
@@ -236,7 +236,7 @@ function setEnnemySide() {
       else {
         $("#leftSide").html(ennemySideSauv);
       }
-      
+
       flag = -1;
     }
     else
