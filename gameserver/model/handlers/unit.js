@@ -67,6 +67,7 @@ var team = new Array();
 UnitHandler.connect = function(id){
 	function request(address) {
 		    http.get({ host: address, path: '/znieh/web/app_dev.php/api/users/'+ id + '/team.json'}, function(response) {
+		        var data = '';
 		        if (response.statusCode === 302) {
 		            var newLocation = url.parse(response.headers.location).host;
 		            //console.log('We have to make new request ' + newLocation);
@@ -74,9 +75,11 @@ UnitHandler.connect = function(id){
 		        } else {
 		            //console.log("Response: %d", response.statusCode);
 		            response.on('data', function(chunk) {
-
-		            	console.log('Body' + chunk);
-		            	team = UnitHandler.loadUnit(JSON.parse(chunk));
+		            	data += chunk;
+		            	//team = UnitHandler.loadUnit(JSON.parse(chunk));
+		            });
+		            response.on('end', function() {
+		 	          	team = UnitHandler.loadUnit(JSON.parse(data));
 		            });
 		        }
 		    }).on('error', function(err) {
