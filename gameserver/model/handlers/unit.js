@@ -79,6 +79,7 @@ UnitHandler.connect = function(id){
 		            	//team = UnitHandler.loadUnit(JSON.parse(chunk));
 		            });
 		            response.on('end', function() {
+		            	console.log(JSON.parse(data));
 		 	          	team = UnitHandler.loadUnit(JSON.parse(data));
 		            });
 		        }
@@ -88,7 +89,7 @@ UnitHandler.connect = function(id){
 		}
 
 	request('localhost');
-		console.log(team);
+	console.log("team returned " + id);
 	return team;
 }
 
