@@ -47,7 +47,6 @@ module.exports = function(player) {
 		if(player.battle.map !== undefined) {
 			player.battle.map = map.getRandomMap();
 		}
-
 		callback('map_new.json');
 		player.socket.emit('service', { msg: 'Map selected: map_new.json'});
 
@@ -55,18 +54,17 @@ module.exports = function(player) {
 
 	player.socket.on('get-units', function(data, callback) {
 		//unit.connect();
-		teams[0] = unit.loadUnit();
-		teams[1] = unit.loadUnit();
-		
+		teams[0] = unit.connect(player.battle.player1.id);
+		teams[1] = unit.connect(player.battle.player2.id);
+
 		for(var i in teams[0]){
 			unitCount[parseInt(i)] = parseInt(i);
 		}
 		for(var i in teams[1]){
 			unitCount[parseInt(10) + parseInt(i)] = parseInt(10) + parseInt(i);
 		}
-
+		//console.log(teams[0]);
 		turnController.newTurn(unitCount);
-
 		callback(teams);
 	});
 
@@ -84,7 +82,7 @@ module.exports = function(player) {
 	});
 
 	player.socket.on("place-unit", function(data, callback) {
-		
+
 		/*if(player.battle.mapSelected === false) {
 			callback(false);
 			player.socket.emit('service', { msg: 'Map is not selected.'});
@@ -118,7 +116,7 @@ module.exports = function(player) {
 
 		callback(true);
 
-		
+
 	});
 
 
@@ -161,14 +159,14 @@ module.exports = function(player) {
 			var tab = new Array();
 
 			if(player.battle.player1.name == player.name) {
-				unit.setHasAttacked(data.att);	
+				unit.setHasAttacked(data.att);
 				hit.physicalHit(teams[data.att], teams[parseInt(data.def) + parseInt(10)]);
 				tab[0] = teams[data.att];
 				tab[1] = teams[parseInt(data.def) + parseInt(10)];
 
 			}
 			else {
-				unit.setHasAttacked(parseInt(data.att) + parseInt(10));	
+				unit.setHasAttacked(parseInt(data.att) + parseInt(10));
 				hit.physicalHit(teams[parseInt(data.att) + parseInt(10)], teams[data.def]);
 				tab[0] = teams[parseInt(data.att) + parseInt(10)];
 				tab[1] = teams[data.def];
@@ -183,8 +181,8 @@ module.exports = function(player) {
 
 
 	player.socket.on("accept-player", function(data) {
-		
-		
+
+
 		if(player.battle.player1.name == player.name) {
 			player.battle.player1accepted = data;
 		}
