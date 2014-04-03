@@ -11,7 +11,7 @@ $(window).keydown(function(e){
 
     if(gameStatut == GameStatut.MOVE)
     {
-        //TODO !! 
+        //TODO !!
         // Florian
         gameStatut = GameStatut.IDLE;
     }
@@ -19,7 +19,7 @@ $(window).keydown(function(e){
     if(gameStatut == GameStatut.IDLE) {
         ContentManager.unSelectAllTiles();
         ContentManager.clearUnitsMenu();
-        
+
         //cross browser issues exist
         if(!e){ e = window.event; }
 
@@ -113,7 +113,7 @@ function ContentManager(stage, width, height) {
         loadingQueue = new createjs.LoadQueue(false);
         loadingQueue.addEventListener("complete", initMap);
         loadingQueue.loadManifest([{id:"tileset", src:"../img/sprites/tiles.jpg"}]); // On oblige le chargement de l'image avant l'exécution de la suite, sinon la map n'est pas chargée avant le stage.update()
-        loadingQueue.loadManifest([{id:"map-json", src: route_map}]);
+        loadingQueue.loadManifest([{id:"map-json", src: "../json/map_new.json"}]);
         loadingQueue.loadManifest([{id:"units-json", src:"../json/units.json"}]);
         loadingQueue.loadManifest([{id:"perso_petit", src:"../img/sprites/perso_petit.png"}]);
         loadingQueue.loadManifest([{id:"perso_casque", src:"../img/sprites/perso_casque.png"}]);
@@ -187,7 +187,7 @@ function ContentManager(stage, width, height) {
         }
 
         Hero = new Unit(spritePerso, map, Start, unistJson[type], taille, x, y, Ismine, idUnit, name);
-        
+
         if (Ismine) {
             ContentManager.units.push(Hero);
             units[idUnit].unitID = Hero.unitID;

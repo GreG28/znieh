@@ -62,10 +62,11 @@ UnitHandler.Unit = function(name, sign, sprite, size, weight, statut, stats, wea
  }
 
 var unitList = new Array();
+var team = new Array();
 
 UnitHandler.connect = function(id){
 	function request(address) {
-		    http.get({ host: 'localhost', path: '/app_dev.php/api/users/'+ id + '/team.json'}, function(response) {
+		    http.get({ host: address, path: '/znieh/web/app_dev.php/api/users/'+ id + '/team.json'}, function(response) {
 		        if (response.statusCode === 302) {
 		            var newLocation = url.parse(response.headers.location).host;
 		            //console.log('We have to make new request ' + newLocation);
@@ -73,8 +74,9 @@ UnitHandler.connect = function(id){
 		        } else {
 		            //console.log("Response: %d", response.statusCode);
 		            response.on('data', function(chunk) {
-		            	UnitHandler.loadUnit(JSON.parse(chunk));
-		                console.log('Body ' + chunk);
+
+		            	console.log('Body' + chunk);
+		            	team = UnitHandler.loadUnit(JSON.parse(chunk));
 		            });
 		        }
 		    }).on('error', function(err) {
@@ -82,8 +84,9 @@ UnitHandler.connect = function(id){
 		    });
 		}
 
-
 	request('localhost');
+		console.log(team);
+	return team;
 }
 
 UnitHandler.loadUnit = function(data){
@@ -150,19 +153,21 @@ UnitHandler.loadUnit = function(data){
 		sign = data.team[0].units[unit].sign.name;
 		size = data.team[0].units[unit].size.name;
 		weight = data.team[0].units[unit].weight.name;
-		console.log(sign);
 		weaponType = data.team[0].units[unit].weapon.type.name;
 		//weaponName = data.team[0].units[unit].weapon.name.name;
-		weaponDamages = data.team[0].units[unit].weapon.damages.number;
-		//weaponAttribute = data.team[0].units[unit].weapon.attribute.name;
-		//weaponRange = data.team[0].units[unit].weapon.range.number;
+		for( var i in data.team[0].units[unit].weapon.parts){
+			if( data.team[0].units[unit].weapon.parts[i].effects.damage != undefined)
+			weaponDamages = data.team[0].units[unit].weapon.parts[i].effects.damage;
+		}
+		weaponAttribute = '';//data.team[0].units[unit].weapon.attribute.name;
+		weaponRange = '';//data.team[0].units[unit].weapon.range.number
 		weaponRatio = 0.1;
 
 		armorType = data.team[0].units[unit].armor.type.name;
 		//armorName = data.team[0].units[unit].armor.name.name;
 
 		unitList.push(new UnitHandler.Unit(unitName, sign,"",size, weight, -1,new UnitHandler.StatSet(cLife,cPenetration,cPrecision,cEvade,cParry,cDefense,cArmor,cStrength,cAgility,cIntelligence,cMagicDamage,cEvilScience,cMagicSupport),
-			new UnitHandler.Weapon(weaponName, weaponType, weaponDamages, weaponAttribute, weaponRange, new UnitHandler.StatSet(wLife,wPenetration,wPrecision,wEvade,wParry,wDefense,wArmor,wStrength,wAgility,wIntelligence,wMagicDamage,wEvilScience,wMagicSupport), weaponRatio),
+			new UnitHandler.Weapon(weaponType, weaponType, weaponDamages, weaponAttribute, weaponRange, new UnitHandler.StatSet(wLife,wPenetration,wPrecision,wEvade,wParry,wDefense,wArmor,wStrength,wAgility,wIntelligence,wMagicDamage,wEvilScience,wMagicSupport), weaponRatio),
 			new UnitHandler.Armor(armorName, armorType, new UnitHandler.StatSet(aLife,aPenetration,aPrecision,aEvade,aParry,aDefense,aArmor,aStrength,aAgility,aIntelligence,aMagicDamage,aEvilScience,aMagicSupport))))
 	}
 	return unitList;

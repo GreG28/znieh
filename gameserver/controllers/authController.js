@@ -45,17 +45,17 @@ module.exports = function(socket, callback) {
 			socket.disconnect();
 			return -2;
 		}
-		
+
 
 		//world.db.User.find({where: {username: data.username, token: data.token}})
 		db.User.find({where: {username: data.username}})
 		.success(function(user){
 
-			user = {
-				id: 10,
+			/*user = {
+				id: data.id,
 				username: data.username
 			};
-
+*/
 			for(var i=0; i < world.players.length; i++) {
 				if(data.username === world.players[i].name) {
 					var p = world.players[i];
@@ -72,7 +72,7 @@ module.exports = function(socket, callback) {
 				    return;
 				}
 		    }
-			
+
 			socket.set('authenticated', true);
 			socket.emit("service", { msg: 'Auth: OK' });
 			logger.info("User " + data.username + " is now logged in.");
