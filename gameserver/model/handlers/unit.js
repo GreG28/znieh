@@ -72,7 +72,11 @@ UnitHandler.connect = function(id){
 		            var newLocation = url.parse(response.headers.location).host;
 		            //console.log('We have to make new request ' + newLocation);
 		            request(newLocation);
-		        } else {
+		        }
+		        else if(response.statusCode === 404) {
+		        	console.log("Response: %d for id -> %d Error !! Not Found", response.statusCode, id);
+		        }
+		        else {
 		            //console.log("Response: %d", response.statusCode);
 		            response.on('data', function(chunk) {
 		            	data += chunk;
