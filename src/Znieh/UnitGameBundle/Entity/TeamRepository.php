@@ -23,6 +23,19 @@ class TeamRepository extends EntityRepository
                  ->where($qb->expr()->eq('u.id', $user))
                  ->andWhere($qb->expr()->eq('t.selected', 1))
                  ->getQuery();
-     return $query->setMaxResults(1)->getResult();
+     return $query->getResult();
    }
+
+   public function findAllByUser($user)
+    {
+      $qb = $this->createQueryBuilder('t');
+      $query = $qb
+                  ->leftJoin('t.user', 'u')
+                   ->addSelect('u')
+                  ->leftJoin('t.units', 'un')
+                   ->addSelect('un')
+                  ->where($qb->expr()->eq('u.id', $user))
+                  ;
+      return $query;
+    }
 }
