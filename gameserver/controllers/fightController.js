@@ -57,6 +57,12 @@ module.exports = function(player) {
 		teams[0] = unit.connect(player.battle.player1.id);
 		teams[1] = unit.connect(player.battle.player2.id);
 
+		while(teams[0] === undefined && teams[1] === undefined)
+		{
+			console.log("teams[0] -> " + teams[0] + "\n");
+			console.log("teams[1] -> " + teams[1] + "\n\n\n");
+		}
+	
 		for(var i in teams[0]){
 			unitCount[parseInt(i)] = parseInt(i);
 		}
@@ -66,6 +72,7 @@ module.exports = function(player) {
 		//console.log(teams[0]);
 		turnController.newTurn(unitCount);
 		callback(teams);
+		
 	});
 
 	player.socket.on('get-side', function(data, callback) {
