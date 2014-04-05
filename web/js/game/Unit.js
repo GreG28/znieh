@@ -312,10 +312,8 @@
 
         var limit = 7; // TODO : Sélectionner la limite de déplacement de l'unité
         var easystar = new EasyStar.js();
-        var acceptableTiles = [ 1, 2];
         easystar.setGrid(map.textTiles);
-        easystar.setAcceptableTiles(acceptableTiles);
-
+        easystar.setAcceptableTiles(EnumTilePassable);
         // Disable tiles where your units are !
         unitsPlacement.length = 0;
         for (var t = ContentManager.units.length - 1 ; t >= 0 ; t--) {
@@ -372,9 +370,8 @@
 
         var limit = 7; // TODO : Sélectionner la limite de déplacement de l'unité
         var easystar = new EasyStar.js();
-        var acceptableTiles = [ 1, 2];
         easystar.setGrid(map.textTiles);
-        easystar.setAcceptableTiles(acceptableTiles);
+        easystar.setAcceptableTiles(EnumTilePassable);
 
         unitsPlacement.length = 0;
         for (var t = ContentManager.units.length - 1; t >= 0; t--) {

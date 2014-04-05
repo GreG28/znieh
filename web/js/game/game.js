@@ -70,8 +70,10 @@ function getUnits() {
       if(units[i].size == "Normal" && units[i].weight == "Musclé")
       {
         units[i].taille = "petitfin";
+        units[i].sprite = "perso_petit";
       }
       //units[i].taille = units[i].sprite;
+      //units[i].sprite = units[i].taille;
     }
 
     ennemyUnits = data[1];
@@ -81,11 +83,13 @@ function getUnits() {
       taille = "petitfin";
       if(ennemyUnits[i].size == "Normal" && ennemyUnits[i].weight == "Musclé")
       {
-          ennemyUnits[i].taille = "petitfin";
+        ennemyUnits[i].taille = "petitfin";
+        ennemyUnits[i].sprite = "perso_petit";
       }
       //ennemyUnits[i].taille = ennemyUnits[i].sprite;
+      //ennemyUnits[i].sprite = ennemyUnits[i].taille;
     }
-
+    console.log(units);
     units[0].statut = 0;
 
     continueProcess++;
@@ -212,7 +216,7 @@ function setInfoSide(data) {
 function setEnnemySide() {
 
     //console.log("setEnnemySide()");
-    
+
     if(ennemySideSauv == null)
     {
       console.log("setEnnemySide -> First");
@@ -236,7 +240,7 @@ function setEnnemySide() {
       else {
         $("#leftSide").html(ennemySideSauv);
       }
-      
+
       flag = -1;
     }
     else

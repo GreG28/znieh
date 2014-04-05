@@ -5,6 +5,9 @@ namespace Znieh\UnitGameBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\Groups;
+
 
 /**
  * Team
@@ -33,7 +36,9 @@ class Team
     private $name;
 
     /**
-    * @ORM\ManyToMany(targetEntity="Unit", mappedBy="teams", cascade={"persist"})
+    * @ORM\ManyToMany(targetEntity="Unit", mappedBy="teams", cascade={"persist"}, fetch="EAGER")
+    * @Type("ArrayCollection<Znieh\UnitGameBundle\Entity\Unit>")
+    * @Groups({"Default"})
     * @Expose
     */
     private $units;
