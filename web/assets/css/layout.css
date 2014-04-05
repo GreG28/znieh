@@ -8149,59 +8149,68 @@ h3.section-title {
   border: 1px solid black;
 }
 
-/* line 9, ../sass/_game.scss */
+/* line 8, ../sass/_game.scss */
+#leftSide, #rightSide {
+  overflow-x: hidden;
+}
+
+/* line 13, ../sass/_game.scss */
 #leftSide .selected,
 #rightSide .selected {
   background: #d7e9f2;
   border: 1px dashed black;
 }
 
-/* line 15, ../sass/_game.scss */
+/* line 19, ../sass/_game.scss */
 #leftSide .valid,
 #rightSide .valid {
   background: #d9fad9;
 }
 
-/* line 18, ../sass/_game.scss */
+/* line 22, ../sass/_game.scss */
 .unit .portrait {
-  overflow: hidden;
-  width: 48px;
-  height: 48px;
-  float: left;
+  text-align: center;
+  margin-top: 5px;
 }
 
-/* line 25, ../sass/_game.scss */
+/* line 27, ../sass/_game.scss */
 .unit .name {
   font-size: 12px;
-  float: left;
+  text-align: center;
   font-weight: bold;
+  margin-top: -18px;
 }
 
-/* line 31, ../sass/_game.scss */
+/* line 34, ../sass/_game.scss */
 .unit .life {
   margin-top: 10px;
   height: 16px;
 }
 
-/* line 36, ../sass/_game.scss */
+/* line 39, ../sass/_game.scss */
 .unit .stats {
   font-size: 12px;
-  margin-top: -25px;
 }
 
-/* line 41, ../sass/_game.scss */
-.unit .skills {
-  margin-top: -15px;
+/* line 43, ../sass/_game.scss */
+#leftSide .unit .skills {
+  margin-top: -12px;
+  float: left;
 }
 
-/* line 45, ../sass/_game.scss */
-.unit .skills img {
+/* line 48, ../sass/_game.scss */
+#rightSide .unit .skills {
+  margin-top: -12px;
   float: right;
+}
+
+/* line 53, ../sass/_game.scss */
+.unit .skills img {
   margin-right: 5px;
   margin-bottom: 5px;
 }
 
-/* line 52, ../sass/_game.scss */
+/* line 59, ../sass/_game.scss */
 #leftSide .infos,
 #rightSide .infos {
   background: white;
@@ -8209,26 +8218,83 @@ h3.section-title {
   border: 1px solid black;
 }
 
-/* line 58, ../sass/_game.scss */
+/* line 65, ../sass/_game.scss */
 .infos h3 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-/* line 63, ../sass/_game.scss */
+/* line 70, ../sass/_game.scss */
 .infos .stats {
   font-size: 12px;
 }
 
-/* line 67, ../sass/_game.scss */
+/* line 74, ../sass/_game.scss */
 .infos hr {
   margin: 0px;
 }
 
-/* line 71, ../sass/_game.scss */
+/* line 78, ../sass/_game.scss */
 .infos hr.delimitor {
   margin: 0px;
   margin-top: 10px;
+}
+
+/* line 83, ../sass/_game.scss */
+#leftSide #myUnits {
+  position: relative;
+  left: -83%;
+  -webkit-transition: all .25s ease-in;
+  transition: all .25s ease-in;
+}
+
+/* line 91, ../sass/_game.scss */
+#leftSide #myUnits:hover {
+  left: 0;
+}
+
+/* line 95, ../sass/_game.scss */
+#rightSide #ennemyUnits {
+  position: relative;
+  right: -83%;
+  -webkit-transition: all .25s ease-in;
+  transition: all .25s ease-in;
+}
+
+/* line 104, ../sass/_game.scss */
+#rightSide #ennemyUnits:hover {
+  right: 0;
+}
+
+/* line 108, ../sass/_game.scss */
+#rightSide h2 {
+  text-align: right;
+}
+
+/* line 113, ../sass/_game.scss */
+#rightSide #myUnits {
+  position: relative;
+  right: -83%;
+  -webkit-transition: all .25s ease-in;
+  transition: all .25s ease-in;
+}
+
+/* line 121, ../sass/_game.scss */
+#rightSide #myUnits:hover {
+  right: 0;
+}
+
+/* line 125, ../sass/_game.scss */
+#leftSide #ennemyUnits {
+  position: relative;
+  left: -83%;
+  -webkit-transition: all .25s ease-in;
+  transition: all .25s ease-in;
+}
+
+/* line 134, ../sass/_game.scss */
+#leftSide #ennemyUnits:hover {
+  left: 0;
 }
 
 /* line 17, ../sass/layout.scss */
