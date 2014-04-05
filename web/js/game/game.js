@@ -59,7 +59,7 @@ function getUnits() {
   socket.emit('get-units', null, function(data) {
     var taille;
     units = data;
-    console.log('get-units ');
+    console.log('get-units -> ' + data);
 
     units = data[0];
 

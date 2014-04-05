@@ -66,32 +66,32 @@ var team = new Array();
 
 UnitHandler.connect = function(id){
 	function request(address) {
-		    http.get({ host: address, path: '/znieh/web/app_dev.php/api/users/'+ id + '/team.json'}, function(response) {
-		        var data = '';
-		        if (response.statusCode === 302) {
-		            var newLocation = url.parse(response.headers.location).host;
-		            //console.log('We have to make new request ' + newLocation);
-		            request(newLocation);
-		        }
-		        else if(response.statusCode === 404) {
-		        	console.log("Response: %d for id -> %d Error !! Not Found", response.statusCode, id);
-		        }
-		        else {
-		            //console.log("Response: %d", response.statusCode);
-		            response.on('data', function(chunk) {
-		            	data += chunk;
-		            	//team = UnitHandler.loadUnit(JSON.parse(chunk));
-		            });
-		            response.on('end', function() {
-		            	console.log(JSON.parse(data));
-		 	          	team = UnitHandler.loadUnit(JSON.parse(data));
-		            });
-		        }
-		    }).on('error', function(err) {
-		        //console.log('Error %s', err.message);
-		    });
-		}
-
+		console.log("request teams from user id -> " + id);
+	    http.get({ host: address, path: '/znieh/web/app.php/api/users/'+ id + '/team.json'}, function(response) {
+	        var data = '';
+	        if (response.statusCode === 302) {
+	            var newLocation = url.parse(response.headers.location).host;
+	            //console.log('We have to make new request ' + newLocation);
+	            request(newLocation);
+	        }
+	        else if(response.statusCode === 404) {
+	        	console.log("Response: %d for id -> %d Error !! Not Found", response.statusCode, id);
+	        }
+	        else {
+	            console.log("Response: %d", response.statusCode);
+	            response.on('data', function(chunk) {
+	            	data += chunk;
+	            });
+	            response.on('end', function() {
+	            	//console.log(JSON.stringify(data));
+	 	          	team = UnitHandler.loadUnit(JSON.parse(data));
+	            });
+	        }
+	    }).on('error', function(err) {
+	        console.log('Error %s', err.message);
+	        request('localhost');
+    	});
+	}
 	request('localhost');
 	console.log("team returned " + id);
 	return team;
