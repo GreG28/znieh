@@ -45,6 +45,16 @@ module.exports = function(socket, callback) {
 			socket.disconnect();
 			return -2;
 		}
+		
+		// User is empty
+		if(data.username == '') {
+			var endpoint = socket.handshake.address;
+			logger.info('Possible hack detected from: '+ endpoint.address + ' (has send an empty username -> player kicked).');
+			socket.emit("service", { msg: 'Auth: Empty username' });
+			cb(false);
+			socket.disconnect();
+			return -3;
+		}
 
 
 		//world.db.User.find({where: {username: data.username, token: data.token}})
