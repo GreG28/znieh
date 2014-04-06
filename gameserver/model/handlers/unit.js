@@ -66,25 +66,25 @@ var team = new Array();
 
 UnitHandler.connect = function(id, finalCall){
 	function request(address, callback) {
-	    http.get({ host: address, path: '/app.php/api/users/'+ id + '/team.json'}, function(response) {
+	    http.get({ host: address, path: '/znieh/web/app.php/api/users/'+ id + '/team.json'}, function(response) {
 	        var data = '';
 	        if (response.statusCode === 302) {
 	            var newLocation = url.parse(response.headers.location).host;
 	            //console.log('We have to make new request ' + newLocation);
 	            request(newLocation);
 	        }
-	        else if(response.statusCode === 404) {
+	        else if(response.statusCode === 404 || response.statusCode === 500) {
 	        	console.log("Response: %d for id -> %d Error !! Not Found", response.statusCode, id);
 	        }
 	        else {
 	            //console.log("Response: %d", response.statusCode);
 	            response.on('data', function(chunk) {
 	            	data += chunk;
-
 	            });
 	            response.on('end', function() {
 	            	//console.log(JSON.stringify(data));
 	 	          	//team = UnitHandler.loadUnit(JSON.parse(data));
+	 	          	console.log(JSON.stringify(data));
 	 	          	callback(JSON.parse(data), finalCall);
 	            });
 	        }
