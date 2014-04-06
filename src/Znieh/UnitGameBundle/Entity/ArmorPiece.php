@@ -56,13 +56,17 @@ class ArmorPiece
 
     public function getPoints()
     {
-        return $this->part->getPoints() + $this->rune->getPoints() + $this->insigna->getPoints();
+        $i = 0;
+        $i += $this->part != null ? $this->part->getPoints() : 0;
+        $i += $this->rune != null ? $this->rune->getPoints() : 0;
+        $i += $this->insigna != null ? $this->insigna->getPoints() : 0;
+        return $i;
     }
 
     public function getEffects()
     {
         $effects = array();
-        foreach ($this->part->getEffects() as $key => $value) {
+        if($this->part != null) foreach ($this->part->getEffects() as $key => $value) {
             if (!array_key_exists($key, $effects)) {
                 $effects[$key] = $value;
             } else {

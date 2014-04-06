@@ -8231,26 +8231,31 @@ h3.section-title {
   margin-top: 10px;
 }
 
-/* line 17, ../sass/layout.scss */
+/* line 16, ../sass/layout.scss */
+table {
+  background: white;
+}
+
+/* line 20, ../sass/layout.scss */
 .navbar-default {
   background-image: url(../../img/background/stone.jpg);
   background-repeat: repeat;
 }
 
-/* line 21, ../sass/layout.scss */
+/* line 24, ../sass/layout.scss */
 .dropdown-menu > li > a > span {
   width: 35px;
   display: inline-block;
 }
 
-/* line 27, ../sass/layout.scss */
+/* line 30, ../sass/layout.scss */
 #menu {
   height: 40px;
   margin-bottom: 30px;
   padding-left: 162px;
 }
 
-/* line 33, ../sass/layout.scss */
+/* line 36, ../sass/layout.scss */
 #menu a.link {
   color: #fff;
   font-size: 18px;
@@ -8260,24 +8265,24 @@ h3.section-title {
   text-decoration: none;
 }
 
-/* line 42, ../sass/layout.scss */
+/* line 45, ../sass/layout.scss */
 .nav-tabs {
   background: #7e7259;
   border-bottom: none;
 }
 
-/* line 46, ../sass/layout.scss */
+/* line 49, ../sass/layout.scss */
 .nav-tabs a {
   color: #d5b983;
 }
 
-/* line 50, ../sass/layout.scss */
+/* line 53, ../sass/layout.scss */
 .nav-tabs li a:hover {
   background: #534a36;
   border: none;
 }
 
-/* line 55, ../sass/layout.scss */
+/* line 58, ../sass/layout.scss */
 .nav-tabs .active {
   background: #534a36;
   border: none;
@@ -8287,18 +8292,18 @@ h3.section-title {
     Main
 **/
 /** Fix footer end of page **/
-/* line 66, ../sass/layout.scss */
+/* line 69, ../sass/layout.scss */
 html, body {
   height: 100%;
 }
 
-/* line 70, ../sass/layout.scss */
+/* line 73, ../sass/layout.scss */
 body {
   line-height: 32px;
   font-family: 'TeX Gyre Heros';
 }
 
-/* line 76, ../sass/layout.scss */
+/* line 79, ../sass/layout.scss */
 #wrap {
   position: relative;
   margin: 0 auto;

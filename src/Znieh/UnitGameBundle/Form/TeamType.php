@@ -23,7 +23,7 @@ class TeamType extends AbstractType
     {
         $userId = $this->userId;
         $builder
-            ->add('name')
+            ->add('name', null, array('label' => 'Nom'))
             ->add('units', 'entity', array(
                 'class' => 'ZniehUnitGameBundle:Unit',
                 'by_reference' => false,
