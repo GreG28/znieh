@@ -19,6 +19,11 @@ var unitCount = new Array();
 var teams = new Array();
 var coordTeam1 = new Array();
 var coordTeam2 = new Array();
+var team1 = new Array();
+var team2 = new Array();
+var first = false;
+var second = false;
+
 
 module.exports = function(player) {
 
@@ -54,24 +59,54 @@ module.exports = function(player) {
 
 	player.socket.on('get-units', function(data, callback) {
 		//unit.connect();
-		teams[0] = unit.connect(player.battle.player1.id);
-		teams[1] = unit.connect(player.battle.player2.id);
+		console.log("GET UNIT");
+		console.log(first + " LOOOOOOOOL " + second);
+		if(first){
+			if(second)
+				callback(teams);
+		}
+		else{
+				unit.connect(player.battle.player1.id, function(team){
+					teams[0] = team;
+					first = true;
+						if(second){
+						for(var i in teams[0]){
+							unitCount[parseInt(i)] = parseInt(i);
+						}
+						for(var i in teams[1]){
+							unitCount[parseInt(10) + parseInt(i)] = parseInt(10) + parseInt(i);
+						}
+						callback(teams);
+					}
 
-		while(teams[0] === undefined && teams[1] === undefined)
-		{
-			console.log("teams[0] -> " + teams[0] + "\n");
-			console.log("teams[1] -> " + teams[1] + "\n\n\n");
+				});
+			//}
 		}
-	
-		for(var i in teams[0]){
-			unitCount[parseInt(i)] = parseInt(i);
+		if(second){
+
+			if(first)
+				callback(teams);
 		}
-		for(var i in teams[1]){
-			unitCount[parseInt(10) + parseInt(i)] = parseInt(10) + parseInt(i);
+		else{
+			unit.connect(player.battle.player2.id, function(team){
+					teams[1] = team;
+					second = true;
+					if(first){
+						for(var i in teams[0]){
+							unitCount[parseInt(i)] = parseInt(i);
+						}
+						for(var i in teams[1]){
+							unitCount[parseInt(10) + parseInt(i)] = parseInt(10) + parseInt(i);
+						}
+						callback(teams);
+					}
+				});
 		}
-		//console.log(teams[0]);
+
+
+
 		turnController.newTurn(unitCount);
-		callback(teams);
+		//callback(teams);
 		
 	});
 

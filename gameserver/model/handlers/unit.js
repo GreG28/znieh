@@ -64,10 +64,9 @@ UnitHandler.Unit = function(name, sign, sprite, size, weight, statut, stats, wea
 var unitList = new Array();
 var team = new Array();
 
-UnitHandler.connect = function(id){
-	function request(address) {
-		console.log("request teams from user id -> " + id);
-	    http.get({ host: address, path: '/znieh/web/app.php/api/users/'+ id + '/team.json'}, function(response) {
+UnitHandler.connect = function(id, finalCall){
+	function request(address, callback) {
+	    http.get({ host: address, path: '/app.php/api/users/'+ id + '/team.json'}, function(response) {
 	        var data = '';
 	        if (response.statusCode === 302) {
 	            var newLocation = url.parse(response.headers.location).host;
@@ -78,13 +77,15 @@ UnitHandler.connect = function(id){
 	        	console.log("Response: %d for id -> %d Error !! Not Found", response.statusCode, id);
 	        }
 	        else {
-	            console.log("Response: %d", response.statusCode);
+	            //console.log("Response: %d", response.statusCode);
 	            response.on('data', function(chunk) {
 	            	data += chunk;
+
 	            });
 	            response.on('end', function() {
 	            	//console.log(JSON.stringify(data));
-	 	          	team = UnitHandler.loadUnit(JSON.parse(data));
+	 	          	//team = UnitHandler.loadUnit(JSON.parse(data));
+	 	          	callback(JSON.parse(data), finalCall);
 	            });
 	        }
 	    }).on('error', function(err) {
@@ -92,12 +93,11 @@ UnitHandler.connect = function(id){
 	        request('localhost');
     	});
 	}
-	request('localhost');
-	console.log("team returned " + id);
-	return team;
+
+	request('localhost', UnitHandler.loadUnit);
 }
 
-UnitHandler.loadUnit = function(data){
+UnitHandler.loadUnit = function(data, callback){
 	unitList = new Array();
 
 	var unitName;
@@ -178,5 +178,5 @@ UnitHandler.loadUnit = function(data){
 			new UnitHandler.Weapon(weaponType, weaponType, weaponDamages, weaponAttribute, weaponRange, new UnitHandler.StatSet(wLife,wPenetration,wPrecision,wEvade,wParry,wDefense,wArmor,wStrength,wAgility,wIntelligence,wMagicDamage,wEvilScience,wMagicSupport), weaponRatio),
 			new UnitHandler.Armor(armorName, armorType, new UnitHandler.StatSet(aLife,aPenetration,aPrecision,aEvade,aParry,aDefense,aArmor,aStrength,aAgility,aIntelligence,aMagicDamage,aEvilScience,aMagicSupport))))
 	}
-	return unitList;
+	callback(unitList);
 }
