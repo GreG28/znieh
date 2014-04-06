@@ -116,7 +116,9 @@ class Unit
 
     public function getPoints()
     {
-        return $this->weapon->getPoints() + $this->armor->getPoints();
+        return $this->weapon->getPoints() 
+            + ($this->armor != null) ? $this->armor->getPoints() : 0
+            ;
     }
 
     /**
@@ -127,7 +129,7 @@ class Unit
     public function getAttributes()
     {
         $effects = array();
-        foreach ($this->armor->getEffects() as $key => $value) {
+        if($this->armor != null) foreach ($this->armor->getEffects() as $key => $value) {
             if (!array_key_exists($key, $effects)) {
                 $effects[$key] = $value;
             } else {

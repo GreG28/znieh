@@ -3,9 +3,9 @@
 {% block body %}
 <div class="container">
     <div class="col-md-6">
-        <h1>Liste de vos équipes</h1>
+        <h1>Vos équipes :</h1>
 
-        {{ form_start(form, { 'style': 'horizontal', 'label_col': 3, 'widget_col': 8 }) }}
+        {{ form_start(form) }}
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -27,6 +27,7 @@
                     {% endif %}
                     </td> 
                     <td>{{ teams[loop.index0].name }}</td>
+                    <td>{{ teams[loop.index0].points }} <img src="{{ asset('img/icons/doubled.png') }}" alt=""></td>
                     <td>
                      <ul>
                         {% for unit in teams[loop.index0].units %}
@@ -35,30 +36,29 @@
                      </ul>
                     </td>
                     <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('village_create_team_edit', { 'id': teams[loop.index0].id }) }}">modifier</a>
-                        </li>
-                    </ul>
+                        <a href="{{ path('village_create_team_edit', { 'id': teams[loop.index0].id }) }}" class="btn btn-primary">modifier</a>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-        {{ form_end(form) }}
 
-        <a href="{{ path('village_create_team_new') }}">
+        {{ form_end(form) }}
+        <a href="{{ path('village_create_team_new') }}" class="btn btn-primary">
             Créer une nouvelle équipe
          </a>
     </div>
     <div class="col-md-6">
-        <h1>Liste de vos unités</h1>
+        <h1>Vos unités :</h1>
 
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Nom</th>
                     <th>Points</th>
+                    <th>Arme</th>
+                    <th>Armure</th>
+                    <th>Sorts</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -67,18 +67,17 @@
                 <tr>
                     <td>{{ entity.name }}</td>
                     <td>{{ entity.points }} <img src="{{ asset('img/icons/doubled.png') }}" alt=""></td>
+                    <td><img src="{{ asset('img/weapons/' ~ entity.weapon.img ~ '.png') }}" alt=""></td>
+                    <td>{% if entity.armor %}{{ entity.armor.type.name }}{% endif %}</td>
+                    <td>-</td>
                     <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('village_create_unit_edit', { 'id': entity.id }) }}">modifier</a>
-                        </li>
-                    </ul>
+                            <a href="{{ path('village_create_unit_edit', { 'id': entity.id }) }}" class="btn btn-primary">modifier</a>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-        <a href="{{ path('village_create_unit_new') }}">
+        <a href="{{ path('village_create_unit_new') }}" class="btn btn-primary">
              Créer une nouvelle unité
         </a>
     </div>

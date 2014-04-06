@@ -26,11 +26,26 @@ class ArmorType extends AbstractType
                 'property' => 'name',
                 'required' => true
             ))*/
-            ->add('helm', new ArmorPieceType($this->userId, 'Casque'), array('label' => 'Tête'))
-            ->add('torso', new ArmorPieceType($this->userId, 'Torse'), array('label' => 'Torse'))
-            ->add('gloves', new ArmorPieceType($this->userId, 'Gants'), array('label' => 'Gants'))
-            ->add('greaves', new ArmorPieceType($this->userId, 'Jambes'), array('label' => 'Jambes'))
-            ->add('boots', new ArmorPieceType($this->userId, 'Bottes'), array('label' => 'Bottes'))
+            ->add('helm', new ArmorPieceType($this->userId, 'Casque'), array(
+                'label' => 'Tête', 
+                'attr' => array('label_col' => 2, 'widget_col' => 9)
+            ))
+            ->add('torso', new ArmorPieceType($this->userId, 'Torse'), array(
+                'label' => 'Torse',
+                'attr' => array('label_col' => 2, 'widget_col' => 9)
+                ))
+            ->add('gloves', new ArmorPieceType($this->userId, 'Gants'), array(
+                'label' => 'Gants',
+                'attr' => array('label_col' => 2, 'widget_col' => 9)
+                ))
+            ->add('greaves', new ArmorPieceType($this->userId, 'Jambes'), array(
+                'label' => 'Jambes',
+                'attr' => array('label_col' => 2, 'widget_col' => 9)
+                ))
+            ->add('boots', new ArmorPieceType($this->userId, 'Bottes'), array(
+                'label' => 'Bottes',
+                'attr' => array('label_col' => 2, 'widget_col' => 9)
+                ))
             /*
             ->add('pieces', 'bootstrap_collection', array(
                     'type' => new ArmorPieceType(),

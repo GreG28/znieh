@@ -33,7 +33,7 @@ class ArmorPieceType extends AbstractType
                 'label' => 'Pièce',
                 'class' => 'ZniehVillageGameBundle:ArmorPart',
                 'property' => 'name',
-                'required' => true,
+                'required' => false,
                 'query_builder' => function(ArmorPartRepository $er) use ($userId, $typeId) {
                     return $er->findUnlockedsByUserAndType($userId, $typeId);
                 },

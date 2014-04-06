@@ -14,12 +14,24 @@
       {{ form_start(form, { 'style': 'horizontal', 'label_col': 3, 'widget_col': 8 }) }}
 
       	{# {{ form(form) }} #}
+			<div class="row">
+				<div class="col-md-6">
+					{{ form_row(form.name) }}
+				</div>
+			</div>
+      		<div class="row">
+      			<div class="col-md-6">
+      				{{ form_row(form.sprite) }}
+      				{{ form_row(form.sign) }}
+      			</div>
+      			<div class="col-md-6">
+      				{{ form_row(form.size) }}
+      				{{ form_row(form.weight) }}
+      			</div>
+      		</div>
 
-          {{ form_row(form.name) }}
-          {{ form_row(form.sprite) }}
-          {{ form_row(form.sign) }}
-          {{ form_row(form.size) }}
-          {{ form_row(form.weight) }}
+
+
           {# {{ form_row(form.name) }} #}
 			
 
@@ -64,7 +76,7 @@
 			
       {{ form_end(form) }}
 
-    <a href="{{ path('village_create_unit') }}">
+    <a href="{{ path('znieh_unitgame_team_index') }}" class="btn btn-default">
               Retour
     </a>
 </div>
