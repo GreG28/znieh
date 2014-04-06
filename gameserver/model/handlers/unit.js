@@ -4,6 +4,7 @@ module.exports = UnitHandler;
 var url = require('url');
 
 UnitHandler.StatSet = function (life, penetration, precision, evade, parry, defense, armor, strength, agility, intelligence, magicDamage, evilScience, magicSupport){
+	"use strict";
 	this.life = life;
 	this.maxLife = life;
 	this.penetration = penetration;
@@ -18,10 +19,11 @@ UnitHandler.StatSet = function (life, penetration, precision, evade, parry, defe
 	this.magicDamage = magicDamage;
 	this.evilScience = evilScience;
 	this.magicSupport = magicSupport;
-}
+};
 
 
 UnitHandler.Weapon = function (name, type, damages, attribute, range, stats, ratio){
+	"use strict";
 	this.name = name;
 	this.type = type;
 	this.damages = damages;
@@ -29,15 +31,17 @@ UnitHandler.Weapon = function (name, type, damages, attribute, range, stats, rat
 	this.range = range;
 	this.stats = stats;
 	this.ratio = ratio;
-}
+};
 
 UnitHandler.Armor = function (name, type, stats){
+	"use strict";
 	this.name = name;
 	this.type = type;
 	this.stats = stats;
-}
+};
 
 UnitHandler.Unit = function(name, sign, sprite, size, weight, statut, stats, weapon, armor, skills,  values, tags){
+	"use strict";
 	this.name = name;
 	this.sign = sign;
 	this.sprite = sprite;
@@ -50,21 +54,23 @@ UnitHandler.Unit = function(name, sign, sprite, size, weight, statut, stats, wea
 	this.values = values;
 	this.tags = tags;
 	this.skills = skills;
-}
+};
 
 //A value is either a Strength or a Weakness, can be bad or good(yin will tell you if it's positive or negative effect)
 //Value is the key number, can be a ratio or flat number. stat will be the eventually modified stat.
- UnitHandler.Value = function(type, yin, value, stat){
- 	this.type = type;
- 	this.yin = yin;
- 	this.value = value;
- 	this.stat = stat;
- }
+UnitHandler.Value = function(type, yin, value, stat){
+	"use strict";
+	this.type = type;
+	this.yin = yin;
+	this.value = value;
+	this.stat = stat;
+};
 
 var unitList = new Array();
-var team = new Array();
+//var team = new Array();
 
 UnitHandler.connect = function(id, finalCall){
+	"use strict";
 	function request(address, callback) {
 	    http.get({ host: address, path: '/znieh/web/app.php/api/users/'+ id + '/team.json'}, function(response) {
 	        var data = '';
@@ -74,7 +80,7 @@ UnitHandler.connect = function(id, finalCall){
 	            request(newLocation);
 	        }
 	        else if(response.statusCode === 404 || response.statusCode === 500) {
-	        	console.log("Response: %d for id -> %d Error !! Not Found", response.statusCode, id);
+				console.log("Response: %d for id -> %d Error !! Not Found", response.statusCode, id);
 	        }
 	        else {
 	            //console.log("Response: %d", response.statusCode);
@@ -84,14 +90,18 @@ UnitHandler.connect = function(id, finalCall){
 	            response.on('end', function() {
 	            	//console.log(JSON.stringify(data));
 	 	          	//team = UnitHandler.loadUnit(JSON.parse(data));
-	 	          	console.log(JSON.stringify(data));
-	 	          	callback(JSON.parse(data), finalCall);
+	 	          	//console.log(JSON.stringify(data));
+	 	          	console.log("typeof callback -> " + typeof callback);
+	 	          	if (typeof callback=="function") {
+	 	          		console.log("call back");
+	 	          		callback(JSON.parse(data), finalCall);
+	 	          	}
 	            });
 	        }
 	    }).on('error', function(err) {
 	        console.log('Error %s', err.message);
 	        request('localhost');
-    	});
+		});
 	}
 
 	request('localhost', UnitHandler.loadUnit);
@@ -105,7 +115,7 @@ UnitHandler.loadUnit = function(data, callback){
 	var size;
 	var weight;
 	var statut;
-
+	
 	var weaponName;
 	var armorName;
 	var weaponType;
@@ -164,7 +174,7 @@ UnitHandler.loadUnit = function(data, callback){
 		weaponType = data.team[0].units[unit].weapon.type.name;
 		//weaponName = data.team[0].units[unit].weapon.name.name;
 		for( var i in data.team[0].units[unit].weapon.parts){
-			if( data.team[0].units[unit].weapon.parts[i].effects.damage != undefined)
+			if( data.team[0].units[unit].weapon.parts[i].effects.damage !== undefined)
 			weaponDamages = data.team[0].units[unit].weapon.parts[i].effects.damage;
 		}
 		weaponAttribute = '';//data.team[0].units[unit].weapon.attribute.name;
@@ -176,7 +186,7 @@ UnitHandler.loadUnit = function(data, callback){
 
 		unitList.push(new UnitHandler.Unit(unitName, sign,"",size, weight, -1,new UnitHandler.StatSet(cLife,cPenetration,cPrecision,cEvade,cParry,cDefense,cArmor,cStrength,cAgility,cIntelligence,cMagicDamage,cEvilScience,cMagicSupport),
 			new UnitHandler.Weapon(weaponType, weaponType, weaponDamages, weaponAttribute, weaponRange, new UnitHandler.StatSet(wLife,wPenetration,wPrecision,wEvade,wParry,wDefense,wArmor,wStrength,wAgility,wIntelligence,wMagicDamage,wEvilScience,wMagicSupport), weaponRatio),
-			new UnitHandler.Armor(armorName, armorType, new UnitHandler.StatSet(aLife,aPenetration,aPrecision,aEvade,aParry,aDefense,aArmor,aStrength,aAgility,aIntelligence,aMagicDamage,aEvilScience,aMagicSupport))))
+			new UnitHandler.Armor(armorName, armorType, new UnitHandler.StatSet(aLife,aPenetration,aPrecision,aEvade,aParry,aDefense,aArmor,aStrength,aAgility,aIntelligence,aMagicDamage,aEvilScience,aMagicSupport))));
 	}
 	callback(unitList);
-}
+};

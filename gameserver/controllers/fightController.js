@@ -26,11 +26,11 @@ var second = false;
 
 
 module.exports = function(player) {
-
+	"use strict";
 	player.socket.on("next-turn", function(data) {
 		if(player.status != "fighting") return -1;
 
-		if(player.battle == undefined) return -2;
+		if(player.battle === undefined) return -2;
 
 		if(player.battle.player1.name == player.name ^ player.battle.turn == 1) {
 			player.socket.emit('service', { msg: 'Next turn!'});
@@ -62,52 +62,52 @@ module.exports = function(player) {
 		console.log("GET UNIT");
 		console.log(first + " LOOOOOOOOL " + second);
 		if(first){
-			if(second)
+			if(second){
+				console.log("return teams for first and second !");
 				callback(teams);
+			}
 		}
 		else{
-				unit.connect(player.battle.player1.id, function(team){
-					teams[0] = team;
-					first = true;
-						if(second){
-						for(var i in teams[0]){
-							unitCount[parseInt(i)] = parseInt(i);
-						}
-						for(var i in teams[1]){
-							unitCount[parseInt(10) + parseInt(i)] = parseInt(10) + parseInt(i);
-						}
-						callback(teams);
+			unit.connect(player.battle.player1.id, function(team){
+				teams[0] = team;
+				first = true;
+				if(second){
+					for(var i in teams[0]){
+						unitCount[parseInt(i)] = parseInt(i);
 					}
-
-				});
-			//}
+					for(i in teams[1]){
+						unitCount[parseInt(10) + parseInt(i)] = parseInt(10) + parseInt(i);
+					}
+					console.log("return teams for first !");
+					callback(teams);
+				}
+			});
 		}
 		if(second){
-
-			if(first)
+			if(first){
+				console.log("return teams for second and first !");
 				callback(teams);
+			}
 		}
 		else{
 			unit.connect(player.battle.player2.id, function(team){
-					teams[1] = team;
-					second = true;
-					if(first){
-						for(var i in teams[0]){
-							unitCount[parseInt(i)] = parseInt(i);
-						}
-						for(var i in teams[1]){
-							unitCount[parseInt(10) + parseInt(i)] = parseInt(10) + parseInt(i);
-						}
-						callback(teams);
+				teams[1] = team;
+				second = true;
+				if(first){
+					for(var i in teams[0]){
+						unitCount[parseInt(i)] = parseInt(i);
 					}
-				});
+					for(i in teams[1]){
+						unitCount[parseInt(10) + parseInt(i)] = parseInt(10) + parseInt(i);
+					}
+					console.log("return teams for second !");
+					callback(teams);
+				}
+			});
 		}
-
-
 
 		turnController.newTurn(unitCount);
 		//callback(teams);
-		
 	});
 
 	player.socket.on('get-side', function(data, callback) {
@@ -195,8 +195,9 @@ module.exports = function(player) {
 
 	player.socket.on("attack", function(data, callback){
 		//check if unit setHasPlayed
-		if(turnController.hasAttacked(data[0]))
-			callback(false)
+		if(turnController.hasAttacked(data[0])){
+			callback(false);
+		}
 		else{
 			var tab = new Array();
 
