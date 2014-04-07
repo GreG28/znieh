@@ -196,15 +196,17 @@ module.exports = function(player) {
 
 	player.socket.on("attack", function(data, callback){
 		//check if unit setHasPlayed
-
+		var damages;
 		if(player.battle.player1.name == player.name) {
 			if(turnController.hasAttacked(data.att)){
 				callback(false);
 			}
 			else{
+				damages = teams[1][data.def].stats.life;
 				hit.physicalHit(teams[0][data.att], teams[1][data.def]);
 				tab[0] = teams[0][data.att];
 				tab[1] = teams[1][data.def];
+				damages = damages - teams[1][data.def].stats.life;
 			}
 		}
 		else{
@@ -212,12 +214,14 @@ module.exports = function(player) {
 				callback(false);
 			}
 			else{
+				damages = teams[0][data.def].stats.life;
 				hit.physicalHit(teams[1][data.att], teams[0][data.def]);
 				tab[0] = teams[1][data.att];
 				tab[1] = teams[0][data.def];
+				damages = damages - teams[0][data.def].stats.life;
 			}
 		}
-
+			tab.damages = damages;
 			if(tab[1].stats.life <= 0){
 				delete tab[1];
 			}
