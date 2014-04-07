@@ -76,7 +76,8 @@ var EnumTilePassable = null;
  * @param {int} width
  * @param {int} height
  */
-function ContentManager(stage, width, height) {
+//function ContentManager(stage , width, height*/) {
+function ContentManager(stage) {
     "use strict";
 
     ContentManager.nextUnitID = 0;
