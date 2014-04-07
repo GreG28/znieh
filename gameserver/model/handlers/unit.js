@@ -88,10 +88,10 @@ UnitHandler.connect = function(id, finalCall){
 	            	data += chunk;
 	            });
 	            response.on('end', function() {
-	            	console.log(JSON.stringify(data));
+	            	//console.log(JSON.stringify(data));
 	 	          	//team = UnitHandler.loadUnit(JSON.parse(data));
 	 	          	//console.log(JSON.stringify(data));
-	 	          	console.log("call back");
+	 	          	console.log("Page downloaded");
 	 	          	callback(JSON.parse(data), finalCall);
 	            });
 	        }
@@ -120,19 +120,19 @@ UnitHandler.loadUnit = function(data, callback){
 	var weaponRange;
 
 //stats
-	var cLife;
-	var cPenetration;
-	var cPrecision;
-	var cEvade;
-	var cParry;
-	var cDefense;
-	var cArmor;
-	var cStrength;
-	var cAgility;
-	var cIntelligence;
-	var cMagicDamage;
-	var cEvilScience;
-	var cMagicSupport;
+	var cLife = 30;
+	var cPenetration = 50;
+	var cPrecision = 50;
+	var cEvade = 50;
+	var cParry = 50;
+	var cDefense = 50;
+	var cArmor = 50;
+	var cStrength = 50;
+	var cAgility = 50;
+	var cIntelligence = 50;
+	var cMagicDamage = 50;
+	var cEvilScience = 50;
+	var cMagicSupport = 50;
 
 	var wLife;
 	var wPenetration;
@@ -174,7 +174,7 @@ UnitHandler.loadUnit = function(data, callback){
 			if( data.team[0].units[unit].weapon.parts[i].effects.damage !== undefined)
 			weaponDamages = data.team[0].units[unit].weapon.parts[i].effects.damage;
 		}
-		weaponAttribute = '';//data.team[0].units[unit].weapon.attribute.name;
+		weaponAttribute = 'Strength';//data.team[0].units[unit].weapon.attribute.name;
 		weaponRange = '';//data.team[0].units[unit].weapon.range.number
 		weaponRatio = 0.1;
 

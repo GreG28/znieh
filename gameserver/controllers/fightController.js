@@ -23,6 +23,7 @@ var team1 = new Array();
 var team2 = new Array();
 var first = false;
 var second = false;
+var tab = new Array();
 
 
 module.exports = function(player) {
@@ -195,31 +196,34 @@ module.exports = function(player) {
 
 	player.socket.on("attack", function(data, callback){
 		//check if unit setHasPlayed
-		if(turnController.hasAttacked(data[0])){
-			callback(false);
+
+		if(player.battle.player1.name == player.name) {
+			if(turnController.hasAttacked(data.att)){
+				callback(false);
+			}
+			else{
+				hit.physicalHit(teams[0][data.att], teams[1][data.def]);
+				tab[0] = teams[0][data.att];
+				tab[1] = teams[1][data.def];
+			}
 		}
 		else{
-			var tab = new Array();
-
-			if(player.battle.player1.name == player.name) {
-				//unit.setHasAttacked(data.att);
-				hit.physicalHit(teams[data.att], teams[parseInt(data.def) + parseInt(10)]);
-				tab[0] = teams[data.att];
-				tab[1] = teams[parseInt(data.def) + parseInt(10)];
-
+			if(turnController.hasAttacked(parseInt(data.att + 10))){
+				callback(false);
 			}
-			else {
-				//unit.setHasAttacked(parseInt(data.att) + parseInt(10));
-				hit.physicalHit(teams[parseInt(data.att) + parseInt(10)], teams[data.def]);
-				tab[0] = teams[parseInt(data.att) + parseInt(10)];
-				tab[1] = teams[data.def];
+			else{
+				hit.physicalHit(teams[1][data.att], teams[0][data.def]);
+				tab[0] = teams[1][data.att];
+				tab[1] = teams[0][data.def];
 			}
-
-
-			if(tab[1].stats.life <= 0)
-				delete tab[1];
-			callback(tab);
 		}
+
+			if(tab[1].stats.life <= 0){
+				delete tab[1];
+			}
+
+			callback(tab);
+		
 	});
 
 

@@ -108,13 +108,13 @@ physicalAttack.physicalHit = function(attackUnit, defenseUnit){
 		physicalAttack.utility.parried = physicalAttack.isParried();
 		physicalAttack.utility.criticalHit = physicalAttack.isCriticalHit();
 		physicalAttack.setParriedDamages();
-
+		console.log(physicalAttack.getDamages() + '\n' + physicalAttack.getArmorReduction());
 		physicalAttack.utility.finalDamage = (physicalAttack.getDamages() +  physicalAttack.utility.criticalHit * physicalAttack.getDamages()) * physicalAttack.getStrengthWeakness() * physicalAttack.getArmorReduction() * physicalAttack.utility.nonParriedDamage + physicalAttack.getMagicDamage();
 	}
 	else{
 		return 0;
 	}
 	defenseUnit.stats.life = defenseUnit.stats.life - physicalAttack.utility.finalDamage.toFixed(0);
-
+	console.log("DAMAGES: " + physicalAttack.utility.finalDamage.toFixed(0));
 	return physicalAttack.utility.finalDamage.toFixed(0);
 }
