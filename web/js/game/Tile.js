@@ -68,26 +68,25 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
 
         this.shape_selection_possible = new createjs.Shape();
         this.shape_selection_possible.name = "contour_selection_possible";
-        this.shape_selection_possible.graphics.beginStroke("#00af00");
-        this.shape_selection_possible.graphics.setStrokeStyle(2); // 2 pixel
+        this.shape_selection_possible.graphics.beginFill("rgba(0,175,0,0.6)");
         this.shape_selection_possible.graphics.drawRect(_x,_y,width - 2,height - 2); // Change size as-needed
         this.shape_selection_possible.visible = false;
 
-        this.shape_selection_impossible = new createjs.Shape();
+        /*this.shape_selection_impossible = new createjs.Shape();
         this.shape_selection_impossible.name = "contour_selection_impossible";
         this.shape_selection_impossible.graphics.beginStroke("#cc231e");
         this.shape_selection_impossible.graphics.setStrokeStyle(2); // 2 pixel
         this.shape_selection_impossible.graphics.drawRect(_x,_y,width - 2,height - 2); // Change size as-needed
-        this.shape_selection_impossible.visible = false;
+        this.shape_selection_impossible.visible = false;*/
 
         this._container.addChild(this.texture);
         this._container.addChild(this.shape_hover);
         this._container.addChild(this.shape_selection_possible);
-        this._container.addChild(this.shape_selection_impossible);
+        //this._container.addChild(this.shape_selection_impossible);
 
         var shape_hover = this.shape_hover;
         var shape_selection_possible = this.shape_selection_possible;
-        var shape_selection_impossible = this.shape_selection_impossible;
+        //var shape_selection_impossible = this.shape_selection_impossible;
 
         var self = this;
         this._container.on("mouseover", function(evt) {
