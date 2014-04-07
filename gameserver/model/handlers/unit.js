@@ -72,7 +72,7 @@ var unitList = new Array();
 UnitHandler.connect = function(id, finalCall){
 	"use strict";
 	function request(address, callback) {
-	    http.get({ host: address, path: '/znieh/web/app.php/api/users/'+ id + '/team.json'}, function(response) {
+	    http.get({ host: address, path: '/app.php/api/users/'+ id + '/team.json'}, function(response) {
 	        var data = '';
 	        if (response.statusCode === 302) {
 	            var newLocation = url.parse(response.headers.location).host;
@@ -116,7 +116,7 @@ UnitHandler.loadUnit = function(data, callback){
 	var size;
 	var weight;
 	var statut;
-	
+	var sprite;
 	var weaponName;
 	var armorName;
 	var weaponType;
@@ -171,6 +171,7 @@ UnitHandler.loadUnit = function(data, callback){
 		unitName = data.team[0].units[unit].name;
 		sign = data.team[0].units[unit].sign.name;
 		size = data.team[0].units[unit].size.name;
+		sprite = size = data.team[0].units[unit].sprite.name;
 		weight = data.team[0].units[unit].weight.name;
 		weaponType = data.team[0].units[unit].weapon.type.name;
 		//weaponName = data.team[0].units[unit].weapon.name.name;
@@ -185,7 +186,7 @@ UnitHandler.loadUnit = function(data, callback){
 		armorType = data.team[0].units[unit].armor.type.name;
 		//armorName = data.team[0].units[unit].armor.name.name;
 
-		unitList.push(new UnitHandler.Unit(unitName, sign,"",size, weight, -1,new UnitHandler.StatSet(cLife,cPenetration,cPrecision,cEvade,cParry,cDefense,cArmor,cStrength,cAgility,cIntelligence,cMagicDamage,cEvilScience,cMagicSupport),
+		unitList.push(new UnitHandler.Unit(unitName, sign,sprite, size, weight, -1,new UnitHandler.StatSet(cLife,cPenetration,cPrecision,cEvade,cParry,cDefense,cArmor,cStrength,cAgility,cIntelligence,cMagicDamage,cEvilScience,cMagicSupport),
 			new UnitHandler.Weapon(weaponType, weaponType, weaponDamages, weaponAttribute, weaponRange, new UnitHandler.StatSet(wLife,wPenetration,wPrecision,wEvade,wParry,wDefense,wArmor,wStrength,wAgility,wIntelligence,wMagicDamage,wEvilScience,wMagicSupport), weaponRatio),
 			new UnitHandler.Armor(armorName, armorType, new UnitHandler.StatSet(aLife,aPenetration,aPrecision,aEvade,aParry,aDefense,aArmor,aStrength,aAgility,aIntelligence,aMagicDamage,aEvilScience,aMagicSupport))));
 	}
