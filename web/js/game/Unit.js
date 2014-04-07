@@ -170,10 +170,16 @@
         this.shape_selected_unit.graphics.drawRect((_x - 16), (_y - 16), 32 - 2, 32 - 2); // Change size as-needed
         this.shape_selected_unit.visible = false;
 
+        this.text_damage = new createjs.Text("Damages !!!");
+        this.text_damage.name = "text_for_damage";
+        this.text_damage.setTransform(25, -20); // Change size as-needed
+        this.text_damage.visible = true;
+
         this._container.addChild(this.shape_hover);
         this._container.addChild(this.shape_selected);
         this._container.addChild(this.shape_selected_unit);
         this._container.addChild(this.sprite_base);
+        this._container.addChild(this.text_damage);
 
         var shape_hover = this.shape_hover;
         var shape_selected = this.shape_selected;
@@ -401,8 +407,8 @@
                     easystar.findPath(this._i, this._j, x, y, function(path) {
                         var shape = null;
                         if (path == null) {
-                            shape = map.tiles[y][x].shape_selection_impossible;
-                            shape.visible = true;
+                            //shape = map.tiles[y][x].shape_selection_impossible;
+                            //shape.visible = true;
                         }
                         else {
                             if(path.length <= limit) {
@@ -412,8 +418,8 @@
                                 });
 
                                 if(filtered.length > 0){
-                                    shape = map.tiles[y][x].shape_selection_impossible;
-                                    shape.visible = true;
+                                    //shape = map.tiles[y][x].shape_selection_impossible;
+                                    //shape.visible = true;
                                 }
                                 else {
                                     shape = map.tiles[y][x].shape_selection_possible;
@@ -424,8 +430,8 @@
                                 shape.visible = true;
                             }
                             else{
-                                shape = map.tiles[y][x].shape_selection_impossible;
-                                shape.visible = true;
+                                //shape = map.tiles[y][x].shape_selection_impossible;
+                                //shape.visible = true;
                             }
                         }
                     });
