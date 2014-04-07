@@ -91,8 +91,12 @@ UnitHandler.connect = function(id, finalCall){
 	            	//console.log(JSON.stringify(data));
 	 	          	//team = UnitHandler.loadUnit(JSON.parse(data));
 	 	          	//console.log(JSON.stringify(data));
+	 	          	if(data.indexOf('<br />') !== -1)
+	 	          		request('localhost', callback);
+	 	          	else{
 	 	          	console.log("Page downloaded");
 	 	          	callback(JSON.parse(data), finalCall);
+	 	          }
 	            });
 	        }
 	    }).on('error', function(err) {
