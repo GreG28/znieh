@@ -78,6 +78,7 @@ class LoadUnitData extends AbstractFixtureLoader implements OrderedFixtureInterf
                       ->setWeapon($weapon)
                       ->setArmor($armor)
                       ->setUser($user)
+                      ->setSprite($manager->getRepository('ZniehUnitGameBundle:Sprite')->findOneByName($unitData['sprite']))
                       ->setSign($manager->getRepository('ZniehUnitGameBundle:Sign')->findOneByName($unitData['sign']))
                       ->setSize($manager->getRepository('ZniehUnitGameBundle:Size')->findOneByName($unitData['size']))
                       ->setWeight($manager->getRepository('ZniehUnitGameBundle:Weight')->findOneByName($unitData['weight']))
