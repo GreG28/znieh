@@ -173,7 +173,7 @@
         this.text_damage = new createjs.Text("Damages !!!");
         this.text_damage.name = "text_for_damage";
         this.text_damage.setTransform(25, -20); // Change size as-needed
-        this.text_damage.visible = true;
+        this.text_damage.visible = false;
 
         this._container.addChild(this.shape_hover);
         this._container.addChild(this.shape_selected);
@@ -238,9 +238,11 @@
             if((selectedUnit._i == that._i - 1 && selectedUnit._j == that._j) || (selectedUnit._i == that._i + 1 && selectedUnit._j == that._j) || (selectedUnit._i == that._i && selectedUnit._j == that._j - 1) || (selectedUnit._i == that._i && selectedUnit._j == that._j + 1)) {
                 console.log("ATTAQUE CE NAAAAZE");
                 var selectedUnitDefID = data.idUnit;
+                var that = this;
  
                 socket.emit("attack", {att:selectedUnitID,def:selectedUnitDefID}, function(data) {
                     console.log(" Attaque validée ? -> " + data);
+                    that.Damages("");
                 });
 
                 // On demande au serveur si l'attaque est valide et on récupère le nombre de dégats qu'on affichera
@@ -490,6 +492,11 @@
                 }
             }
         }
+    };
+
+    Unit.prototype.Damages = function (damage) {
+        this.text_damage.text = "Connard"
+        this.text_damage.visible = true;
     };
 
     /**
