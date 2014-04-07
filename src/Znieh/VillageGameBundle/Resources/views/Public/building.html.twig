@@ -96,15 +96,13 @@
                     data-placement="bottom" data-html="true" data-original-title='{{ weapons[i].type.name }}' data-content='
                     <div>
                       <ul>
-                        {% for part in weapons[i].parts %}
-                          {% for key, effect in part.effects %}
+                        {% for key, effect in weapons[i].effects %}
                           <li>{{ key ~ ' : ' ~ effect }}</li>
-                          {% endfor %}
                         {% endfor %}
                       </ul>
                     </div>
                     <div class="game-object-points">
-                      5 <img src="{{ asset('img/icons/doubled.png') }}" alt="">
+                      {{ weapons[i].points }}<img src="{{ asset('img/icons/doubled.png') }}" alt="">
                     </div>
                     '>
                       <img src="{{ asset('img/weapons/' ~ weapons[i].img ~'.png') }}" class="img-responsive weapon-img">
