@@ -76,7 +76,8 @@ var EnumTilePassable = null;
  * @param {int} width
  * @param {int} height
  */
-function ContentManager(stage, width, height) {
+//function ContentManager(stage , width, height*/) {
+function ContentManager(stage) {
     "use strict";
 
     ContentManager.nextUnitID = 0;
@@ -216,7 +217,7 @@ function ContentManager(stage, width, height) {
         for(var i = 0; i < map.gameHeight; i++) {
             for(var j = 0; j < map.gameWidth; j++) {
                 map.tiles[i][j].shape_selection_possible.visible = false;
-                map.tiles[i][j].shape_selection_impossible.visible = false;
+                //map.tiles[i][j].shape_selection_impossible.visible = false;
 
                 if(selectedUnit != null)
                     selectedUnit.shape_selected_unit.visible = false;

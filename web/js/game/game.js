@@ -114,7 +114,7 @@ var ennemySideSauv = null;
 
 function init() {
   console.log("init");
-  contentManager = new ContentManager(stage, 480, 480);
+  contentManager = new ContentManager(stage/*, 480, 480*/);
   numberOfUnits = units.length;
   setMyUnitsSide();
   setEnnemySide();

@@ -77,7 +77,7 @@ UnitHandler.connect = function(id, finalCall){
 	        if (response.statusCode === 302) {
 	            var newLocation = url.parse(response.headers.location).host;
 	            //console.log('We have to make new request ' + newLocation);
-	            request(newLocation);
+	            request(newLocation, callback);
 	        }
 	        else if(response.statusCode === 404 || response.statusCode === 500) {
 				console.log("Response: %d for id -> %d Error !! Not Found", response.statusCode, id);
@@ -91,16 +91,13 @@ UnitHandler.connect = function(id, finalCall){
 	            	//console.log(JSON.stringify(data));
 	 	          	//team = UnitHandler.loadUnit(JSON.parse(data));
 	 	          	//console.log(JSON.stringify(data));
-	 	          	console.log("typeof callback -> " + typeof callback);
-	 	          	if (typeof callback=="function") {
-	 	          		console.log("call back");
-	 	          		callback(JSON.parse(data), finalCall);
-	 	          	}
+	 	          	console.log("Page downloaded");
+	 	          	callback(JSON.parse(data), finalCall);
 	            });
 	        }
 	    }).on('error', function(err) {
 	        console.log('Error %s', err.message);
-	        request('localhost');
+	        request('localhost', callback);
 		});
 	}
 
@@ -123,19 +120,19 @@ UnitHandler.loadUnit = function(data, callback){
 	var weaponRange;
 
 //stats
-	var cLife;
-	var cPenetration;
-	var cPrecision;
-	var cEvade;
-	var cParry;
-	var cDefense;
-	var cArmor;
-	var cStrength;
-	var cAgility;
-	var cIntelligence;
-	var cMagicDamage;
-	var cEvilScience;
-	var cMagicSupport;
+	var cLife = 30;
+	var cPenetration = 50;
+	var cPrecision = 50;
+	var cEvade = 50;
+	var cParry = 50;
+	var cDefense = 50;
+	var cArmor = 50;
+	var cStrength = 50;
+	var cAgility = 50;
+	var cIntelligence = 50;
+	var cMagicDamage = 50;
+	var cEvilScience = 50;
+	var cMagicSupport = 50;
 
 	var wLife;
 	var wPenetration;
@@ -177,7 +174,7 @@ UnitHandler.loadUnit = function(data, callback){
 			if( data.team[0].units[unit].weapon.parts[i].effects.damage !== undefined)
 			weaponDamages = data.team[0].units[unit].weapon.parts[i].effects.damage;
 		}
-		weaponAttribute = '';//data.team[0].units[unit].weapon.attribute.name;
+		weaponAttribute = 'Strength';//data.team[0].units[unit].weapon.attribute.name;
 		weaponRange = '';//data.team[0].units[unit].weapon.range.number
 		weaponRatio = 0.1;
 
