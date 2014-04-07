@@ -231,6 +231,12 @@
         if(gameStatut == GameStatut.ATTACK) {
             if((selectedUnit._i == that._i - 1 && selectedUnit._j == that._j) || (selectedUnit._i == that._i + 1 && selectedUnit._j == that._j) || (selectedUnit._i == that._i && selectedUnit._j == that._j - 1) || (selectedUnit._i == that._i && selectedUnit._j == that._j + 1)) {
                 console.log("ATTAQUE CE NAAAAZE");
+                var selectedUnitDefID = data.idUnit;
+ 
+                socket.emit("attack", {att:selectedUnitID,def:selectedUnitDefID}, function(data) {
+                    console.log(" Attaque validée ? -> " + data);
+                });
+
                 // On demande au serveur si l'attaque est valide et on récupère le nombre de dégats qu'on affichera
                 gameStatut = GameStatut.IDLE;
                 ContentManager.unSelectAllTiles();

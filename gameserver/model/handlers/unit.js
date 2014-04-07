@@ -88,7 +88,7 @@ UnitHandler.connect = function(id, finalCall){
 	            	data += chunk;
 	            });
 	            response.on('end', function() {
-	            	//console.log(JSON.stringify(data));
+	            	console.log(JSON.stringify(data));
 	 	          	//team = UnitHandler.loadUnit(JSON.parse(data));
 	 	          	//console.log(JSON.stringify(data));
 	 	          	console.log("typeof callback -> " + typeof callback);

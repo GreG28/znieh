@@ -202,14 +202,14 @@ module.exports = function(player) {
 			var tab = new Array();
 
 			if(player.battle.player1.name == player.name) {
-				unit.setHasAttacked(data.att);
+				//unit.setHasAttacked(data.att);
 				hit.physicalHit(teams[data.att], teams[parseInt(data.def) + parseInt(10)]);
 				tab[0] = teams[data.att];
 				tab[1] = teams[parseInt(data.def) + parseInt(10)];
 
 			}
 			else {
-				unit.setHasAttacked(parseInt(data.att) + parseInt(10));
+				//unit.setHasAttacked(parseInt(data.att) + parseInt(10));
 				hit.physicalHit(teams[parseInt(data.att) + parseInt(10)], teams[data.def]);
 				tab[0] = teams[parseInt(data.att) + parseInt(10)];
 				tab[1] = teams[data.def];
