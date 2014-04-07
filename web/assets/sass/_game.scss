@@ -5,6 +5,10 @@
   border: 1px solid black;
 }
 
+#leftSide, #rightSide {
+  overflow-x: hidden;
+}
+
 #leftSide .selected,
 #rightSide .selected {
   background: #d7e9f2;
@@ -16,16 +20,15 @@
   background: #d9fad9;
 }
 .unit .portrait {
-  overflow: hidden;
-  width: 48px;
-  height: 48px;
-  float: left;
+  text-align: center;
+  margin-top: 5px;
 }
 
 .unit .name {
   font-size: 12px;
-  float:left;
+  text-align:center;
   font-weight: bold;
+  margin-top: -18px;
 }
 
 .unit .life {
@@ -35,15 +38,19 @@
 
 .unit .stats {
   font-size: 12px;
-  margin-top: -25px;
 }
 
-.unit .skills {
-  margin-top: -15px;
+#leftSide .unit .skills {
+  margin-top: -12px;
+  float: left;
+}
+
+#rightSide .unit .skills {
+  margin-top: -12px;
+  float: right;
 }
 
 .unit .skills img {
-  float: right;
   margin-right: 5px;
   margin-bottom: 5px;
 }
@@ -71,4 +78,59 @@
 .infos hr.delimitor {
   margin: 0px;
   margin-top: 10px;
+}
+
+#leftSide #myUnits {
+  position: relative;
+  left: -83%;
+
+  -webkit-transition: all .25s ease-in;
+  transition: all .25s ease-in;
+}
+
+#leftSide #myUnits:hover {
+    left: 0;
+}
+
+#rightSide #ennemyUnits {
+  position: relative;
+  right: -83%;
+
+  -webkit-transition: all .25s ease-in;
+  transition: all .25s ease-in;
+
+}
+
+#rightSide #ennemyUnits:hover {
+    right: 0;
+}
+
+#rightSide h2 {
+  text-align: right;
+}
+
+
+#rightSide #myUnits {
+  position: relative;
+  right: -83%;
+
+  -webkit-transition: all .25s ease-in;
+  transition: all .25s ease-in;
+}
+
+#rightSide #myUnits:hover {
+    right: 0;
+}
+
+#leftSide #ennemyUnits {
+  position: relative;
+  left: -83%;
+
+  -webkit-transition: all .25s ease-in;
+  transition: all .25s ease-in;
+
+}
+
+#leftSide #ennemyUnits:hover {
+    left: 0;
 }
