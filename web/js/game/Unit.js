@@ -207,25 +207,25 @@
     };
 
     function unitMouseOver(evt, data) {
-            console.log("unitMouseOver data -> " + data.idUnit);
-            data.unit.shape_hover.visible = true;
-            if(data.unit.IsMine)
-            {
-                setInfoSide(units[data.idUnit]);
-            }
-            else
-            {
-                setInfoSide(ennemyUnits[data.idUnit]);
-            }
+        console.log("unitMouseOver data -> " + data.idUnit);
+        data.unit.shape_hover.visible = true;
+        if(data.unit.IsMine)
+        {
+            setInfoSide(units[data.idUnit]);
+        }
+        else
+        {
+            setInfoSide(ennemyUnits[data.idUnit]);
+        }
     }
 
     function unitMouseOut(evt, data) {
-            console.log("unitMouseOut data -> " + data.idUnit);
-            data.unit.shape_hover.visible = false;
+        console.log("unitMouseOut data -> " + data.idUnit);
+        data.unit.shape_hover.visible = false;
+        setEnnemySide();
+        /*if(selectedUnit == null) {
             setEnnemySide();
-            /*if(selectedUnit == null) {
-                setEnnemySide();
-            }*/
+        }*/
     }
 
     function unitClick(evt, data) {
@@ -241,7 +241,8 @@
                 var that = this;
  
                 socket.emit("attack", {att:selectedUnitID,def:selectedUnitDefID}, function(data) {
-                    console.log(" Attaque validée ? -> " + data);
+                    console.log(" Attaque validée ? -> " + JSON.stringify(data));
+                    console.log(typeof that);
                     that.Damages("");
                 });
 
@@ -351,6 +352,7 @@
                 if(filtered_new.length == 0) {
                     
                     //Call to function for animate the picture of perso
+                    ContentManager.unSelectAllTiles();
                     move_tween(self,path,1, x, y, Ismine);
                     
                     self._i = x;
