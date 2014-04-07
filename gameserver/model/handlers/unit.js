@@ -77,7 +77,7 @@ UnitHandler.connect = function(id, finalCall){
 	        if (response.statusCode === 302) {
 	            var newLocation = url.parse(response.headers.location).host;
 	            //console.log('We have to make new request ' + newLocation);
-	            request(newLocation);
+	            request(newLocation, callback);
 	        }
 	        else if(response.statusCode === 404 || response.statusCode === 500) {
 				console.log("Response: %d for id -> %d Error !! Not Found", response.statusCode, id);
@@ -91,16 +91,13 @@ UnitHandler.connect = function(id, finalCall){
 	            	console.log(JSON.stringify(data));
 	 	          	//team = UnitHandler.loadUnit(JSON.parse(data));
 	 	          	//console.log(JSON.stringify(data));
-	 	          	console.log("typeof callback -> " + typeof callback);
-	 	          	if (typeof callback=="function") {
-	 	          		console.log("call back");
-	 	          		callback(JSON.parse(data), finalCall);
-	 	          	}
+	 	          	console.log("call back");
+	 	          	callback(JSON.parse(data), finalCall);
 	            });
 	        }
 	    }).on('error', function(err) {
 	        console.log('Error %s', err.message);
-	        request('localhost');
+	        request('localhost', callback);
 		});
 	}
 
