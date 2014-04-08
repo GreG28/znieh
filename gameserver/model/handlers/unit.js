@@ -72,7 +72,7 @@ var unitList = new Array();
 UnitHandler.connect = function(id, finalCall){
 	"use strict";
 	function request(address, callback) {
-	    http.get({ host: address, path: '/app.php/api/users/'+ id + '/team.json'}, function(response) {
+	    http.get({ host: address, path: '/znieh/web/app.php/api/users/'+ id + '/team.json'}, function(response) {
 	        var data = '';
 	        if (response.statusCode === 302) {
 	            var newLocation = url.parse(response.headers.location).host;
@@ -88,10 +88,7 @@ UnitHandler.connect = function(id, finalCall){
 	            	data += chunk;
 	            });
 	            response.on('end', function() {
-	            	//console.log(JSON.stringify(data));
-	 	          	//team = UnitHandler.loadUnit(JSON.parse(data));
-	 	          	//console.log(JSON.stringify(data));
-	 	          	if(data.indexOf('<br />') !== -1)
+	            	if(data.indexOf('<br />') !== -1)
 	 	          		request('localhost', callback);
 	 	          	else{
 	 	          	console.log("Page downloaded");
@@ -171,7 +168,7 @@ UnitHandler.loadUnit = function(data, callback){
 		unitName = data.team[0].units[unit].name;
 		sign = data.team[0].units[unit].sign.name;
 		size = data.team[0].units[unit].size.name;
-		sprite = size = data.team[0].units[unit].sprite.name;
+		sprite = data.team[0].units[unit].sprite.name;
 		weight = data.team[0].units[unit].weight.name;
 		weaponType = data.team[0].units[unit].weapon.type.name;
 		//weaponName = data.team[0].units[unit].weapon.name.name;
