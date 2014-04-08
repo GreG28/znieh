@@ -241,9 +241,8 @@
                 var that = this;
  
                 socket.emit("attack", {att:selectedUnitID,def:selectedUnitDefID}, function(data) {
-                    console.log(" Attaque validée ? -> " + JSON.stringify(data));
-                    console.log(typeof that);
-                    that.Damages("");
+                    //console.log(" Attaque validée ? -> " + JSON.stringify(data));
+                    ContentManager.ennemyUnits[selectedUnitDefID].Damages(data.damages);
                 });
 
                 // On demande au serveur si l'attaque est valide et on récupère le nombre de dégats qu'on affichera
@@ -275,8 +274,6 @@
             }
             
             gameStatut = GameStatut.MOVE;
-            //setInfoSide(unit_clicked);
-            //console.log("fin selection to move !");
         }
     }
 
@@ -366,7 +363,6 @@
                     if(filtered.length > 0){
                         map.tiles[origin_y][origin_x].shape_hover.visible = false;
                         map.tiles[origin_y][origin_x].shape_selection_possible.visible = false;
-                        map.tiles[origin_y][origin_x].shape_selection_impossible.visible = false;
                     }
 
                 }
@@ -497,7 +493,8 @@
     };
 
     Unit.prototype.Damages = function (damage) {
-        this.text_damage.text = "Connard"
+        console.log("damage -> " + damage);
+        this.text_damage.text = "Dommages -> " + damage;
         this.text_damage.visible = true;
     };
 
