@@ -202,13 +202,11 @@ module.exports = function(player) {
 				callback(false);
 			}
 			else{
-				damages = teams[1][data.def].stats.life;
-				console.log("Before attack: " + damages);
+				damages = parseInt(teams[1][data.def].stats.life);
 				hit.physicalHit(teams[0][data.att], teams[1][data.def]);
 				tab[0] = teams[0][data.att];
 				tab[1] = teams[1][data.def];
-				damages = damages - teams[1][data.def].stats.life;
-				console.log("After attack: " + teams[1][data.def].stats.life);
+				damages = damages - parseInt(teams[1][data.def].stats.life);
 			}
 		}
 		else{
@@ -216,21 +214,18 @@ module.exports = function(player) {
 				callback(false);
 			}
 			else{
-				damages = teams[0][data.def].stats.life;
-				console.log("Before attack: " + damages);
+				damages = parseInt(teams[0][data.def].stats.life);
 				hit.physicalHit(teams[1][data.att], teams[0][data.def]);
 				tab[0] = teams[1][data.att];
 				tab[1] = teams[0][data.def];
-				damages = damages - teams[0][data.def].stats.life;
-				console.log("After attack: " + teams[0][data.def].stats.life);
+				damages = damages - parseInt(teams[0][data.def].stats.life);
 
 			}
 		}
-			tab.damages = damages;
+			tab[2] = damages;
 			if(tab[1].stats.life <= 0){
 				delete tab[1];
 			}
-
 			callback(tab);
 		
 	});
