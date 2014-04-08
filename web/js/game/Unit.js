@@ -172,7 +172,9 @@
 
         this.text_damage = new createjs.Text("Damages !!!");
         this.text_damage.name = "text_for_damage";
-        this.text_damage.setTransform(25, -20); // Change size as-needed
+        this.text_damage.color = "#ffffff";
+        this.text_damage.font = "bold 23px Arial";
+        this.text_damage.setTransform(18, -45); // Change size as-needed
         this.text_damage.visible = false;
 
         this._container.addChild(this.shape_hover);
@@ -494,8 +496,12 @@
 
     Unit.prototype.Damages = function (damage) {
         console.log("damage -> " + damage);
-        this.text_damage.text = "Dommages -> " + damage;
+        this.text_damage.text = "-" + damage;
         this.text_damage.visible = true;
+
+        createjs.Tween.get(this.text_damage).wait(2500).to({visible:false});
+        // Tweenjs faire animation ! 
+
     };
 
     /**
