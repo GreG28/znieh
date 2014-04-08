@@ -66,10 +66,12 @@ function getUnits() {
     for(var i = 0 ; i < units.length ; i++)
     {
       units[i].life = 100; // TODO : DELETE THIS LINE
+      units[i].taille = "petitfin";
+      /*
       if(units[i].size == "Normal" && units[i].weight == "Musclé")
       {
         units[i].taille = "petitfin";
-      }
+      }*/
     }
 
     ennemyUnits = data[1];
@@ -77,11 +79,11 @@ function getUnits() {
     for(i = 0 ; i < ennemyUnits.length ; i++)
     {
       ennemyUnits[i].life = 100; // TODO : DELETE THIS LINE
-      taille = "petitfin";
-      if(ennemyUnits[i].size == "Normal" && ennemyUnits[i].weight == "Musclé")
+      ennemyUnits[i].taille = "petitfin";
+      /*if(ennemyUnits[i].size == "Normal" && ennemyUnits[i].weight == "Musclé")
       {
         ennemyUnits[i].taille = "petitfin";
-      }
+      }*/
     }
     console.log(units);
     units[0].statut = 0;
