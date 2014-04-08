@@ -242,7 +242,7 @@
  
                 socket.emit("attack", {att:selectedUnitID,def:selectedUnitDefID}, function(data) {
                     //console.log(" Attaque validée ? -> " + JSON.stringify(data));
-                    ContentManager.ennemyUnits[selectedUnitDefID].Damages(data.damages);
+                    ContentManager.ennemyUnits[selectedUnitDefID].Damages(data[2]);
                 });
 
                 // On demande au serveur si l'attaque est valide et on récupère le nombre de dégats qu'on affichera
