@@ -233,7 +233,7 @@
     function unitClick(evt, data) {
         var that = data.unit;
         var container = that._container;
-        
+
         console.log("gameStatut -> " + gameStatut);
 
         if(gameStatut == GameStatut.ATTACK) {
@@ -241,10 +241,11 @@
                 console.log("ATTAQUE CE NAAAAZE");
                 var selectedUnitDefID = data.idUnit;
                 var that = this;
- 
+
                 socket.emit("attack", {att:selectedUnitID,def:selectedUnitDefID}, function(data) {
                     console.log(" Attaque validée ? -> " + JSON.stringify(data[2]));
                     ContentManager.ennemyUnits[selectedUnitDefID].Damages(data[2]);
+                    addMessageFightLog('<span class="text-success"><strong>' + ContentManager.units[selectedUnitID].name + '</strong></span> attaque <span class="text-danger"><strong>' + ContentManager.ennemyUnits[selectedUnitDefID].name + '</strong></span> (<span class="text-success"><strong>' + data[2] + ' dégâts</strong></span>).', 'default');
                 });
 
                 // On demande au serveur si l'attaque est valide et on récupère le nombre de dégats qu'on affichera
@@ -262,7 +263,7 @@
             selectedUnitID = data.idUnit;
 
             var unit_clicked = null;
-            
+
             if(data.unit.IsMine)
             {
                 console.log("this unit you clicked is mine !");
@@ -274,7 +275,7 @@
                 console.log("this unit you clicked is not your !");
                 unit_clicked = ennemyUnits[data.idUnit];
             }
-            
+
             gameStatut = GameStatut.MOVE;
         }
     }
@@ -349,11 +350,11 @@
                 });
 
                 if(filtered_new.length == 0) {
-                    
+
                     //Call to function for animate the picture of perso
                     ContentManager.unSelectAllTiles();
                     move_tween(self,path,1, x, y, Ismine);
-                    
+
                     self._i = x;
                     self._j = y;
 
@@ -500,7 +501,7 @@
         this.text_damage.visible = true;
 
         createjs.Tween.get(this.text_damage).wait(2500).to({visible:false});
-        // Tweenjs faire animation ! 
+        // Tweenjs faire animation !
 
     };
 

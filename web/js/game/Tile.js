@@ -107,18 +107,21 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
             if(gameStatut == GameStatut.PLACEMENT)
             {
                 setEnnemySide();
+                var idUnit = $("#myUnits div.selected").attr("data-unit");
+
                 if(data.collision == Enum.TileCollision.Passable && ((_i < (map.gameWidth / 3) && ContentManager.left == true) || ((_i >= (2 * map.gameWidth / 3)) && ContentManager.left == false))) {
                     console.log("[TILE] x" + _i + " y" + _j);
-                    var idUnit = $("#myUnits div.selected").attr("data-unit");
 
                     if(units[idUnit] != null) {
                         if(units[idUnit].statut == 0) {
-                            
+
                             socket.emit('place-unit', {unit:idUnit,x:_i,y:_j}, function(data) {
                                 console.log("placement unit -> " + data);
                                 ContentManager.newUnit(_i,_j, units[idUnit].sprite, units[idUnit].taille, idUnit, true, units[idUnit].name);
                                 nextUnitID++;
-                                
+
+                                addMessageFightLog('<strong>' + units[idUnit].name + '</strong> a bien été placé.');
+
                                 if(ContentManager.units.length == numberOfUnits) {
                                     gameStatut = GameStatut.MOVE;
                                     // TODO !!
@@ -136,8 +139,10 @@ Enum.TileCollision = { Passable: 0, Impassable: 1 };
                         console.log("Cette unité ne peut être placée");
                     }
                 }
-                else
+                else {
+                    addMessageFightLog('<strong>' + units[idUnit].name + '</strong> ne peut être placé ici.', 'danger');
                     console.log("Vous ne pouvez pas placer votre personnage à cet endroit.");
+                }
             }
             else if(gameStatut == GameStatut.MOVE && selectedUnit.IsMine ) {
                 console.log("Unit -> move to this one");

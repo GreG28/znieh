@@ -9,6 +9,16 @@ var ennemySide;
 var contentManager;
 var socket;
 
+function addMessageFightLog(message, type) {
+  type = typeof type !== 'undefined' ? type : "success";
+
+  var hour = new Date;
+  var hourMessage = hour.getHours() + ":" + hour.getMinutes() + ":" + hour.getSeconds();
+
+  $("#journal").append('['+ hourMessage +'] <span class="text-' + type + '">' + message + '</span><br>');
+  $("#journal").scrollTop($("#journal")[0].scrollHeight);
+}
+
 function waitForElement(){
     if(typeof window.socket != "undefined"){
         socket = window.socket;
@@ -117,6 +127,8 @@ function init() {
   setSocketOnForGame();
 
   stage.enableMouseOver();
+
+  addMessageFightLog('<strong>Vous pouvez maintenant placer vos unités.</strong>', 'info');
 }
 
 mySide = '<h2>Mes unités</h2><div id="myUnits"></div>';
