@@ -203,10 +203,12 @@ module.exports = function(player) {
 			}
 			else{
 				damages = teams[1][data.def].stats.life;
+				console.log("Before attack: " + damages);
 				hit.physicalHit(teams[0][data.att], teams[1][data.def]);
 				tab[0] = teams[0][data.att];
 				tab[1] = teams[1][data.def];
 				damages = damages - teams[1][data.def].stats.life;
+				console.log("After attack: " + teams[1][data.def].stats.life);
 			}
 		}
 		else{
@@ -215,10 +217,13 @@ module.exports = function(player) {
 			}
 			else{
 				damages = teams[0][data.def].stats.life;
+				console.log("Before attack: " + damages);
 				hit.physicalHit(teams[1][data.att], teams[0][data.def]);
 				tab[0] = teams[1][data.att];
 				tab[1] = teams[0][data.def];
 				damages = damages - teams[0][data.def].stats.life;
+				console.log("After attack: " + teams[0][data.def].stats.life);
+
 			}
 		}
 			tab.damages = damages;
