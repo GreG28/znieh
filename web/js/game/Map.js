@@ -65,14 +65,14 @@ Array.matrix = function (m, n, initial) {
 
         do
         {
-            console.log("DO !!! ");
+            //console.log("DO !!! ");
             diff = 0;
             for(i = 0 ; i < tmp.length ; i++)
             {
                 //console.log(" tmp[" + i + "] = " + tmp[i] + " -> " + tileBloquante[0][tmp[i]]);
                 if(tileBloquante[0][tmp[i]] != null)
                 {
-                    console.log("tileBlocked -> " + tmp[i]);
+                    //console.log("tileBlocked -> " + tmp[i]);
                     tmp.splice(i,1);
                     diff = 1;
                 }
