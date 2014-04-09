@@ -115,14 +115,14 @@ function ContentManager(stage) {
         loadingQueue.loadManifest([{id:"tileset", src:"../img/sprites/tiles.jpg"}]); // On oblige le chargement de l'image avant l'exécution de la suite, sinon la map n'est pas chargée avant le stage.update()
         loadingQueue.loadManifest([{id:"map-json", src: "../json/map_new.json"}]);
         loadingQueue.loadManifest([{id:"units-json", src:"../json/units.json"}]);
-        loadingQueue.loadManifest([{id:"perso_petit", src:"../img/sprites/perso_petit.png"}]);
-        loadingQueue.loadManifest([{id:"perso_casque", src:"../img/sprites/perso_casque.png"}]);
+        loadingQueue.loadManifest([{id:"perso_petit", src:"../img/sprites/Perso_barbu.png"}]);
+        loadingQueue.loadManifest([{id:"perso_casque", src:"../img/sprites/Perso_barbu_epee.png"}]);
         loadingQueue.loadManifest([{id:"perso_casque_argent", src:"../img/sprites/perso_casqueArgent.png"}]);
         loadingQueue.loadManifest([{id:"perso_casque_Or", src:"../img/sprites/perso_casqueOr2.png"}]);
 
         gameStatut = GameStatut.IDLE;
     };
-
+    
     /**
      * Initialize map with all parameters
      */

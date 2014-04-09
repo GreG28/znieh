@@ -12,7 +12,7 @@ var socket;
 function addMessageFightLog(message, type) {
   type = typeof type !== 'undefined' ? type : "success";
 
-  var hour = new Date;
+  var hour = new Date();
   var hourMessage = hour.getHours() + ":" + hour.getMinutes() + ":" + hour.getSeconds();
 
   $("#journal").append('['+ hourMessage +'] <span class="text-' + type + '">' + message + '</span><br>');
@@ -77,11 +77,15 @@ function getUnits() {
     {
       units[i].life = 100; // TODO : DELETE THIS LINE
       units[i].taille = "petitfin";
-      /*
-      if(units[i].size == "Normal" && units[i].weight == "Musclé")
+
+      if(units[i].sprite == "perso_casque_or")
       {
-        units[i].taille = "petitfin";
-      }*/
+        units[i].sprite = "perso_petit";
+      }
+      else if(units[i].sprite == "perso_casque_argent")
+      {
+        units[i].sprite = "perso_casque"; 
+      }
     }
 
     ennemyUnits = data[1];
@@ -90,10 +94,15 @@ function getUnits() {
     {
       ennemyUnits[i].life = 100; // TODO : DELETE THIS LINE
       ennemyUnits[i].taille = "petitfin";
-      /*if(ennemyUnits[i].size == "Normal" && ennemyUnits[i].weight == "Musclé")
+
+      if(ennemyUnits[i].sprite == "perso_casque_or")
       {
-        ennemyUnits[i].taille = "petitfin";
-      }*/
+        ennemyUnits[i].sprite = "perso_petit";
+      }
+      else if(ennemyUnits[i].sprite == "perso_casque_argent")
+      {
+        ennemyUnits[i].sprite = "perso_casque"; 
+      }
     }
     console.log(units);
     units[0].statut = 0;
