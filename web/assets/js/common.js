@@ -42,7 +42,6 @@ requirejs.config({
          */
         bootstrap: ['jquery'],
         jqueryui: ['jquery'],
-        collection: ['jquery'],
-        fos_routing: { exports: 'Routing' }
+        collection: ['jquery']
     }
 });
