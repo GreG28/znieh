@@ -1,7 +1,7 @@
  /**
   * The module loaded on the building page
   */
- define(['jquery', 'jqueryui', 'router', 'bootstrap'], function ($) {
+ define(['jquery', 'router', 'jqueryui', 'bootstrap'], function ($, Routing) {
     console.log('building module loaded');
 
     /** for popover stay on focus **/
