@@ -11,9 +11,8 @@
     define('user', { name: '{% if app.user %}{{ app.user.username }}{% endif %}' });
     require(['common'], function (common) {
         require(['router', 'app/default'], function(Routing){
-            if (typeof Routing != 'undefined') {
-                Routing.setBaseUrl('{{ app.request.getBaseURL() }}');
-            }
+            console.log(Routing);
+            Routing.setBaseUrl('{{ app.request.getBaseURL() }}');
             {% if module %}
                 require(['{{ module }}']);
             {% endif %}
