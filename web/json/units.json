@@ -398,14 +398,14 @@
                 },
                 "sprites":
                 {
-                    "spritesheet": "perso_petit.png",
+                    "spritesheet": "Perso_barbu.png",
                     "spritesheet_loading_ID": "perso_petit",
                     "frames":
                     {
-                        "width": 40,
-                        "height": 50,
-                        "regX": 20,
-                        "regY": 25 
+                        "width": 400,
+                        "height": 400,
+                        "regX": 200,
+                        "regY": 200 
                     },
                     "weapon":
                     {
@@ -453,29 +453,29 @@
                 },
                 "right":
                 {
-                    "start": 0,
-                    "end": 2,
+                    "start": 4,
+                    "end": 7,
                     "name": "right",
                     "velocity": 0.2
                 },
                 "left":
                 {
-                    "start": 0,
-                    "end": 2,
+                    "start": 8,
+                    "end": 11,
                     "name": "left",
                     "velocity": 0.2
                 },
                 "top":
                 {
-                    "start": 20,
-                    "end": 23,
+                    "start": 12,
+                    "end": 15,
                     "name": "top",
                     "velocity": 0.2
                 },
                 "bottom":
                 {
-                    "start": 35,
-                    "end": 38,
+                    "start": 0,
+                    "end": 3,
                     "name": "bottom",
                     "velocity": 0.2
                 }
@@ -526,14 +526,14 @@
                 },
                 "sprites":
                 {
-                    "spritesheet": "perso_casque.png",
+                    "spritesheet": "Perso_barbu_epee.png",
                     "spritesheet_loading_ID": "perso_casque",
                     "frames":
                     {
-                        "width": 40,
-                        "height": 50,
-                        "regX": 20,
-                        "regY": 25 
+                        "width": 400,
+                        "height": 400,
+                        "regX": 200,
+                        "regY": 200 
                     },
                     "weapon":
                     {
@@ -572,7 +572,7 @@
         {
             "move":
             {
-                "idle":
+                 "idle":
                 {
                     "start": 0,
                     "end": 0,
@@ -581,33 +581,33 @@
                 },
                 "right":
                 {
-                    "start": 0,
-                    "end": 2,
+                    "start": 4,
+                    "end": 7,
                     "name": "right",
                     "velocity": 0.2
                 },
                 "left":
                 {
-                    "start": 0,
-                    "end": 2,
+                    "start": 8,
+                    "end": 11,
                     "name": "left",
                     "velocity": 0.2
                 },
                 "top":
                 {
-                    "start": 20,
-                    "end": 23,
+                    "start": 12,
+                    "end": 15,
                     "name": "top",
                     "velocity": 0.2
                 },
                 "bottom":
                 {
-                    "start": 35,
-                    "end": 38,
+                    "start": 0,
+                    "end": 3,
                     "name": "bottom",
                     "velocity": 0.2
                 }
-            },
+           },
             "attack":
             {
                 "right":
