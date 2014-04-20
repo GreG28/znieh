@@ -1,5 +1,5 @@
 {
-  "name": "znieh",
+  "name": "Znieh Games Website",
   "version": "0.0.0",
   "description": "Znieh Games Website",
   "main": "",
@@ -22,7 +22,7 @@
     "type": "git",
     "url": "git://github.com/spyl94/znieh.git"
   },
-  "author": "Aurélien David",
+  "author": "Aurélien David <contact@spyl.net>",
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/spyl94/znieh/issues"
