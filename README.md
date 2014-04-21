@@ -11,7 +11,7 @@ Coding Convention : https://gist.github.com/spyl94/3e85ddc37b018d907936
 
     git clone git@github.com:spyl94/znieh.git
 
-    php composer.phar install
+    php composer.phar install --dev
 
 If you don't have composer yet : http://getcomposer.org/
 
@@ -89,14 +89,14 @@ Later, when you're actually developing, you will use grunt to watch for file cha
 
     grunt watch
 
- Clearing the cache
--------------------------------------
+ 5) Translation
+ ------------------------------------
 
-     php app/console cache:clear
+    php app/console translation:extract fr --config=app
 
-     php app/console cache:clear --env=prod
+Run again for each locales (replace "fr" by the new local).
 
-5) Gameserver - app.js
+6) Gameserver - app.js
 -------------------------------------
 
 In "node" repository, execute the following command to install node_modules.
@@ -110,6 +110,15 @@ Finally, run the server :
     node app.js
 
 For your information, the game server runs on port 1337, and the test webpage on port 8080.
+
+Some bonus informations :
+
+ Clearing the cache
+-------------------------------------
+
+     php app/console cache:clear
+
+     php app/console cache:clear --env=prod
 
  Composer
 -------------------------------------

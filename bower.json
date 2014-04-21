@@ -19,6 +19,7 @@
     "sass-bootstrap": "~3.0.0",
     "jquery.ui": "~1.10.4",
     "socket.io-client": "~0.9.16",
-    "momentjs": "~2.5.1"
+    "momentjs": "~2.5.1",
+    "requirejs-plugins": "~1.0.2"
   }
 }

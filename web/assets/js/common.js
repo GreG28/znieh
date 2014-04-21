@@ -11,6 +11,8 @@ requirejs.config({
          * this file to the web/assets directory.
          */
         domReady: '../vendor/requirejs-domready/domReady',
+        text: '../vendor/requirejs-plugins/lib/text',
+        json: '../vendor/requirejs-plugins/src/json',
         /**
          * Things like this only work because the library has code in it to
          * detect if require.js is present, and manually register the module
@@ -18,7 +20,7 @@ requirejs.config({
          * AMD, you will likely need a paths entry and also an entry in
          * shim (beyond what you see for the bootstrap shim).
          */
-        jquery: '../vendor/jquery/dist/jquery.min',
+        jquery: '../vendor/jquery/jquery.min',
         jqueryui: '../libs/jquery-ui-1.10.4.custom.min',
         collection: '../libs/bootstrap-collection',
         bootstrap: '../vendor/bootstrap/dist/js/bootstrap.min',

@@ -24,7 +24,7 @@
         "jms/di-extra-bundle": "1.4.*@dev",
         "jms/security-extra-bundle": "1.5.*@dev",
         "jms/serializer-bundle": "0.13.0",
-        "jms/translation-bundle": "dev-master",
+        "jms/translation-bundle": "1.1.*@dev",
         "jms/i18n-routing-bundle": "dev-master",
         "willdurand/js-translation-bundle": "2.0.*@dev",
 

@@ -20,7 +20,7 @@ framework:
     session:         ~
     fragments:       ~
 
-# Braincrafted Configuration
+# Braincrafted
 braincrafted_bootstrap:
     less_filter: none
     auto_configure:
@@ -29,7 +29,7 @@ braincrafted_bootstrap:
         knp_menu: true
         knp_paginator: true
 
-# FOSJsRouting Configuration
+# FOSJsRouting
 fos_js_routing:
     cache_control:
         # All are optional, defaults shown
@@ -41,7 +41,7 @@ fos_js_routing:
     routes_to_expose:
         - "^api_.*" # expose all routes with a name starting with api_
 
-# Twig Configuration
+# Twig
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
@@ -51,7 +51,7 @@ twig:
         resources:
             - BraincraftedBootstrapBundle:Form:bootstrap.html.twig
 
-# Assetic Configuration
+# Assetic
 assetic:
     debug:          %kernel.debug%
     use_controller: false
@@ -66,7 +66,7 @@ assetic:
         #compass:
         #    apply_to: "/\.s[ac]ss$/"
 
-# Doctrine Configuration
+# Doctrine
 doctrine:
     dbal:
         connections:
@@ -117,7 +117,7 @@ doctrine:
                         class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
                         enabled: true
 
-# Swiftmailer Configuration
+# Swiftmailer
 swiftmailer:
     transport: %mailer_transport%
     host:      %mailer_host%
@@ -137,7 +137,7 @@ fos_rest:
     view:
         view_response_listener: 'force'
 
-# FosUser Configuration
+# FosUserBundle
 fos_user:
     db_driver: orm
     firewall_name: main
@@ -154,22 +154,25 @@ fos_user:
         email:
             template: ZniehUserBundle:User:resetting.email.twig
 
-# FosFacebook Configuration
-#fos_facebook:
- # alias:  facebook
-  # app_id: %app_id_facebook%
-  # secret: %app_secret_facebook%
-  # cookie: true
-  # permissions: [email, user_birthday, user_location]
+# JMSI18nRoutingBundle
+jms_i18n_routing:
+    default_locale: fr
+    locales: [fr, en]
+    strategy: prefix
+
+# JMSTranslationBundle
+jms_translation:
+    configs:
+        app:
+            dirs: [%kernel.root_dir%, %kernel.root_dir%/../src]
+            output_dir: %kernel.root_dir%/Resources/translations
+            ignored_domains: [routes]
+            excluded_names: [*TestCase.php, *Test.php]
+            excluded_dirs: [cache, data, logs]
+            keep: true
+            extractors: [jms_i18n_routing]
 
 services:
-    # my.facebook.user:
-    #     class: Znieh\UserBundle\Security\User\Provider\FacebookProvider
-    #     arguments:
-    #         facebook: "@fos_facebook.api"
-    #         userManager: "@fos_user.user_manager"
-    #         validator: "@validator"
-    #         userProvider: "@fos_user.user_provider.username"
     znieh_user.registration:
         class: Znieh\UserBundle\EventListener\RegistrationListener
         arguments:
@@ -196,18 +199,15 @@ services:
        tags:
            - { name: twig.extension }
 
-# Stof Doctrine Configuration
+# Stof Doctrine
 stof_doctrine_extensions:
     default_locale: en_US
-
     # Only used if you activated the Uploadable extension
     uploadable:
         # Default file path: This is one of the three ways you can configure the path for the Uploadable extension
         default_file_path:       %kernel.root_dir%/../web/uploads
-
         # Mime type guesser class: Optional. By default, we provide an adapter for the one present in the HttpFoundation component of Symfony
         mime_type_guesser_class: Stof\DoctrineExtensionsBundle\Uploadable\MimeTypeGuesserAdapter
-
         # Default file info class implementing FileInfoInterface: Optional. By default we provide a class which is prepared to receive an UploadedFile instance.
         default_file_info_class: Stof\DoctrineExtensionsBundle\Uploadable\UploadedFileInfo
     orm:
@@ -216,7 +216,7 @@ stof_doctrine_extensions:
             tree: true,
             timestampable: true
 
-# GenemuForm Configuration
+# GenemuForm
 genemu_form:
     select2: ~
     date: ~
