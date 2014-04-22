@@ -90,7 +90,7 @@ Later, when you're actually developing, you will use grunt to watch for file cha
     grunt watch
 
  5) Translation
- ------------------------------------
+-------------------------------------
 
     php app/console translation:extract fr --config=app
 
